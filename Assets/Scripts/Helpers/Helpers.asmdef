@@ -1,8 +1,9 @@
 {
-    "name": "RuleController",
+    "name": "Helpers",
     "rootNamespace": "",
     "references": [
-        "GUID:13fea4bd79995194ba166e8401cb1d95"
+        "GUID:13fea4bd79995194ba166e8401cb1d95",
+        "GUID:f5bfdfcd82ef7584194cd685cf4ad772"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
