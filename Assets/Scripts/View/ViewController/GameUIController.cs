@@ -19,6 +19,10 @@ namespace View
             if (Input.GetKeyDown(pauseKey))
                 pauseMenu.SetActive(!pauseMenu.activeSelf);
         }
+        public void PauseClicked()
+        {
+            pauseMenu.SetActive(true);
+        }
         public void DisconnectClicked()
         {
             SceneManager.LoadSceneAsync(disconnectToScene);
