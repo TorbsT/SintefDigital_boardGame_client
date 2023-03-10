@@ -33,7 +33,10 @@ namespace View
                     "Do not open Main Menu Scene directly, always go via IntroScene");
                 return;
             }
-            RestAPI.Instance.RefreshLobbies((result) => DoneRefresh(result));
+            RestAPI.Instance.RefreshLobbies(
+                (result) => RefreshSuccess(result),
+                (result) => RefreshFailure(result)
+                );
             // Remove all previously found lobbies
             GetComponent<UIListHandler>().Clear();
                 
@@ -44,29 +47,44 @@ namespace View
         }
         public void CreateLobby()
         {
+            RestAPI.Instance.CreateGame(
+                (success) => CreateLobbySuccess(success), 
+                (failure) => CreateLobbyFailure(failure), 
+                0, "per arne", "perkele"
+                );
+            
+        }
+        private void CreateLobbySuccess(RestAPI.GameState result)
+        {
+            Debug.Log(result.playerTurn);
             MainMenuUIController.Instance.JoinLobby(-1);
         }
-        public void DoneRefresh(RestAPI.Result result)
+        private void CreateLobbyFailure(string errorMsg)
         {
-            createLobbyButton.interactable = true;
-            refreshButton.interactable = true;
-            if (!result.Success)
-            {
-                noLobbiesText.text = $"Found no lobbies: {result.ErrorMessage}";
-                noLobbiesText.gameObject.SetActive(true);
-                return;
-            }
+            noLobbiesText.text = $"Could not create lobby: {errorMsg}";
+        }
+        private void RefreshSuccess(string result)
+        {
             for (int i = 0; i < UnityEngine.Random.Range(1, 6); i++)
             {
                 GameObject gameObject = PoolManager.Instance.Depool(lobbyPrefab);
                 LobbyButtonUI lobby = gameObject.GetComponent<LobbyButtonUI>();
+
                 lobby.Name = $"Lobby with cool name {i}";
                 lobby.LobbyId = i;
                 lobby.Quantity = "1/5";
                 GetComponent<UIListHandler>().AddItem(gameObject);
             }
+            createLobbyButton.interactable = true;
+            refreshButton.interactable = true;
             noLobbiesText.gameObject.SetActive(false);
-            // do more
+        }
+        private void RefreshFailure(string result)
+        {
+            createLobbyButton.interactable = true;
+            refreshButton.interactable = true;
+            noLobbiesText.text = $"Found no lobbies: {result}";
+            noLobbiesText.gameObject.SetActive(true);
         }
     }
 }

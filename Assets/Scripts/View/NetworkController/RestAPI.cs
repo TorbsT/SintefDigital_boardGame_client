@@ -2,6 +2,7 @@ using GluonGui.Dialog;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -15,6 +16,27 @@ namespace Network
             public string ErrorMessage { get; internal set; }
             public string JSONResponse { get; internal set; }
         }
+        private struct PlayerInfoAndLobbyName
+        {
+            private struct PlayerInfo
+            {
+                public int UniqueID;
+                public string Name;
+            }
+
+            private PlayerInfo playerInfo;
+            private string LobbyName;
+
+            public PlayerInfoAndLobbyName(int uniqueId, string name, string lobbyName)
+            {
+                playerInfo = new()
+                {
+                    UniqueID = uniqueId,
+                    Name = name
+                };
+                LobbyName = lobbyName;
+            }
+        }
         public static RestAPI Instance { get; private set; }
 
         [SerializeField] private string URL = "localhost";
@@ -26,85 +48,59 @@ namespace Network
             DontDestroyOnLoad(gameObject);
             Instance = this;
         }
-        void Start()
+        public void RefreshLobbies(Action<string> successCallback, Action<string> failureCallback)
         {
-            
+            StartCoroutine(GET("InternetMultiplayer/getGameState", successCallback, failureCallback));
         }
-        public void RefreshLobbies(Action<Result> callback)
+        public void CreateGame(Action<GameState> successCallback, Action<string> failureCallback, int uniquePlayerId, string playerName, string lobbyName)
         {
-            StartCoroutine(GET("InternetMultiplayer/getGameState", callback));
+            WWWForm form = new();
+            string jsonObject = JsonUtility.ToJson(
+                new PlayerInfoAndLobbyName(uniquePlayerId, playerName, lobbyName)
+                );
+            form.AddField("playerInfoAndLobbyName", jsonObject);
+            StartCoroutine(POST("create/game", form, successCallback, failureCallback));
         }
-        private IEnumerator POST(string resource, WWWForm form, Action<Result> callback)
+        private IEnumerator GET<T>(string resource, Action<T> successCallback, Action<string> failureCallback)
         {
-            string connectURL = $"{URL}:{port}/{resource}";
-            using (UnityWebRequest request = UnityWebRequest.Post(connectURL, form))
+            using UnityWebRequest request = UnityWebRequest.Get(GetConnectURL(resource));
+            yield return request.SendWebRequest();
+            HandleResponse(request, successCallback, failureCallback);
+        }
+        private IEnumerator POST<T>(string resource, WWWForm form, Action<T> successCallback, Action<string> failureCallback)
+        {
+            using UnityWebRequest request = UnityWebRequest.Post(GetConnectURL(resource), form);
+            yield return request.SendWebRequest();
+            HandleResponse(request, successCallback, failureCallback);
+        }
+        private void HandleResponse<T>(UnityWebRequest request, Action<T> successCallback, Action<string> failureCallback)
+        {
+            if (request.result == UnityWebRequest.Result.ConnectionError)
             {
-                yield return request.SendWebRequest();
-
-                if (request.result == UnityWebRequest.Result.ConnectionError)
-                {
-                    Debug.LogWarning(request.error);
-                    callback?.Invoke(new()
-                    {
-                        Success = false,
-                        ErrorMessage = request.error
-                    });
-                }
-                else
-                {
-                    string json = request.downloadHandler.text;
-                    gameState = GameState.FromJSON(json);
-                    callback?.Invoke(new()
-                    {
-                        Success = true,
-                        JSONResponse = json
-                    });
-                }
+                Debug.LogWarning(request.error);
+                failureCallback?.Invoke(request.error);
+            }
+            else
+            {
+                string json = request.downloadHandler.text;
+                successCallback?.Invoke(
+                    JsonUtility.FromJson<T>(json)
+                    );
             }
         }
-        private IEnumerator GET(string resource, Action<Result> callback)
-        {
-            string connectURL = $"{URL}:{port}/{resource}";
-            using (UnityWebRequest request = UnityWebRequest.Get(connectURL))
-            {
-                yield return request.SendWebRequest();
-
-                if (request.result == UnityWebRequest.Result.ConnectionError)
-                {
-                    Debug.LogWarning(request.error);
-                    callback?.Invoke(new()
-                    {
-                        Success = false,
-                        ErrorMessage = request.error
-                    });
-                } else
-                {
-                    string json = request.downloadHandler.text;
-                    gameState = GameState.FromJSON(json);
-                    callback?.Invoke(new()
-                    {
-                        Success = true,
-                        JSONResponse = json
-                    });
-                }
-            }
-        }
-    }
-    [Serializable]
-    internal class GameState
-    {
-        public int playerTurn;
-        public List<Player> players;
+        private string GetConnectURL(string resource)
+            => $"{URL}:{port}/API/{resource}";
         [Serializable]
-        public class Player
+        public class GameState
         {
-            public string displayName;
-            public List<int> colour;
-        }
-
-        public static GameState FromJSON(string json)
-        {
-            return JsonUtility.FromJson<GameState>(json);
+            public int playerTurn;
+            public List<Player> players;
+            [Serializable]
+            public class Player
+            {
+                public string displayName;
+                public List<int> colour;
+            }
         }
     }
 }
