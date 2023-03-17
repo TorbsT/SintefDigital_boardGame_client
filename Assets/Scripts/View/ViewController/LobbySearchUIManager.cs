@@ -33,58 +33,54 @@ namespace View
                     "Do not open Main Menu Scene directly, always go via IntroScene");
                 return;
             }
-            RestAPI.Instance.RefreshLobbies(
-                (result) => RefreshSuccess(result),
-                (result) => RefreshFailure(result)
-                );
+
             // Remove all previously found lobbies
             GetComponent<UIListHandler>().Clear();
-                
+
             createLobbyButton.interactable = false;
             refreshButton.interactable = false;
             noLobbiesText.gameObject.SetActive(true);
             noLobbiesText.text = "Searching for lobbies...";
+
+            RestAPI.Instance.RefreshLobbies(
+                (result) =>
+                {
+                    for (int i = 0; i < UnityEngine.Random.Range(1, 6); i++)
+                    {
+                        GameObject gameObject = PoolManager.Instance.Depool(lobbyPrefab);
+                        LobbyButtonUI lobby = gameObject.GetComponent<LobbyButtonUI>();
+
+                        lobby.Name = $"Lobby with cool name {i}";
+                        lobby.LobbyId = i;
+                        lobby.Quantity = "1/5";
+                        GetComponent<UIListHandler>().AddItem(gameObject);
+                    }
+                    createLobbyButton.interactable = true;
+                    refreshButton.interactable = true;
+                    noLobbiesText.gameObject.SetActive(false);
+                },
+                (failure) =>
+                {
+                    createLobbyButton.interactable = true;
+                    refreshButton.interactable = true;
+                    noLobbiesText.text = $"Found no lobbies: {failure}";
+                    noLobbiesText.gameObject.SetActive(true);
+                }
+                );
         }
         public void CreateLobby()
         {
             RestAPI.Instance.CreateGame(
-                (success) => CreateLobbySuccess(success), 
-                (failure) => CreateLobbyFailure(failure), 
-                0, "per arne", "perkele"
+                (success) =>
+                {
+                    Debug.Log(success.ppplllayerTurn);
+                    MainMenuUIController.Instance.JoinLobby(-1);
+                }, 
+                (failure) =>
+                {
+                    noLobbiesText.text = $"Could not create lobby: {failure}";
+                }
                 );
-            
-        }
-        private void CreateLobbySuccess(RestAPI.GameState result)
-        {
-            Debug.Log(result.playerTurn);
-            MainMenuUIController.Instance.JoinLobby(-1);
-        }
-        private void CreateLobbyFailure(string errorMsg)
-        {
-            noLobbiesText.text = $"Could not create lobby: {errorMsg}";
-        }
-        private void RefreshSuccess(string result)
-        {
-            for (int i = 0; i < UnityEngine.Random.Range(1, 6); i++)
-            {
-                GameObject gameObject = PoolManager.Instance.Depool(lobbyPrefab);
-                LobbyButtonUI lobby = gameObject.GetComponent<LobbyButtonUI>();
-
-                lobby.Name = $"Lobby with cool name {i}";
-                lobby.LobbyId = i;
-                lobby.Quantity = "1/5";
-                GetComponent<UIListHandler>().AddItem(gameObject);
-            }
-            createLobbyButton.interactable = true;
-            refreshButton.interactable = true;
-            noLobbiesText.gameObject.SetActive(false);
-        }
-        private void RefreshFailure(string result)
-        {
-            createLobbyButton.interactable = true;
-            refreshButton.interactable = true;
-            noLobbiesText.text = $"Found no lobbies: {result}";
-            noLobbiesText.gameObject.SetActive(true);
         }
     }
 }

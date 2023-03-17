@@ -1,8 +1,5 @@
-using GluonGui.Dialog;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -10,56 +7,37 @@ namespace Network
 {
     public class RestAPI : MonoBehaviour
     {
-        public class Result
-        {
-            public bool Success { get; internal set; }
-            public string ErrorMessage { get; internal set; }
-            public string JSONResponse { get; internal set; }
-        }
-        private struct PlayerInfoAndLobbyName
-        {
-            private struct PlayerInfo
-            {
-                public int UniqueID;
-                public string Name;
-            }
-
-            private PlayerInfo playerInfo;
-            private string LobbyName;
-
-            public PlayerInfoAndLobbyName(int uniqueId, string name, string lobbyName)
-            {
-                playerInfo = new()
-                {
-                    UniqueID = uniqueId,
-                    Name = name
-                };
-                LobbyName = lobbyName;
-            }
-        }
         public static RestAPI Instance { get; private set; }
 
         [SerializeField] private string URL = "localhost";
         [SerializeField] private int port = 5000;
-        [SerializeField] private GameState gameState;
 
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
             Instance = this;
         }
-        public void RefreshLobbies(Action<string> successCallback, Action<string> failureCallback)
+        internal void RefreshLobbies(Action<string> successCallback, Action<string> failureCallback)
         {
             StartCoroutine(GET("InternetMultiplayer/getGameState", successCallback, failureCallback));
         }
-        public void CreateGame(Action<GameState> successCallback, Action<string> failureCallback, int uniquePlayerId, string playerName, string lobbyName)
+        internal void CreateGame(Action<NetworkData.GameState> successCallback, Action<string> failureCallback)
         {
-            WWWForm form = new();
             string jsonObject = JsonUtility.ToJson(
-                new PlayerInfoAndLobbyName(uniquePlayerId, playerName, lobbyName)
+                new NetworkData.PlayerInfoAndLobbyName(
+                    NetworkData.Instance.UniqueID,
+                    NetworkData.Instance.Name,
+                    NetworkData.Instance.Name)
                 );
-            form.AddField("playerInfoAndLobbyName", jsonObject);
-            StartCoroutine(POST("create/game", form, successCallback, failureCallback));
+            StartCoroutine(POST("create/game", jsonObject, successCallback, failureCallback));
+        }
+        internal void CreateUniquePlayerId(Action<int> successCallback, Action<string> failureCallback)
+        {
+            StartCoroutine(GET("create/playerID", successCallback, failureCallback));
+        }
+        internal void DebugPlayerCount(Action<int> successCallback, Action<string> failureCallback)
+        {
+            StartCoroutine(GET("debug/playerIDs/amount", successCallback, failureCallback));
         }
         private IEnumerator GET<T>(string resource, Action<T> successCallback, Action<string> failureCallback)
         {
@@ -67,40 +45,49 @@ namespace Network
             yield return request.SendWebRequest();
             HandleResponse(request, successCallback, failureCallback);
         }
-        private IEnumerator POST<T>(string resource, WWWForm form, Action<T> successCallback, Action<string> failureCallback)
+        private IEnumerator POST<T>(string resource, string data, Action<T> successCallback, Action<string> failureCallback)
         {
-            using UnityWebRequest request = UnityWebRequest.Post(GetConnectURL(resource), form);
+            using UnityWebRequest request =
+                UnityWebRequest.Post(GetConnectURL(resource),
+                data, "application/json");
             yield return request.SendWebRequest();
             HandleResponse(request, successCallback, failureCallback);
         }
         private void HandleResponse<T>(UnityWebRequest request, Action<T> successCallback, Action<string> failureCallback)
         {
-            if (request.result == UnityWebRequest.Result.ConnectionError)
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                string json = request.downloadHandler.text;
+
+                T responseObject;
+                if (int.TryParse(json, out int numberResponse) && typeof(T) == typeof(int))
+                {
+                    responseObject = (T)(object)numberResponse;
+                }
+                else
+                {
+                    try
+                    {
+                        responseObject = JsonUtility.FromJson<T>(json);
+                    }
+                    catch
+                    {
+                        Debug.LogError(
+                            $"Expected return type {typeof(T)}, received json text: {json}." +
+                            $" You could try changing the expected return type.");
+                        responseObject = default;
+                    }
+                }
+
+                successCallback?.Invoke(responseObject);
+            }
+            else
             {
                 Debug.LogWarning(request.error);
                 failureCallback?.Invoke(request.error);
             }
-            else
-            {
-                string json = request.downloadHandler.text;
-                successCallback?.Invoke(
-                    JsonUtility.FromJson<T>(json)
-                    );
-            }
         }
         private string GetConnectURL(string resource)
             => $"{URL}:{port}/API/{resource}";
-        [Serializable]
-        public class GameState
-        {
-            public int playerTurn;
-            public List<Player> players;
-            [Serializable]
-            public class Player
-            {
-                public string displayName;
-                public List<int> colour;
-            }
-        }
     }
 }
