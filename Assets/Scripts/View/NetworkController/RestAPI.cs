@@ -1,4 +1,3 @@
-using GluonGui.Dialog;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,7 +35,7 @@ namespace Network
         }
         private IEnumerator POST(string resource, WWWForm form, Action<Result> callback)
         {
-            string connectURL = $"{URL}:{port}/{resource}";
+            string connectURL = $"http://{URL}:{port}/{resource}";
             using (UnityWebRequest request = UnityWebRequest.Post(connectURL, form))
             {
                 yield return request.SendWebRequest();
@@ -64,7 +63,7 @@ namespace Network
         }
         private IEnumerator GET(string resource, Action<Result> callback)
         {
-            string connectURL = $"{URL}:{port}/{resource}";
+            string connectURL = $"http://{URL}:{port}/{resource}";
             using (UnityWebRequest request = UnityWebRequest.Get(connectURL))
             {
                 yield return request.SendWebRequest();
