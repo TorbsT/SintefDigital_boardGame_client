@@ -8,6 +8,7 @@ namespace View
     {
         public RegionCard[] regionCards;
         public GameObject AccessPanel;
+        public GameObject PriorityPanel;
         private RegionCard activeRegion;
         void Start()
         {
@@ -28,6 +29,19 @@ namespace View
             activeRegion.setAccess(id);
             activeRegion = null;
             AccessPanel.SetActive(false);
+        }
+
+        public void showPriorityScreen(RegionCard regionCard)
+        {
+            activeRegion = regionCard;
+            PriorityPanel.SetActive(true);
+        }
+
+        public void handlePriorityInput(int id)
+        {
+            activeRegion.setPriority(id);
+            activeRegion = null;
+            PriorityPanel.SetActive(false);
         }
     }
 
