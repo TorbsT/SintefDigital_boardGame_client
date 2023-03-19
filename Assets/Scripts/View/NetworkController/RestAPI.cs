@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -11,34 +12,60 @@ namespace Network
 
         [SerializeField] private string URL = "localhost";
         [SerializeField] private int port = 5000;
+        [SerializeField] private string lastBody;
 
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
             Instance = this;
         }
+        // Not implemented server-side
         internal void RefreshLobbies(Action<string> successCallback, Action<string> failureCallback)
         {
             StartCoroutine(GET("InternetMultiplayer/getGameState", successCallback, failureCallback));
         }
-        internal void CreateGame(Action<NetworkData.GameState> successCallback, Action<string> failureCallback)
-        {
-            string jsonObject = JsonUtility.ToJson(
-                new NetworkData.PlayerInfoAndLobbyName(
-                    NetworkData.Instance.UniqueID,
-                    NetworkData.Instance.Name,
-                    NetworkData.Instance.Name)
-                );
-            StartCoroutine(POST("create/game", jsonObject, successCallback, failureCallback));
-        }
+
+        // Implemented
         internal void CreateUniquePlayerId(Action<int> successCallback, Action<string> failureCallback)
         {
             StartCoroutine(GET("create/playerID", successCallback, failureCallback));
         }
+        internal void CreateGame(Action<NetworkData.GameState> successCallback, Action<string> failureCallback)
+        {
+            string jsonObject = JsonUtility.ToJson(
+                new NetworkData.NewGameInfo
+                {
+                    host = NetworkData.Instance.Me,
+                    name = $"{NetworkData.Instance.Me.name}'s lobby"
+                }
+                );
+            lastBody = jsonObject;
+            StartCoroutine(POST("create/game", jsonObject, successCallback, failureCallback));
+        }
+        internal void GetGameState(Action<NetworkData.GameState> successCallback, Action<string> failureCallback)
+        {
+            int id = NetworkData.Instance.CurrentGameState.id;
+            StartCoroutine(GET($"games/{id}", successCallback, failureCallback));
+        }
+        internal void SendPlayerInput
+            (Action<NetworkData.GameState> successCallback, Action<string> failureCallback, NetworkData.PlayerInput input)
+        {
+            string jsonObject = JsonUtility.ToJson(
+                    input
+                );
+            lastBody = jsonObject;
+            StartCoroutine(POST("games/input", jsonObject, successCallback, failureCallback));
+
+        }
+        
+        // Debug
         internal void DebugPlayerCount(Action<int> successCallback, Action<string> failureCallback)
         {
             StartCoroutine(GET("debug/playerIDs/amount", successCallback, failureCallback));
         }
+
+
+
         private IEnumerator GET<T>(string resource, Action<T> successCallback, Action<string> failureCallback)
         {
             using UnityWebRequest request = UnityWebRequest.Get(GetConnectURL(resource));
@@ -88,6 +115,6 @@ namespace Network
             }
         }
         private string GetConnectURL(string resource)
-            => $"{URL}:{port}/API/{resource}";
+            => $"http://{URL}:{port}/{resource}";
     }
 }

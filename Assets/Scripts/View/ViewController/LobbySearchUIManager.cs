@@ -73,8 +73,9 @@ namespace View
             RestAPI.Instance.CreateGame(
                 (success) =>
                 {
-                    Debug.Log(success.ppplllayerTurn);
-                    MainMenuUIController.Instance.JoinLobby(-1);
+                    Debug.Log("YEP");
+                    NetworkData.Instance.CurrentGameState = success;
+                    MainMenuUIController.Instance.JoinLobby();
                 }, 
                 (failure) =>
                 {

@@ -20,9 +20,9 @@ namespace View
             lobbySearchUIManager.gameObject.SetActive(true);
             inLobbyUIManager.gameObject.SetActive(false);
         }
-        public void JoinLobby(int lobbyId)
+        public void JoinLobby()
         {
-            inLobbyUIManager.Show(lobbyId);
+            inLobbyUIManager.Show();
             inLobbyUIManager.gameObject.SetActive(true);
             lobbySearchUIManager.gameObject.SetActive(false);
         }

@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-
+using UnityEngine.UIElements;
 namespace Network
 {
     internal class NetworkData : MonoBehaviour
     {
         public static NetworkData Instance { get; private set; }
-        [field: SerializeField] public int UniqueID { get; set; }
-        [field: SerializeField] public string Name { get; set; }
-        [field: SerializeField] public GameState State { get; set; }
-
+        public int UniqueID => Me.unique_id;
+        public string PlayerName => Me.name;
+        [field: SerializeField] public GameState CurrentGameState { get; set; }
+        [field: SerializeField] public Player Me { get; set; }
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
@@ -21,38 +21,57 @@ namespace Network
         }
 
         [Serializable]
-        internal class GameState
+        public enum InGameID
         {
-            public int ppplllayerTurn;
-            public List<Player> players;
-            [Serializable]
-            public class Player
-            {
-                public string displayName;
-                public List<int> colour;
-            }
+            Undecided,
+            PlayerOne,
+            PlayerTwo,
+            PlayerThree,
+            PlayerFour,
+            PlayerFive,
+            Orchestrator
         }
-
-        internal struct PlayerInfoAndLobbyName
+        [Serializable]
+        public enum PlayerInputType
         {
-            private struct PlayerInfoStruct
-            {
-                public int UniqueID;
-                public string Name;
-            }
-
-            private PlayerInfoStruct PlayerInfo;
-            private string LobbyName;
-
-            public PlayerInfoAndLobbyName(int uniqueId, string name, string lobbyName)
-            {
-                this.PlayerInfo = new()
-                {
-                    UniqueID = uniqueId,
-                    Name = name
-                };
-                LobbyName = lobbyName;
-            }
+            Movement
+        }
+        [Serializable]
+        public class GameState
+        {
+            public int id;
+            public string name;
+            public List<Player> players;
+            public bool is_lobby;
+        }
+        [Serializable]
+        public class Player
+        {
+            public int? connected_game_id;
+            public string in_game_id;
+            public int unique_id;
+            public string name;
+            public Node? position;
+        }
+        [Serializable]
+        public struct Node
+        {
+            public int id;
+            public string name;
+            public List<int> neighbours_id;
+        }
+        [Serializable]
+        public struct NewGameInfo
+        {
+            public Player host;
+            public string name;
+        }
+        [Serializable]
+        public struct PlayerInput
+        {
+            public Player player;
+            public PlayerInputType input_type;
+            public Node related_node;
         }
     }
 }

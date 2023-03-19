@@ -11,12 +11,17 @@ public class IntroUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nameInput;
     public void Login()
     {
-        //SceneManager.LoadSceneAsync(mainMenuScene);
         RestAPI.Instance.CreateUniquePlayerId(
                 (response) =>
                 {
-                    NetworkData.Instance.UniqueID = response;
-                    NetworkData.Instance.Name = nameInput.text;
+                    NetworkData.Instance.Me = new NetworkData.Player
+                    {
+                        connected_game_id = null,
+                        in_game_id = NetworkData.InGameID.Undecided.ToString(),
+                        unique_id = response,  // integer
+                        name = nameInput.text,
+                        position = null
+                    };
                     SceneManager.LoadSceneAsync(mainMenuScene);
                     RestAPI.Instance.DebugPlayerCount(
                         (success) => { Debug.Log(success); }, 
