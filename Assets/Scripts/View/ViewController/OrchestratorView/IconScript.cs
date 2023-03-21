@@ -7,7 +7,6 @@ using UnityEngine.UIElements;
 
 namespace View
 {
-
     public class IconScript : MonoBehaviour
     {
         public int id;
@@ -16,6 +15,7 @@ namespace View
         private RectTransform rectTransform;
 
         private Restriction typeOfRestriction;
+        private int priorityValue = 0;
         // Start is called before the first frame update
 
 
@@ -79,7 +79,16 @@ namespace View
             Destroy(gameObject);
         }
 
- 
+        public int getPriorityValue()
+        {
+            return priorityValue;
+        }
+        public void setPriorityValue(int value)
+        {
+            this.priorityValue = value;
+        }
+
+
     }
 
 }

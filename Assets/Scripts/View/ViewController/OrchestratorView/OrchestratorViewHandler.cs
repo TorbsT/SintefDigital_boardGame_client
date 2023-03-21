@@ -10,6 +10,7 @@ namespace View
         public GameObject AccessPanel;
         public GameObject PriorityPanel;
         private RegionCard activeRegion;
+        private int selectedPriority;
         void Start()
         {
             AccessPanel.SetActive(false);
@@ -37,12 +38,14 @@ namespace View
             PriorityPanel.SetActive(true);
         }
 
-        public void handlePriorityInput(int id)
+        public void handlePriorityInput(int id, int value)
         {
-            activeRegion.setPriority(id);
+            activeRegion.setPriority(id, value);
             activeRegion = null;
             PriorityPanel.SetActive(false);
         }
+
+      
     }
 
 }

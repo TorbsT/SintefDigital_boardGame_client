@@ -17,7 +17,7 @@ namespace View
         public Point[] priorityPoints;
         private List<IconScript> activePriorityRestrictions = new List<IconScript>();
 
-        public GameObject[] priorityMarkers;
+        public PriorityMarker[] priorityMarkers;
         //public Color regionColor;
         void Start()
         {
@@ -100,18 +100,18 @@ namespace View
             return true;
         }
 
-        private void addPriorityMarker(int i,Point point, Vector3 dimentions)
+        private void addPriorityMarker(int i,int value,Point point, Vector3 dimentions)
         {
-            GameObject priorityMarker = priorityMarkers[i];
+            PriorityMarker priorityMarker = priorityMarkers[i];
             priorityMarker.transform.position = point.GetPos() + new Vector3(dimentions.x,0,0);
+            priorityMarker.setPriority(value);
             priorityMarker.SetActive(true);
 
         }
         private void resetPriorityMarkers()
         {
-            foreach (GameObject priorityMarker in priorityMarkers)
+            foreach (PriorityMarker priorityMarker in priorityMarkers)
             {
-                //priorityMarker.setActive(false);
                 priorityMarker.SetActive(false);
             }
         }
@@ -121,7 +121,7 @@ namespace View
             this.handler.showPriorityScreen(this);
         }
 
-        public void setPriority(int id)
+        public void setPriority(int id,int value)
         {
             GameObject icon = setIcon(id, activePriorityRestrictions, priorityPoints, priorityButton);
             IconScript iconScript = icon.GetComponent<IconScript>();
@@ -129,9 +129,9 @@ namespace View
             iconScript.setTypeOfRestriction(Restriction.Priority);
             iconScript.setDeleteButton(true);
             iconScript.setAttachedRegionCard(this);
+            iconScript.setPriorityValue(value);
             int activePriorityRestrictionsCount = activePriorityRestrictions.Count;
-            Debug.Log(activePriorityRestrictionsCount);
-            addPriorityMarker(activePriorityRestrictionsCount-1, priorityPoints[activePriorityRestrictionsCount-1], iconScript.getDimentions());
+            addPriorityMarker(activePriorityRestrictionsCount-1,value, priorityPoints[activePriorityRestrictionsCount-1], iconScript.getDimentions());
 
             pri(activeAccessRestrictions);
         }
@@ -144,10 +144,9 @@ namespace View
             resetPriorityMarkers();
             for (int i = 0; i < activePriorityRestrictions.Count; i++)
             {
-       
                 IconScript script = activePriorityRestrictions[i];
                 script.moveTo(priorityPoints[i].GetPos());
-                addPriorityMarker(i, priorityPoints[i], script.getDimentions());
+                addPriorityMarker(i, script.getPriorityValue(),priorityPoints[i], script.getDimentions());
             }
             pri(activePriorityRestrictions);
             return true;
