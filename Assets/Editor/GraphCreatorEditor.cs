@@ -1,8 +1,9 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using View;
+using UnityEditor;
 
 [CustomEditor(typeof(GraphCreator))]
 public class GraphCreatorEditor : Editor
@@ -18,3 +19,4 @@ public class GraphCreatorEditor : Editor
             graphCreator.AddNode();
     }
 }
+#endif
