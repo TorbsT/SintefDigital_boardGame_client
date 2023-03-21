@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.torbst.torbutils": "https://github.com/TorbsT/Torbutils.git?path=/Packages/com.torbst.torbutils/",
+    "com.unity.ai.navigation": "1.1.1",
     "com.unity.collab-proxy": "1.17.7",
     "com.unity.feature.2d": "1.0.0",
     "com.unity.ide.rider": "3.0.17",
