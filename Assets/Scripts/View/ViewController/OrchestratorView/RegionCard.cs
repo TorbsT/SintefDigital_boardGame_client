@@ -118,11 +118,13 @@ namespace View
 
         public void addPriority()
         {
+           
             this.handler.showPriorityScreen(this);
         }
 
         public void setPriority(int id,int value)
         {
+            Debug.Log(value);
             GameObject icon = setIcon(id, activePriorityRestrictions, priorityPoints, priorityButton);
             IconScript iconScript = icon.GetComponent<IconScript>();
             activePriorityRestrictions.Add(iconScript);
