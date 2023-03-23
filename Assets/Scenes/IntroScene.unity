@@ -866,6 +866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenuScene: MainMenu
+  nameInput: {fileID: 2078730552}
 --- !u!1 &1127712881
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,6 +877,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1127712883}
   - component: {fileID: 1127712882}
+  - component: {fileID: 1127712884}
   m_Layer: 0
   m_Name: Network
   m_TagString: Untagged
@@ -897,9 +899,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   URL: localhost
   port: 5000
-  gameState:
-    playerTurn: 0
-    players: []
 --- !u!4 &1127712883
 Transform:
   m_ObjectHideFlags: 0
@@ -915,6 +914,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1127712884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127712881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a31d50c4201f6459dbaf4b6b0390b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <UniqueID>k__BackingField: 0
+  <Name>k__BackingField: 
+  <State>k__BackingField:
+    ppplllayerTurn: 0
+    players: []
 --- !u!1 &1559709473
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Network;
+using TMPro;
 using UnityEngine;
 
 namespace View
@@ -14,7 +15,8 @@ namespace View
 
         public void Click()
         {
-            MainMenuUIController.Instance.JoinLobby(LobbyId);
+            NetworkData.Instance.CurrentGameState.id = LobbyId;
+            MainMenuUIController.Instance.JoinLobby();
         }
     }
 }
