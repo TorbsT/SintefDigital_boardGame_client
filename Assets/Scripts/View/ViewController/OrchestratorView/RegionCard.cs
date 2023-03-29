@@ -18,11 +18,15 @@ namespace View
         private List<IconScript> activePriorityRestrictions = new List<IconScript>();
 
         public PriorityMarker[] priorityMarkers;
+
+        public Material cardMaterial;
         //public Color regionColor;
         void Start()
         {
             accessButton.transform.position = accessPoints[0].GetPos();
             priorityButton.transform.position = priorityPoints[0].GetPos();
+            accessButton.SetActive(true);
+            priorityButton.SetActive(true);
         }
 
 
@@ -160,6 +164,11 @@ namespace View
             {
                 Debug.Log(s);
             }
+        }
+
+        public Material getMaterial()
+        {
+            return cardMaterial;
         }
         // Update is called once per frame
         void Update()

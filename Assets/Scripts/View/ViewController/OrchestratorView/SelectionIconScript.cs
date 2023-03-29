@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class SelectionIconScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject iconMarker;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnMouseOver()
     {
-        
+        setIconMarkerVisibility(true);
+        Debug.Log("hey");
+    }
+
+    public void setIconMarkerVisibility(bool visible)
+    {
+        iconMarker.SetActive(visible);
     }
 }
