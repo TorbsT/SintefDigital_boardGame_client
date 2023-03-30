@@ -13,36 +13,35 @@ namespace View
         [SerializeField] private string gameScene;
         [SerializeField] private Button startGameButton;
         [SerializeField] private Button refreshButton;
-        public void Show()
-        {
-            GetComponent<UIListHandler>().Clear();
-            Refresh();
-        }
-        public void Refresh()
-        {
-            startGameButton.interactable = false;
-            refreshButton.interactable = false;
-            RestAPI.Instance.GetGameState((success) =>
-            {
-                GetComponent<UIListHandler>().Clear();
 
-                foreach (var player in success.players)
-                {
-                    bool isHost = player.in_game_id == NetworkData.InGameID.Orchestrator.ToString();
-                    AddPlayer(player.unique_id.ToString(), player.in_game_id, isHost);
-                }
-                startGameButton.interactable = true;
-                refreshButton.interactable = true;
-            }, (failure) =>
-            {
-                Debug.Log(failure);
-                MainMenuUIController.Instance.BackToMainMenu();
-            });
-
+        private void Start()
+        {
+            GameStateSynchronizer.Instance.PlayerConnected += PlayerConnected;
+            GameStateSynchronizer.Instance.PlayerDisconnected += PlayerDisconnected;
+            // sync now
+            CompleteRefresh();
         }
         public void StartGame()
         {
             SceneManager.LoadSceneAsync(gameScene);
+        }
+        private void PlayerConnected(NetworkData.Player player)
+        {
+            // There won't be hundreds of players so this should be fine
+            CompleteRefresh();
+        }
+        private void PlayerDisconnected(int id)
+        {
+            CompleteRefresh();
+        }
+        private void CompleteRefresh()
+        {
+            GetComponent<UIListHandler>().Clear();
+            foreach (var player in GameStateSynchronizer.Instance.GameState.players)
+            {
+                bool isHost = player.in_game_id == NetworkData.InGameID.Orchestrator.ToString();
+                AddPlayer(player.unique_id.ToString(), player.in_game_id, isHost);
+            }
         }
         private void AddPlayer(string playerName, string roleName, bool host)
         {

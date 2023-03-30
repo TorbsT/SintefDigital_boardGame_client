@@ -878,6 +878,7 @@ GameObject:
   - component: {fileID: 1127712883}
   - component: {fileID: 1127712882}
   - component: {fileID: 1127712884}
+  - component: {fileID: 1127712885}
   m_Layer: 0
   m_Name: Network
   m_TagString: Untagged
@@ -899,6 +900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   URL: localhost
   port: 5000
+  lastBody: 
 --- !u!4 &1127712883
 Transform:
   m_ObjectHideFlags: 0
@@ -926,11 +928,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a31d50c4201f6459dbaf4b6b0390b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <UniqueID>k__BackingField: 0
-  <Name>k__BackingField: 
-  <State>k__BackingField:
-    ppplllayerTurn: 0
+  <CurrentGameState>k__BackingField:
+    id: 0
+    name: 
     players: []
+    is_lobby: 0
+  <Me>k__BackingField:
+    in_game_id: 
+    unique_id: 0
+    name: 
+    remaining_moves: 0
+--- !u!114 &1127712885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127712881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9695f11098884f84ab796af582d1cdbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <GameState>k__BackingField:
+    id: 0
+    name: 
+    players: []
+    is_lobby: 0
+  fetchSuccessCooldown: 1
+  fetchFailCooldown: 5
 --- !u!1 &1559709473
 GameObject:
   m_ObjectHideFlags: 0

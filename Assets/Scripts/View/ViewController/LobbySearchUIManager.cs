@@ -45,14 +45,15 @@ namespace View
             RestAPI.Instance.RefreshLobbies(
                 (result) =>
                 {
-                    for (int i = 0; i < UnityEngine.Random.Range(1, 6); i++)
+                    if (result != null)
+                    foreach (var item in result.lobbies)
                     {
                         GameObject gameObject = PoolManager.Instance.Depool(lobbyPrefab);
                         LobbyButtonUI lobby = gameObject.GetComponent<LobbyButtonUI>();
 
-                        lobby.Name = $"Lobby with cool name {i}";
-                        lobby.LobbyId = i;
-                        lobby.Quantity = "1/5";
+                        lobby.Name = $"Lobby: {item.name}";
+                        lobby.LobbyId = item.id;
+                        lobby.Quantity = item.players.Count.ToString();
                         GetComponent<UIListHandler>().AddItem(gameObject);
                     }
                     createLobbyButton.interactable = true;
@@ -75,7 +76,7 @@ namespace View
                 {
                     Debug.Log("YEP");
                     NetworkData.Instance.CurrentGameState = success;
-                    MainMenuUIController.Instance.JoinLobby();
+                    MainMenuUIController.Instance.JoinLobby(success.id);
                 }, 
                 (failure) =>
                 {

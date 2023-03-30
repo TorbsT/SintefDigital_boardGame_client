@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
 using UnityEngine.UIElements;
 namespace Network
 {
-    internal class NetworkData : MonoBehaviour
+    public class NetworkData : MonoBehaviour
     {
         public static NetworkData Instance { get; private set; }
         public int UniqueID => Me.unique_id;
@@ -19,7 +20,6 @@ namespace Network
             DontDestroyOnLoad(gameObject);
             Instance = this;
         }
-
         [Serializable]
         public enum InGameID
         {
@@ -37,6 +37,11 @@ namespace Network
             Movement
         }
         [Serializable]
+        public class LobbyList
+        {
+            public List<GameState> lobbies;
+        }
+        [Serializable]
         public class GameState
         {
             public int id;
@@ -52,6 +57,7 @@ namespace Network
             public int unique_id;
             public string name;
             public Node? position;
+            public int remaining_moves;
         }
         [Serializable]
         public struct Node

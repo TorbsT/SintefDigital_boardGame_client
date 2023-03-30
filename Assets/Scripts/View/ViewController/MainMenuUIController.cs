@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Network;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,9 @@ namespace View
             lobbySearchUIManager.gameObject.SetActive(true);
             inLobbyUIManager.gameObject.SetActive(false);
         }
-        public void JoinLobby()
+        public void JoinLobby(int id)
         {
-            inLobbyUIManager.Show();
+            GameStateSynchronizer.Instance.id
             inLobbyUIManager.gameObject.SetActive(true);
             lobbySearchUIManager.gameObject.SetActive(false);
         }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -19,10 +20,10 @@ namespace Network
             DontDestroyOnLoad(gameObject);
             Instance = this;
         }
-        // Not implemented server-side
-        internal void RefreshLobbies(Action<string> successCallback, Action<string> failureCallback)
+        // Implemented, not documented
+        internal void RefreshLobbies(Action<NetworkData.LobbyList> successCallback, Action<string> failureCallback)
         {
-            StartCoroutine(GET("InternetMultiplayer/getGameState", successCallback, failureCallback));
+            StartCoroutine(GET("games/lobbies", successCallback, failureCallback));
         }
 
         // Implemented
@@ -42,10 +43,9 @@ namespace Network
             lastBody = jsonObject;
             StartCoroutine(POST("create/game", jsonObject, successCallback, failureCallback));
         }
-        internal void GetGameState(Action<NetworkData.GameState> successCallback, Action<string> failureCallback)
+        internal void GetGameState(Action<NetworkData.GameState> successCallback, Action<string> failureCallback, int lobbyId)
         {
-            int id = NetworkData.Instance.CurrentGameState.id;
-            StartCoroutine(GET($"games/{id}", successCallback, failureCallback));
+            StartCoroutine(GET($"games/{lobbyId}", successCallback, failureCallback));
         }
         internal void SendPlayerInput
             (Action<NetworkData.GameState> successCallback, Action<string> failureCallback, NetworkData.PlayerInput input)
@@ -99,7 +99,7 @@ namespace Network
                     }
                     catch
                     {
-                        Debug.LogError(
+                        Debug.LogWarning(
                             $"Expected return type {typeof(T)}, received json text: {json}." +
                             $" You could try changing the expected return type.");
                         responseObject = default;
