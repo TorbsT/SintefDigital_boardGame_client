@@ -4,6 +4,6 @@ using UnityEngine;
 
 namespace View
 {
-    public enum Restriction { Access, Priority }
+    public enum Restriction { Access, Priority, Toll }
 
 }

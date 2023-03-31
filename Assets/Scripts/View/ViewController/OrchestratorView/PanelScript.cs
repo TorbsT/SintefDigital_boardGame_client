@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 
 namespace View {
-    public class AccessPanelScript : MonoBehaviour
+    public class PanelScript : MonoBehaviour
     {
         // Start is called before the first frame update
         public OrchestratorViewHandler handler;
@@ -18,7 +18,7 @@ namespace View {
       
 
 
-        private void resetPanel()
+        private void resetPanels()
         {
             selectionMarker.SetActive(false);
             highlightedIndex = null;
@@ -27,8 +27,15 @@ namespace View {
         public void handleAccessInput()
         {
             int selectedIndex = (int) highlightedIndex;
-            resetPanel();
+            resetPanels();
             handler.handleAcessInput(selectedIndex);
+        }
+
+        public void handleTollInput()
+        {
+            int selectedToll = (int)highlightedIndex + 1;
+            resetPanels();
+            handler.handleTollInput(selectedToll);
         }
 
         public void highlightIcon(int index)

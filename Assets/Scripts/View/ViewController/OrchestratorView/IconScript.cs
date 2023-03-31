@@ -64,19 +64,22 @@ namespace View
         public void removeSelf() //if 0 remove access, if 1 remove 
         {
             if (currentRegionCard == null) { return; } // if not attached to a RegionCard, should not be able to access
-
             switch (typeOfRestriction)
             {
                 case Restriction.Access:
                     if (!currentRegionCard.removeAccess(this)) { return; }
+                    Destroy(gameObject);
                     break;
                 case Restriction.Priority:
                     if (!currentRegionCard.removePriority(this)) { return; }
+                    Destroy(gameObject);
+                    break;
+                case Restriction.Toll:
+                    if (!currentRegionCard.removeToll(this)) { return; }
                     break;
                 default:
                     break;
             }
-            Destroy(gameObject);
         }
 
         public int getPriorityValue()
@@ -86,6 +89,11 @@ namespace View
         public void setPriorityValue(int value)
         {
             this.priorityValue = value;
+        }
+
+        public int getId()
+        {
+            return id;
         }
 
 

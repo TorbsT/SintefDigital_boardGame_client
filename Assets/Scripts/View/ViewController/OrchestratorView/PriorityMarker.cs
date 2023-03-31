@@ -25,6 +25,7 @@ namespace View
         {
             gameObject.SetActive(boolean);
         }
+
         void Update()
         {
 

@@ -7,6 +7,7 @@ namespace View
     public class OrchestratorViewHandler : MonoBehaviour
     {
         public RegionCard[] regionCards;
+        public GameObject TollPanel;
         public GameObject AccessPanel;
         public GameObject PriorityPanel;
         private RegionCard activeRegion;
@@ -20,6 +21,21 @@ namespace View
                 regionCard.setHandler(this);
             }
         }
+
+        public void showTollScreen(RegionCard regionCard)
+        {
+            activeRegion = regionCard;
+            setColorOfPanel(AccessPanel, regionCard.getMaterial());
+            TollPanel.SetActive(true);
+        }
+
+        public void handleTollInput(int cost)
+        {
+            activeRegion.setToll(cost);
+            activeRegion = null;
+            TollPanel.SetActive(false);
+        }
+
         public void showAccessScreen(RegionCard regionCard)
         {
             activeRegion = regionCard;

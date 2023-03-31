@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace View
 {
@@ -17,6 +18,11 @@ namespace View
         public Point[] priorityPoints;
         private List<IconScript> activePriorityRestrictions = new List<IconScript>();
 
+        public GameObject tollButton;
+        public GameObject tollCostIcon;
+        public Point tollPoint;
+        private IconScript activeTollRestrictions;
+
         public PriorityMarker[] priorityMarkers;
 
         public Material cardMaterial;
@@ -25,8 +31,11 @@ namespace View
         {
             accessButton.transform.position = accessPoints[0].GetPos();
             priorityButton.transform.position = priorityPoints[0].GetPos();
+            tollButton.transform.position = tollPoint.GetPos();
             accessButton.SetActive(true);
             priorityButton.SetActive(true);
+            tollButton.SetActive(true);
+            tollCostIcon.SetActive(false);
         }
 
 
@@ -69,6 +78,22 @@ namespace View
             return true;
         }
 
+        public void addToll()
+        {
+            this.handler.showTollScreen(this);
+        }
+
+        public void setToll(int cost)
+        {
+            if (activeTollRestrictions != null) return;
+            activeTollRestrictions = tollCostIcon.GetComponent<IconScript>(); 
+            activeTollRestrictions.setTypeOfRestriction(Restriction.Toll);
+            activeTollRestrictions.setAttachedRegionCard(this);
+            tollCostIcon.transform.Find("costText").gameObject.GetComponent<Text>().text = "€" + cost;
+            tollCostIcon.SetActive(true);
+        }
+
+
         public void addAccess()
         {
             this.handler.showAccessScreen(this);
@@ -76,6 +101,7 @@ namespace View
 
         public void setAccess(int id)
         {
+            //if (activeTollRestrictions.Any(res => res.getId() == id)) return;
             GameObject icon = setIcon(id, activeAccessRestrictions, accessPoints, accessButton);
             IconScript iconScript = icon.GetComponent<IconScript>();
             activeAccessRestrictions.Add(iconScript);
@@ -87,9 +113,16 @@ namespace View
             pri(activeAccessRestrictions);
         }
 
+        public bool removeToll(IconScript iconScript)
+        {
+            tollCostIcon.SetActive(false);
+            activeTollRestrictions = null;
+            return true;
+        }
 
         public bool removeAccess(IconScript iconScript)
         {
+    
             if(!removeIcon(iconScript,activeAccessRestrictions, accessPoints, accessButton)) { return false; }
             activeAccessRestrictions.Remove(iconScript);
 
@@ -128,7 +161,6 @@ namespace View
 
         public void setPriority(int id,int value)
         {
-            Debug.Log(value);
             GameObject icon = setIcon(id, activePriorityRestrictions, priorityPoints, priorityButton);
             IconScript iconScript = icon.GetComponent<IconScript>();
             activePriorityRestrictions.Add(iconScript);
