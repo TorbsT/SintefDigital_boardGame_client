@@ -16,7 +16,7 @@ namespace View
         public void Click()
         {
             NetworkData.Instance.CurrentGameState.id = LobbyId;
-            MainMenuUIController.Instance.JoinLobby();
+            MainMenuUIController.Instance.JoinLobby(LobbyId);
         }
     }
 }

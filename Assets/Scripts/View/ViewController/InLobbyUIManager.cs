@@ -16,23 +16,29 @@ namespace View
 
         private void Start()
         {
-            GameStateSynchronizer.Instance.PlayerConnected += PlayerConnected;
-            GameStateSynchronizer.Instance.PlayerDisconnected += PlayerDisconnected;
-            // sync now
-            CompleteRefresh();
+            GameStateSynchronizer.Instance.StateChanged += CompleteRefresh;
         }
-        public void StartGame()
+        public void StartGameClicked()
         {
             SceneManager.LoadSceneAsync(gameScene);
         }
-        private void PlayerConnected(NetworkData.Player player)
+        public void RefreshClicked()
         {
-            // There won't be hundreds of players so this should be fine
             CompleteRefresh();
         }
-        private void PlayerDisconnected(int id)
+        public void LeaveLobbyClicked()
         {
-            CompleteRefresh();
+            RestAPI.Instance.LeaveLobby(
+                (success) =>
+                {
+                    GameStateSynchronizer.Instance.SetLobbyId(null);
+                    MainMenuUIController.Instance.BackToMainMenu();
+                },
+                (failure) =>
+                {
+                    Debug.LogWarning($"Couldn't leave lobby: {failure}");
+                }
+                );
         }
         private void CompleteRefresh()
         {

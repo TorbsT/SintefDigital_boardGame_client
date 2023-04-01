@@ -2342,9 +2342,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1098325876}
+      - m_Target: {fileID: 1098325875}
         m_TargetAssemblyTypeName: View.InLobbyUIManager, GameController
-        m_MethodName: Refresh
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3208,7 +3208,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 730049032}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.163125
+  m_Size: 0.20520833
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

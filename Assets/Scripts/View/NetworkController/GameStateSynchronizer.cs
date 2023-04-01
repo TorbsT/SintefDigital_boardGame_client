@@ -10,10 +10,10 @@ namespace Network
     {
         public static GameStateSynchronizer Instance { get; private set; }
 
+        public event Action StateChanged;
         public event Action<NetworkData.Player> PlayerConnected;
         public event Action<int> PlayerDisconnected;
-
-        [field: SerializeField] public int? LobbyId { get; private set; }
+        [field: SerializeField] public int? LobbyId { get; private set; } = null;
         [field: SerializeField] public NetworkData.GameState GameState { get; private set; }
         [SerializeField, Range(0f, 10f)] private float fetchSuccessCooldown = 1f; 
         [SerializeField, Range(0f, 30f)] private float fetchFailCooldown = 5f;
@@ -26,18 +26,25 @@ namespace Network
         }
         private void Start()
         {
-            FetchServer();
-
+            if (LobbyId != null)
+                FetchServer();
         }
         private void Update()
         {
+            if (LobbyId == null)
+            {
+                currentCooldown = 0f;
+                return;
+            }
+
             currentCooldown += Time.deltaTime;
             if ((lastFailed && currentCooldown >= fetchFailCooldown)
-                || (!lastFailed && currentCooldown >= fetchSuccessCooldown))
+                || (!lastFailed && currentCooldown >= fetchSuccessCooldown)) FetchServer();
         }
-        public void SetLobbyId(int id)
+        public void SetLobbyId(int? id)
         {
             LobbyId = id;
+            FetchServer();
         }
         private void FetchServer()
         {
@@ -51,12 +58,13 @@ namespace Network
                 {
                     Debug.Log($"Couldn't fetch server: {failure}");
                     Invoke(nameof(FetchServer), fetchFailCooldown);
-                }
+                }, (int)LobbyId
             );
         }
         private void SetGamestate(NetworkData.GameState newState)
         {
             // Check for differences between old and new state
+            bool differenceExists = false;
             Dictionary<int, NetworkData.Player> oldPlayerIds = new();
             Dictionary<int, NetworkData.Player> newPlayerIds = new();
             foreach (NetworkData.Player player in GameState.players) oldPlayerIds.Add(player.unique_id, player);
@@ -72,15 +80,18 @@ namespace Network
                 if (oldPlayerIds.ContainsKey(id) && !newPlayerIds.ContainsKey(id))
                 {
                     // Just disconnected
+                    differenceExists = true;
                     PlayerDisconnected?.Invoke(id);
                 }
                 else if (!oldPlayerIds.ContainsKey(id) && newPlayerIds.ContainsKey(id))
                 {
                     // Just connected
+                    differenceExists = true;
                     PlayerConnected?.Invoke(newPlayerIds[id]);
                 }
             }
 
+            if (differenceExists) StateChanged?.Invoke();
             // Throw away the old state
             GameState = newState;
         }

@@ -45,7 +45,11 @@ namespace Network
         }
         internal void GetGameState(Action<NetworkData.GameState> successCallback, Action<string> failureCallback, int lobbyId)
         {
-            StartCoroutine(GET($"games/{lobbyId}", successCallback, failureCallback));
+            StartCoroutine(GET($"games/game/{lobbyId}", successCallback, failureCallback));
+        }
+        internal void LeaveLobby(Action<string> successCallback, Action<string> failureCallback)
+        {
+            StartCoroutine(DELETE($"games/leave/{NetworkData.Instance.UniqueID}", successCallback, failureCallback));
         }
         internal void SendPlayerInput
             (Action<NetworkData.GameState> successCallback, Action<string> failureCallback, NetworkData.PlayerInput input)
@@ -65,7 +69,12 @@ namespace Network
         }
 
 
-
+        private IEnumerator DELETE<T>(string resource, Action<T> successCallback, Action<string> failureCallback)
+        {
+            using UnityWebRequest request = UnityWebRequest.Delete(GetConnectURL(resource));
+            yield return request.SendWebRequest();
+            HandleResponse(request, successCallback, failureCallback);
+        }
         private IEnumerator GET<T>(string resource, Action<T> successCallback, Action<string> failureCallback)
         {
             using UnityWebRequest request = UnityWebRequest.Get(GetConnectURL(resource));

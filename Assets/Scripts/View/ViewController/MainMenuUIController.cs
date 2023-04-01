@@ -23,7 +23,7 @@ namespace View
         }
         public void JoinLobby(int id)
         {
-            GameStateSynchronizer.Instance.id
+            GameStateSynchronizer.Instance.SetLobbyId(id);
             inLobbyUIManager.gameObject.SetActive(true);
             lobbySearchUIManager.gameObject.SetActive(false);
         }
