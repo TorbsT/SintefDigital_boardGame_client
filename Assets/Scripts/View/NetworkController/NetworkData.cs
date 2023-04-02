@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering;
 using UnityEngine.UIElements;
 namespace Network
 {
-    public class NetworkData : MonoBehaviour
+    internal class NetworkData : MonoBehaviour
     {
         public static NetworkData Instance { get; private set; }
         public int UniqueID => Me.unique_id;

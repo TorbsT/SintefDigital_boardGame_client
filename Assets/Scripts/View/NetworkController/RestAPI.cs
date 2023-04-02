@@ -65,7 +65,6 @@ namespace Network
                 );
             lastBody = jsonObject;
             StartCoroutine(POST("games/input", jsonObject, successCallback, failureCallback));
-
         }
         
         // Debug

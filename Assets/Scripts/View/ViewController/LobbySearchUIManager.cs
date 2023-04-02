@@ -50,8 +50,7 @@ namespace View
                     {
                         GameObject gameObject = PoolManager.Instance.Depool(lobbyPrefab);
                         LobbyButtonUI lobby = gameObject.GetComponent<LobbyButtonUI>();
-
-                        lobby.Name = $"Lobby: {item.name}";
+                        lobby.Name = $"{item.name}";
                         lobby.LobbyId = item.id;
                         int quantity = item.players.Count;
                         lobby.Quantity = $"{quantity}/5 players";

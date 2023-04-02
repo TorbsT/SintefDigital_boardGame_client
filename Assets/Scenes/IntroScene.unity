@@ -928,6 +928,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a31d50c4201f6459dbaf4b6b0390b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <UniqueID>k__BackingField: 0
+  <Name>k__BackingField: 
+  <State>k__BackingField:
+    ppplllayerTurn: 0
+    players: []
   <CurrentGameState>k__BackingField:
     id: 0
     name: 
