@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 namespace Network
 {
-    internal class NetworkData : MonoBehaviour
+    public class NetworkData : MonoBehaviour
     {
         public static NetworkData Instance { get; private set; }
         public int UniqueID => Me.unique_id;
