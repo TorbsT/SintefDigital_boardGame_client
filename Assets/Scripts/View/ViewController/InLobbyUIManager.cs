@@ -1,7 +1,9 @@
+using Network;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace View
 {
@@ -9,21 +11,34 @@ namespace View
     {
         [SerializeField] private GameObject playerPrefab;
         [SerializeField] private string gameScene;
-        public void Show(int lobbyId)
+        [SerializeField] private Button startGameButton;
+        [SerializeField] private Button refreshButton;
+        public void Show()
         {
             GetComponent<UIListHandler>().Clear();
-            for (int i = 0; i < UnityEngine.Random.Range(0, 6); i++)
+            Refresh();
+        }
+        public void Refresh()
+        {
+            startGameButton.interactable = false;
+            refreshButton.interactable = false;
+            RestAPI.Instance.GetGameState((success) =>
             {
-                string playerName = $"Per{i}";
-                string roleName = "player";
-                bool host = false;
-                if (i == 0)
+                GetComponent<UIListHandler>().Clear();
+
+                foreach (var player in success.players)
                 {
-                    roleName = "orchestrator";
-                    host = true;
+                    bool isHost = player.in_game_id == NetworkData.InGameID.Orchestrator.ToString();
+                    AddPlayer(player.unique_id.ToString(), player.in_game_id, isHost);
                 }
-                AddPlayer(playerName, roleName, host);
-            }
+                startGameButton.interactable = true;
+                refreshButton.interactable = true;
+            }, (failure) =>
+            {
+                Debug.Log(failure);
+                MainMenuUIController.Instance.BackToMainMenu();
+            });
+
         }
         public void StartGame()
         {
