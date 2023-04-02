@@ -8,6 +8,13 @@ namespace Network
 {
     public class GameStateSynchronizer : MonoBehaviour
     {
+        private enum State
+        {
+            OUTOFLOBBY,
+            PINGING,
+            FAILED,
+            SUCCESS
+        }
         public static GameStateSynchronizer Instance { get; private set; }
 
         public event Action StateChanged;
@@ -18,7 +25,8 @@ namespace Network
         [SerializeField, Range(0f, 10f)] private float fetchSuccessCooldown = 1f; 
         [SerializeField, Range(0f, 30f)] private float fetchFailCooldown = 5f;
         [SerializeField] private float currentCooldown = 0f;
-        private bool lastFailed = false;
+        [SerializeField] private State state;
+        
 
         private void Awake()
         {
@@ -26,38 +34,51 @@ namespace Network
         }
         private void Start()
         {
-            if (LobbyId != null)
-                FetchServer();
+            state = State.OUTOFLOBBY;
         }
         private void Update()
         {
-            if (LobbyId == null)
+            if (LobbyId == null || state == State.PINGING || state == State.OUTOFLOBBY)
             {
                 currentCooldown = 0f;
                 return;
             }
 
             currentCooldown += Time.deltaTime;
-            if ((lastFailed && currentCooldown >= fetchFailCooldown)
-                || (!lastFailed && currentCooldown >= fetchSuccessCooldown)) FetchServer();
+            if ((state == State.FAILED && currentCooldown >= fetchFailCooldown)
+                || (state == State.SUCCESS && currentCooldown >= fetchSuccessCooldown)) FetchServer();
         }
         public void SetLobbyId(int? id)
         {
             LobbyId = id;
-            FetchServer();
+            if (id == null)
+            {
+                state = State.OUTOFLOBBY;
+                SetGamestate(new());
+            } else
+            {
+                state = State.PINGING;
+                FetchServer();
+            }
         }
         private void FetchServer()
         {
+            state = State.PINGING;
             RestAPI.Instance.GetGameState(
                 (success) =>
                 {
+                    if (state == State.OUTOFLOBBY) return;
                     SetGamestate(success);
-                    Invoke(nameof(FetchServer), fetchSuccessCooldown);
+                    currentCooldown = 0f;
+                    state = State.SUCCESS;
+                    Debug.Log("Gamestate has " + success.players.Count);
                 },
                 (failure) =>
                 {
+                    if (state == State.OUTOFLOBBY) return;
                     Debug.Log($"Couldn't fetch server: {failure}");
-                    Invoke(nameof(FetchServer), fetchFailCooldown);
+                    currentCooldown = 0f;
+                    state = State.FAILED;
                 }, (int)LobbyId
             );
         }
@@ -91,9 +112,12 @@ namespace Network
                 }
             }
 
-            if (differenceExists) StateChanged?.Invoke();
-            // Throw away the old state
             GameState = newState;
+            if (differenceExists)
+            {
+                Debug.Log("State changed: " + allPlayerIds.Count);
+                StateChanged?.Invoke();
+            }
         }
     }
 }

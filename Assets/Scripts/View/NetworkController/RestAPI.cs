@@ -51,6 +51,12 @@ namespace Network
         {
             StartCoroutine(DELETE($"games/leave/{NetworkData.Instance.UniqueID}", successCallback, failureCallback));
         }
+        internal void JoinLobby
+            (Action<NetworkData.GameState> successCallback, Action<string> failureCallback, int lobbyId)
+        {
+            string jsonObject = JsonUtility.ToJson(NetworkData.Instance.Me);
+            StartCoroutine(POST($"games/join/{lobbyId}", jsonObject, successCallback, failureCallback));
+        }
         internal void SendPlayerInput
             (Action<NetworkData.GameState> successCallback, Action<string> failureCallback, NetworkData.PlayerInput input)
         {
@@ -72,6 +78,7 @@ namespace Network
         private IEnumerator DELETE<T>(string resource, Action<T> successCallback, Action<string> failureCallback)
         {
             using UnityWebRequest request = UnityWebRequest.Delete(GetConnectURL(resource));
+            request.downloadHandler = new DownloadHandlerBuffer();
             yield return request.SendWebRequest();
             HandleResponse(request, successCallback, failureCallback);
         }

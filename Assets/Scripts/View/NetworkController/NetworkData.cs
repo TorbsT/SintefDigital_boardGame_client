@@ -46,7 +46,7 @@ namespace Network
         {
             public int id;
             public string name;
-            public List<Player> players;
+            public List<Player> players = new();
             public bool is_lobby;
         }
         [Serializable]

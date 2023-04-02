@@ -278,7 +278,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1098325876}
         m_TargetAssemblyTypeName: View.InLobbyUIManager, GameController
-        m_MethodName: StartGame
+        m_MethodName: StartGameClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -680,9 +680,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1101048934}
-        m_TargetAssemblyTypeName: View.MainMenuUIController, GameController
-        m_MethodName: BackToMainMenu
+      - m_Target: {fileID: 1098325876}
+        m_TargetAssemblyTypeName: View.InLobbyUIManager, GameController
+        m_MethodName: LeaveLobbyClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -942,11 +942,11 @@ MonoBehaviour:
   m_Content: {fileID: 974627400}
   m_Horizontal: 1
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 30
   m_Viewport: {fileID: 1486646188}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1829891851}
@@ -2342,9 +2342,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1098325875}
+      - m_Target: {fileID: 1098325876}
         m_TargetAssemblyTypeName: View.InLobbyUIManager, GameController
-        m_MethodName: 
+        m_MethodName: RefreshClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2689,11 +2689,11 @@ MonoBehaviour:
   m_Content: {fileID: 292356838}
   m_Horizontal: 1
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 30
   m_Viewport: {fileID: 654856542}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 2047359078}
@@ -3208,7 +3208,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 730049032}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.20520833
+  m_Size: 0.21625
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

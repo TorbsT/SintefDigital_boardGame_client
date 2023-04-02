@@ -53,7 +53,8 @@ namespace View
 
                         lobby.Name = $"Lobby: {item.name}";
                         lobby.LobbyId = item.id;
-                        lobby.Quantity = item.players.Count.ToString();
+                        int quantity = item.players.Count;
+                        lobby.Quantity = $"{quantity}/5 players";
                         GetComponent<UIListHandler>().AddItem(gameObject);
                     }
                     createLobbyButton.interactable = true;
@@ -74,7 +75,6 @@ namespace View
             RestAPI.Instance.CreateGame(
                 (success) =>
                 {
-                    Debug.Log("YEP");
                     NetworkData.Instance.CurrentGameState = success;
                     MainMenuUIController.Instance.JoinLobby(success.id);
                 }, 

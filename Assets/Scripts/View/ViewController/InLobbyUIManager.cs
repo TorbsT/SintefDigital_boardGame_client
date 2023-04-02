@@ -16,7 +16,16 @@ namespace View
 
         private void Start()
         {
+            
+        }
+        private void OnEnable()
+        {
             GameStateSynchronizer.Instance.StateChanged += CompleteRefresh;
+            CompleteRefresh();
+        }
+        private void OnDisable()
+        {
+            GameStateSynchronizer.Instance.StateChanged -= CompleteRefresh;
         }
         public void StartGameClicked()
         {
@@ -31,6 +40,7 @@ namespace View
             RestAPI.Instance.LeaveLobby(
                 (success) =>
                 {
+                    Debug.Log("YEP");
                     GameStateSynchronizer.Instance.SetLobbyId(null);
                     MainMenuUIController.Instance.BackToMainMenu();
                 },
@@ -42,11 +52,12 @@ namespace View
         }
         private void CompleteRefresh()
         {
+            Debug.Log("Yabbai " + GameStateSynchronizer.Instance.GameState.players.Count);
             GetComponent<UIListHandler>().Clear();
             foreach (var player in GameStateSynchronizer.Instance.GameState.players)
             {
                 bool isHost = player.in_game_id == NetworkData.InGameID.Orchestrator.ToString();
-                AddPlayer(player.unique_id.ToString(), player.in_game_id, isHost);
+                AddPlayer(player.name, player.in_game_id, isHost);
             }
         }
         private void AddPlayer(string playerName, string roleName, bool host)
