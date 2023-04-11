@@ -15,8 +15,18 @@ namespace View
 
         public void Click()
         {
-            NetworkData.Instance.CurrentGameState.id = LobbyId;
-            MainMenuUIController.Instance.JoinLobby();
+            RestAPI.Instance.JoinLobby(
+                (success) =>
+                {
+                    NetworkData.Instance.CurrentGameState = success;
+                    NetworkData.Instance.CurrentGameState.id = LobbyId;
+                    MainMenuUIController.Instance.JoinLobby(LobbyId);
+                },
+                (failure) =>
+                {
+                    Debug.LogWarning($"Couldn't join: {failure}");
+                },
+                LobbyId);
         }
     }
 }

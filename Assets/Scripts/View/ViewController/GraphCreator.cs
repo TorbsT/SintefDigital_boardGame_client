@@ -19,6 +19,7 @@ namespace View
         [SerializeField] private Color gizmosNodeColor = Color.yellow;
         [SerializeField] private Color gizmosEdgeColor = Color.yellow;
         [SerializeField] private string serializedGraphOutput;
+
         private void OnDrawGizmos()
         {
             DrawGizmos(GizmosMode.Always);

@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 200}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &7183951800674955035
 CanvasRenderer:
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 69.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -193,7 +193,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 200}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8555634252340227949
 CanvasRenderer:
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.8
+  m_fontSize: 42.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -349,7 +349,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 200}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &4410248087032770731
 CanvasRenderer:
@@ -406,7 +406,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.55
+  m_fontSize: 38.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -482,7 +482,7 @@ GameObject:
   - component: {fileID: 4755093556304153417}
   - component: {fileID: 2246019453119237400}
   m_Layer: 5
-  m_Name: Player
+  m_Name: LobbyPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -509,7 +509,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 200}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4440857903255198842
 CanvasRenderer:
@@ -584,9 +584,9 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 0
+  m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
-  m_ChildControlHeight: 0
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0

@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 namespace Network
 {
-    internal class NetworkData : MonoBehaviour
+    public class NetworkData : MonoBehaviour
     {
         public static NetworkData Instance { get; private set; }
         public int UniqueID => Me.unique_id;
@@ -19,7 +19,6 @@ namespace Network
             DontDestroyOnLoad(gameObject);
             Instance = this;
         }
-
         [Serializable]
         public enum InGameID
         {
@@ -37,11 +36,16 @@ namespace Network
             Movement
         }
         [Serializable]
+        public class LobbyList
+        {
+            public List<GameState> lobbies;
+        }
+        [Serializable]
         public class GameState
         {
             public int id;
             public string name;
-            public List<Player> players;
+            public List<Player> players = new();
             public bool is_lobby;
         }
         [Serializable]
@@ -52,6 +56,7 @@ namespace Network
             public int unique_id;
             public string name;
             public Node? position;
+            public int remaining_moves;
         }
         [Serializable]
         public struct Node
