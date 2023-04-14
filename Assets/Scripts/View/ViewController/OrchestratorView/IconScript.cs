@@ -15,7 +15,7 @@ namespace View
         private RectTransform rectTransform;
 
         private Restriction typeOfRestriction;
-        private int priorityValue = 0;
+        private int value = 0;
         // Start is called before the first frame update
 
 
@@ -82,13 +82,13 @@ namespace View
             }
         }
 
-        public int getPriorityValue()
+        public int getValue()
         {
-            return priorityValue;
+            return value;
         }
-        public void setPriorityValue(int value)
+        public void setValue(int value)
         {
-            this.priorityValue = value;
+            this.value = value;
         }
 
         public int getId()

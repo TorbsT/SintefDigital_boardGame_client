@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 namespace View
 {
     public class RegionCard : MonoBehaviour
     {
+        public District district;
+
         private OrchestratorViewHandler handler;
         public GameObject[] vehicleAttributePrefab;
 
@@ -21,12 +24,12 @@ namespace View
         public GameObject tollButton;
         public GameObject tollCostIcon;
         public Point tollPoint;
-        private IconScript activeTollRestrictions;
+        private IconScript activeTollRestriction;
 
         public PriorityMarker[] priorityMarkers;
 
         public Material cardMaterial;
-        //public Color regionColor;
+   
         void Start()
         {
             accessButton.transform.position = accessPoints[0].GetPos();
@@ -85,12 +88,15 @@ namespace View
 
         public void setToll(int cost)
         {
-            if (activeTollRestrictions != null) return;
-            activeTollRestrictions = tollCostIcon.GetComponent<IconScript>(); 
-            activeTollRestrictions.setTypeOfRestriction(Restriction.Toll);
-            activeTollRestrictions.setAttachedRegionCard(this);
+            if (activeTollRestriction != null) return;
+            activeTollRestriction = tollCostIcon.GetComponent<IconScript>(); 
+            activeTollRestriction.setTypeOfRestriction(Restriction.Toll);
+            activeTollRestriction.setAttachedRegionCard(this);
+            activeTollRestriction.setValue(cost);
             tollCostIcon.transform.Find("costText").gameObject.GetComponent<Text>().text = "€" + cost;
             tollCostIcon.SetActive(true);
+
+            addUpdateServer(Restriction.Toll, activeTollRestriction);
         }
 
 
@@ -99,25 +105,27 @@ namespace View
             this.handler.showAccessScreen(this);
         }
 
+        public bool removeToll(IconScript iconScript)
+        {
+            tollCostIcon.SetActive(false);
+            activeTollRestriction = null;
+            removeUpdateServer(Restriction.Toll, iconScript);
+            return true;
+        }
+
         public void setAccess(int id)
         {
-            //if (activeTollRestrictions.Any(res => res.getId() == id)) return;
+            //if (activeTollRestriction.Any(res => res.getId() == id)) return;
+            if (activeAccessRestrictions.Any(res => res.getId() == id)) return;
             GameObject icon = setIcon(id, activeAccessRestrictions, accessPoints, accessButton);
             IconScript iconScript = icon.GetComponent<IconScript>();
             activeAccessRestrictions.Add(iconScript);
             iconScript.setTypeOfRestriction(Restriction.Access);
             iconScript.setDeleteButton(true);
             iconScript.setAttachedRegionCard(this);
-          
 
-            pri(activeAccessRestrictions);
-        }
 
-        public bool removeToll(IconScript iconScript)
-        {
-            tollCostIcon.SetActive(false);
-            activeTollRestrictions = null;
-            return true;
+            addUpdateServer(Restriction.Access, iconScript);
         }
 
         public bool removeAccess(IconScript iconScript)
@@ -133,7 +141,7 @@ namespace View
                 script.moveTo(accessPoints[i].GetPos());
        
             }
-            pri(activeAccessRestrictions);
+            removeUpdateServer(Restriction.Access, iconScript);
             return true;
         }
 
@@ -161,17 +169,18 @@ namespace View
 
         public void setPriority(int id,int value)
         {
+            if (activePriorityRestrictions.Any(res => res.getId() == id)) return;
             GameObject icon = setIcon(id, activePriorityRestrictions, priorityPoints, priorityButton);
             IconScript iconScript = icon.GetComponent<IconScript>();
             activePriorityRestrictions.Add(iconScript);
             iconScript.setTypeOfRestriction(Restriction.Priority);
             iconScript.setDeleteButton(true);
             iconScript.setAttachedRegionCard(this);
-            iconScript.setPriorityValue(value);
+            iconScript.setValue(value);
             int activePriorityRestrictionsCount = activePriorityRestrictions.Count;
             addPriorityMarker(activePriorityRestrictionsCount-1,value, priorityPoints[activePriorityRestrictionsCount-1], iconScript.getDimentions());
 
-            pri(activeAccessRestrictions);
+            addUpdateServer(Restriction.Priority, iconScript);
         }
 
 
@@ -184,9 +193,9 @@ namespace View
             {
                 IconScript script = activePriorityRestrictions[i];
                 script.moveTo(priorityPoints[i].GetPos());
-                addPriorityMarker(i, script.getPriorityValue(),priorityPoints[i], script.getDimentions());
+                addPriorityMarker(i, script.getValue(),priorityPoints[i], script.getDimentions());
             }
-            pri(activePriorityRestrictions);
+            removeUpdateServer(Restriction.Priority, iconScript);
             return true;
         }
 
@@ -202,11 +211,43 @@ namespace View
         {
             return cardMaterial;
         }
-        // Update is called once per frame
-        void Update()
+
+        private void addUpdateServer(Restriction restriction, IconScript iconScript)
         {
-        
+            switch (restriction)
+            {
+                case Restriction.Access:
+                    Debug.Log("Added access to vechile " + iconScript.getId() + " at region " + (int) district);
+                    break;
+                case Restriction.Priority:
+                    Debug.Log("Added priority to vechile " + iconScript.getId() + " with priority " + iconScript.getValue() + " at region " + (int) district);
+                    break;
+                case Restriction.Toll:
+                    Debug.Log("Added toll to vechile " + " with price " + iconScript.getValue() + " at region " + (int) district);
+                    break;
+                default:
+                    break;
+            }
         }
+
+        private void removeUpdateServer(Restriction restriction, IconScript iconScript)
+        {
+            switch (restriction)
+            {
+                case Restriction.Access:
+                    Debug.Log("Removed access to vechile " + iconScript.getId() + " at region " + (int)district);
+                    break;
+                case Restriction.Priority:
+                    Debug.Log("Removed priority to vechile " + iconScript.getId() + " with priority " + iconScript.getValue() + " at region " + (int)district);
+                    break;
+                case Restriction.Toll:
+                    Debug.Log("Removed toll to vechile " + " with price " + iconScript.getValue() + " at region " + (int)district);
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 
 }

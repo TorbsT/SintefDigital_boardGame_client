@@ -5,16 +5,17 @@ using UnityEngine.UI;
 
 
 namespace View {
-    public class TollPanelScript : PanelScript
+    public class AccessPanelScript : PanelScript
     {
-       
 
         public override void handleInput()
         {
-            int selectedToll = (int)highlightedIndex + 1;
-            activeRegion.setToll(selectedToll);
+            Debug.Log(highlightedIndex);
+            int selectedIndex = (int) highlightedIndex;
+            activeRegion.setAccess(selectedIndex);
             hidePanel();
         }
+
 
     }
 

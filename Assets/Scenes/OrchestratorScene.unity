@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 20182441}
   - component: {fileID: 20182440}
   - component: {fileID: 20182439}
-  - component: {fileID: 20182442}
   m_Layer: 5
   m_Name: locationPanel
   m_TagString: Untagged
@@ -245,35 +244,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20182437}
   m_CullTransparentMesh: 1
---- !u!114 &20182442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 20182437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1062050123}
-          m_TargetAssemblyTypeName: View.AccessPanelScript, GameController
-          m_MethodName: mouseIn
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 5
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &22809989
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +336,6 @@ GameObject:
   - component: {fileID: 94661879}
   - component: {fileID: 94661878}
   - component: {fileID: 94661877}
-  - component: {fileID: 94661880}
   m_Layer: 5
   m_Name: heavyPanel
   m_TagString: Untagged
@@ -476,35 +445,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94661875}
   m_CullTransparentMesh: 1
---- !u!114 &94661880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 94661875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1394805921}
-          m_TargetAssemblyTypeName: View.PriorityPanelScript, GameController
-          m_MethodName: mouseIn
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 3
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1001 &109879147
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -604,6 +544,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 10f0c51fc4db669469e7f2832e0ebf9f, type: 3}
+    - target: {fileID: 5659280139767378937, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
+      propertyPath: district
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5659280139767378937, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
       propertyPath: cardMaterial
       value: 
@@ -752,19 +696,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 301768850}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1394805921}
-        m_TargetAssemblyTypeName: View.PriorityPanelScript, GameController
-        m_MethodName: handlePriorityInput
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &301768850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -852,7 +784,6 @@ GameObject:
   - component: {fileID: 347007359}
   - component: {fileID: 347007358}
   - component: {fileID: 347007357}
-  - component: {fileID: 347007356}
   - component: {fileID: 347007355}
   m_Layer: 5
   m_Name: busPanel
@@ -893,36 +824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1062050123}
-          m_TargetAssemblyTypeName: View.AccessPanelScript, GameController
-          m_MethodName: mouseIn
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &347007356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347007353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0726c4ac4bcd7ff4b9cc4681ca1863e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  iconMarker: {fileID: 1418948027}
+  m_Delegates: []
 --- !u!114 &347007357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1017,7 +919,6 @@ GameObject:
   - component: {fileID: 350888576}
   - component: {fileID: 350888575}
   - component: {fileID: 350888574}
-  - component: {fileID: 350888573}
   m_Layer: 5
   m_Name: selectIcon
   m_TagString: Untagged
@@ -1045,35 +946,6 @@ RectTransform:
   m_AnchoredPosition: {x: -532.49994, y: 0.5}
   m_SizeDelta: {x: -1135.4928, y: -215.60999}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &350888573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 350888571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1413629355}
-          m_TargetAssemblyTypeName: View.AccessPanelScript, GameController
-          m_MethodName: mouseOut
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &350888574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1117,19 +989,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 350888575}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1413629355}
-        m_TargetAssemblyTypeName: View.AccessPanelScript, GameController
-        m_MethodName: handleTollInput
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &350888575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1316,7 +1176,6 @@ GameObject:
   - component: {fileID: 364766099}
   - component: {fileID: 364766098}
   - component: {fileID: 364766097}
-  - component: {fileID: 364766096}
   m_Layer: 5
   m_Name: toll3
   m_TagString: Untagged
@@ -1324,35 +1183,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &364766096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364766095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1413629355}
-          m_TargetAssemblyTypeName: View.AccessPanelScript, GameController
-          m_MethodName: mouseIn
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &364766097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1593,8 +1423,9 @@ MonoBehaviour:
   - {fileID: 1819521065}
   - {fileID: 323370348}
   - {fileID: 1859869612}
-  TollPanel: {fileID: 1413629353}
-  AccessPanel: {fileID: 1062050119}
+  tollPanelScript: {fileID: 1413629355}
+  accessPanelScript: {fileID: 1062050123}
+  priorityPanelScript: {fileID: 1394805921}
   PriorityPanel: {fileID: 1394805917}
 --- !u!1 &517946567
 GameObject:
@@ -1608,7 +1439,6 @@ GameObject:
   - component: {fileID: 517946571}
   - component: {fileID: 517946570}
   - component: {fileID: 517946569}
-  - component: {fileID: 517946572}
   m_Layer: 5
   m_Name: heavyPanel
   m_TagString: Untagged
@@ -1718,35 +1548,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517946567}
   m_CullTransparentMesh: 1
---- !u!114 &517946572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 517946567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1062050123}
-          m_TargetAssemblyTypeName: View.AccessPanelScript, GameController
-          m_MethodName: mouseIn
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 3
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &522914390
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,7 +1629,6 @@ GameObject:
   - component: {fileID: 653636898}
   - component: {fileID: 653636897}
   - component: {fileID: 653636896}
-  - component: {fileID: 653636895}
   m_Layer: 5
   m_Name: toll1
   m_TagString: Untagged
@@ -1836,35 +1636,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &653636895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653636894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1413629355}
-          m_TargetAssemblyTypeName: View.AccessPanelScript, GameController
-          m_MethodName: mouseIn
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &653636896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2036,7 +1807,6 @@ GameObject:
   - component: {fileID: 717460289}
   - component: {fileID: 717460288}
   - component: {fileID: 717460287}
-  - component: {fileID: 717460286}
   m_Layer: 5
   m_Name: toll2
   m_TagString: Untagged
@@ -2044,35 +1814,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &717460286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 717460285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1413629355}
-          m_TargetAssemblyTypeName: View.AccessPanelScript, GameController
-          m_MethodName: mouseIn
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &717460287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2202,7 +1943,6 @@ GameObject:
   - component: {fileID: 791713064}
   - component: {fileID: 791713063}
   - component: {fileID: 791713066}
-  - component: {fileID: 791713067}
   m_Layer: 5
   m_Name: electricPanel
   m_TagString: Untagged
@@ -2325,35 +2065,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconMarker: {fileID: 1310202817}
---- !u!114 &791713067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 791713061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1394805921}
-          m_TargetAssemblyTypeName: View.PriorityPanelScript, GameController
-          m_MethodName: mouseIn
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &804313415
 GameObject:
   m_ObjectHideFlags: 0
@@ -2450,7 +2161,6 @@ GameObject:
   - component: {fileID: 847192333}
   - component: {fileID: 847192332}
   - component: {fileID: 847192331}
-  - component: {fileID: 847192334}
   m_Layer: 5
   m_Name: hazardPanel
   m_TagString: Untagged
@@ -2560,35 +2270,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847192329}
   m_CullTransparentMesh: 1
---- !u!114 &847192334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847192329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1062050123}
-          m_TargetAssemblyTypeName: View.AccessPanelScript, GameController
-          m_MethodName: mouseIn
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 4
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &856029520
 GameObject:
   m_ObjectHideFlags: 0
@@ -2602,7 +2283,6 @@ GameObject:
   - component: {fileID: 856029523}
   - component: {fileID: 856029522}
   - component: {fileID: 856029525}
-  - component: {fileID: 856029526}
   m_Layer: 5
   m_Name: busPanel
   m_TagString: Untagged
@@ -2725,35 +2405,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconMarker: {fileID: 1310202817}
---- !u!114 &856029526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 856029520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1394805921}
-          m_TargetAssemblyTypeName: View.PriorityPanelScript, GameController
-          m_MethodName: mouseIn
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &962591573
 GameObject:
   m_ObjectHideFlags: 0
@@ -2766,7 +2417,6 @@ GameObject:
   - component: {fileID: 962591577}
   - component: {fileID: 962591576}
   - component: {fileID: 962591575}
-  - component: {fileID: 962591578}
   m_Layer: 5
   m_Name: emergencyPanel
   m_TagString: Untagged
@@ -2876,35 +2526,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 962591573}
   m_CullTransparentMesh: 1
---- !u!114 &962591578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 962591573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1394805921}
-          m_TargetAssemblyTypeName: View.PriorityPanelScript, GameController
-          m_MethodName: mouseIn
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1001 &1017685477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3005,6 +2626,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: f571842424ec0564f8a836b25a9e7fd7, type: 3}
     - target: {fileID: 5659280139767378937, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
+      propertyPath: district
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659280139767378937, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
       propertyPath: cardMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 5bf44a815f11c4c4b8f2769325aafa17, type: 2}
@@ -3093,19 +2718,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1051516698}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1394805921}
-        m_TargetAssemblyTypeName: View.PriorityPanelScript, GameController
-        m_MethodName: handlePriorityInput
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1051516698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3254,7 +2867,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1062050119}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 437b6350262a41940942b2b2cabf8de1, type: 3}
+  m_Script: {fileID: 11500000, guid: 69df967b5a705584a824841e6b1874cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 376103941}
@@ -3266,7 +2879,6 @@ MonoBehaviour:
   - {fileID: 847192329}
   - {fileID: 20182437}
   selectionMarker: {fileID: 1418948027}
-  chosenIndex: 0
 --- !u!1 &1078646954
 GameObject:
   m_ObjectHideFlags: 0
@@ -3586,6 +3198,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: fec49de4dcfdbcf4f96753d90461fde0, type: 3}
     - target: {fileID: 5659280139767378937, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
+      propertyPath: district
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659280139767378937, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
       propertyPath: cardMaterial
       value: 
       objectReference: {fileID: 2100000, guid: f0f389d638fdbfc44a02f12f38bbda07, type: 2}
@@ -3603,7 +3219,6 @@ GameObject:
   - component: {fileID: 1292573182}
   - component: {fileID: 1292573181}
   - component: {fileID: 1292573180}
-  - component: {fileID: 1292573183}
   m_Layer: 5
   m_Name: emergencyPanel
   m_TagString: Untagged
@@ -3713,35 +3328,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1292573178}
   m_CullTransparentMesh: 1
---- !u!114 &1292573183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1292573178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1062050123}
-          m_TargetAssemblyTypeName: View.AccessPanelScript, GameController
-          m_MethodName: mouseIn
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1307583805
 GameObject:
   m_ObjectHideFlags: 0
@@ -3834,7 +3420,6 @@ GameObject:
   - component: {fileID: 1310202821}
   - component: {fileID: 1310202820}
   - component: {fileID: 1310202819}
-  - component: {fileID: 1310202822}
   m_Layer: 5
   m_Name: selectIcon
   m_TagString: Untagged
@@ -3905,19 +3490,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1310202820}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1394805921}
-        m_TargetAssemblyTypeName: View.PriorityPanelScript, GameController
-        m_MethodName: handlePrioritySelection
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1310202820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3956,35 +3529,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310202817}
   m_CullTransparentMesh: 1
---- !u!114 &1310202822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1310202817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1394805921}
-          m_TargetAssemblyTypeName: View.PriorityPanelScript, GameController
-          m_MethodName: mouseOut
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1393251107
 GameObject:
   m_ObjectHideFlags: 0
@@ -3997,7 +3541,6 @@ GameObject:
   - component: {fileID: 1393251111}
   - component: {fileID: 1393251110}
   - component: {fileID: 1393251109}
-  - component: {fileID: 1393251112}
   m_Layer: 5
   m_Name: electricPanel
   m_TagString: Untagged
@@ -4107,35 +3650,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1393251107}
   m_CullTransparentMesh: 1
---- !u!114 &1393251112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1393251107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1062050123}
-          m_TargetAssemblyTypeName: View.AccessPanelScript, GameController
-          m_MethodName: mouseIn
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1394805917
 GameObject:
   m_ObjectHideFlags: 0
@@ -4243,10 +3757,9 @@ MonoBehaviour:
   - {fileID: 94661875}
   - {fileID: 1718569155}
   - {fileID: 1757399243}
+  selectionMarker: {fileID: 1310202817}
   p1: {fileID: 301768848}
   p2: {fileID: 1051516695}
-  selectionMarker: {fileID: 1310202817}
-  chosenIndex: 0
 --- !u!1 &1413629353
 GameObject:
   m_ObjectHideFlags: 0
@@ -4309,7 +3822,6 @@ MonoBehaviour:
   - {fileID: 717460285}
   - {fileID: 364766095}
   selectionMarker: {fileID: 350888571}
-  chosenIndex: 0
 --- !u!114 &1413629356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4360,7 +3872,6 @@ GameObject:
   - component: {fileID: 1418948032}
   - component: {fileID: 1418948031}
   - component: {fileID: 1418948030}
-  - component: {fileID: 1418948029}
   m_Layer: 5
   m_Name: selectIcon
   m_TagString: Untagged
@@ -4388,35 +3899,6 @@ RectTransform:
   m_AnchoredPosition: {x: -532.49994, y: 0.5}
   m_SizeDelta: {x: -1135.4928, y: -215.60999}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1418948029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1418948027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1062050123}
-          m_TargetAssemblyTypeName: View.AccessPanelScript, GameController
-          m_MethodName: mouseOut
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &1418948030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4460,19 +3942,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1418948031}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1062050123}
-        m_TargetAssemblyTypeName: View.AccessPanelScript, GameController
-        m_MethodName: handleAccessInput
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1418948031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4627,6 +4097,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: d21f13f9b17394d428207f0c13526e91, type: 3}
     - target: {fileID: 5659280139767378937, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
+      propertyPath: district
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659280139767378937, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
       propertyPath: cardMaterial
       value: 
       objectReference: {fileID: 2100000, guid: a8ea741f2138a3946962bb33b9b687c2, type: 2}
@@ -4732,6 +4206,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: ed9237c27967dfa4380a3a2532dce524, type: 3}
     - target: {fileID: 5659280139767378937, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
+      propertyPath: district
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659280139767378937, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
       propertyPath: cardMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 77e3eea1ddd35584585186a641dd2518, type: 2}
@@ -4829,7 +4307,6 @@ GameObject:
   - component: {fileID: 1718569159}
   - component: {fileID: 1718569158}
   - component: {fileID: 1718569157}
-  - component: {fileID: 1718569160}
   m_Layer: 5
   m_Name: hazardPanel
   m_TagString: Untagged
@@ -4939,35 +4416,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718569155}
   m_CullTransparentMesh: 1
---- !u!114 &1718569160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1718569155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1394805921}
-          m_TargetAssemblyTypeName: View.PriorityPanelScript, GameController
-          m_MethodName: mouseIn
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 4
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1757399243
 GameObject:
   m_ObjectHideFlags: 0
@@ -4980,7 +4428,6 @@ GameObject:
   - component: {fileID: 1757399247}
   - component: {fileID: 1757399246}
   - component: {fileID: 1757399245}
-  - component: {fileID: 1757399248}
   m_Layer: 5
   m_Name: locationPanel
   m_TagString: Untagged
@@ -5090,35 +4537,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757399243}
   m_CullTransparentMesh: 1
---- !u!114 &1757399248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1757399243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1394805921}
-          m_TargetAssemblyTypeName: View.PriorityPanelScript, GameController
-          m_MethodName: mouseIn
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 5
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!224 &1819521064 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5659280139767378918, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
