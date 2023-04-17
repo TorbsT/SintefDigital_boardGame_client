@@ -46,7 +46,7 @@ namespace View {
         {
             p1.SetActive(false);
             p2.SetActive(false);
-            activeRegion.setPriority(chosenIndex, value);
+            activeRegion.setPriority(chosenIndex, value, isOrchestrator());
             hidePanel();
         }
 
