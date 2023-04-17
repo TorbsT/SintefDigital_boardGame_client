@@ -17,7 +17,7 @@ namespace Network
         }
         public static GameStateSynchronizer Instance { get; private set; }
 
-        public event Action StateChanged;
+        public event Action<NetworkData.GameState> StateChanged;
         public event Action<NetworkData.Player> PlayerConnected;
         public event Action<int> PlayerDisconnected;
         [field: SerializeField] public int? LobbyId { get; private set; } = null;
@@ -113,10 +113,10 @@ namespace Network
             }
 
             GameState = newState;
-            if (differenceExists)
+            if (true || differenceExists)
             {
                 Debug.Log("State changed: " + allPlayerIds.Count);
-                StateChanged?.Invoke();
+                StateChanged?.Invoke(newState);
             }
         }
     }
