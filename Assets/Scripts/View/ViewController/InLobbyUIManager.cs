@@ -32,6 +32,8 @@ namespace View
         }
         public void StartGameClicked()
         {
+            SceneManager.LoadSceneAsync(gameScene);
+            return; // lmao
             NetworkData.PlayerInput input = new NetworkData.PlayerInput
             {
                 // TODO input stuffs here

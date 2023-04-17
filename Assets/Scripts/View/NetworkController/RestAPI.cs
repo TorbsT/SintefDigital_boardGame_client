@@ -79,8 +79,6 @@ namespace Network
                 related_node_id = null,
                 district_modifier = null
             };
-            Debug.Log(input.player_id);
-            Debug.Log(input.game_id);
             SendPlayerInput(successCallback, failureCallback, input);
         }
 
