@@ -12,7 +12,6 @@ namespace Network
         public static NetworkData Instance { get; private set; }
         public int UniqueID => Me.unique_id;
         public string PlayerName => Me.name;
-        [field: SerializeField] public GameState CurrentGameState { get; set; }
         [field: SerializeField] public Player Me { get; set; }
         private void Awake()
         {
@@ -22,19 +21,51 @@ namespace Network
         [Serializable]
         public enum InGameID
         {
-            Undecided,
-            PlayerOne,
-            PlayerTwo,
-            PlayerThree,
-            PlayerFour,
-            PlayerFive,
-            Orchestrator
+            Undecided = 0,
+            PlayerOne = 1,
+            PlayerTwo = 2,
+            PlayerThree = 3,
+            PlayerFour = 4,
+            PlayerFive = 5,
+            Orchestrator = 6
         }
         [Serializable]
         public enum PlayerInputType
         {
-            Movement
+            Movement,
+            ChangeRole,
+            All, // Do not use?
+            NextTurn,
+            UndoAction,
+            ModifyDistrict
         }
+        [Serializable]
+        public enum Neighbourhood
+        {
+            IndustryPark,
+            Port,
+            Suburbs,
+            RingRoad,
+            CityCentre,
+            Airport
+        }
+        [Serializable]
+        public enum VehicleType
+        {
+            Electric,
+            Buss,
+            Emergency,
+            Industrial
+        }
+        [Serializable]
+        public enum DistrictModifierType
+        {
+            Access,
+            Priority,
+            Toll
+        }
+
+        // Structs/classes >:)
         [Serializable]
         public class LobbyList
         {
@@ -74,9 +105,41 @@ namespace Network
         [Serializable]
         public struct PlayerInput
         {
-            public Player player;
-            public PlayerInputType input_type;
-            public Node related_node;
+            public int player_id;
+            public int game_id;
+            public string input_type;
+            public string related_role;
+            public int? related_node_id;
+            public DistrictModifier? district_modifier;
+        }
+        [Serializable]
+        public struct DistrictModifier
+        {
+            public Neighbourhood district;
+            public DistrictModifierType modifier;
+            public VehicleType? vehicle_type;
+            public int? associated_movement_value;
+            public int? associated_money_value;
+            public bool delete;
+        }
+        public InGameID GetFirstAvailableRole(GameState state, bool skipOrchestrator)
+        {  // Find a more appropriate location for this method
+            List<InGameID> roles =
+                new()
+                {
+                    InGameID.PlayerOne,
+                    InGameID.PlayerTwo,
+                    InGameID.PlayerThree,
+                    InGameID.PlayerFour,
+                    InGameID.PlayerFive,
+                };
+            if (!skipOrchestrator)
+                roles.Insert(0, InGameID.Orchestrator);
+            foreach (var player in state.players)
+            {
+                roles.Remove((InGameID)Enum.Parse(typeof(InGameID), player.in_game_id));
+            }
+            return roles[0];
         }
     }
 }

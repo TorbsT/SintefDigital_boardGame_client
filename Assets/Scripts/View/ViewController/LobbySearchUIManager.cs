@@ -76,7 +76,7 @@ namespace View
             RestAPI.Instance.CreateGame(
                 (success) =>
                 {
-                    NetworkData.Instance.CurrentGameState = success;
+                    RestAPI.Instance.ChangeToFirstAvailableRole((_) => { }, (_) => { Debug.Log("why the fuck"); }, success);
                     MainMenuUIController.Instance.JoinLobby(success.id);
                 }, 
                 (failure) =>

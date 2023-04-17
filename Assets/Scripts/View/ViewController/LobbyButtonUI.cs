@@ -18,8 +18,7 @@ namespace View
             RestAPI.Instance.JoinLobby(
                 (success) =>
                 {
-                    NetworkData.Instance.CurrentGameState = success;
-                    NetworkData.Instance.CurrentGameState.id = LobbyId;
+                    RestAPI.Instance.ChangeToFirstAvailableRole((_) => { }, (_) => { }, success);
                     MainMenuUIController.Instance.JoinLobby(LobbyId);
                 },
                 (failure) =>

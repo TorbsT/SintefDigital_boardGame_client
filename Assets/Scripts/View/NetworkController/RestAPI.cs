@@ -20,13 +20,12 @@ namespace Network
             DontDestroyOnLoad(gameObject);
             Instance = this;
         }
-        // Implemented, not documented
+
+        // Implemented
         internal void RefreshLobbies(Action<NetworkData.LobbyList> successCallback, Action<string> failureCallback)
         {
             StartCoroutine(GET("games/lobbies", successCallback, failureCallback));
         }
-
-        // Implemented
         internal void CreateUniquePlayerId(Action<int> successCallback, Action<string> failureCallback)
         {
             StartCoroutine(GET("create/playerID", successCallback, failureCallback));
@@ -67,6 +66,24 @@ namespace Network
             StartCoroutine(POST("games/input", jsonObject, successCallback, failureCallback));
         }
         
+        // Helpers - used often
+        internal void ChangeToFirstAvailableRole(Action<NetworkData.GameState> successCallback, Action<string> failureCallback, NetworkData.GameState state)
+        {
+            NetworkData.InGameID chosenRole = NetworkData.Instance.GetFirstAvailableRole(state, false);
+            NetworkData.PlayerInput input = new()
+            {
+                player_id = NetworkData.Instance.Me.unique_id,
+                game_id = state.id,
+                input_type = NetworkData.PlayerInputType.ChangeRole.ToString(),
+                related_role = chosenRole.ToString(),
+                related_node_id = null,
+                district_modifier = null
+            };
+            Debug.Log(input.player_id);
+            Debug.Log(input.game_id);
+            SendPlayerInput(successCallback, failureCallback, input);
+        }
+
         // Debug
         internal void DebugPlayerCount(Action<int> successCallback, Action<string> failureCallback)
         {
