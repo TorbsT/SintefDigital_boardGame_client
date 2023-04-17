@@ -59,7 +59,16 @@ namespace View
             {
                 //Debug.Log("clicked");
                 player.transform.parent = transform;
-                player.transform.localPosition = new Vector3(0, 0, 0);
+                Animation<Vector2> moveAnimation = new()
+                {
+                    StartValue = player.transform.position,
+                    EndValue = transform.position,
+                    Duration = AnimationPresets.Instance.PlayerMoveDuration,
+                    Curve = AnimationPresets.Instance.PlayerMoveCurve,
+                    Action = (value) => { player.transform.position = value; }
+                };
+                moveAnimation.Start();
+                //player.transform.localPosition = new Vector3(0, 0, 0);
             }
         }
     }
