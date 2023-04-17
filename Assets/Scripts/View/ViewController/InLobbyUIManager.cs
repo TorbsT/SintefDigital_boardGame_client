@@ -32,17 +32,20 @@ namespace View
         }
         public void StartGameClicked()
         {
-            SceneManager.LoadSceneAsync(gameScene);
-            return; // lmao
-            NetworkData.PlayerInput input = new NetworkData.PlayerInput
+            NetworkData.GameStartInput input = new()
             {
                 // TODO input stuffs here
+
+                player_id = NetworkData.Instance.Me.unique_id,
+                game_id = GameStateSynchronizer.Instance.GameState.id,
+                in_game_id = NetworkData.InGameID.Orchestrator.ToString()
             };
-            RestAPI.Instance.SendPlayerInput(
+            RestAPI.Instance.StartGame(
                 (gameState) =>
                 {
                     // Only checking this periodically in
                     // CompleteRefresh
+                    SceneManager.LoadSceneAsync(gameScene);
                 },
                 (failure) =>
                 {

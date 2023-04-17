@@ -42,6 +42,12 @@ namespace Network
             lastBody = jsonObject;
             StartCoroutine(POST("create/game", jsonObject, successCallback, failureCallback));
         }
+        internal void StartGame(Action<NetworkData.GameState> successCallback, Action<string> failureCallback, NetworkData.GameStartInput input)
+        {
+            string jsonObject = JsonUtility.ToJson(input);
+            lastBody = jsonObject;
+            StartCoroutine(POST("start/game", jsonObject, successCallback, failureCallback));
+        }
         internal void GetGameState(Action<NetworkData.GameState> successCallback, Action<string> failureCallback, int lobbyId)
         {
             StartCoroutine(GET($"games/game/{lobbyId}", successCallback, failureCallback));
