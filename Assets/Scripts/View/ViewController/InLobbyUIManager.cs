@@ -1,6 +1,7 @@
 using Network;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,6 +14,8 @@ namespace View
         [SerializeField] private string gameScene;
         [SerializeField] private Button startGameButton;
         [SerializeField] private Button refreshButton;
+        [SerializeField] private Button changeRoleButton;
+        [SerializeField] private TextMeshProUGUI changeRoleText;
 
         private void Start()
         {
@@ -21,7 +24,7 @@ namespace View
         private void OnEnable()
         {
             GameStateSynchronizer.Instance.StateChanged += CompleteRefresh;
-            CompleteRefresh();
+            CompleteRefresh(GameStateSynchronizer.Instance.GameState);
         }
         private void OnDisable()
         {
@@ -29,18 +32,46 @@ namespace View
         }
         public void StartGameClicked()
         {
-            SceneManager.LoadSceneAsync(gameScene);
+            NetworkData.PlayerInput input = new NetworkData.PlayerInput
+            {
+                // TODO input stuffs here
+            };
+            RestAPI.Instance.SendPlayerInput(
+                (gameState) =>
+                {
+                    // Only checking this periodically in
+                    // CompleteRefresh
+                },
+                (failure) =>
+                {
+                    Debug.LogWarning("Couldn't start game");
+                }, input
+                );
+            
         }
-        public void RefreshClicked()
+        public void ChangeRoleClicked()
         {
-            CompleteRefresh();
+            changeRoleButton.interactable = false;
+
+            RestAPI.Instance.ChangeToFirstAvailableRole(
+                (gameState) =>
+                {
+                    // Not necessary but refreshes faster, improves user experience
+                    CompleteRefresh(gameState);
+                },
+                (failure) =>
+                {
+                    Debug.LogWarning("Couldn't change role");
+                    changeRoleButton.interactable = true;
+                    // uh oh
+                }, GameStateSynchronizer.Instance.GameState
+                );
         }
         public void LeaveLobbyClicked()
         {
             RestAPI.Instance.LeaveLobby(
                 (success) =>
                 {
-                    Debug.Log("YEP");
                     GameStateSynchronizer.Instance.SetLobbyId(null);
                     MainMenuUIController.Instance.BackToMainMenu();
                 },
@@ -50,24 +81,52 @@ namespace View
                 }
                 );
         }
-        private void CompleteRefresh()
+        private void CompleteRefresh(NetworkData.GameState gameState)
         {
-            Debug.Log("Yabbai " + GameStateSynchronizer.Instance.GameState.players.Count);
             GetComponent<UIListHandler>().Clear();
-            foreach (var player in GameStateSynchronizer.Instance.GameState.players)
+            bool orchestratorExists = false;
+            bool meIsOrchestrator = false;
+            foreach (var player in gameState.players)
             {
-                bool isHost = player.in_game_id == NetworkData.InGameID.Orchestrator.ToString();
-                AddPlayer(player.name, player.in_game_id, isHost);
+                string roleName = player.in_game_id;
+                NetworkData.InGameID role = (NetworkData.InGameID)System.Enum.Parse
+                    (typeof(NetworkData.InGameID), roleName);
+
+                bool isOrchestrator = role == NetworkData.InGameID.Orchestrator;
+                bool isMe = player.unique_id == NetworkData.Instance.Me.unique_id;
+                if (isMe && isOrchestrator)
+                    meIsOrchestrator = true;
+
+                orchestratorExists = orchestratorExists || isOrchestrator;
+                AddPlayer(player.name, roleName, isMe);
+            }
+            if (meIsOrchestrator) changeRoleText.text = "Switch to player";
+            else changeRoleText.text = "Switch to orchestrator";
+            bool enableRoleSwitch = meIsOrchestrator || !orchestratorExists;
+            changeRoleButton.interactable = enableRoleSwitch;
+            startGameButton.interactable = meIsOrchestrator;
+
+            return;
+            if (!gameState.is_lobby)
+            {  // Game has started
+                SceneManager.LoadSceneAsync(gameScene);
             }
         }
-        private void AddPlayer(string playerName, string roleName, bool host)
+        private void AddPlayer(string playerName, string roleName, bool isMe)
         {
             GameObject panel = PoolManager.Instance.Depool(playerPrefab);
             LobbyPlayerUI player = panel.GetComponent<LobbyPlayerUI>();
             player.Name = playerName;
             player.Role = roleName;
-            if (host) player.Host = "Host";
-            else player.Host = "";
+            
+            if (isMe)
+            {
+                player.Me = "Me";
+            }
+            else
+            {
+                player.Me = "";
+            }
             GetComponent<UIListHandler>().AddItem(panel);
         }
     }
