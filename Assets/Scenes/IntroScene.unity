@@ -1172,11 +1172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a31d50c4201f6459dbaf4b6b0390b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CurrentGameState>k__BackingField:
-    id: 0
-    name: 
-    players: []
-    is_lobby: 0
   <Me>k__BackingField:
     in_game_id: 
     unique_id: 0
@@ -1199,7 +1194,7 @@ MonoBehaviour:
     name: 
     players: []
     is_lobby: 0
-  fetchSuccessCooldown: 1
+  fetchSuccessCooldown: 5
   fetchFailCooldown: 5
   currentCooldown: 0
   state: 0
