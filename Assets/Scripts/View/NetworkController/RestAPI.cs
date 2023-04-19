@@ -146,7 +146,7 @@ namespace Network
             }
             else
             {
-                Debug.LogWarning(request.error);
+                Debug.LogWarning($"{request.error}: {request.downloadHandler.text}");
                 failureCallback?.Invoke(request.error);
             }
         }

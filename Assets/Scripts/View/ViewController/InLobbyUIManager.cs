@@ -32,6 +32,7 @@ namespace View
         }
         public void StartGameClicked()
         {
+            Debug.Log("yep");
             NetworkData.GameStartInput input = new()
             {
                 // TODO input stuffs here
@@ -45,7 +46,8 @@ namespace View
                 {
                     // Only checking this periodically in
                     // CompleteRefresh
-                    SceneManager.LoadSceneAsync(gameScene);
+                    // SceneManager.LoadSceneAsync(gameScene);
+                    Debug.Log($"Successfully started lobby: " + gameState.is_lobby);
                 },
                 (failure) =>
                 {
@@ -88,6 +90,7 @@ namespace View
         }
         private void CompleteRefresh(NetworkData.GameState gameState)
         {
+            if (gameState == null) return;
             GetComponent<UIListHandler>().Clear();
             bool orchestratorExists = false;
             bool meIsOrchestrator = false;
@@ -105,15 +108,19 @@ namespace View
                 orchestratorExists = orchestratorExists || isOrchestrator;
                 AddPlayer(player.name, roleName, isMe);
             }
+
             if (meIsOrchestrator) changeRoleText.text = "Switch to player";
             else changeRoleText.text = "Switch to orchestrator";
+
+            changeRoleText.text = Time.time.ToString();
             bool enableRoleSwitch = meIsOrchestrator || !orchestratorExists;
             changeRoleButton.interactable = enableRoleSwitch;
             startGameButton.interactable = meIsOrchestrator;
 
-            return;
+            
             if (!gameState.is_lobby)
             {  // Game has started
+                Debug.Log("SHUt UP");
                 SceneManager.LoadSceneAsync(gameScene);
             }
         }
