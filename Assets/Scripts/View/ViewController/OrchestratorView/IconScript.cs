@@ -41,13 +41,7 @@ namespace View
 
         public void setDeleteButton(bool boolean)
         {
-
             closeButton.SetActive(boolean);
-            //transform.localScale = new Vector2 (10, 10);b
-            float width = rectTransform.rect.width;
-            float height = rectTransform.rect.height;
-            closeButton.transform.position = transform.position + new Vector3(width/2, height/2,0);
-
         }
 
 
