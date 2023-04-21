@@ -39,16 +39,22 @@ namespace View
 
         public void MoveCardIn(int id)
         {
-            if (currentGameCard != null)
-            {
-                currentGameCard.moveTo(resetPoint.GetPos());
-            }
+            Debug.Log(3333);
+            ResetCurrentCard();
             GameCard gc = GetCardById(id);
             if (gc != null)
             {
                 gc.moveTo(spawnPoint.GetPos());
             }
             currentGameCard = gc;
+        }
+
+        public void ResetCurrentCard()
+        {
+            if (currentGameCard != null)
+            {
+                currentGameCard.moveTo(resetPoint.GetPos());
+            }
         }
 
 

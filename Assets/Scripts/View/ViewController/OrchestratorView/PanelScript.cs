@@ -15,6 +15,7 @@ namespace View
         protected int chosenIndex;
         protected RegionCard activeRegion;
 
+
         public abstract void handleInput();
 
 
@@ -101,6 +102,12 @@ namespace View
             activeRegion = null;
             selectionMarker.SetActive(false);
             highlightedIndex = null;
+        }
+
+        public bool isOrchestrator()
+        {
+           
+            return handler.GetIsOrchestrator();
         }
 
 

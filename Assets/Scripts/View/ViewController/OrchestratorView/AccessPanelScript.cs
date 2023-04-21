@@ -12,7 +12,7 @@ namespace View {
         {
             Debug.Log(highlightedIndex);
             int selectedIndex = (int) highlightedIndex;
-            activeRegion.setAccess(selectedIndex);
+            activeRegion.setAccess(selectedIndex, isOrchestrator());
             hidePanel();
         }
 
