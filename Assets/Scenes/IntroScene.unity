@@ -1111,6 +1111,76 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scheme: 1
   renderer: {fileID: 576022410}
+--- !u!1 &972165024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 972165026}
+  - component: {fileID: 972165025}
+  m_Layer: 0
+  m_Name: Debug
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &972165025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972165024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 305115de2dc906b4aa7138267dce4568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggleLogKey: 9
+  severities:
+  - type: 0
+    color: red
+    size: 40
+    prefix: 'ERROR: '
+  - type: 1
+    color: green
+    size: 30
+    prefix: 'Assert: '
+  - type: 2
+    color: orange
+    size: 30
+    prefix: 'Warning: '
+  - type: 3
+    color: white
+    size: 25
+    prefix: 'Log: '
+  - type: 4
+    color: red
+    size: 40
+    prefix: 'EXCEPTION: '
+  paddingLeft: 100
+  paddingRight: 100
+  paddingUp: 100
+  paddingDown: 100
+--- !u!4 &972165026
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972165024}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1127712881
 GameObject:
   m_ObjectHideFlags: 0
