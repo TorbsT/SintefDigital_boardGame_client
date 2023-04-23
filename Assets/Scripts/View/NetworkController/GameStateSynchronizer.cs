@@ -71,7 +71,6 @@ namespace Network
                     SetGamestate(success);
                     currentCooldown = 0f;
                     state = State.SUCCESS;
-                    Debug.Log("Gamestate has " + success.players.Count);
                 },
                 (failure) =>
                 {
@@ -117,7 +116,6 @@ namespace Network
             GameState = newState;
             if (true || differenceExists)
             {
-                Debug.Log("State changed: " + allPlayerIds.Count);
                 StateChanged?.Invoke(newState);
             }
         }

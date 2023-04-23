@@ -55,7 +55,8 @@ namespace View
                         int quantity = item.players.Count;
                         int maxQuantity = 5;
                         lobby.Quantity = $"{quantity}/{maxQuantity} players";
-                        lobby.GetComponent<Button>().interactable = quantity < maxQuantity;
+                        bool joinable = item.is_lobby && quantity < maxQuantity;
+                        lobby.GetComponent<Button>().interactable = joinable;
                         GetComponent<UIListHandler>().AddItem(gameObject);
                     }
                     createLobbyButton.interactable = true;
@@ -76,8 +77,8 @@ namespace View
             RestAPI.Instance.CreateGame(
                 (success) =>
                 {
-                    RestAPI.Instance.ChangeToFirstAvailableRole((_) => { }, (_) => { Debug.Log("why the fuck"); }, success);
                     MainMenuUIController.Instance.JoinLobby(success.id);
+                    RestAPI.Instance.ChangeToFirstAvailableRole((_) => { }, (_) => { }, success);
                 }, 
                 (failure) =>
                 {

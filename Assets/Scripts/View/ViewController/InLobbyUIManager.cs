@@ -16,7 +16,6 @@ namespace View
         [SerializeField] private Button refreshButton;
         [SerializeField] private Button changeRoleButton;
         [SerializeField] private TextMeshProUGUI changeRoleText;
-
         private void Start()
         {
             
@@ -32,15 +31,6 @@ namespace View
         }
         public void StartGameClicked()
         {
-            Debug.Log("yep");
-            NetworkData.GameStartInput input = new()
-            {
-                // TODO input stuffs here
-
-                player_id = NetworkData.Instance.Me.unique_id,
-                game_id = GameStateSynchronizer.Instance.GameState.id,
-                in_game_id = NetworkData.InGameID.Orchestrator.ToString()
-            };
             RestAPI.Instance.StartGame(
                 (gameState) =>
                 {
@@ -52,8 +42,7 @@ namespace View
                 (failure) =>
                 {
                     Debug.LogWarning("Couldn't start game");
-                }, input
-                );
+                });
             
         }
         public void ChangeRoleClicked()
@@ -112,15 +101,13 @@ namespace View
             if (meIsOrchestrator) changeRoleText.text = "Switch to player";
             else changeRoleText.text = "Switch to orchestrator";
 
-            changeRoleText.text = Time.time.ToString();
             bool enableRoleSwitch = meIsOrchestrator || !orchestratorExists;
             changeRoleButton.interactable = enableRoleSwitch;
             startGameButton.interactable = meIsOrchestrator;
 
-            
+            Debug.Log(gameState.is_lobby);
             if (!gameState.is_lobby)
             {  // Game has started
-                Debug.Log("SHUt UP");
                 SceneManager.LoadSceneAsync(gameScene);
             }
         }
