@@ -16,7 +16,6 @@ namespace View
         [SerializeField] private Button refreshButton;
         [SerializeField] private Button changeRoleButton;
         [SerializeField] private TextMeshProUGUI changeRoleText;
-
         private void Start()
         {
             
@@ -32,23 +31,18 @@ namespace View
         }
         public void StartGameClicked()
         {
-            SceneManager.LoadSceneAsync(gameScene);
-            return; // lmao
-            NetworkData.PlayerInput input = new NetworkData.PlayerInput
-            {
-                // TODO input stuffs here
-            };
-            RestAPI.Instance.SendPlayerInput(
+            RestAPI.Instance.StartGame(
                 (gameState) =>
                 {
                     // Only checking this periodically in
                     // CompleteRefresh
+                    // SceneManager.LoadSceneAsync(gameScene);
+                    Debug.Log($"Successfully started lobby: " + gameState.is_lobby);
                 },
                 (failure) =>
                 {
                     Debug.LogWarning("Couldn't start game");
-                }, input
-                );
+                });
             
         }
         public void ChangeRoleClicked()
@@ -85,6 +79,7 @@ namespace View
         }
         private void CompleteRefresh(NetworkData.GameState gameState)
         {
+            if (gameState == null) return;
             GetComponent<UIListHandler>().Clear();
             bool orchestratorExists = false;
             bool meIsOrchestrator = false;
@@ -102,13 +97,15 @@ namespace View
                 orchestratorExists = orchestratorExists || isOrchestrator;
                 AddPlayer(player.name, roleName, isMe);
             }
+
             if (meIsOrchestrator) changeRoleText.text = "Switch to player";
             else changeRoleText.text = "Switch to orchestrator";
+
             bool enableRoleSwitch = meIsOrchestrator || !orchestratorExists;
             changeRoleButton.interactable = enableRoleSwitch;
             startGameButton.interactable = meIsOrchestrator;
 
-            return;
+            Debug.Log(gameState.is_lobby);
             if (!gameState.is_lobby)
             {  // Game has started
                 SceneManager.LoadSceneAsync(gameScene);

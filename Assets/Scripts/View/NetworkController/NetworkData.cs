@@ -37,7 +37,8 @@ namespace Network
             All, // Do not use?
             NextTurn,
             UndoAction,
-            ModifyDistrict
+            ModifyDistrict,
+            StartGame
         }
         [Serializable]
         public enum Neighbourhood
@@ -101,6 +102,13 @@ namespace Network
         {
             public Player host;
             public string name;
+        }
+        [Serializable]
+        public struct GameStartInput
+        {
+            public int player_id;
+            public string in_game_id;
+            public int game_id;
         }
         [Serializable]
         public struct PlayerInput

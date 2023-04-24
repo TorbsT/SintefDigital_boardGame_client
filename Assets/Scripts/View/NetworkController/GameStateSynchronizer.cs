@@ -21,7 +21,7 @@ namespace Network
         public event Action<NetworkData.Player> PlayerConnected;
         public event Action<int> PlayerDisconnected;
         [field: SerializeField] public int? LobbyId { get; private set; } = null;
-        [field: SerializeField] public NetworkData.GameState GameState { get; private set; }
+        public NetworkData.GameState GameState { get; private set; }
         [SerializeField, Range(0f, 10f)] private float fetchSuccessCooldown = 1f; 
         [SerializeField, Range(0f, 30f)] private float fetchFailCooldown = 5f;
         [SerializeField] private float currentCooldown = 0f;
@@ -71,7 +71,6 @@ namespace Network
                     SetGamestate(success);
                     currentCooldown = 0f;
                     state = State.SUCCESS;
-                    Debug.Log("Gamestate has " + success.players.Count);
                 },
                 (failure) =>
                 {
@@ -88,8 +87,10 @@ namespace Network
             bool differenceExists = false;
             Dictionary<int, NetworkData.Player> oldPlayerIds = new();
             Dictionary<int, NetworkData.Player> newPlayerIds = new();
-            foreach (NetworkData.Player player in GameState.players) oldPlayerIds.Add(player.unique_id, player);
-            foreach (NetworkData.Player player in newState.players) newPlayerIds.Add(player.unique_id, player);
+            if (GameState != null)
+                foreach (NetworkData.Player player in GameState.players) oldPlayerIds.Add(player.unique_id, player);
+            if (newState != null)
+                foreach (NetworkData.Player player in newState.players) newPlayerIds.Add(player.unique_id, player);
             
             HashSet<int> allPlayerIds = new();
             foreach (int id in oldPlayerIds.Keys) allPlayerIds.Add(id);
@@ -115,7 +116,6 @@ namespace Network
             GameState = newState;
             if (true || differenceExists)
             {
-                Debug.Log("State changed: " + allPlayerIds.Count);
                 StateChanged?.Invoke(newState);
             }
         }
