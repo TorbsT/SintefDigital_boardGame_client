@@ -10,7 +10,6 @@ namespace View {
 
         public override void handleInput()
         {
-            Debug.Log(highlightedIndex);
             int selectedIndex = (int) highlightedIndex;
             activeRegion.setAccess(selectedIndex, isOrchestrator());
             hidePanel();
