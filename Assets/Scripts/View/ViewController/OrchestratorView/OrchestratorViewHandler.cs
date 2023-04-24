@@ -23,7 +23,7 @@ namespace View
         private void Awake()
         {
             Instance = this;
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false); temperarly removed
         }
 
         void Start()

@@ -4,12 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System.Threading;
+using TMPro;
 
 namespace View
 {
     public class RegionCard : MonoBehaviour
     {
         public District district;
+        private int traffic = 1;
+        private int cost;
+        public TextMeshProUGUI districtName;
+        public TextMeshProUGUI districtTraffic;
+        public TextMeshProUGUI districtCost;
 
         private OrchestratorViewHandler handler;
         public GameObject[] vehicleAttributePrefab;
@@ -28,6 +34,7 @@ namespace View
         private IconScript activeTollRestriction;
 
         public PriorityMarker[] priorityMarkers;
+        public GameObject[] truckMarkers;
 
         public Material cardMaterial;
 
@@ -38,10 +45,13 @@ namespace View
             accessButton.transform.position = accessPoints[0].GetPos();
             priorityButton.transform.position = priorityPoints[0].GetPos();
             tollButton.transform.position = tollPoint.GetPos();
-            accessButton.SetActive(false);
-            priorityButton.SetActive(false);
-            tollButton.SetActive(false);
+            setOrchestratorOptions(false);
             tollCostIcon.SetActive(false);
+
+            setColor();
+            setDistrictText();
+            setTraffic(traffic);
+            
         }
 
 
@@ -57,6 +67,54 @@ namespace View
             tollButton.SetActive(boolean);
         }
 
+        public void setColor()
+        {
+            gameObject.GetComponent<Image>().color = cardMaterial.GetColor("_Color");
+        }
+
+        public void setDistrictText()
+        {
+            districtName.text = district.ToString();
+        }
+
+        public void setTraffic(int trafficNumber)
+        {
+            traffic = trafficNumber;
+            districtTraffic.text = "" + trafficNumber;
+            setTruckMarkers(trafficNumber);
+            setCost(trafficNumber);
+        }
+
+        private void setCost(int trafficNumber)
+        {
+
+            switch (trafficNumber)
+            {
+                case 3:
+                    cost = -1;
+                    break;
+                case 4:
+                    cost = -2;
+                    break;
+                case 5:
+                    cost = -4;
+                    break;
+                default:
+                    cost = 0;
+                    break;
+            }
+            districtCost.text = "" + cost;
+        }
+
+        private void setTruckMarkers(int numberOfTrucks)
+        {
+            
+            for (int i = 0; i < truckMarkers.Length; i++)
+            {
+                GameObject truckMarker = truckMarkers[i];
+                truckMarker.SetActive(i < numberOfTrucks);
+            }
+        }
 
         public GameObject setIcon(int id, List<IconScript> activeRestricions, Point[] points, GameObject button,bool isOrchestrator )
         {
@@ -103,6 +161,7 @@ namespace View
             activeTollRestriction.setAttachedRegionCard(this);
             activeTollRestriction.setValue(cost);
             activeTollRestriction.setDeleteButton(isOrchestrator);
+            tollCostIcon.transform.position = tollPoint.GetPos();
             tollCostIcon.transform.Find("costText").gameObject.GetComponent<Text>().text = "€" + cost;
             tollCostIcon.SetActive(true);
 
