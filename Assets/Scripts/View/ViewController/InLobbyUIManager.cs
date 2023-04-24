@@ -11,7 +11,7 @@ namespace View
     public class InLobbyUIManager : MonoBehaviour
     {
         [SerializeField] private GameObject playerPrefab;
-        [SerializeField] private string gameScene;
+        [SerializeField] private string startGameScene = "CardScene";
         [SerializeField] private Button startGameButton;
         [SerializeField] private Button refreshButton;
         [SerializeField] private Button changeRoleButton;
@@ -105,10 +105,9 @@ namespace View
             changeRoleButton.interactable = enableRoleSwitch;
             startGameButton.interactable = meIsOrchestrator;
 
-            Debug.Log(gameState.is_lobby);
             if (!gameState.is_lobby)
             {  // Game has started
-                SceneManager.LoadSceneAsync(gameScene);
+                SceneManager.LoadSceneAsync(startGameScene);
             }
         }
         private void AddPlayer(string playerName, string roleName, bool isMe)

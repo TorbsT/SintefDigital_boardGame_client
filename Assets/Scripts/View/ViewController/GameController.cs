@@ -19,7 +19,7 @@ namespace View
         {
             GameObject playerGameObject = PoolManager.Instance.Depool(playerPrefab);
             players.Add(player.unique_id, playerGameObject);
-            RefreshPosition(player);
+            //RefreshPosition(player); Do this later
         }
         private void PlayerDisconnected(int playerId)
         {

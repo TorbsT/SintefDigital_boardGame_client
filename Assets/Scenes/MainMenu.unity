@@ -2219,7 +2219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 4440857903255198839, guid: 09b2377a89ad94c4a956472a939ed212, type: 3}
-  gameScene: GameScene
+  startGameScene: CardScene
   startGameButton: {fileID: 159795886}
   refreshButton: {fileID: 0}
   changeRoleButton: {fileID: 700149830}
@@ -3660,7 +3660,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 730049032}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.21666667
+  m_Size: 0.27166668
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
