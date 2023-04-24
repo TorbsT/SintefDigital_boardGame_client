@@ -42,6 +42,7 @@ namespace Network
             lastBody = jsonObject;
             StartCoroutine(POST("create/game", jsonObject, successCallback, failureCallback));
         }
+
         internal void GetGameState(Action<NetworkData.GameState> successCallback, Action<string> failureCallback, int lobbyId)
         {
             StartCoroutine(GET($"games/game/{lobbyId}", successCallback, failureCallback));
@@ -66,7 +67,7 @@ namespace Network
             StartCoroutine(POST("games/input", jsonObject, successCallback, failureCallback));
         }
         
-        // Helpers - used often
+        // Helpers - used often, or abstracts
         internal void ChangeToFirstAvailableRole(Action<NetworkData.GameState> successCallback, Action<string> failureCallback, NetworkData.GameState state)
         {
             NetworkData.InGameID chosenRole = NetworkData.Instance.GetFirstAvailableRole(state, false);
@@ -81,6 +82,18 @@ namespace Network
             };
             SendPlayerInput(successCallback, failureCallback, input);
         }
+        internal void StartGame(Action<NetworkData.GameState> successCallback, Action<string> failureCallback)
+        {
+            NetworkData.PlayerInput input = new()
+            {
+                player_id = NetworkData.Instance.Me.unique_id,
+                game_id = GameStateSynchronizer.Instance.LobbyId.Value,
+                input_type = NetworkData.PlayerInputType.StartGame.ToString(),
+                related_role = NetworkData.InGameID.Orchestrator.ToString(),  // Should always be this
+            };
+            SendPlayerInput(successCallback, failureCallback, input);
+        }
+
 
         // Debug
         internal void DebugPlayerCount(Action<int> successCallback, Action<string> failureCallback)
@@ -140,7 +153,7 @@ namespace Network
             }
             else
             {
-                Debug.LogWarning(request.error);
+                Debug.LogWarning($"{request.error}: {request.downloadHandler.text}");
                 failureCallback?.Invoke(request.error);
             }
         }
