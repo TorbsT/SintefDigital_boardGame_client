@@ -11,7 +11,7 @@ namespace View
     public class RegionCard : MonoBehaviour
     {
         public District district;
-        private int traffic;
+        private int traffic = 1;
         private int cost;
         public TextMeshProUGUI districtName;
         public TextMeshProUGUI districtTraffic;
@@ -50,7 +50,7 @@ namespace View
 
             setColor();
             setDistrictText();
-            setTraffic(3);
+            setTraffic(traffic);
             
         }
 
@@ -112,7 +112,6 @@ namespace View
             for (int i = 0; i < truckMarkers.Length; i++)
             {
                 GameObject truckMarker = truckMarkers[i];
-                Debug.Log(i + " " +  numberOfTrucks);
                 truckMarker.SetActive(i < numberOfTrucks);
             }
         }
@@ -172,7 +171,6 @@ namespace View
 
         public void addAccess()
         {
-            Debug.Log("this is called!!");
             this.handler.showAccessScreen(this);
         }
 

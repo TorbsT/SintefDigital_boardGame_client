@@ -219,6 +219,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RegionCardA
       objectReference: {fileID: 0}
+    - target: {fileID: 5659280139767378919, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5659280139767378936, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -2934,6 +2938,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RegionCardIP
       objectReference: {fileID: 0}
+    - target: {fileID: 5659280139767378919, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5659280139767378937, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
       propertyPath: cardMaterial
       value: 
@@ -3297,6 +3305,10 @@ PrefabInstance:
     - target: {fileID: 5659280139767378919, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
       propertyPath: m_Name
       value: RegionCardRR
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659280139767378919, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5659280139767378936, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
       propertyPath: m_Sprite
@@ -4314,6 +4326,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RegionCardP
       objectReference: {fileID: 0}
+    - target: {fileID: 5659280139767378919, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5659280139767378936, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -5084,6 +5100,10 @@ PrefabInstance:
     - target: {fileID: 5659280139767378919, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
       propertyPath: m_Name
       value: RegionCardS
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659280139767378919, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5659280139767378936, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
       propertyPath: m_Sprite
@@ -8672,6 +8692,10 @@ PrefabInstance:
     - target: {fileID: 5659280139767378919, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
       propertyPath: m_Name
       value: RegionCardCC
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659280139767378919, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5659280139767378936, guid: 4bd1d593aeef19340a51ffd5864c8874, type: 3}
       propertyPath: m_Sprite
