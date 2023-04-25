@@ -41,7 +41,7 @@ namespace Network
             StartGame
         }
         [Serializable]
-        public enum Neighbourhood
+        public enum District
         {
             IndustryPark,
             Port,
@@ -123,9 +123,9 @@ namespace Network
         [Serializable]
         public struct DistrictModifier
         {
-            public Neighbourhood district;
-            public DistrictModifierType modifier;
-            public VehicleType? vehicle_type;
+            public string district;
+            public string modifier;
+            public string vehicle_type;
             public int? associated_movement_value;
             public int? associated_money_value;
             public bool delete;

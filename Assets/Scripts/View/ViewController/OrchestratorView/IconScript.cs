@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-
+using Network;
 
 
 namespace View
@@ -14,7 +14,7 @@ namespace View
         private RegionCard currentRegionCard;
         private RectTransform rectTransform;
 
-        private Restriction typeOfRestriction;
+        private NetworkData.DistrictModifierType typeOfRestriction;
         private int value = 0;
         // Start is called before the first frame update
 
@@ -34,7 +34,7 @@ namespace View
         {
             currentRegionCard = regionCard;
         }
-        public void setTypeOfRestriction(Restriction restriction)
+        public void setTypeOfRestriction(NetworkData.DistrictModifierType restriction)
         {
             typeOfRestriction = restriction;
         }
@@ -55,21 +55,42 @@ namespace View
             this.transform.position = pos;
         }
 
-        public void removeSelf() //if 0 remove access, if 1 remove 
+        public void removeOnServer() 
         {
             if (currentRegionCard == null) { return; } // if not attached to a RegionCard, should not be able to access
             switch (typeOfRestriction)
             {
-                case Restriction.Access:
-                    if (!currentRegionCard.removeAccess(this)) { return; }
-                    Destroy(gameObject);
+                case NetworkData.DistrictModifierType.Access:
+                    currentRegionCard.removeAccessServer(this);
                     break;
-                case Restriction.Priority:
-                    if (!currentRegionCard.removePriority(this)) { return; }
-                    Destroy(gameObject);
+                case NetworkData.DistrictModifierType.Priority:
+                    currentRegionCard.removePriorityServer(this);
                     break;
-                case Restriction.Toll:
-                    if (!currentRegionCard.removeToll(this)) { return; }
+                case NetworkData.DistrictModifierType.Toll:
+                    currentRegionCard.removeTollServer(this);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void removeSelf() 
+        {
+            if (currentRegionCard == null) { return; } // if not attached to a RegionCard, should not be able to access
+            switch (typeOfRestriction)
+            {
+                case NetworkData.DistrictModifierType.Access:
+                    currentRegionCard.removeAccess(this);
+                    //Destroy(gameObject);
+                    PoolManager.Instance.Enpool(gameObject);
+                    break;
+                case NetworkData.DistrictModifierType.Priority:
+                    currentRegionCard.removePriority(this);
+                    PoolManager.Instance.Enpool(gameObject);
+                    //Destroy(gameObject);
+                    break;
+                case NetworkData.DistrictModifierType.Toll:
+                    currentRegionCard.removeToll(this);
                     break;
                 default:
                     break;

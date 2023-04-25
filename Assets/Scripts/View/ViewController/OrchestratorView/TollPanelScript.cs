@@ -13,7 +13,7 @@ namespace View {
         {
             int selectedToll = (int)highlightedIndex + 1;
             Debug.Log(isOrchestrator());
-            activeRegion.setToll(selectedToll, isOrchestrator());
+            activeRegion.setTollServer(selectedToll, isOrchestrator());
             hidePanel();
         }
 
