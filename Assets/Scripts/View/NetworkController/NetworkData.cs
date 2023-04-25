@@ -156,7 +156,7 @@ namespace Network
         [Serializable]
         public struct RegionTraffic
         {
-            public Neighbourhood region;
+            public District region;
             public int traffic;
         }
 
