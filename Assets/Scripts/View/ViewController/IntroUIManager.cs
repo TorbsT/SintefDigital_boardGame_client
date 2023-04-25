@@ -30,9 +30,6 @@ public class IntroUIManager : MonoBehaviour
                     remaining_moves = 0
                 };
                 SceneManager.LoadSceneAsync(mainMenuScene);
-                RestAPI.Instance.DebugPlayerCount(
-                    (success) => { Debug.Log(success); }, 
-                    (failure) => { });
             },
             (failure) =>
             {

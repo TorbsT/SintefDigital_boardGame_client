@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class ClientController : MonoBehaviour
 {
     public GameObject currentPlayer;
 
@@ -27,8 +27,8 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        setPos(player2, "I1");
-        setVisibility(player1, true);
+        //setPos(player2, "I1"); Do this once the players have situation cards
+        //setVisibility(player1, true);
     }
 
     void setCurrentPlayer(GameObject player)

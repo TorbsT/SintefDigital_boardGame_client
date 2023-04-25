@@ -234,6 +234,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   district: 0
+  districtName: {fileID: 0}
+  districtTraffic: {fileID: 0}
+  districtCost: {fileID: 0}
   vehicleAttributePrefab:
   - {fileID: 212408174348781880, guid: f3f8f2dc3bd08934781a1ee78623130c, type: 3}
   - {fileID: 212408174348781880, guid: 1263d18846d134e4eb6e935d9d389dbd, type: 3}
@@ -255,6 +258,7 @@ MonoBehaviour:
   priorityMarkers:
   - {fileID: 5659280141521590939}
   - {fileID: 8951089941013764458}
+  truckMarkers: []
   cardMaterial: {fileID: 0}
 --- !u!1 &5659280139901385819
 GameObject:

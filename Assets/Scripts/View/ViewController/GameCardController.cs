@@ -1,35 +1,69 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Network;
+using TMPro;
 
 namespace View
 {
     public class GameCardController : MonoBehaviour
     {
-
-        public GameCard[] gamecards;
+        [SerializeField] private TextMeshProUGUI explanationText;
+        public Dictionary<int, GameCard> gamecards = new();
         public Point resetPoint;
         public Point spawnPoint;
         private GameCard currentGameCard;
-        void Start()
+        private void OnEnable()
         {
-            Debug.Log("Controller started");
-            foreach (GameCard gc in gamecards)
-            {
-                gc.moveTo(resetPoint.GetPos());
-            }
+            foreach (GameCard card in GetComponentsInChildren<GameCard>())
+                if (card != null)
+                    gamecards.Add(card.id, card);
+            foreach (GameCard card in gamecards.Values)
+                card.gameObject.SetActive(false);
+            RestAPI.Instance.GetSituationCards(
+                (success) =>
+                {
+                    foreach (NetworkData.SituationCard card in success.cards)
+                    {
+                        // Organize data from backend
+                        int id = card.card_id;
+                        if (!gamecards.ContainsKey(id))
+                        {
+                            Debug.LogWarning
+                            ($"CardScene does not have a card with the cardId {id}. Please add one");
+                            continue;
+                        }
+                        string title = card.title;
+                        string description = card.description;
+                        string goal = card.goal;
+                        List<string> trafficList = new();
+                        foreach (var traffic in card.costs.traffics)
+                        {
+                            trafficList.Add($"{traffic.region}: {traffic.traffic}");
+                        }
+                        string traffics = string.Join("\n", trafficList);
+
+                        // Write data to card
+                        GameCard gamecard = gamecards[id];
+                        gamecard.Id.text = $"!{id}";
+                        gamecard.Title.text = title;
+                        gamecard.Description.text = description;
+                        gamecard.Goal.text = goal;
+                        gamecard.Traffic.text = traffics;
+                        gamecard.gameObject.SetActive(true);
+                    }
+                },
+                (failure) => { }
+            );
+
+            string orchestratorName = GameStateSynchronizer.Instance.Orchestrator.name;
+            if (GameStateSynchronizer.Instance.IsOrchestrator)
+                explanationText.text = "Select a situation card for this game";
+            else
+                explanationText.text = $"Wait for {orchestratorName} to choose a situation card";
         }
         public GameCard GetCardById(int id)
-        {
-            foreach (GameCard gamecard in gamecards)
-            {
-                if (gamecard.GetId() == id)
-                {
-                    return gamecard;
-                }
-            }
-            return null;
-        }
+            => gamecards[id];
 
         public GameCard GetSituationCard(Colors color)
         {

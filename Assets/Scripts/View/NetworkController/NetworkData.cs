@@ -12,7 +12,9 @@ namespace Network
         public static NetworkData Instance { get; private set; }
         public int UniqueID => Me.unique_id;
         public string PlayerName => Me.name;
-        [field: SerializeField] public Player Me { get; set; }
+        public event Action<Player> MeChanged;
+        public Player Me { get => me; set { me = value; MeChanged?.Invoke(me); } }
+        private Player me;
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
@@ -130,6 +132,34 @@ namespace Network
             public int? associated_money_value;
             public bool delete;
         }
+
+        // Not on server
+        [Serializable]
+        public struct SituationCards
+        {
+            public List<SituationCard> cards;
+        }
+        [Serializable] 
+        public struct SituationCard
+        {
+            public int card_id;
+            public string title;
+            public string description;
+            public string goal;
+            public RegionTraffics costs;
+        }
+        [Serializable]
+        public struct RegionTraffics
+        {
+            public List<RegionTraffic> traffics;
+        }
+        [Serializable]
+        public struct RegionTraffic
+        {
+            public Neighbourhood region;
+            public int traffic;
+        }
+
         public InGameID GetFirstAvailableRole(GameState state, bool skipOrchestrator)
         {  // Find a more appropriate location for this method
             List<InGameID> roles =

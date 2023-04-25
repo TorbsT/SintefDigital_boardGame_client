@@ -18,10 +18,46 @@ namespace Network
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
+            Application.runInBackground = true;
             Instance = this;
         }
 
+        // Not yet implemented on backend
+        internal void GetSituationCards(Action<NetworkData.SituationCards> successCallback, Action<string> failureCallback)
+        {
+            List<NetworkData.SituationCard> cards = new();
+            for (int i = 0; i < 10; i++)
+            {
+                NetworkData.SituationCard card = new()
+                {
+                    title = "Gas Leakage",
+                    description = "Gas leakage in Industry Park zone. Health and explosion risk.",
+                    goal = "Evacuate all lifeforms from the area. Safety comes first.",
+                    card_id = i + 1,
+                    costs = new()
+                    {
+                        traffics = new()
+                        {
+                            new() { region = NetworkData.Neighbourhood.IndustryPark, traffic = i % 2 * 5 + i * 3 },
+                            new() { region = NetworkData.Neighbourhood.RingRoad, traffic = i % 3 * 3 + i * 5 }
+                        }
+                    }
+                };
+                cards.Add(card);
+            }
+            NetworkData.SituationCards situationCards = new()
+            {
+                cards = cards
+            };
+            successCallback?.Invoke(situationCards);
+        }
+
         // Implemented
+        internal void CheckIn(Action<string> successCallback, Action<string> failureCallback, int id)
+        {
+            Debug.Log(id);
+            StartCoroutine(GET($"check-in/{id}", successCallback, failureCallback));
+        }
         internal void RefreshLobbies(Action<NetworkData.LobbyList> successCallback, Action<string> failureCallback)
         {
             StartCoroutine(GET("games/lobbies", successCallback, failureCallback));
@@ -153,7 +189,7 @@ namespace Network
             }
             else
             {
-                Debug.LogWarning($"{request.error}: {request.downloadHandler.text}");
+                Debug.LogWarning($"{request.responseCode} {request.error}: {request.downloadHandler.text}");
                 failureCallback?.Invoke(request.error);
             }
         }

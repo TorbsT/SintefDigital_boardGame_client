@@ -18,11 +18,13 @@ namespace View
         }
         private void OnEnable()
         {
-            ColorSchemeSystem.Instance.ColorChanged += SchemeChanged;
+            if (ColorSchemeSystem.Instance != null)
+                ColorSchemeSystem.Instance.ColorChanged += SchemeChanged;
         }
         private void OnDisable()
         {
-            ColorSchemeSystem.Instance.ColorChanged -= SchemeChanged;
+            if (ColorSchemeSystem.Instance != null)
+                ColorSchemeSystem.Instance.ColorChanged -= SchemeChanged;
         }
         private void SchemeChanged()
         {
