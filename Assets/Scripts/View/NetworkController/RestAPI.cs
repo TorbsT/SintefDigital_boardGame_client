@@ -38,8 +38,8 @@ namespace Network
                     {
                         traffics = new()
                         {
-                            new() { region = NetworkData.Neighbourhood.IndustryPark, traffic = i % 2 * 5 + i * 3 },
-                            new() { region = NetworkData.Neighbourhood.RingRoad, traffic = i % 3 * 3 + i * 5 }
+                            new() { region = NetworkData.District.IndustryPark, traffic = i % 2 * 5 + i * 3 },
+                            new() { region = NetworkData.District.RingRoad, traffic = i % 3 * 3 + i * 5 }
                         }
                     }
                 };

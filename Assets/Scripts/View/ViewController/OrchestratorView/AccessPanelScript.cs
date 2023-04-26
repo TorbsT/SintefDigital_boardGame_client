@@ -11,7 +11,7 @@ namespace View {
         public override void handleInput()
         {
             int selectedIndex = (int) highlightedIndex;
-            activeRegion.setAccess(selectedIndex, isOrchestrator());
+            activeRegion.setAccessServer(selectedIndex, isOrchestrator());
             hidePanel();
         }
 

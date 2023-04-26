@@ -5,12 +5,13 @@ using UnityEngine.UI;
 using System.Linq;
 using System.Threading;
 using TMPro;
+using Network;
 
 namespace View
 {
     public class RegionCard : MonoBehaviour
     {
-        public District district;
+        public NetworkData.District district;
         private int traffic = 1;
         private int cost;
         public TextMeshProUGUI districtName;
@@ -21,8 +22,8 @@ namespace View
         public GameObject[] vehicleAttributePrefab;
 
         public GameObject accessButton;
-        public Point [] accessPoints;
-        private List<IconScript> activeAccessRestrictions =  new List<IconScript>();
+        public Point[] accessPoints;
+        private List<IconScript> activeAccessRestrictions = new List<IconScript>();
 
         public GameObject priorityButton;
         public Point[] priorityPoints;
@@ -38,8 +39,8 @@ namespace View
 
         public Material cardMaterial;
 
-   
-   
+
+
         void Awake()
         {
             accessButton.transform.position = accessPoints[0].GetPos();
@@ -51,7 +52,7 @@ namespace View
             setColor();
             setDistrictText();
             setTraffic(traffic);
-            
+
         }
 
 
@@ -108,7 +109,7 @@ namespace View
 
         private void setTruckMarkers(int numberOfTrucks)
         {
-            
+
             for (int i = 0; i < truckMarkers.Length; i++)
             {
                 GameObject truckMarker = truckMarkers[i];
@@ -116,7 +117,7 @@ namespace View
             }
         }
 
-        public GameObject setIcon(int id, List<IconScript> activeRestricions, Point[] points, GameObject button,bool isOrchestrator )
+        public GameObject setIcon(int id, List<IconScript> activeRestricions, Point[] points, GameObject button, bool isOrchestrator)
         {
             if (id >= vehicleAttributePrefab.Length) { return null; } //non legal id
             int activeRestrictionsCount = activeRestricions.Count + 1;
@@ -130,7 +131,10 @@ namespace View
             {
                 button.transform.position = points[1].GetPos();
             }
-            GameObject icon = Instantiate(vehicleAttributePrefab[id], points[activeRestrictionsCount - 1].GetPos(), Quaternion.identity, this.transform);
+            //GameObject icon = Instantiate(vehicleAttributePrefab[id], points[activeRestrictionsCount - 1].GetPos(), Quaternion.identity, this.transform);
+            GameObject icon = PoolManager.Instance.Depool(vehicleAttributePrefab[id]);
+            icon.transform.SetParent(this.transform);
+            icon.transform.position = points[activeRestrictionsCount - 1].GetPos();
             return icon;
         }
 
@@ -153,11 +157,11 @@ namespace View
             this.handler.showTollScreen(this);
         }
 
-        public void setToll(int cost,bool isOrchestrator)
+        public void setToll(int cost, bool isOrchestrator)
         {
-            if (activeTollRestriction != null) return;
-            activeTollRestriction = tollCostIcon.GetComponent<IconScript>(); 
-            activeTollRestriction.setTypeOfRestriction(Restriction.Toll);
+
+            activeTollRestriction = tollCostIcon.GetComponent<IconScript>();
+            activeTollRestriction.setTypeOfRestriction(NetworkData.DistrictModifierType.Toll);
             activeTollRestriction.setAttachedRegionCard(this);
             activeTollRestriction.setValue(cost);
             activeTollRestriction.setDeleteButton(isOrchestrator);
@@ -165,59 +169,53 @@ namespace View
             tollCostIcon.transform.Find("costText").gameObject.GetComponent<Text>().text = "€" + cost;
             tollCostIcon.SetActive(true);
 
-            addUpdateServer(Restriction.Toll, activeTollRestriction);
+
         }
 
+
+        public bool removeToll(IconScript iconScript)
+        {
+            //sendToServer(Restriction.Toll, iconScript.getId(), null, null, true);
+            tollCostIcon.SetActive(false);
+            activeTollRestriction = null;
+            return true;
+        }
 
         public void addAccess()
         {
             this.handler.showAccessScreen(this);
         }
 
-        public bool removeToll(IconScript iconScript)
-        {
-            tollCostIcon.SetActive(false);
-            activeTollRestriction = null;
-            removeUpdateServer(Restriction.Toll, iconScript);
-            return true;
-        }
 
         public void setAccess(int id, bool isOrchestrator)
         {
-            //if (activeTollRestriction.Any(res => res.getId() == id)) return;
-            if (activeAccessRestrictions.Any(res => res.getId() == id)) return;
-            GameObject icon = setIcon(id, activeAccessRestrictions, accessPoints, accessButton,isOrchestrator);
+
+            GameObject icon = setIcon(id, activeAccessRestrictions, accessPoints, accessButton, isOrchestrator);
             IconScript iconScript = icon.GetComponent<IconScript>();
             activeAccessRestrictions.Add(iconScript);
-            iconScript.setTypeOfRestriction(Restriction.Access);
+            iconScript.setTypeOfRestriction(NetworkData.DistrictModifierType.Access);
             iconScript.setDeleteButton(isOrchestrator);
             iconScript.setAttachedRegionCard(this);
-
-
-            addUpdateServer(Restriction.Access, iconScript);
         }
 
         public bool removeAccess(IconScript iconScript)
         {
-    
-            if(!removeIcon(iconScript,activeAccessRestrictions, accessPoints, accessButton)) { return false; }
+            if (!removeIcon(iconScript, activeAccessRestrictions, accessPoints, accessButton)) { return false; }
             activeAccessRestrictions.Remove(iconScript);
 
-       
             for (int i = 0; i < activeAccessRestrictions.Count; i++)
             {
                 IconScript script = activeAccessRestrictions[i];
                 script.moveTo(accessPoints[i].GetPos());
-       
             }
-            removeUpdateServer(Restriction.Access, iconScript);
+        
             return true;
         }
 
-        private void addPriorityMarker(int i,int value,Point point, Vector3 dimentions)
+        private void addPriorityMarker(int i, int value, Point point, Vector3 dimentions)
         {
             PriorityMarker priorityMarker = priorityMarkers[i];
-            priorityMarker.transform.position = point.GetPos() + new Vector3(dimentions.x,0,0);
+            priorityMarker.transform.position = point.GetPos() + new Vector3(dimentions.x, 0, 0);
             priorityMarker.setPriority(value);
             priorityMarker.SetActive(true);
 
@@ -232,30 +230,29 @@ namespace View
 
         public void addPriority()
         {
-           
+
             this.handler.showPriorityScreen(this);
         }
 
-        public void setPriority(int id,int value, bool isOrchestrator)
+        public void setPriority(int id, int value, bool isOrchestrator)
         {
-            if (activePriorityRestrictions.Any(res => res.getId() == id)) return;
-
-            GameObject icon = setIcon(id, activePriorityRestrictions, priorityPoints, priorityButton,isOrchestrator);
+            GameObject icon = setIcon(id, activePriorityRestrictions, priorityPoints, priorityButton, isOrchestrator);
             IconScript iconScript = icon.GetComponent<IconScript>();
             activePriorityRestrictions.Add(iconScript);
-            iconScript.setTypeOfRestriction(Restriction.Priority);
+            iconScript.setTypeOfRestriction(NetworkData.DistrictModifierType.Priority);
             iconScript.setDeleteButton(isOrchestrator);
             iconScript.setAttachedRegionCard(this);
             iconScript.setValue(value);
             int activePriorityRestrictionsCount = activePriorityRestrictions.Count;
-            addPriorityMarker(activePriorityRestrictionsCount-1,value, priorityPoints[activePriorityRestrictionsCount-1], iconScript.getDimentions());
-            addUpdateServer(Restriction.Priority, iconScript);
+            addPriorityMarker(activePriorityRestrictionsCount - 1, value, priorityPoints[activePriorityRestrictionsCount - 1], iconScript.getDimentions());
+ 
 
         }
 
 
         public bool removePriority(IconScript iconScript)
         {
+        
             if (!removeIcon(iconScript, activePriorityRestrictions, priorityPoints, priorityButton)) { return false; }
             activePriorityRestrictions.Remove(iconScript);
             resetPriorityMarkers();
@@ -263,23 +260,26 @@ namespace View
             {
                 IconScript script = activePriorityRestrictions[i];
                 script.moveTo(priorityPoints[i].GetPos());
-                addPriorityMarker(i, script.getValue(),priorityPoints[i], script.getDimentions());
+                addPriorityMarker(i, script.getValue(), priorityPoints[i], script.getDimentions());
             }
-            removeUpdateServer(Restriction.Priority, iconScript);
+            
             return true;
         }
 
+        public NetworkData.District getDistrict()
+        {
+            return district;
+        }
 
         public Material getMaterial()
         {
             return cardMaterial;
         }
 
-
         public void resetCard()
         {
-           
-            while(activeAccessRestrictions.Count != 0)
+
+            while (activeAccessRestrictions.Count != 0)
             {
                 activeAccessRestrictions[0].removeSelf();
             }
@@ -295,7 +295,7 @@ namespace View
 
         public void changeEditStateCard(bool boolean)
         {
-            foreach(IconScript activeAccessRestriction in activeAccessRestrictions)
+            foreach (IconScript activeAccessRestriction in activeAccessRestrictions)
             {
                 activeAccessRestriction.setDeleteButton(boolean);
             }
@@ -310,44 +310,74 @@ namespace View
             setOrchestratorOptions(boolean);
         }
 
-       
-
-        private void addUpdateServer(Restriction restriction, IconScript iconScript)
+        //These method only sends changes to the server, visual updates are done trough the new gamestate recived
+        public void setPriorityServer(int id, int value, bool isOrchestrator)
         {
-            switch (restriction)
-            {
-                case Restriction.Access:
-                    Debug.Log("Added access to vechile " + iconScript.getId() + " at region " + (int) district);
-                    break;
-                case Restriction.Priority:
-                    Debug.Log("Added priority to vechile " + iconScript.getId() + " with priority " + iconScript.getValue() + " at region " + (int) district);
-                    break;
-                case Restriction.Toll:
-                    Debug.Log("Added toll to vechile " + " with price " + iconScript.getValue() + " at region " + (int) district);
-                    break;
-                default:
-                    break;
-            }
+            if (activePriorityRestrictions.Any(res => res.getId() == id)) return;
+            sendToServer(NetworkData.DistrictModifierType.Priority, id, value, null, false);
         }
 
-        private void removeUpdateServer(Restriction restriction, IconScript iconScript)
+        public void removePriorityServer(IconScript iconScript)
         {
-            switch (restriction)
-            {
-                case Restriction.Access:
-                    Debug.Log("Removed access to vechile " + iconScript.getId() + " at region " + (int)district);
-                    break;
-                case Restriction.Priority:
-                    Debug.Log("Removed priority to vechile " + iconScript.getId() + " with priority " + iconScript.getValue() + " at region " + (int)district);
-                    break;
-                case Restriction.Toll:
-                    Debug.Log("Removed toll to vechile " + " with price " + iconScript.getValue() + " at region " + (int)district);
-                    break;
-                default:
-                    break;
-            }
+            sendToServer(NetworkData.DistrictModifierType.Priority, iconScript.getId(), iconScript.getValue(), null, true);
         }
 
-    }
+        public void setAccessServer(int id, bool isOrchestrator)
+        {
+            if (activeAccessRestrictions.Any(res => res.getId() == id)) return;
+            sendToServer(NetworkData.DistrictModifierType.Access, id, null, null, false);
+        }
+
+        public void removeAccessServer(IconScript iconScript)
+        {
+            sendToServer(NetworkData.DistrictModifierType.Access, iconScript.getId(), null, null, true);
+        }
+
+        public void setTollServer(int cost, bool isOrchestrator)
+        {
+            if (activeTollRestriction != null) return;
+            sendToServer(NetworkData.DistrictModifierType.Toll, null, null, cost, false);
+        }
+
+        public void removeTollServer(IconScript iconScript)
+        {
+            sendToServer(NetworkData.DistrictModifierType.Toll, iconScript.getId(), null, null, true);
+        }
+
+
+        private void sendToServer(NetworkData.DistrictModifierType restriction, int? vehicle_type_id, int? associated_movement_value, int? associated_money_value, bool delete)
+        {
+            const string input_type = "ModifyDistrict";
+            string districtString = district.ToString();
+            string modifierString = restriction.ToString();
+            string vehicle_typeString = null;
+            if (vehicle_type_id != null)
+            {
+                vehicle_typeString = ((NetworkData.VehicleType)vehicle_type_id).ToString();
+            }
+            //Debug.Log(districtString + ", " + modifierString + ", " + vehicle_typeString + ", " + associated_movement_value + ", " + associated_money_value + ", " + delete);
+            handler.dummyServerHandler(districtString, modifierString, vehicle_typeString, associated_movement_value, associated_money_value, delete);
+
+            NetworkData.DistrictModifier modifier = new()
+            {
+                district = districtString,
+                modifier = modifierString,
+                vehicle_type =  vehicle_typeString,
+                associated_movement_value = associated_movement_value,
+                associated_money_value = associated_money_value,
+                delete = delete
+            };
+            Debug.Log(modifier);
+
+        }
+
+        
+
+
+     }   
+
+
 
 }
+//private const string input_type = "ModifyDistrict";
+//private const int related_node_id = null;

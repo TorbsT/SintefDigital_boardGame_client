@@ -117,8 +117,15 @@ namespace Network
                     PlayerConnected?.Invoke(newPlayerIds[id]);
                 }
             }
+            //bool districtHasChanged = GameState.district_modifier != newState.district_modifier;
 
             GameState = newState;
+
+            /*if (districtHasChanged)
+            {
+                districtModifierChanged?.Invoke(GameState.district_modifier);
+            }*/
+
             if (true || differenceExists)
             {
                 StateChanged?.Invoke(newState);
