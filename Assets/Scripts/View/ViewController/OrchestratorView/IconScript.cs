@@ -14,7 +14,7 @@ namespace View
         private RegionCard currentRegionCard;
         private RectTransform rectTransform;
 
-        private NetworkData.DistrictModifierType typeOfRestriction;
+        private NetworkData.DistrictModifierType typeOfModifier;
         private int value = 0;
         // Start is called before the first frame update
 
@@ -34,9 +34,9 @@ namespace View
         {
             currentRegionCard = regionCard;
         }
-        public void setTypeOfRestriction(NetworkData.DistrictModifierType restriction)
+        public void setTypeOfModifier(NetworkData.DistrictModifierType restriction)
         {
-            typeOfRestriction = restriction;
+            typeOfModifier = restriction;
         }
 
         public void setDeleteButton(bool boolean)
@@ -58,7 +58,7 @@ namespace View
         public void removeOnServer() 
         {
             if (currentRegionCard == null) { return; } // if not attached to a RegionCard, should not be able to access
-            switch (typeOfRestriction)
+            switch (typeOfModifier)
             {
                 case NetworkData.DistrictModifierType.Access:
                     currentRegionCard.removeAccessServer(this);
@@ -77,7 +77,7 @@ namespace View
         public void removeSelf() 
         {
             if (currentRegionCard == null) { return; } // if not attached to a RegionCard, should not be able to access
-            switch (typeOfRestriction)
+            switch (typeOfModifier)
             {
                 case NetworkData.DistrictModifierType.Access:
                     currentRegionCard.removeAccess(this);

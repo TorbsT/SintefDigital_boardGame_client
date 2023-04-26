@@ -83,40 +83,47 @@ namespace View
             }
         }
 
-        private RegionCard getRegionCardsByDistrict(NetworkData.District district)
+        private List<RegionCard> getRegionCardsByDistrict(NetworkData.District district)
         {
             List<RegionCard> cards = new List<RegionCard>();
             foreach (RegionCard regioncard in regionCards)
             {
                 if (regioncard.getDistrict() == district)
                 {
-                    return regioncard;
+                   cards.Add(regioncard);
                 }
             }
-            return null;
+            return cards;
         }
 
-        public void dummyServerHandler(string districtString, string modifierString, string vehicle_type_string, int? associated_movement_value , int? associated_money_value, bool delete)
+
+        public List<NetworkData.DistrictModifier> modifierList = new List<NetworkData.DistrictModifier>();
+        public void dummyServerHandler(NetworkData.DistrictModifier districtModifier)
         {
-            NetworkData.District district = (NetworkData.District) Enum.Parse(typeof(NetworkData.District), districtString);
-            //List<RegionCard> cards = getRegionCardsByDistrict(district);
-            RegionCard regioncard = getRegionCardsByDistrict(district);
-            regioncard.resetCard();
-            addToRegionCard(regioncard, district, modifierString, vehicle_type_string, associated_movement_value, associated_money_value);
-            /*foreach (RegionCard regioncard in  cards)
+            //NetworkData.District district = (NetworkData.District) Enum.Parse(typeof(NetworkData.District), districtModifier.district);
+            modifierList.Add(districtModifier);
+            foreach (RegionCard regionCard in regionCards)
             {
-                regioncard.resetCard();
-                addToRegionCard(regioncard, district, modifierString,vehicle_type_string,associated_movement_value, associated_money_value);
-            }*/
+                regionCard.resetCard();
+                Debug.Log(modifierList.Count);
+                foreach(NetworkData.DistrictModifier disModifier in modifierList)
+                {
+                    if (disModifier.district == regionCard.getDistrict().ToString())
+                    {
+                        addModifierToRegionCard(regionCard, disModifier);
+                    }
+                }
+            }
+            
         }
 
-        private void addToRegionCard(RegionCard regioncard, NetworkData.District district, string modifierString, string vehicle_type_string, int? associated_movement_value, int? associated_money_value)
+        private void addModifierToRegionCard(RegionCard regioncard, NetworkData.DistrictModifier districtModifier)
         {
-            NetworkData.DistrictModifierType modifier = (NetworkData.DistrictModifierType)Enum.Parse(typeof(NetworkData.DistrictModifierType), modifierString);
+            NetworkData.DistrictModifierType modifier = (NetworkData.DistrictModifierType)Enum.Parse(typeof(NetworkData.DistrictModifierType), districtModifier.modifier);
             int? vehicle_type_id = null;
-            if (vehicle_type_string != null)
+            if (districtModifier.vehicle_type != null)
             {
-                NetworkData.VehicleType vehicle_type = (NetworkData.VehicleType)Enum.Parse(typeof(NetworkData.VehicleType), vehicle_type_string);
+                NetworkData.VehicleType vehicle_type = (NetworkData.VehicleType)Enum.Parse(typeof(NetworkData.VehicleType), districtModifier.vehicle_type);
                 vehicle_type_id = (int)vehicle_type;
             }
             switch (modifier)
@@ -125,10 +132,10 @@ namespace View
                     regioncard.setAccess((int)vehicle_type_id, isOrchestrator);
                     break;
                 case NetworkData.DistrictModifierType.Priority:
-                    regioncard.setPriority((int)vehicle_type_id, (int)associated_movement_value, isOrchestrator);
+                    regioncard.setPriority((int)vehicle_type_id, (int)districtModifier.associated_movement_value, isOrchestrator);
                     break;
                 case NetworkData.DistrictModifierType.Toll:
-                    regioncard.setToll((int)associated_money_value, isOrchestrator);
+                    regioncard.setToll((int)districtModifier.associated_money_value, isOrchestrator);
                     break;
                 default:
                     break;
