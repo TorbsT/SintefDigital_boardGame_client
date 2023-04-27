@@ -59,7 +59,7 @@ namespace Network
             if (id == null)
             {
                 state = State.OUTOFLOBBY;
-                SetGamestate(new());
+                SetGamestate(null);
             } else
             {
                 state = State.PINGING;
