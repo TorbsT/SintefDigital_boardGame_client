@@ -135,9 +135,9 @@ namespace Network
 
         // Not on server
         [Serializable]
-        public struct SituationCards
+        public struct SituationCardList
         {
-            public List<SituationCard> cards;
+            public List<SituationCard> situation_cards;
         }
         [Serializable] 
         public struct SituationCard
@@ -146,18 +146,7 @@ namespace Network
             public string title;
             public string description;
             public string goal;
-            public RegionTraffics costs;
-        }
-        [Serializable]
-        public struct RegionTraffics
-        {
-            public List<RegionTraffic> traffics;
-        }
-        [Serializable]
-        public struct RegionTraffic
-        {
-            public District region;
-            public int traffic;
+            public List<(District, int)> costs;
         }
 
         public InGameID GetFirstAvailableRole(GameState state, bool skipOrchestrator)

@@ -8,11 +8,18 @@ namespace View
 {
     public class GameCardController : MonoBehaviour
     {
+        public static GameCardController Instance { get; private set; }
+
         [SerializeField] private TextMeshProUGUI explanationText;
         public Dictionary<int, GameCard> gamecards = new();
         public Point resetPoint;
         public Point spawnPoint;
         private GameCard currentGameCard;
+        private List<GameCard> chosen = new();
+        private void Awake()
+        {
+            Instance = this;
+        }
         private void OnEnable()
         {
             foreach (GameCard card in GetComponentsInChildren<GameCard>())
@@ -23,7 +30,7 @@ namespace View
             RestAPI.Instance.GetSituationCards(
                 (success) =>
                 {
-                    foreach (NetworkData.SituationCard card in success.cards)
+                    foreach (NetworkData.SituationCard card in success.situation_cards)
                     {
                         // Organize data from backend
                         int id = card.card_id;
@@ -37,9 +44,9 @@ namespace View
                         string description = card.description;
                         string goal = card.goal;
                         List<string> trafficList = new();
-                        foreach (var traffic in card.costs.traffics)
+                        foreach (var traffic in card.costs)
                         {
-                            trafficList.Add($"{traffic.region}: {traffic.traffic}");
+                            trafficList.Add($"{traffic.Item1}: {traffic.Item2}");
                         }
                         string traffics = string.Join("\n", trafficList);
 
@@ -58,9 +65,9 @@ namespace View
 
             string orchestratorName = GameStateSynchronizer.Instance.Orchestrator.name;
             if (GameStateSynchronizer.Instance.IsOrchestrator)
-                explanationText.text = "Select a situation card for this game";
+                explanationText.text = "Select at least one situation card to play";
             else
-                explanationText.text = $"Wait for {orchestratorName} to choose a situation card";
+                explanationText.text = $"Wait for {orchestratorName} to choose situation cards";
         }
         public GameCard GetCardById(int id)
             => gamecards[id];
@@ -71,6 +78,14 @@ namespace View
             return gamecards[situationId];
         }
 
+        public void Click(GameCard card)
+        {
+            bool add = !chosen.Contains(card);
+            if (add) chosen.Add(card);
+            else chosen.Remove(card);
+
+            card.Animator.SetBool("selected", add);
+        }
         public void MoveCardIn(int id)
         {
             Debug.Log(3333);
@@ -90,9 +105,5 @@ namespace View
                 currentGameCard.moveTo(resetPoint.GetPos());
             }
         }
-
-
-
-
     }
 }

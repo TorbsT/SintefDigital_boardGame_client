@@ -23,8 +23,9 @@ namespace Network
         }
 
         // Not yet implemented on backend
-        internal void GetSituationCards(Action<NetworkData.SituationCards> successCallback, Action<string> failureCallback)
+        internal void GetSituationCards(Action<NetworkData.SituationCardList> successCallback, Action<string> failureCallback)
         {
+            /*
             List<NetworkData.SituationCard> cards = new();
             for (int i = 0; i < 10; i++)
             {
@@ -50,6 +51,8 @@ namespace Network
                 cards = cards
             };
             successCallback?.Invoke(situationCards);
+            */
+            StartCoroutine(GET("resources/situationcards", successCallback, failureCallback));
         }
 
         // Implemented
