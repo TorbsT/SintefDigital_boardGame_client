@@ -24,6 +24,7 @@ namespace View
         {
             GameStateSynchronizer.Instance.StateChanged += CompleteRefresh;
             CompleteRefresh(GameStateSynchronizer.Instance.GameState);
+            SceneManager.LoadSceneAsync(startGameScene, LoadSceneMode.Additive);
         }
         private void OnDisable()
         {
@@ -107,7 +108,7 @@ namespace View
 
             if (!gameState.is_lobby)
             {  // Game has started
-                SceneManager.LoadSceneAsync(startGameScene);
+                
             }
         }
         private void AddPlayer(string playerName, string roleName, bool isMe)

@@ -40,7 +40,8 @@ namespace Network
             NextTurn,
             UndoAction,
             ModifyDistrict,
-            StartGame
+            StartGame,
+            AssignSituationCard
         }
         [Serializable]
         public enum District
@@ -121,6 +122,7 @@ namespace Network
             public string related_role;
             public int? related_node_id;
             public DistrictModifier? district_modifier;
+            public SituationCard? situation_card;
         }
         [Serializable]
         public struct DistrictModifier
@@ -146,7 +148,7 @@ namespace Network
             public string title;
             public string description;
             public string goal;
-            public List<(District, int)> costs;
+            public List<(string, string)> costs;
         }
 
         public InGameID GetFirstAvailableRole(GameState state, bool skipOrchestrator)

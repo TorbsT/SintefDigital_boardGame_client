@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using Network;
 
 namespace View 
 {
@@ -15,6 +16,8 @@ namespace View
         [field: SerializeField] public TextMeshProUGUI Goal { get; private set; }
         [field: SerializeField] public Animator Animator { get; private set; }
         public int id;
+
+        public NetworkData.SituationCard Source { get; set; }
 
         public int GetId() { return id; }
         public void Clicked()
@@ -34,13 +37,11 @@ namespace View
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            Debug.Log("aa");
             Animator.SetBool("hover", true);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            Debug.Log("bb");
             Animator.SetBool("hover", false);
         }
     }

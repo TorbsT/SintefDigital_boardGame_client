@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Network;
 using TMPro;
+using UnityEngine.UI;
 
 namespace View
 {
@@ -10,7 +11,9 @@ namespace View
     {
         public static GameCardController Instance { get; private set; }
 
+        [field: SerializeField, Range(1, 10)] public int MaxCards { get; private set; } = 1;
         [SerializeField] private TextMeshProUGUI explanationText;
+        [SerializeField] private Button confirmButton;
         public Dictionary<int, GameCard> gamecards = new();
         public Point resetPoint;
         public Point spawnPoint;
@@ -19,6 +22,7 @@ namespace View
         private void Awake()
         {
             Instance = this;
+            confirmButton.interactable = false;
         }
         private void OnEnable()
         {
@@ -44,6 +48,7 @@ namespace View
                         string description = card.description;
                         string goal = card.goal;
                         List<string> trafficList = new();
+                        if (card.costs != null)
                         foreach (var traffic in card.costs)
                         {
                             trafficList.Add($"{traffic.Item1}: {traffic.Item2}");
@@ -52,6 +57,7 @@ namespace View
 
                         // Write data to card
                         GameCard gamecard = gamecards[id];
+                        gamecard.Source = card;
                         gamecard.Id.text = $"!{id}";
                         gamecard.Title.text = title;
                         gamecard.Description.text = description;
@@ -83,8 +89,33 @@ namespace View
             bool add = !chosen.Contains(card);
             if (add) chosen.Add(card);
             else chosen.Remove(card);
-
+            if (chosen.Count > MaxCards)
+            {
+                // Remove oldest
+                GameCard old = chosen[0];
+                old.Animator.SetBool("selected", false);
+                chosen.RemoveAt(0);
+            }
+            
             card.Animator.SetBool("selected", add);
+            confirmButton.interactable = chosen.Count > 0;
+        }
+        public void Confirm()
+        {
+            GameCard card = chosen[0];
+            NetworkData.PlayerInput input = new()
+            {
+                player_id = NetworkData.Instance.Me.unique_id,
+                game_id = (int)GameStateSynchronizer.Instance.LobbyId,
+                input_type = NetworkData.PlayerInputType.AssignSituationCard.ToString(),
+                related_role = NetworkData.InGameID.Orchestrator.ToString(),
+                situation_card = card.Source
+            };
+            RestAPI.Instance.SendPlayerInput(
+                (success) => { Debug.Log("success"); },
+                (failure) => { Debug.Log("failure: "+failure); },
+                input
+            );
         }
         public void MoveCardIn(int id)
         {
