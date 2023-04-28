@@ -10,9 +10,10 @@ namespace Network
     public class RestAPI : MonoBehaviour
     {
         public static RestAPI Instance { get; private set; }
+        private string URL => ip.URL;
+        private int Port => ip.Port;
 
-        [SerializeField] private string URL = "localhost";
-        [SerializeField] private int port = 5000;
+        [SerializeField] private IPObject ip;
         [SerializeField] private string lastBody;
 
         private void Awake()
@@ -197,6 +198,6 @@ namespace Network
             }
         }
         private string GetConnectURL(string resource)
-            => $"http://{URL}:{port}/{resource}";
+            => $"http://{URL}:{Port}/{resource}";
     }
 }
