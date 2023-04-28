@@ -23,16 +23,16 @@ namespace View
 
         public GameObject accessButton;
         public Point[] accessPoints;
-        private List<IconScript> activeAccessRestrictions = new List<IconScript>();
+        private List<IconScript> activeAccessModifiers = new List<IconScript>();
 
         public GameObject priorityButton;
         public Point[] priorityPoints;
-        private List<IconScript> activePriorityRestrictions = new List<IconScript>();
+        private List<IconScript> activePriorityModifiers = new List<IconScript>();
 
         public GameObject tollButton;
         public GameObject tollCostIcon;
         public Point tollPoint;
-        private IconScript activeTollRestriction;
+        private IconScript activeTollModifier;
 
         public PriorityMarker[] priorityMarkers;
         public GameObject[] truckMarkers;
@@ -120,10 +120,10 @@ namespace View
         public GameObject setIcon(int id, List<IconScript> activeRestricions, Point[] points, GameObject button, bool isOrchestrator)
         {
             if (id >= vehicleAttributePrefab.Length) { return null; } //non legal id
-            int activeRestrictionsCount = activeRestricions.Count + 1;
-            if (activeRestrictionsCount > 2) { return null; } //should not be possible
+            int activeModifiersCount = activeRestricions.Count + 1;
+            if (activeModifiersCount > 2) { return null; } //should not be possible
 
-            if (!isOrchestrator || activeRestrictionsCount == 2)
+            if (!isOrchestrator || activeModifiersCount == 2)
             {
                 button.SetActive(false);
             }
@@ -131,10 +131,10 @@ namespace View
             {
                 button.transform.position = points[1].GetPos();
             }
-            //GameObject icon = Instantiate(vehicleAttributePrefab[id], points[activeRestrictionsCount - 1].GetPos(), Quaternion.identity, this.transform);
+            //GameObject icon = Instantiate(vehicleAttributePrefab[id], points[activeModifiersCount - 1].GetPos(), Quaternion.identity, this.transform);
             GameObject icon = PoolManager.Instance.Depool(vehicleAttributePrefab[id]);
             icon.transform.SetParent(this.transform);
-            icon.transform.position = points[activeRestrictionsCount - 1].GetPos();
+            icon.transform.position = points[activeModifiersCount - 1].GetPos();
             return icon;
         }
 
@@ -143,11 +143,11 @@ namespace View
             if (!activeRestricions.Contains(iconScript)) { return false; } //should be in list
             if (activeRestricions.Count <= 0) { return false; } //should have icons
 
-            int activeRestrictionsCount = activeRestricions.Count - 1;
-            if (activeRestrictionsCount < 2)
+            int activeModifiersCount = activeRestricions.Count - 1;
+            if (activeModifiersCount < 2)
             {
                 button.SetActive(true);
-                button.transform.position = points[activeRestrictionsCount].GetPos();
+                button.transform.position = points[activeModifiersCount].GetPos();
             }
             return true;
         }
@@ -160,11 +160,11 @@ namespace View
         public void setToll(int cost, bool isOrchestrator)
         {
 
-            activeTollRestriction = tollCostIcon.GetComponent<IconScript>();
-            activeTollRestriction.setTypeOfRestriction(NetworkData.DistrictModifierType.Toll);
-            activeTollRestriction.setAttachedRegionCard(this);
-            activeTollRestriction.setValue(cost);
-            activeTollRestriction.setDeleteButton(isOrchestrator);
+            activeTollModifier = tollCostIcon.GetComponent<IconScript>();
+            activeTollModifier.setTypeOfModifier(NetworkData.DistrictModifierType.Toll);
+            activeTollModifier.setAttachedRegionCard(this);
+            activeTollModifier.setValue(cost);
+            activeTollModifier.setDeleteButton(isOrchestrator);
             tollCostIcon.transform.position = tollPoint.GetPos();
             tollCostIcon.transform.Find("costText").gameObject.GetComponent<Text>().text = "€" + cost;
             tollCostIcon.SetActive(true);
@@ -175,9 +175,9 @@ namespace View
 
         public bool removeToll(IconScript iconScript)
         {
-            //sendToServer(Restriction.Toll, iconScript.getId(), null, null, true);
+            //sendToServer(Modifier.Toll, iconScript.getId(), null, null, true);
             tollCostIcon.SetActive(false);
-            activeTollRestriction = null;
+            activeTollModifier = null;
             return true;
         }
 
@@ -190,22 +190,22 @@ namespace View
         public void setAccess(int id, bool isOrchestrator)
         {
 
-            GameObject icon = setIcon(id, activeAccessRestrictions, accessPoints, accessButton, isOrchestrator);
+            GameObject icon = setIcon(id, activeAccessModifiers, accessPoints, accessButton, isOrchestrator);
             IconScript iconScript = icon.GetComponent<IconScript>();
-            activeAccessRestrictions.Add(iconScript);
-            iconScript.setTypeOfRestriction(NetworkData.DistrictModifierType.Access);
+            activeAccessModifiers.Add(iconScript);
+            iconScript.setTypeOfModifier(NetworkData.DistrictModifierType.Access);
             iconScript.setDeleteButton(isOrchestrator);
             iconScript.setAttachedRegionCard(this);
         }
 
         public bool removeAccess(IconScript iconScript)
         {
-            if (!removeIcon(iconScript, activeAccessRestrictions, accessPoints, accessButton)) { return false; }
-            activeAccessRestrictions.Remove(iconScript);
+            if (!removeIcon(iconScript, activeAccessModifiers, accessPoints, accessButton)) { return false; }
+            activeAccessModifiers.Remove(iconScript);
 
-            for (int i = 0; i < activeAccessRestrictions.Count; i++)
+            for (int i = 0; i < activeAccessModifiers.Count; i++)
             {
-                IconScript script = activeAccessRestrictions[i];
+                IconScript script = activeAccessModifiers[i];
                 script.moveTo(accessPoints[i].GetPos());
             }
         
@@ -236,15 +236,15 @@ namespace View
 
         public void setPriority(int id, int value, bool isOrchestrator)
         {
-            GameObject icon = setIcon(id, activePriorityRestrictions, priorityPoints, priorityButton, isOrchestrator);
+            GameObject icon = setIcon(id, activePriorityModifiers, priorityPoints, priorityButton, isOrchestrator);
             IconScript iconScript = icon.GetComponent<IconScript>();
-            activePriorityRestrictions.Add(iconScript);
-            iconScript.setTypeOfRestriction(NetworkData.DistrictModifierType.Priority);
+            activePriorityModifiers.Add(iconScript);
+            iconScript.setTypeOfModifier(NetworkData.DistrictModifierType.Priority);
             iconScript.setDeleteButton(isOrchestrator);
             iconScript.setAttachedRegionCard(this);
             iconScript.setValue(value);
-            int activePriorityRestrictionsCount = activePriorityRestrictions.Count;
-            addPriorityMarker(activePriorityRestrictionsCount - 1, value, priorityPoints[activePriorityRestrictionsCount - 1], iconScript.getDimentions());
+            int activePriorityModifiersCount = activePriorityModifiers.Count;
+            addPriorityMarker(activePriorityModifiersCount - 1, value, priorityPoints[activePriorityModifiersCount - 1], iconScript.getDimentions());
  
 
         }
@@ -253,12 +253,12 @@ namespace View
         public bool removePriority(IconScript iconScript)
         {
         
-            if (!removeIcon(iconScript, activePriorityRestrictions, priorityPoints, priorityButton)) { return false; }
-            activePriorityRestrictions.Remove(iconScript);
+            if (!removeIcon(iconScript, activePriorityModifiers, priorityPoints, priorityButton)) { return false; }
+            activePriorityModifiers.Remove(iconScript);
             resetPriorityMarkers();
-            for (int i = 0; i < activePriorityRestrictions.Count; i++)
+            for (int i = 0; i < activePriorityModifiers.Count; i++)
             {
-                IconScript script = activePriorityRestrictions[i];
+                IconScript script = activePriorityModifiers[i];
                 script.moveTo(priorityPoints[i].GetPos());
                 addPriorityMarker(i, script.getValue(), priorityPoints[i], script.getDimentions());
             }
@@ -279,33 +279,33 @@ namespace View
         public void resetCard()
         {
 
-            while (activeAccessRestrictions.Count != 0)
+            while (activeAccessModifiers.Count != 0)
             {
-                activeAccessRestrictions[0].removeSelf();
+                activeAccessModifiers[0].removeSelf();
             }
-            while (activePriorityRestrictions.Count != 0)
+            while (activePriorityModifiers.Count != 0)
             {
-                activePriorityRestrictions[0].removeSelf();
+                activePriorityModifiers[0].removeSelf();
             }
-            if (activeTollRestriction != null)
+            if (activeTollModifier != null)
             {
-                activeTollRestriction.removeSelf();
+                activeTollModifier.removeSelf();
             }
         }
 
         public void changeEditStateCard(bool boolean)
         {
-            foreach (IconScript activeAccessRestriction in activeAccessRestrictions)
+            foreach (IconScript activeAccessModifier in activeAccessModifiers)
             {
-                activeAccessRestriction.setDeleteButton(boolean);
+                activeAccessModifier.setDeleteButton(boolean);
             }
-            foreach (IconScript activePriorityRestriction in activePriorityRestrictions)
+            foreach (IconScript activePriorityModifier in activePriorityModifiers)
             {
-                activePriorityRestriction.setDeleteButton(boolean);
+                activePriorityModifier.setDeleteButton(boolean);
             }
-            if (activeTollRestriction != null)
+            if (activeTollModifier != null)
             {
-                activeTollRestriction.setDeleteButton(boolean);
+                activeTollModifier.setDeleteButton(boolean);
             }
             setOrchestratorOptions(boolean);
         }
@@ -313,7 +313,7 @@ namespace View
         //These method only sends changes to the server, visual updates are done trough the new gamestate recived
         public void setPriorityServer(int id, int value, bool isOrchestrator)
         {
-            if (activePriorityRestrictions.Any(res => res.getId() == id)) return;
+            if (activePriorityModifiers.Any(res => res.getId() == id)) return;
             sendToServer(NetworkData.DistrictModifierType.Priority, id, value, null, false);
         }
 
@@ -324,7 +324,7 @@ namespace View
 
         public void setAccessServer(int id, bool isOrchestrator)
         {
-            if (activeAccessRestrictions.Any(res => res.getId() == id)) return;
+            if (activeAccessModifiers.Any(res => res.getId() == id)) return;
             sendToServer(NetworkData.DistrictModifierType.Access, id, null, null, false);
         }
 
@@ -335,7 +335,7 @@ namespace View
 
         public void setTollServer(int cost, bool isOrchestrator)
         {
-            if (activeTollRestriction != null) return;
+            if (activeTollModifier != null) return;
             sendToServer(NetworkData.DistrictModifierType.Toll, null, null, cost, false);
         }
 
@@ -356,9 +356,8 @@ namespace View
                 vehicle_typeString = ((NetworkData.VehicleType)vehicle_type_id).ToString();
             }
             //Debug.Log(districtString + ", " + modifierString + ", " + vehicle_typeString + ", " + associated_movement_value + ", " + associated_money_value + ", " + delete);
-            handler.dummyServerHandler(districtString, modifierString, vehicle_typeString, associated_movement_value, associated_money_value, delete);
 
-            NetworkData.DistrictModifier modifier = new()
+            NetworkData.DistrictModifier districtModifier = new()
             {
                 district = districtString,
                 modifier = modifierString,
@@ -367,7 +366,8 @@ namespace View
                 associated_money_value = associated_money_value,
                 delete = delete
             };
-            Debug.Log(modifier);
+            
+            handler.dummyServerHandler(districtModifier);
 
         }
 
