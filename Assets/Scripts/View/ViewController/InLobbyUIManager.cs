@@ -13,9 +13,17 @@ namespace View
         [SerializeField] private GameObject playerPrefab;
         [SerializeField] private string startGameScene = "CardScene";
         [SerializeField] private Button startGameButton;
+        [SerializeField] private Button situationViewButton;
+        [SerializeField] private TextMeshProUGUI situationViewText;
         [SerializeField] private Button refreshButton;
         [SerializeField] private Button changeRoleButton;
         [SerializeField] private TextMeshProUGUI changeRoleText;
+        [SerializeField] private RectTransform situationView;
+        [SerializeField] private RectTransform playerView;
+        [SerializeField] private TextMeshProUGUI lobbyHelpText;
+
+        private NetworkData.GameState gameState;
+
         private void Start()
         {
             
@@ -23,28 +31,36 @@ namespace View
         private void OnEnable()
         {
             GameStateSynchronizer.Instance.StateChanged += CompleteRefresh;
+            GameCardController.Instance.SelectedCards += Refresh;
             CompleteRefresh(GameStateSynchronizer.Instance.GameState);
-            SceneManager.LoadSceneAsync(startGameScene, LoadSceneMode.Additive);
+            SwitchView(false);
         }
         private void OnDisable()
         {
             GameStateSynchronizer.Instance.StateChanged -= CompleteRefresh;
+            GameCardController.Instance.SelectedCards -= Refresh;
+        }
+        public void SituationButtonClicked()
+        {
+            SwitchView(!situationView.gameObject.activeSelf);
         }
         public void StartGameClicked()
         {
-            RestAPI.Instance.StartGame(
-                (gameState) =>
+            GameCardController.Instance.Confirm(
+                success =>
                 {
-                    // Only checking this periodically in
-                    // CompleteRefresh
-                    // SceneManager.LoadSceneAsync(gameScene);
-                    Debug.Log($"Successfully started lobby: " + gameState.is_lobby);
+                    RestAPI.Instance.StartGame(
+                    gameState =>
+                    {
+                        Debug.Log($"Successfully started lobby: " + gameState.is_lobby);
+                    },
+                    failure =>
+                    {
+                        Debug.LogWarning("Couldn't start game");
+                    });
                 },
-                (failure) =>
-                {
-                    Debug.LogWarning("Couldn't start game");
+                failure => { Debug.LogWarning("Could not confirm situation cards");
                 });
-            
         }
         public void ChangeRoleClicked()
         {
@@ -78,24 +94,35 @@ namespace View
                 }
                 );
         }
+        private void SwitchView(bool showSituations)
+        {
+            situationView.gameObject.SetActive(showSituations);
+            playerView.gameObject.SetActive(!showSituations);
+            if (showSituations)
+            {
+                situationViewText.text = "See players";
+                GameCardController.Instance.Refresh();
+            }
+            else
+                situationViewText.text = "Choose situation";
+        }
         private void CompleteRefresh(NetworkData.GameState gameState)
+        {
+            this.gameState = gameState;
+            Refresh();
+        }
+        private void Refresh()
         {
             if (gameState == null) return;
             GetComponent<UIListHandler>().Clear();
-            bool orchestratorExists = false;
-            bool meIsOrchestrator = false;
+            NetworkData.Player orchestrator = GameStateSynchronizer.Instance.Orchestrator;
+            NetworkData.Player me = GameStateSynchronizer.Instance.Me;
+            bool meIsOrchestrator = GameStateSynchronizer.Instance.IsOrchestrator;
+            bool orchestratorExists = orchestrator != null;
             foreach (var player in gameState.players)
             {
                 string roleName = player.in_game_id;
-                NetworkData.InGameID role = (NetworkData.InGameID)System.Enum.Parse
-                    (typeof(NetworkData.InGameID), roleName);
-
-                bool isOrchestrator = role == NetworkData.InGameID.Orchestrator;
-                bool isMe = player.unique_id == NetworkData.Instance.Me.unique_id;
-                if (isMe && isOrchestrator)
-                    meIsOrchestrator = true;
-
-                orchestratorExists = orchestratorExists || isOrchestrator;
+                bool isMe = player.unique_id == me.unique_id;
                 AddPlayer(player.name, roleName, isMe);
             }
 
@@ -103,12 +130,42 @@ namespace View
             else changeRoleText.text = "Switch to orchestrator";
 
             bool enableRoleSwitch = meIsOrchestrator || !orchestratorExists;
+            bool situationChosen = GameCardController.Instance.ChosenCount > 0;
+            int minPlayers = 2;
+            bool sufficientPlayers = gameState.players.Count >= minPlayers;
+            bool enableStartGame = situationChosen && sufficientPlayers && meIsOrchestrator;
             changeRoleButton.interactable = enableRoleSwitch;
-            startGameButton.interactable = meIsOrchestrator;
+            startGameButton.interactable = enableStartGame;
+            situationViewButton.interactable = meIsOrchestrator;
+            if (!meIsOrchestrator)
+                SwitchView(false);
+
+            string orchestratorName = "";
+            if (orchestratorExists)
+                orchestratorName = GameStateSynchronizer.Instance.Orchestrator.name;
+            // lobby help text
+            if (meIsOrchestrator)
+            {
+                if (!situationChosen)
+                    lobbyHelpText.text = "Choose a situation card";
+                else if (!sufficientPlayers)
+                    lobbyHelpText.text = $"Need at least {minPlayers} players";
+                else
+                    lobbyHelpText.text = "Ready to start";
+            }
+            else
+            {
+                if (!sufficientPlayers)
+                    lobbyHelpText.text = $"Need at least {minPlayers} players";
+                else if (!orchestratorExists)
+                    lobbyHelpText.text = $"There must be one orchestrator";
+                else
+                    lobbyHelpText.text = $"Waiting for {orchestratorName} to start the game";
+            }
 
             if (!gameState.is_lobby)
             {  // Game has started
-                
+                SceneManager.LoadSceneAsync(startGameScene);
             }
         }
         private void AddPlayer(string playerName, string roleName, bool isMe)

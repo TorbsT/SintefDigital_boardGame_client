@@ -26,7 +26,7 @@ namespace Network
             (match => match.unique_id == NetworkData.Instance.Me.unique_id);
         public NetworkData.Player Orchestrator => GameState.players.Find
             (match => match.in_game_id == NetworkData.InGameID.Orchestrator.ToString());
-        public bool IsOrchestrator => Me.unique_id == Orchestrator.unique_id;
+        public bool IsOrchestrator => Orchestrator != null && Me.unique_id == Orchestrator.unique_id;
         [SerializeField, Range(0f, 10f)] private float fetchSuccessCooldown = 1f; 
         [SerializeField, Range(0f, 30f)] private float fetchFailCooldown = 5f;
         [SerializeField] private float currentCooldown = 0f;
