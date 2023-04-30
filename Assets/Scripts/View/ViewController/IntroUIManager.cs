@@ -26,7 +26,7 @@ public class IntroUIManager : MonoBehaviour
                     in_game_id = NetworkData.InGameID.Undecided.ToString(),
                     unique_id = response,  // integer
                     name = nameInput.text,
-                    position = null,
+                    position_node_id = null,
                     remaining_moves = 0
                 };
                 SceneManager.LoadSceneAsync(mainMenuScene);

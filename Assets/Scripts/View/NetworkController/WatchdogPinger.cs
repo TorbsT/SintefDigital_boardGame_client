@@ -60,7 +60,7 @@ namespace Network
                         SceneManager.LoadSceneAsync(disconnectToScene);
                     }
                 },
-                NetworkData.Instance.Me.unique_id
+                NetworkData.Instance.UniqueID
                 );
         }
         private void OnGUI()
@@ -77,7 +77,7 @@ namespace Network
                 $"\nTimeout: {Mathf.FloorToInt(timeSinceContact)}" +
                 $"</color></size>");
         }
-        private void MeChanged(NetworkData.Player me)
+        private void MeChanged(NetworkData.Player? me)
         {
             if (me == null) state = State.INACTIVE;
             else state = State.WAITING;

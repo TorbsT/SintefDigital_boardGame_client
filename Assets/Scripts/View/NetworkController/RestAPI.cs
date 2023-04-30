@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,6 +6,13 @@ using System.Globalization;
 using UnityEngine;
 using UnityEngine.Networking;
 
+
+/*
+ DO NOT USE JsonUtility!!!
+ Use NewtonSoft.Json.JsonConvert.whatever
+ JsonUtility has big issues
+ (with nullable integers and related)
+ */
 namespace Network
 {
     public class RestAPI : MonoBehaviour
@@ -23,40 +31,11 @@ namespace Network
             Instance = this;
         }
 
-        // Not yet implemented on backend
+        // Implemented
         internal void GetSituationCards(Action<NetworkData.SituationCardList> successCallback, Action<string> failureCallback)
         {
-            /*
-            List<NetworkData.SituationCard> cards = new();
-            for (int i = 0; i < 10; i++)
-            {
-                NetworkData.SituationCard card = new()
-                {
-                    title = "Gas Leakage",
-                    description = "Gas leakage in Industry Park zone. Health and explosion risk.",
-                    goal = "Evacuate all lifeforms from the area. Safety comes first.",
-                    card_id = i + 1,
-                    costs = new()
-                    {
-                        traffics = new()
-                        {
-                            new() { region = NetworkData.District.IndustryPark, traffic = i % 2 * 5 + i * 3 },
-                            new() { region = NetworkData.District.RingRoad, traffic = i % 3 * 3 + i * 5 }
-                        }
-                    }
-                };
-                cards.Add(card);
-            }
-            NetworkData.SituationCards situationCards = new()
-            {
-                cards = cards
-            };
-            successCallback?.Invoke(situationCards);
-            */
             StartCoroutine(GET("resources/situationcards", successCallback, failureCallback));
         }
-
-        // Implemented
         internal void CheckIn(Action<string> successCallback, Action<string> failureCallback, int id)
         {
             Debug.Log(id);
@@ -72,12 +51,12 @@ namespace Network
         }
         internal void CreateGame(Action<NetworkData.GameState> successCallback, Action<string> failureCallback)
         {
-            string jsonObject = JsonUtility.ToJson(
+            string jsonObject = JsonConvert.SerializeObject(
                 new NetworkData.NewGameInfo
                 {
-                    host = NetworkData.Instance.Me,
-                    name = $"{NetworkData.Instance.Me.name}'s lobby"
-                }
+                    host = NetworkData.Instance.Me.Value,
+                    name = $"{NetworkData.Instance.Me.Value.name}'s lobby"
+                }, Formatting.Indented
                 );
             lastBody = jsonObject;
             StartCoroutine(POST("create/game", jsonObject, successCallback, failureCallback));
@@ -94,15 +73,16 @@ namespace Network
         internal void JoinLobby
             (Action<NetworkData.GameState> successCallback, Action<string> failureCallback, int lobbyId)
         {
-            string jsonObject = JsonUtility.ToJson(NetworkData.Instance.Me);
+            string jsonObject = JsonConvert.SerializeObject(NetworkData.Instance.Me.Value, Formatting.Indented);
+            Debug.Log(jsonObject);
             StartCoroutine(POST($"games/join/{lobbyId}", jsonObject, successCallback, failureCallback));
         }
         internal void SendPlayerInput
             (Action<NetworkData.GameState> successCallback, Action<string> failureCallback, NetworkData.PlayerInput input)
         {
-            string jsonObject = JsonUtility.ToJson(
-                    input
-                );
+            string jsonObject = JsonConvert.SerializeObject(input, Formatting.Indented);
+            // DO NOT USE JsonUtility.ToJson! it doesn't include situation_card_id for some unholy reason
+            Debug.Log(jsonObject);
             lastBody = jsonObject;
             StartCoroutine(POST("games/input", jsonObject, successCallback, failureCallback));
         }
@@ -113,7 +93,7 @@ namespace Network
             NetworkData.InGameID chosenRole = NetworkData.Instance.GetFirstAvailableRole(state, false);
             NetworkData.PlayerInput input = new()
             {
-                player_id = NetworkData.Instance.Me.unique_id,
+                player_id = NetworkData.Instance.UniqueID,
                 game_id = state.id,
                 input_type = NetworkData.PlayerInputType.ChangeRole.ToString(),
                 related_role = chosenRole.ToString(),
@@ -126,7 +106,7 @@ namespace Network
         {
             NetworkData.PlayerInput input = new()
             {
-                player_id = NetworkData.Instance.Me.unique_id,
+                player_id = NetworkData.Instance.UniqueID,
                 game_id = GameStateSynchronizer.Instance.LobbyId.Value,
                 input_type = NetworkData.PlayerInputType.StartGame.ToString(),
                 related_role = NetworkData.InGameID.Orchestrator.ToString(),  // Should always be this
@@ -178,7 +158,7 @@ namespace Network
                 {
                     try
                     {
-                        responseObject = JsonUtility.FromJson<T>(json);
+                        responseObject = JsonConvert.DeserializeObject<T>(json);
                     }
                     catch
                     {

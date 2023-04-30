@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 325101508845687387}
   - component: {fileID: 325101508845687386}
+  - component: {fileID: 4961383307657001692}
   m_Layer: 0
   m_Name: ColorScheme
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &325101508845687386
 MonoBehaviour:
@@ -63,3 +64,30 @@ MonoBehaviour:
     color: {r: 0.69803923, g: 0.45522895, b: 0.32668236, a: 1}
   - scheme: 8
     color: {r: 1, g: 0.021826077, b: 0, a: 1}
+--- !u!114 &4961383307657001692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325101508845687384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4655acb493df9a4692a6805fd6cec73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colors:
+  - <Player>k__BackingField: 1
+    <Color>k__BackingField: {r: 0.544272, g: 0.816, b: 0.6030997, a: 1}
+  - <Player>k__BackingField: 2
+    <Color>k__BackingField: {r: 0.922, g: 0.44440398, b: 0.44440398, a: 1}
+  - <Player>k__BackingField: 3
+    <Color>k__BackingField: {r: 0.60488886, g: 0.57523, b: 0.943, a: 1}
+  - <Player>k__BackingField: 4
+    <Color>k__BackingField: {r: 0.894, g: 0.87757826, b: 0.430908, a: 1}
+  - <Player>k__BackingField: 5
+    <Color>k__BackingField: {r: 0.915, g: 0.6571125, b: 0.38979, a: 1}
+  - <Player>k__BackingField: 6
+    <Color>k__BackingField: {r: 0.766, g: 0.766, b: 0.766, a: 1}
+  - <Player>k__BackingField: 0
+    <Color>k__BackingField: {r: 0.84084654, g: 0.35644355, b: 0.8490566, a: 1}

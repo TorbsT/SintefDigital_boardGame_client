@@ -5,6 +5,7 @@ using Network;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using Newtonsoft.Json;
 
 namespace View
 {
@@ -44,7 +45,7 @@ namespace View
                         if (card.costs != null)
                             foreach (var traffic in card.costs)
                             {
-                                trafficList.Add($"{traffic.Item1}: {traffic.Item2}");
+                                trafficList.Add($"{traffic.neighbourhood}: {traffic.traffic}");
                             }
                         string traffics = string.Join("\n", trafficList);
 
@@ -104,12 +105,13 @@ namespace View
             GameCard card = chosen[0];
             NetworkData.PlayerInput input = new()
             {
-                player_id = NetworkData.Instance.Me.unique_id,
-                game_id = (int)GameStateSynchronizer.Instance.LobbyId,
+                player_id = NetworkData.Instance.UniqueID,
+                game_id = GameStateSynchronizer.Instance.LobbyId.Value,
                 input_type = NetworkData.PlayerInputType.AssignSituationCard.ToString(),
                 related_role = NetworkData.InGameID.Orchestrator.ToString(),
-                situation_card = card.Source
+                situation_card_id = card.Source.card_id
             };
+
             RestAPI.Instance.SendPlayerInput(
                 (done) => success?.Invoke(done),
                 (fail) => failure?.Invoke(fail),

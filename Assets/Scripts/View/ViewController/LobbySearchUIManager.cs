@@ -45,7 +45,6 @@ namespace View
             RestAPI.Instance.RefreshLobbies(
                 (result) =>
                 {
-                    if (result != null)
                     foreach (var item in result.lobbies)
                     {
                         GameObject gameObject = PoolManager.Instance.Depool(lobbyPrefab);

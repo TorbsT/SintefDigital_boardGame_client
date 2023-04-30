@@ -35,7 +35,7 @@ namespace View
             }
             players = new();
 
-            foreach (var player in GameStateSynchronizer.Instance.GameState.players)
+            foreach (var player in GameStateSynchronizer.Instance.GameState.Value.players)
             {
                 PlayerConnected(player);
             }
@@ -44,7 +44,7 @@ namespace View
         {
             int playerId = player.unique_id;
             GameObject playerGameObject = players[playerId];
-            GameObject node = GraphManager.Instance.GetNode(player.position.Value.id).gameObject;
+            GameObject node = GraphManager.Instance.GetNode(player.position_node_id.Value).gameObject;
             playerGameObject.transform.position = node.transform.position;
         }
     }
