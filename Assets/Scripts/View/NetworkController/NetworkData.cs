@@ -69,7 +69,7 @@ namespace Network
             Toll
         }
 
-        // Structs/classes >:)
+        // Structs
         [Serializable]
         public struct LobbyList
         {
@@ -82,6 +82,9 @@ namespace Network
             public string name;
             public List<Player> players;
             public bool is_lobby;
+            public string current_players_turn;
+            public List<DistrictModifier> district_modifiers;
+            public SituationCard? situation_card;
         }
         [Serializable]
         public struct Player
