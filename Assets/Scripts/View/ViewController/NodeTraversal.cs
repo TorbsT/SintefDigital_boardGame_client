@@ -1,3 +1,4 @@
+using Network;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,10 @@ namespace View
 {
     public class NodeTraversal : MonoBehaviour, INode
     {
-        public GameObject player;
         public GameObject[] neighbourNodes;
         private SpriteRenderer spriteRenderer;
+        [field: SerializeField] public int Id { get; private set; }
+
         // Start is called before the first frame update
         void Awake()
         {
@@ -40,11 +42,8 @@ namespace View
         }
         private void OnMouseEnter()
         {
-            if (neighbourNodes.Contains(player.transform.parent.gameObject))
-            {
-                //Debug.Log("COLOR!!!");
+
                 spriteRenderer.color = Color.cyan;
-            }
         }
 
         private void OnMouseExit()
@@ -55,21 +54,7 @@ namespace View
 
         void OnMouseDown()
         {
-            if (neighbourNodes.Contains(player.transform.parent.gameObject))
-            {
-                //Debug.Log("clicked");
-                player.transform.parent = transform;
-                Animation<Vector2> moveAnimation = new()
-                {
-                    StartValue = player.transform.position,
-                    EndValue = transform.position,
-                    Duration = AnimationPresets.Instance.PlayerMoveDuration,
-                    Curve = AnimationPresets.Instance.PlayerMoveCurve,
-                    Action = (value) => { player.transform.position = value; }
-                };
-                moveAnimation.Start();
-                //player.transform.localPosition = new Vector3(0, 0, 0);
-            }
+            MovementSystem.Instance.ClickNode(this);
         }
     }
 }

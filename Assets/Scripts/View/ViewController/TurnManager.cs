@@ -13,9 +13,14 @@ namespace View
     internal class TurnManager : MonoBehaviour
     {
         public static TurnManager Instance { get; private set; }
+
+        public bool IsMyTurn { get; private set; }
+        public event Action TurnChanged; 
+
         [SerializeField] private Button endTurnButton;
         [SerializeField] private TextMeshProUGUI turnText;
         private bool sending;
+        private string prevTurnRole;
 
         private void Awake()
         {
@@ -39,8 +44,8 @@ namespace View
             if (turnPlayer == null) Debug.LogError("There is nobody's turn: "+turnRole);
 
             string txt = "";
-            bool myTurn = turnRoleName == GameStateSynchronizer.Instance.Me.in_game_id;
-            if (myTurn)
+            IsMyTurn = turnRoleName == GameStateSynchronizer.Instance.Me.in_game_id;
+            if (IsMyTurn)
                 txt = "Your turn";
             else
             {
@@ -49,7 +54,10 @@ namespace View
                 txt += $"{turnPlayer.Value.name}'s turn";
             }
             turnText.text = txt;
-            endTurnButton.interactable = myTurn && !sending;
+            endTurnButton.interactable = IsMyTurn && !sending;
+            if (turnRoleName != prevTurnRole)
+                TurnChanged?.Invoke();
+            prevTurnRole = turnRoleName;
         }
         public void Endturn()
         {

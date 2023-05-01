@@ -66,8 +66,8 @@ namespace Debugging
                 logString = $"<size={size}><color={color}><b>{prefix}</b></color>{logString}</size>";
             }
             log = $"{logString}\n{log}";
-            if (log.Length > 5000)
-                log = log[..4000];
+            //if (log.Length > 5000)
+            //    log = log[..4000];
         }
     }
 }
