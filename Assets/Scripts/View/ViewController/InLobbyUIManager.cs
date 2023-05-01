@@ -1,4 +1,6 @@
 using Network;
+using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,7 +13,7 @@ namespace View
     public class InLobbyUIManager : MonoBehaviour
     {
         [SerializeField] private GameObject playerPrefab;
-        [SerializeField] private string startGameScene = "CardScene";
+        [SerializeField] private string startGameScene = "GameScene";
         [SerializeField] private Button startGameButton;
         [SerializeField] private Button situationViewButton;
         [SerializeField] private TextMeshProUGUI situationViewText;
@@ -22,7 +24,7 @@ namespace View
         [SerializeField] private RectTransform playerView;
         [SerializeField] private TextMeshProUGUI lobbyHelpText;
 
-        private NetworkData.GameState gameState;
+        private NetworkData.GameState? gameState;
 
         private void Start()
         {
@@ -77,7 +79,7 @@ namespace View
                     Debug.LogWarning("Couldn't change role");
                     changeRoleButton.interactable = true;
                     // uh oh
-                }, GameStateSynchronizer.Instance.GameState
+                }, GameStateSynchronizer.Instance.GameState.Value
                 );
         }
         public void LeaveLobbyClicked()
@@ -106,16 +108,17 @@ namespace View
             else
                 situationViewText.text = "Choose situation";
         }
-        private void CompleteRefresh(NetworkData.GameState gameState)
+        private void CompleteRefresh(NetworkData.GameState? gameState)
         {
             this.gameState = gameState;
             Refresh();
         }
         private void Refresh()
         {
-            if (gameState == null) return;
+            if (this.gameState == null) return;
+            NetworkData.GameState gameState = this.gameState.Value;
             GetComponent<UIListHandler>().Clear();
-            NetworkData.Player orchestrator = GameStateSynchronizer.Instance.Orchestrator;
+            NetworkData.Player? orchestrator = GameStateSynchronizer.Instance.Orchestrator;
             NetworkData.Player me = GameStateSynchronizer.Instance.Me;
             bool meIsOrchestrator = GameStateSynchronizer.Instance.IsOrchestrator;
             bool orchestratorExists = orchestrator != null;
@@ -130,6 +133,11 @@ namespace View
             else changeRoleText.text = "Switch to orchestrator";
 
             bool enableRoleSwitch = meIsOrchestrator || !orchestratorExists;
+            if (!enableRoleSwitch)
+            {
+                Debug.Log(JsonConvert.SerializeObject(gameState, Formatting.Indented));
+                Debug.Log(JsonConvert.SerializeObject(GameStateSynchronizer.Instance.GameState.Value, Formatting.Indented));
+            }
             bool situationChosen = GameCardController.Instance.ChosenCount > 0;
             int minPlayers = 2;
             bool sufficientPlayers = gameState.players.Count >= minPlayers;
@@ -142,7 +150,7 @@ namespace View
 
             string orchestratorName = "";
             if (orchestratorExists)
-                orchestratorName = GameStateSynchronizer.Instance.Orchestrator.name;
+                orchestratorName = orchestrator.Value.name;
             // lobby help text
             if (meIsOrchestrator)
             {
@@ -170,8 +178,11 @@ namespace View
         }
         private void AddPlayer(string playerName, string roleName, bool isMe)
         {
+            NetworkData.InGameID role = (NetworkData.InGameID)Enum.Parse(typeof(NetworkData.InGameID), roleName);
+            if (role == NetworkData.InGameID.Undecided) return;
             GameObject panel = PoolManager.Instance.Depool(playerPrefab);
             LobbyPlayerUI player = panel.GetComponent<LobbyPlayerUI>();
+            player.GetComponent<PlayerOwned>().Owner = role;
             player.Name = playerName;
             player.Role = roleName;
             

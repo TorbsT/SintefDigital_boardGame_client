@@ -1,4 +1,5 @@
 using Network;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,21 +18,33 @@ namespace Network
         }
         public static GameStateSynchronizer Instance { get; private set; }
 
-        public event Action<NetworkData.GameState> StateChanged;
+        public event Action<NetworkData.GameState?> StateChanged;
         public event Action<NetworkData.Player> PlayerConnected;
         public event Action<int> PlayerDisconnected;
         [field: SerializeField] public int? LobbyId { get; private set; } = null;
-        public NetworkData.GameState GameState { get; private set; }
-        public NetworkData.Player Me => GameState.players.Find
-            (match => match.unique_id == NetworkData.Instance.Me.unique_id);
-        public NetworkData.Player Orchestrator => GameState.players.Find
-            (match => match.in_game_id == NetworkData.InGameID.Orchestrator.ToString());
-        public bool IsOrchestrator => Orchestrator != null && Me.unique_id == Orchestrator.unique_id;
+        public NetworkData.GameState? GameState { get; private set; }
+        public NetworkData.Player Me => GameState.Value.players.Find
+            (match => match.unique_id == NetworkData.Instance.UniqueID);
+        public NetworkData.Player? Orchestrator
+        {
+            get
+            {
+                GameState.Value.players.Find
+               (match => match.in_game_id == NetworkData.InGameID.Orchestrator.ToString());
+                if (GameState == null) return null;
+                foreach (var player in GameState.Value.players)
+                    if (player.in_game_id == NetworkData.InGameID.Orchestrator.ToString())
+                        return player;
+                return null;
+            }
+        }
+        public bool IsOrchestrator => Orchestrator != null && Me.unique_id == Orchestrator.Value.unique_id;
         [SerializeField, Range(0f, 10f)] private float fetchSuccessCooldown = 1f; 
         [SerializeField, Range(0f, 30f)] private float fetchFailCooldown = 5f;
         [SerializeField] private float currentCooldown = 0f;
         [SerializeField] private State state;
-        
+
+        [SerializeField] private NetworkData.GameState cock;
 
         private void Awake()
         {
@@ -76,6 +89,10 @@ namespace Network
                     SetGamestate(success);
                     currentCooldown = 0f;
                     state = State.SUCCESS;
+                    if (!success.is_lobby)
+                    {
+                        Debug.Log(JsonConvert.SerializeObject(success, Formatting.Indented));
+                    }
                 },
                 (failure) =>
                 {
@@ -86,16 +103,16 @@ namespace Network
                 }, (int)LobbyId
             );
         }
-        private void SetGamestate(NetworkData.GameState newState)
+        private void SetGamestate(NetworkData.GameState? newState)
         {
             // Check for differences between old and new state
             bool differenceExists = false;
             Dictionary<int, NetworkData.Player> oldPlayerIds = new();
             Dictionary<int, NetworkData.Player> newPlayerIds = new();
             if (GameState != null)
-                foreach (NetworkData.Player player in GameState.players) oldPlayerIds.Add(player.unique_id, player);
+                foreach (NetworkData.Player player in GameState.Value.players) oldPlayerIds.Add(player.unique_id, player);
             if (newState != null)
-                foreach (NetworkData.Player player in newState.players) newPlayerIds.Add(player.unique_id, player);
+                foreach (NetworkData.Player player in newState.Value.players) newPlayerIds.Add(player.unique_id, player);
             
             HashSet<int> allPlayerIds = new();
             foreach (int id in oldPlayerIds.Keys) allPlayerIds.Add(id);
@@ -126,6 +143,7 @@ namespace Network
                 districtModifierChanged?.Invoke(GameState.district_modifier);
             }*/
 
+            // the following is very good code
             if (true || differenceExists)
             {
                 StateChanged?.Invoke(newState);
