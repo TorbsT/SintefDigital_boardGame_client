@@ -38,7 +38,6 @@ namespace Network
         }
         internal void CheckIn(Action<string> successCallback, Action<string> failureCallback, int id)
         {
-            Debug.Log(id);
             StartCoroutine(GET($"check-in/{id}", successCallback, failureCallback));
         }
         internal void RefreshLobbies(Action<NetworkData.LobbyList> successCallback, Action<string> failureCallback)

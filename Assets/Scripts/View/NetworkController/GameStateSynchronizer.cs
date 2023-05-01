@@ -25,8 +25,19 @@ namespace Network
         public NetworkData.GameState? GameState { get; private set; }
         public NetworkData.Player Me => GameState.Value.players.Find
             (match => match.unique_id == NetworkData.Instance.UniqueID);
-        public NetworkData.Player? Orchestrator => GameState.Value.players.Find
-            (match => match.in_game_id == NetworkData.InGameID.Orchestrator.ToString());
+        public NetworkData.Player? Orchestrator
+        {
+            get
+            {
+                GameState.Value.players.Find
+               (match => match.in_game_id == NetworkData.InGameID.Orchestrator.ToString());
+                if (GameState == null) return null;
+                foreach (var player in GameState.Value.players)
+                    if (player.in_game_id == NetworkData.InGameID.Orchestrator.ToString())
+                        return player;
+                return null;
+            }
+        }
         public bool IsOrchestrator => Orchestrator != null && Me.unique_id == Orchestrator.Value.unique_id;
         [SerializeField, Range(0f, 10f)] private float fetchSuccessCooldown = 1f; 
         [SerializeField, Range(0f, 30f)] private float fetchFailCooldown = 5f;

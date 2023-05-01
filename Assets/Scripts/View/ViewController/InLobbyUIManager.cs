@@ -1,4 +1,5 @@
 using Network;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -134,8 +135,8 @@ namespace View
             bool enableRoleSwitch = meIsOrchestrator || !orchestratorExists;
             if (!enableRoleSwitch)
             {
-                Debug.Log(orchestrator.Value.unique_id);
-                Debug.Log(me.unique_id);
+                Debug.Log(JsonConvert.SerializeObject(gameState, Formatting.Indented));
+                Debug.Log(JsonConvert.SerializeObject(GameStateSynchronizer.Instance.GameState.Value, Formatting.Indented));
             }
             bool situationChosen = GameCardController.Instance.ChosenCount > 0;
             int minPlayers = 2;
@@ -177,9 +178,10 @@ namespace View
         }
         private void AddPlayer(string playerName, string roleName, bool isMe)
         {
+            NetworkData.InGameID role = (NetworkData.InGameID)Enum.Parse(typeof(NetworkData.InGameID), roleName);
+            if (role == NetworkData.InGameID.Undecided) return;
             GameObject panel = PoolManager.Instance.Depool(playerPrefab);
             LobbyPlayerUI player = panel.GetComponent<LobbyPlayerUI>();
-            NetworkData.InGameID role = (NetworkData.InGameID)Enum.Parse(typeof(NetworkData.InGameID), roleName);
             player.GetComponent<PlayerOwned>().Owner = role;
             player.Name = playerName;
             player.Role = roleName;

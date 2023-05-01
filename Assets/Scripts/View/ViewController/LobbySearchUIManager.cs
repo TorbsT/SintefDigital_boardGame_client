@@ -52,7 +52,7 @@ namespace View
                         lobby.Name = $"{item.name}";
                         lobby.LobbyId = item.id;
                         int quantity = item.players.Count;
-                        int maxQuantity = 5;
+                        int maxQuantity = 6;
                         lobby.Quantity = $"{quantity}/{maxQuantity} players";
                         bool joinable = item.is_lobby && quantity < maxQuantity;
                         lobby.GetComponent<Button>().interactable = joinable;

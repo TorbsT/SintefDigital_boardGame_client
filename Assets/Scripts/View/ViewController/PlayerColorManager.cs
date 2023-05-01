@@ -8,6 +8,7 @@ using Network;
 
 namespace View
 {
+    [ExecuteAlways]
     internal class PlayerColorManager : MonoBehaviour
     {
         [Serializable]

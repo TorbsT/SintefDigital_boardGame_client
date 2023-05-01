@@ -52,7 +52,6 @@ namespace View
                         // Write data to card
                         GameCard gamecard = PoolManager.Depool(cardPrefab).GetComponent<GameCard>();
                         gamecards.Add(id, gamecard);
-                        Debug.Log(id);
                         gamecard.Source = card;
                         gamecard.Id.text = $"!{id}";
                         gamecard.Title.text = title;

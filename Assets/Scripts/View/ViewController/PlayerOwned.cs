@@ -33,6 +33,9 @@ namespace View
         {
             Refresh();
         }
-        private void Refresh() => PlayerColorManager.Instance.Refresh(this);
+        private void Refresh()
+        {
+            if (PlayerColorManager.Instance != null) PlayerColorManager.Instance.Refresh(this);
+        }
     }
 }
