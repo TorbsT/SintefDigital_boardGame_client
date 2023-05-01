@@ -3,96 +3,118 @@ using System.Collections.Generic;
 using UnityEngine;
 using Network;
 using TMPro;
+using UnityEngine.UI;
+using System;
 
 namespace View
 {
     public class GameCardController : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI explanationText;
-        public Dictionary<int, GameCard> gamecards = new();
-        public Point resetPoint;
-        public Point spawnPoint;
-        private GameCard currentGameCard;
-        private void OnEnable()
+        public static GameCardController Instance { get; private set; }
+
+        public int ChosenCount => chosen.Count;
+        public event Action SelectedCards;
+        [field: SerializeField, Range(1, 10)] public int MaxCards { get; private set; } = 1;
+        [SerializeField] private bool autoSelect = true;
+        [SerializeField] private RectTransform cardsParent;
+        [SerializeField] private GameObject cardPrefab;
+        private Dictionary<int, GameCard> gamecards = new();
+        private List<GameCard> chosen = new();
+        private void Awake()
         {
-            foreach (GameCard card in GetComponentsInChildren<GameCard>())
-                if (card != null)
-                    gamecards.Add(card.id, card);
-            foreach (GameCard card in gamecards.Values)
-                card.gameObject.SetActive(false);
+            Instance = this;
+        }
+        private void Start()
+        {
             RestAPI.Instance.GetSituationCards(
                 (success) =>
                 {
-                    foreach (NetworkData.SituationCard card in success.cards)
+                    foreach (int id in gamecards.Keys)
+                        PoolManager.Enpool(gamecards[id].gameObject);
+                    gamecards = new();
+
+                    foreach (NetworkData.SituationCard card in success.situation_cards)
                     {
                         // Organize data from backend
                         int id = card.card_id;
-                        if (!gamecards.ContainsKey(id))
-                        {
-                            Debug.LogWarning
-                            ($"CardScene does not have a card with the cardId {id}. Please add one");
-                            continue;
-                        }
                         string title = card.title;
                         string description = card.description;
                         string goal = card.goal;
                         List<string> trafficList = new();
-                        foreach (var traffic in card.costs.traffics)
-                        {
-                            trafficList.Add($"{traffic.region}: {traffic.traffic}");
-                        }
+                        if (card.costs != null)
+                            foreach (var traffic in card.costs)
+                            {
+                                trafficList.Add($"{traffic.Item1}: {traffic.Item2}");
+                            }
                         string traffics = string.Join("\n", trafficList);
 
                         // Write data to card
-                        GameCard gamecard = gamecards[id];
+                        GameCard gamecard = PoolManager.Depool(cardPrefab).GetComponent<GameCard>();
+                        gamecards.Add(id, gamecard);
+                        Debug.Log(id);
+                        gamecard.Source = card;
                         gamecard.Id.text = $"!{id}";
                         gamecard.Title.text = title;
                         gamecard.Description.text = description;
                         gamecard.Goal.text = goal;
                         gamecard.Traffic.text = traffics;
                         gamecard.gameObject.SetActive(true);
+                        gamecard.transform.SetParent(cardsParent, false);
                     }
+                    AutoSelectCard();
                 },
-                (failure) => { }
+                (failure) => { Debug.LogWarning("Could not get situation cards from server"); }
             );
-
-            string orchestratorName = GameStateSynchronizer.Instance.Orchestrator.name;
-            if (GameStateSynchronizer.Instance.IsOrchestrator)
-                explanationText.text = "Select a situation card for this game";
-            else
-                explanationText.text = $"Wait for {orchestratorName} to choose a situation card";
         }
-        public GameCard GetCardById(int id)
-            => gamecards[id];
-
-        public GameCard GetSituationCard(Colors color)
+        private void AutoSelectCard()
         {
-            int situationId = (int)color + 1;
-            return gamecards[situationId];
+            // Unselect all while preventing errors
+            List<GameCard> temp = new();
+            foreach (var card in chosen)
+                temp.Add(card);
+            foreach (var card in temp)
+                Click(card);
+            if (autoSelect)
+                Click(gamecards[1]);
         }
-
-        public void MoveCardIn(int id)
+        public void Refresh()
         {
-            Debug.Log(3333);
-            ResetCurrentCard();
-            GameCard gc = GetCardById(id);
-            if (gc != null)
+            foreach (var card in gamecards.Values)
             {
-                gc.moveTo(spawnPoint.GetPos());
-            }
-            currentGameCard = gc;
-        }
-
-        public void ResetCurrentCard()
-        {
-            if (currentGameCard != null)
-            {
-                currentGameCard.moveTo(resetPoint.GetPos());
+                bool isSelected = chosen.Contains(card);
+                card.Animator.SetBool("selected", isSelected);
             }
         }
+        public void Click(GameCard card)
+        {
+            bool add = !chosen.Contains(card);
+            if (add) chosen.Add(card);
+            else chosen.Remove(card);
+            if (chosen.Count > MaxCards)
+            {
+                // Remove oldest
+                chosen.RemoveAt(0);
+            }
 
-
-
-
+            Refresh();
+            SelectedCards?.Invoke();
+        }
+        public void Confirm(Action<NetworkData.GameState> success, Action<string> failure)
+        {
+            GameCard card = chosen[0];
+            NetworkData.PlayerInput input = new()
+            {
+                player_id = NetworkData.Instance.Me.unique_id,
+                game_id = (int)GameStateSynchronizer.Instance.LobbyId,
+                input_type = NetworkData.PlayerInputType.AssignSituationCard.ToString(),
+                related_role = NetworkData.InGameID.Orchestrator.ToString(),
+                situation_card = card.Source
+            };
+            RestAPI.Instance.SendPlayerInput(
+                (done) => success?.Invoke(done),
+                (fail) => failure?.Invoke(fail),
+                input
+            );
+        }
     }
 }
