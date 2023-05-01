@@ -180,6 +180,7 @@ namespace View
         {
             NetworkData.InGameID role = (NetworkData.InGameID)Enum.Parse(typeof(NetworkData.InGameID), roleName);
             if (role == NetworkData.InGameID.Undecided) return;
+            if (role != NetworkData.InGameID.Orchestrator) roleName = "Player";
             GameObject panel = PoolManager.Instance.Depool(playerPrefab);
             LobbyPlayerUI player = panel.GetComponent<LobbyPlayerUI>();
             player.GetComponent<PlayerOwned>().Owner = role;

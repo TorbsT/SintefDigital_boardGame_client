@@ -7,14 +7,14 @@ namespace View
     public class GraphManager : MonoBehaviour
     {
         public static GraphManager Instance { get; private set; }
-        private List<INode> nodes = new();
+        private Dictionary<int, INode> nodes = new();
 
         private void Awake()
         {
             Instance = this;
             foreach (INode node in GetComponentsInChildren<INode>())
             {
-                nodes.Add(node);
+                nodes.Add(node.Id, node);
             }
         }
         public INode GetNode(int id)

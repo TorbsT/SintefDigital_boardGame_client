@@ -78,5 +78,6 @@ namespace View
     {
         ICollection<INode> GetNeighbours();
         public GameObject gameObject { get; }
+        public int Id { get; }
     }
 }
