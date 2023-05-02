@@ -99,3 +99,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 55184985144664442}
   image: {fileID: 0}
+  owner: 0

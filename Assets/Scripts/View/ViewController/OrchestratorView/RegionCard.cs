@@ -355,7 +355,6 @@ namespace View
             {
                 vehicle_typeString = ((NetworkData.VehicleType)vehicle_type_id).ToString();
             }
-            //Debug.Log(districtString + ", " + modifierString + ", " + vehicle_typeString + ", " + associated_movement_value + ", " + associated_money_value + ", " + delete);
 
             NetworkData.DistrictModifier districtModifier = new()
             {
