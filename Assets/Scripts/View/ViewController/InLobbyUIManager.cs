@@ -54,7 +54,7 @@ namespace View
                     RestAPI.Instance.StartGame(
                     gameState =>
                     {
-                        Debug.Log($"Successfully started lobby: " + gameState.is_lobby);
+                        
                     },
                     failure =>
                     {
@@ -133,11 +133,6 @@ namespace View
             else changeRoleText.text = "Switch to orchestrator";
 
             bool enableRoleSwitch = meIsOrchestrator || !orchestratorExists;
-            if (!enableRoleSwitch)
-            {
-                Debug.Log(JsonConvert.SerializeObject(gameState, Formatting.Indented));
-                Debug.Log(JsonConvert.SerializeObject(GameStateSynchronizer.Instance.GameState.Value, Formatting.Indented));
-            }
             bool situationChosen = GameCardController.Instance.ChosenCount > 0;
             int minPlayers = 2;
             bool sufficientPlayers = gameState.players.Count >= minPlayers;

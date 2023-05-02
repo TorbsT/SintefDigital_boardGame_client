@@ -73,7 +73,6 @@ namespace Network
             (Action<NetworkData.GameState> successCallback, Action<string> failureCallback, int lobbyId)
         {
             string jsonObject = JsonConvert.SerializeObject(NetworkData.Instance.Me.Value, Formatting.Indented);
-            Debug.Log(jsonObject);
             StartCoroutine(POST($"games/join/{lobbyId}", jsonObject, successCallback, failureCallback));
         }
         internal void SendPlayerInput
@@ -81,7 +80,6 @@ namespace Network
         {
             string jsonObject = JsonConvert.SerializeObject(input, Formatting.Indented);
             // DO NOT USE JsonUtility.ToJson! it doesn't include situation_card_id for some unholy reason
-            Debug.Log(jsonObject);
             lastBody = jsonObject;
             StartCoroutine(POST("games/input", jsonObject, successCallback, failureCallback));
         }

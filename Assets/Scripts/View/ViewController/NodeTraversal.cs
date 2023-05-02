@@ -19,9 +19,6 @@ namespace View
         }
         void Start()
         {
-            //Debug.Log(GameObject.Find("gameBoard/CitySquare").transform.GetSiblingIndex());
-            //Debug.Log(GameObject.Find("gameBoard").transform.GetChild(2).GetType());
-            //Debug.Log(transform.GetSiblingIndex());
             Steps steps = GetComponent<Steps>();
         }
 
@@ -48,7 +45,6 @@ namespace View
 
         private void OnMouseExit()
         {
-            //Debug.Log("Reset!!!");
             spriteRenderer.color = Color.white;
         }
 

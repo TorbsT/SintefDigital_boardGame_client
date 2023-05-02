@@ -89,10 +89,6 @@ namespace Network
                     SetGamestate(success);
                     currentCooldown = 0f;
                     state = State.SUCCESS;
-                    if (!success.is_lobby)
-                    {
-                        Debug.Log(JsonConvert.SerializeObject(success, Formatting.Indented));
-                    }
                 },
                 (failure) =>
                 {

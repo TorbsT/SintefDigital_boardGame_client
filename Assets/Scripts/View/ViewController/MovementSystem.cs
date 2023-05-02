@@ -33,7 +33,6 @@ namespace View
                 int oldPos = playerPositions[role];
                 if (newPos != oldPos)
                 {
-                    Debug.LogWarning("A PLAYER MOVED!!!!");
                     playerPositions[role] = newPos;
                     if (ObjectiveVisualizer.Instance == null) break;
                     Transform playerTransform = ObjectiveVisualizer.Instance.GetPlayerGO(role).transform;
@@ -63,16 +62,12 @@ namespace View
             };
             RestAPI.Instance.SendPlayerInput(success =>
             {
-                Debug.Log("success!!!!");
                 UndoSystem.Instance.MovesDone++;
             }, failure =>
             {
-                Debug.Log(failure);
+
             }
             , input);
-            //Debug.Log("clicked");
-
-            //player.transform.localPosition = new Vector3(0, 0, 0);
         }
     }
 }

@@ -26,12 +26,11 @@ namespace View
         {
             if (state == null) return;
             bool show = !undoing && TurnManager.Instance.IsMyTurn && MovesDone > 0;
-            //UndoButton.interactable = show;
-            UndoButton.gameObject.SetActive(show);
+            SetUndoAvailable(show);
         }
         public void UndoLast()
         {
-            UndoButton.interactable = false;
+            SetUndoAvailable(false);
             undoing = true;
             NetworkData.PlayerInput input = new()
             {
@@ -45,11 +44,15 @@ namespace View
                 {
                     undoing = false;
                     MovesDone--;
-                    Debug.Log("Undid");
                 },
-                failure => { Debug.Log("NO: "+failure); undoing = false; },
+                failure => { undoing = false; },
                 input
                 );
+        }
+        private void SetUndoAvailable(bool show)
+        {
+            //UndoButton.interactable = show;
+            UndoButton.gameObject.SetActive(show);
         }
     }
 }

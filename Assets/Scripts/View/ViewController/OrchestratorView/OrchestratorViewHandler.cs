@@ -105,7 +105,6 @@ namespace View
             foreach (RegionCard regionCard in regionCards)
             {
                 regionCard.resetCard();
-                Debug.Log(modifierList.Count);
                 foreach(NetworkData.DistrictModifier disModifier in modifierList)
                 {
                     if (disModifier.district == regionCard.getDistrict().ToString())
