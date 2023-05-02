@@ -42,8 +42,8 @@ namespace View
                     {
                         StartValue = playerTransform.position,
                         EndValue = targetTransform.position,
-                        Duration = AnimationPresets.Instance.PlayerMoveDuration,
-                        Curve = AnimationPresets.Instance.PlayerMoveCurve,
+                        Duration = AnimationPresets.Instance.PackageMoveDuration,
+                        Curve = AnimationPresets.Instance.PackageMoveCurve,
                         Action = (value) => { playerTransform.position = value; }
                     };
                     moveAnimation.Start();
