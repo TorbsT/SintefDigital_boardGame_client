@@ -16,7 +16,7 @@ namespace View
         [SerializeField] private new SpriteRenderer renderer;
         [SerializeField] private Image image;
 
-        private NetworkData.InGameID owner;
+        [SerializeField] private NetworkData.InGameID owner;
 
         public void SetColor(Color color)
         {

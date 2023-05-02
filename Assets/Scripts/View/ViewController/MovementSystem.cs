@@ -64,6 +64,7 @@ namespace View
             RestAPI.Instance.SendPlayerInput(success =>
             {
                 Debug.Log("success!!!!");
+                UndoSystem.Instance.MovesDone++;
             }, failure =>
             {
                 Debug.Log(failure);
