@@ -20,13 +20,16 @@ namespace View
         public static ObjectiveVisualizer Instance { get; private set; }
         private Dictionary<string, GameObject> roleToPlayerGO = new();
         private Dictionary<string, GameObject> roleToPackageGO = new();
+        private Dictionary<string, GameObject> roleToPackageDropoffGO = new();
         private Dictionary<string, int> roleToPackageSpawn = new();
         private Dictionary<string, int> roleToPackageDropoff = new();
+        private Dictionary<int, List<Transform>> nodeToMarkers = new();
         [SerializeField] private GameObject playerPrefab;
         [SerializeField] private GameObject startPrefab;
         [SerializeField] private GameObject pickupPrefab;
         [SerializeField] private GameObject goalPrefab;
-        [SerializeField] private float packageOverPlayerDistance = 1f;
+        [SerializeField] private float packageOverPlayerDistance = 3f;
+        [SerializeField] private float groupDistance = 2f;
 
 
         private void Start()
@@ -63,13 +66,13 @@ namespace View
                 roleToPlayerGO.Add(roleName, Spawn(playerPrefab, playerSpawnId, role));
                 Spawn(startPrefab, playerSpawnId, role);
                 roleToPackageGO.Add(roleName, Spawn(pickupPrefab, packageSpawnId, role));
-                Spawn(goalPrefab, packageDropoffId, role);
-
+                roleToPackageDropoffGO.Add(roleName, Spawn(goalPrefab, packageDropoffId, role));
             }
         }
         private void StateChanged(NetworkData.GameState? state)
         {
             if (state == null) return;
+            Dictionary<int, List<Transform>> groupings = new();
             foreach (var player in state.Value.players)
             {
                 string roleName = player.in_game_id;
@@ -86,35 +89,71 @@ namespace View
                 
                 Transform packageTransform = roleToPackageGO[roleName].transform;
                 Transform playerTransform = roleToPlayerGO[roleName].transform;
+                int packageDropoff = roleToPackageDropoff[roleName];
+                int packageSpawn = roleToPackageSpawn[roleName];
+                Transform dropoffTransform = roleToPackageDropoffGO[roleName].transform;
 
                 Vector2 targetPos;
-                Transform targetTransform;
                 if (packageState == PackageState.PickedUp)
                 {
-                    targetTransform = playerTransform;
+                    // Animate this separately
                     targetPos = Vector2.up*packageOverPlayerDistance;
+                    packageTransform.SetParent(playerTransform, true);
+                    DoAnimation(packageTransform, targetPos);
                 } else
                 {
-                    targetTransform = null;
+                    // Animate this like other markers
                     int nodeId;
                     if (packageState == PackageState.NotPickedUp)
-                        nodeId = roleToPackageSpawn[roleName];
+                        nodeId = packageSpawn;
                     else  // packageState == PackageState.DroppedOff
-                        nodeId = roleToPackageDropoff[roleName];
-                    targetPos = GraphManager.Instance.GetNode(nodeId).gameObject.transform.position;
+                        nodeId = packageDropoff;
+                    Transform nodeTransform = GraphManager.Instance.GetNode(nodeId).gameObject.transform;
+                    packageTransform.SetParent(nodeTransform, true);
+                    AddToGroup(groupings, nodeId, packageTransform);
                 }
-                packageTransform.SetParent(targetTransform, true);
-                Animation<Vector2> moveAnim = new()
+
+                // Always add package dropoff to group
+                AddToGroup(groupings, packageDropoff, dropoffTransform);
+            }
+            SetGroupings(groupings);
+        }
+        private void AddToGroup(Dictionary<int, List<Transform>> group, int id, Transform trans)
+        {
+            if (!group.ContainsKey(id))
+                group.Add(id, new());
+            group[id].Add(trans);
+        }
+        private void SetGroupings(Dictionary<int, List<Transform>> groupings)
+        {
+            foreach (int nodeId in groupings.Keys)
+            {
+                Transform nodeTransform = GraphManager.Instance.GetNode(nodeId).gameObject.transform;
+                ICollection<Transform> markers = groupings[nodeId];
+                int count = markers.Count;
+                int i = 0;
+                Vector2 nodePos = Vector2.zero;//nodeTransform.position;
+                foreach (Transform marker in markers)
                 {
-                    Action = value => packageTransform.localPosition = value,
-                    Curve = AnimationPresets.Instance.PlayerMoveCurve,
-                    Duration = AnimationPresets.Instance.PlayerMoveDuration,
-                    StartValue = packageTransform.localPosition,
-                    EndValue = targetPos
-                };
-                moveAnim.Start();
+                    Vector2 endPos = nodePos + (i - (count-1) / 2f) * groupDistance * Vector2.right;
+                    DoAnimation(marker, endPos);
+                    i++;
+                }
             }
         }
+        private void DoAnimation(Transform trans, Vector2 endPos)
+        {
+            Animation<Vector2> moveAnim = new()
+            {
+                Action = value => trans.localPosition = value,
+                Curve = AnimationPresets.Instance.PlayerMoveCurve,
+                Duration = AnimationPresets.Instance.PlayerMoveDuration,
+                StartValue = trans.localPosition,
+                EndValue = endPos
+            };
+            moveAnim.Start();
+        }
+
         private GameObject Spawn(GameObject prefab, int nodeId, NetworkData.InGameID role)
         {
             GameObject go = PoolManager.Depool(prefab);
