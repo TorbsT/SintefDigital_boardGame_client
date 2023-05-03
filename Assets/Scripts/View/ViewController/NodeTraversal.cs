@@ -12,6 +12,20 @@ namespace View
         private SpriteRenderer spriteRenderer;
         [field: SerializeField] public int Id { get; private set; }
 
+        public ICollection<INode> GetNeighbours()
+        {
+            List<INode> result = new();
+            foreach (GameObject neighbourNode in neighbourNodes)
+            {
+                if (neighbourNode == null) continue;
+                result.Add(neighbourNode.GetComponent<INode>());
+            }
+            return result;
+        }
+        public void Click()
+        {
+            MovementSystem.Instance.ClickNode(this);
+        }
         // Start is called before the first frame update
         void Awake()
         {
@@ -27,16 +41,6 @@ namespace View
         {
 
         }
-        public ICollection<INode> GetNeighbours()
-        {
-            List<INode> result = new();
-            foreach (GameObject neighbourNode in neighbourNodes)
-            {
-                if (neighbourNode == null) continue;
-                result.Add(neighbourNode.GetComponent<INode>());
-            }
-            return result;
-        }
         private void OnMouseEnter()
         {
 
@@ -50,7 +54,7 @@ namespace View
 
         void OnMouseDown()
         {
-            MovementSystem.Instance.ClickNode(this);
+            Click();
         }
     }
 }
