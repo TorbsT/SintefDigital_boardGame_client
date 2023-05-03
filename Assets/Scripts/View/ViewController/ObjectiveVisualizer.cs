@@ -28,8 +28,8 @@ namespace View
         [SerializeField] private GameObject startPrefab;
         [SerializeField] private GameObject pickupPrefab;
         [SerializeField] private GameObject goalPrefab;
-        [SerializeField] private float packageOverPlayerDistance = 1f;
-        [SerializeField] private float groupDistance = 0.5f;
+        [SerializeField] private float packageOverPlayerDistance = 3f;
+        [SerializeField] private float groupDistance = 2f;
 
 
         private void Start()
@@ -108,7 +108,8 @@ namespace View
                         nodeId = packageSpawn;
                     else  // packageState == PackageState.DroppedOff
                         nodeId = packageDropoff;
-                    packageTransform.SetParent(null, true);
+                    Transform nodeTransform = GraphManager.Instance.GetNode(nodeId).gameObject.transform;
+                    packageTransform.SetParent(nodeTransform, true);
                     AddToGroup(groupings, nodeId, packageTransform);
                 }
 
