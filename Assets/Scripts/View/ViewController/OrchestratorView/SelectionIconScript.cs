@@ -13,7 +13,6 @@ public class SelectionIconScript : MonoBehaviour
     void OnMouseOver()
     {
         setIconMarkerVisibility(true);
-        Debug.Log("hey");
     }
 
     public void setIconMarkerVisibility(bool visible)

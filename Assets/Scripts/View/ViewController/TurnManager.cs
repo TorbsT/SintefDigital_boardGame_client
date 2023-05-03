@@ -19,6 +19,7 @@ namespace View
 
         [SerializeField] private Button endTurnButton;
         [SerializeField] private TextMeshProUGUI turnText;
+        [SerializeField] private PlayerOwned playerOwned;
         private bool sending;
         private string prevTurnRole;
 
@@ -46,15 +47,21 @@ namespace View
             string txt = "";
             IsMyTurn = turnRoleName == GameStateSynchronizer.Instance.Me.in_game_id;
             if (IsMyTurn)
+            {
                 txt = "Your turn";
+                if (turnRole != NetworkData.InGameID.Orchestrator)
+                    txt += $" ({turnPlayer.Value.remaining_moves} moves left)";
+            }
             else
             {
                 if (turnRoleName == NetworkData.InGameID.Orchestrator.ToString())
                     txt = "Orchestrator ";
                 txt += $"{turnPlayer.Value.name}'s turn";
             }
+            playerOwned.Owner = turnRole;
             turnText.text = txt;
             endTurnButton.interactable = IsMyTurn && !sending;
+
             if (turnRoleName != prevTurnRole)
                 TurnChanged?.Invoke();
             prevTurnRole = turnRoleName;
@@ -70,7 +77,7 @@ namespace View
                 input_type = NetworkData.PlayerInputType.NextTurn.ToString(),
                 related_role = GameStateSynchronizer.Instance.Me.in_game_id,
             };
-            RestAPI.Instance.SendPlayerInput(success => { sending = false; }, failure => { endTurnButton.interactable = true; sending = false; }, input);
+            RestAPI.Instance.SendPlayerInput(success => { sending = false; UndoSystem.Instance.MovesDone = 0; }, failure => { endTurnButton.interactable = true; sending = false; }, input);
         }
     }
 }
