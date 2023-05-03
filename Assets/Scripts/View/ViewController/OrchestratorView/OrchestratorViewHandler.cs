@@ -28,7 +28,7 @@ namespace View
 
         void Start()
         {
-            //GameStateSynchronizer.Instance.districtModifierChanged += funkson( //som har liste med district modifiers
+            GameStateSynchronizer.Instance.districtModifierChanged += renderModifiers;
             accessPanelScript.hidePanel();
             tollPanelScript.hidePanel();
             priorityPanelScript.hidePanel();
@@ -36,7 +36,7 @@ namespace View
             foreach (RegionCard regionCard in regionCards)
             {
                 regionCard.setHandler(this);
-                regionCard.setOrchestratorOptions(true);
+                
             }
             regionCards[1].setTraffic(4);
             regionCards[2].setTraffic(2);
@@ -62,11 +62,6 @@ namespace View
             priorityPanelScript.showPanel(regionCard);
         }
 
-        public bool GetIsOrchestrator () //TODO remove this dummy solution
-        {
-            return isOrchestrator;
-        }
-
         public void resetCards()
         {
             foreach (RegionCard regionCard in regionCards)
@@ -75,11 +70,11 @@ namespace View
             }
         }
 
-        public void changeEditStateCards(bool boolean)
+        public void setEditStateCards()
         {
             foreach (RegionCard regionCard in regionCards)
             {
-                regionCard.changeEditStateCard(boolean);
+                regionCard.setEditStateCard();
             }
         }
 
@@ -97,15 +92,14 @@ namespace View
         }
 
 
-        public List<NetworkData.DistrictModifier> modifierList = new List<NetworkData.DistrictModifier>();
-        public void dummyServerHandler(NetworkData.DistrictModifier districtModifier)
+        //public List<NetworkData.DistrictModifier> modifierList = new List<NetworkData.DistrictModifier>();
+        public void renderModifiers(List<NetworkData.DistrictModifier> modifierList)
         {
             //NetworkData.District district = (NetworkData.District) Enum.Parse(typeof(NetworkData.District), districtModifier.district);
-            modifierList.Add(districtModifier);
+           // modifierList.Add(districtModifier);
             foreach (RegionCard regionCard in regionCards)
             {
                 regionCard.resetCard();
-                Debug.Log(modifierList.Count);
                 foreach(NetworkData.DistrictModifier disModifier in modifierList)
                 {
                     if (disModifier.district == regionCard.getDistrict().ToString())
@@ -129,13 +123,13 @@ namespace View
             switch (modifier)
             {
                 case NetworkData.DistrictModifierType.Access:
-                    regioncard.setAccess((int)vehicle_type_id, isOrchestrator);
+                    regioncard.setAccess((int)vehicle_type_id);
                     break;
                 case NetworkData.DistrictModifierType.Priority:
-                    regioncard.setPriority((int)vehicle_type_id, (int)districtModifier.associated_movement_value, isOrchestrator);
+                    regioncard.setPriority((int)vehicle_type_id, (int)districtModifier.associated_movement_value);
                     break;
                 case NetworkData.DistrictModifierType.Toll:
-                    regioncard.setToll((int)districtModifier.associated_money_value, isOrchestrator);
+                    regioncard.setToll((int)districtModifier.associated_money_value);
                     break;
                 default:
                     break;

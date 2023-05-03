@@ -2887,6 +2887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   district: 0
+  isEditable: 0
   districtName: {fileID: 5761320128305417641}
   districtTraffic: {fileID: 5761320128436862912}
   districtCost: {fileID: 5761320127985499231}
@@ -3217,7 +3218,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5761320127235477947}
         m_TargetAssemblyTypeName: View.IconScript, GameController
-        m_MethodName: removeSelf
+        m_MethodName: removeOnServer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -14,6 +14,8 @@ namespace View
         public NetworkData.District district;
         private int traffic = 1;
         private int cost;
+        public bool isEditable;
+
         public TextMeshProUGUI districtName;
         public TextMeshProUGUI districtTraffic;
         public TextMeshProUGUI districtCost;
@@ -46,7 +48,8 @@ namespace View
             accessButton.transform.position = accessPoints[0].GetPos();
             priorityButton.transform.position = priorityPoints[0].GetPos();
             tollButton.transform.position = tollPoint.GetPos();
-            setOrchestratorOptions(false);
+            setSizesOfIcons();
+            setEditStateCard();
             tollCostIcon.SetActive(false);
 
             setColor();
@@ -61,6 +64,13 @@ namespace View
             this.handler = handler;
         }
 
+        private void setSizesOfIcons()
+        {
+            setSizePercentage(accessButton, 15);
+            setSizePercentage(priorityButton, 15);
+            setSizePercentage(tollButton, 15);
+        }
+
         public void setOrchestratorOptions(bool boolean)
         {
             accessButton.SetActive(boolean);
@@ -68,6 +78,18 @@ namespace View
             tollButton.SetActive(boolean);
         }
 
+
+        private void setSizePercentage(GameObject gameObject, float percentage)
+        {
+      
+            RectTransform iconRect = gameObject.transform.GetComponent<RectTransform>();
+            RectTransform cardRect = GetComponent<RectTransform>();
+            float cardScaleX = transform.lossyScale.x;
+            iconRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, cardRect.rect.width * percentage / 100f);
+            iconRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, cardRect.rect.width * percentage / 100f);
+            gameObject.transform.localScale = new Vector3(1f,1f,1f);
+
+        }
         public void setColor()
         {
             gameObject.GetComponent<Image>().color = cardMaterial.GetColor("_Color");
@@ -84,6 +106,11 @@ namespace View
             districtTraffic.text = "" + trafficNumber;
             setTruckMarkers(trafficNumber);
             setCost(trafficNumber);
+        }
+
+        public bool getEditState()
+        {
+            return isEditable & GameStateSynchronizer.Instance.IsOrchestrator;
         }
 
         private void setCost(int trafficNumber)
@@ -117,13 +144,13 @@ namespace View
             }
         }
 
-        public GameObject setIcon(int id, List<IconScript> activeRestricions, Point[] points, GameObject button, bool isOrchestrator)
+        public GameObject setIcon(int id, List<IconScript> activeRestricions, Point[] points, GameObject button)
         {
             if (id >= vehicleAttributePrefab.Length) { return null; } //non legal id
             int activeModifiersCount = activeRestricions.Count + 1;
             if (activeModifiersCount > 2) { return null; } //should not be possible
 
-            if (!isOrchestrator || activeModifiersCount == 2)
+            if (!getEditState() || activeModifiersCount == 2)
             {
                 button.SetActive(false);
             }
@@ -134,6 +161,7 @@ namespace View
             //GameObject icon = Instantiate(vehicleAttributePrefab[id], points[activeModifiersCount - 1].GetPos(), Quaternion.identity, this.transform);
             GameObject icon = PoolManager.Instance.Depool(vehicleAttributePrefab[id]);
             icon.transform.SetParent(this.transform);
+            setSizePercentage(icon, 15);
             icon.transform.position = points[activeModifiersCount - 1].GetPos();
             return icon;
         }
@@ -146,7 +174,7 @@ namespace View
             int activeModifiersCount = activeRestricions.Count - 1;
             if (activeModifiersCount < 2)
             {
-                button.SetActive(true);
+                button.SetActive(getEditState());
                 button.transform.position = points[activeModifiersCount].GetPos();
             }
             return true;
@@ -157,14 +185,14 @@ namespace View
             this.handler.showTollScreen(this);
         }
 
-        public void setToll(int cost, bool isOrchestrator)
+        public void setToll(int cost)
         {
 
             activeTollModifier = tollCostIcon.GetComponent<IconScript>();
             activeTollModifier.setTypeOfModifier(NetworkData.DistrictModifierType.Toll);
             activeTollModifier.setAttachedRegionCard(this);
             activeTollModifier.setValue(cost);
-            activeTollModifier.setDeleteButton(isOrchestrator);
+            activeTollModifier.setDeleteButton(getEditState());
             tollCostIcon.transform.position = tollPoint.GetPos();
             tollCostIcon.transform.Find("costText").gameObject.GetComponent<Text>().text = "€" + cost;
             tollCostIcon.SetActive(true);
@@ -187,14 +215,14 @@ namespace View
         }
 
 
-        public void setAccess(int id, bool isOrchestrator)
+        public void setAccess(int id)
         {
 
-            GameObject icon = setIcon(id, activeAccessModifiers, accessPoints, accessButton, isOrchestrator);
+            GameObject icon = setIcon(id, activeAccessModifiers, accessPoints, accessButton);
             IconScript iconScript = icon.GetComponent<IconScript>();
             activeAccessModifiers.Add(iconScript);
             iconScript.setTypeOfModifier(NetworkData.DistrictModifierType.Access);
-            iconScript.setDeleteButton(isOrchestrator);
+            iconScript.setDeleteButton(getEditState());
             iconScript.setAttachedRegionCard(this);
         }
 
@@ -234,13 +262,13 @@ namespace View
             this.handler.showPriorityScreen(this);
         }
 
-        public void setPriority(int id, int value, bool isOrchestrator)
+        public void setPriority(int id, int value)
         {
-            GameObject icon = setIcon(id, activePriorityModifiers, priorityPoints, priorityButton, isOrchestrator);
+            GameObject icon = setIcon(id, activePriorityModifiers, priorityPoints, priorityButton);
             IconScript iconScript = icon.GetComponent<IconScript>();
             activePriorityModifiers.Add(iconScript);
             iconScript.setTypeOfModifier(NetworkData.DistrictModifierType.Priority);
-            iconScript.setDeleteButton(isOrchestrator);
+            iconScript.setDeleteButton(getEditState());
             iconScript.setAttachedRegionCard(this);
             iconScript.setValue(value);
             int activePriorityModifiersCount = activePriorityModifiers.Count;
@@ -293,25 +321,26 @@ namespace View
             }
         }
 
-        public void changeEditStateCard(bool boolean)
+        public void setEditStateCard()
         {
+            bool editable = getEditState();
             foreach (IconScript activeAccessModifier in activeAccessModifiers)
             {
-                activeAccessModifier.setDeleteButton(boolean);
+                activeAccessModifier.setDeleteButton(editable);
             }
             foreach (IconScript activePriorityModifier in activePriorityModifiers)
             {
-                activePriorityModifier.setDeleteButton(boolean);
+                activePriorityModifier.setDeleteButton(editable);
             }
             if (activeTollModifier != null)
             {
-                activeTollModifier.setDeleteButton(boolean);
+                activeTollModifier.setDeleteButton(editable);
             }
-            setOrchestratorOptions(boolean);
+            setOrchestratorOptions(editable);
         }
 
         //These method only sends changes to the server, visual updates are done trough the new gamestate recived
-        public void setPriorityServer(int id, int value, bool isOrchestrator)
+        public void setPriorityServer(int id, int value)
         {
             if (activePriorityModifiers.Any(res => res.getId() == id)) return;
             sendToServer(NetworkData.DistrictModifierType.Priority, id, value, null, false);
@@ -322,7 +351,7 @@ namespace View
             sendToServer(NetworkData.DistrictModifierType.Priority, iconScript.getId(), iconScript.getValue(), null, true);
         }
 
-        public void setAccessServer(int id, bool isOrchestrator)
+        public void setAccessServer(int id)
         {
             if (activeAccessModifiers.Any(res => res.getId() == id)) return;
             sendToServer(NetworkData.DistrictModifierType.Access, id, null, null, false);
@@ -333,7 +362,7 @@ namespace View
             sendToServer(NetworkData.DistrictModifierType.Access, iconScript.getId(), null, null, true);
         }
 
-        public void setTollServer(int cost, bool isOrchestrator)
+        public void setTollServer(int cost)
         {
             if (activeTollModifier != null) return;
             sendToServer(NetworkData.DistrictModifierType.Toll, null, null, cost, false);
@@ -341,7 +370,7 @@ namespace View
 
         public void removeTollServer(IconScript iconScript)
         {
-            sendToServer(NetworkData.DistrictModifierType.Toll, iconScript.getId(), null, null, true);
+            sendToServer(NetworkData.DistrictModifierType.Toll, null, null, iconScript.getValue(), true);
         }
 
 
@@ -355,7 +384,6 @@ namespace View
             {
                 vehicle_typeString = ((NetworkData.VehicleType)vehicle_type_id).ToString();
             }
-            //Debug.Log(districtString + ", " + modifierString + ", " + vehicle_typeString + ", " + associated_movement_value + ", " + associated_money_value + ", " + delete);
 
             NetworkData.DistrictModifier districtModifier = new()
             {
@@ -367,7 +395,21 @@ namespace View
                 delete = delete
             };
             
-            handler.dummyServerHandler(districtModifier);
+            NetworkData.PlayerInput playerInput = new()
+            {
+                player_id = NetworkData.Instance.UniqueID,
+                game_id =  (int)GameStateSynchronizer.Instance.LobbyId,
+                input_type = "ModifyDistrict",
+                related_role =  null,
+                related_node_id =  null,
+                district_modifier = districtModifier
+            };
+
+            RestAPI.Instance.SendPlayerInput(success => { }, failure => {
+                Debug.LogWarning($"Could not send Orchestrator input{failure}");
+            }, playerInput);
+            //handler.dummyServerHandler(districtModifier);
+            Debug.Log("Server is called");
 
         }
 
@@ -379,5 +421,3 @@ namespace View
 
 
 }
-//private const string input_type = "ModifyDistrict";
-//private const int related_node_id = null;
