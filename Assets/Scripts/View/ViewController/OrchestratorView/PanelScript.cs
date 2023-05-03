@@ -104,11 +104,7 @@ namespace View
             highlightedIndex = null;
         }
 
-        public bool isOrchestrator()
-        {
-           
-            return handler.GetIsOrchestrator();
-        }
+       
 
 
         

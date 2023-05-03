@@ -10,7 +10,8 @@ namespace View {
         public override void handleInput()
         {
             int selectedToll = (int)highlightedIndex + 1;
-            activeRegion.setTollServer(selectedToll, isOrchestrator());
+            activeRegion.setTollServer(selectedToll);
+
             hidePanel();
         }
 
