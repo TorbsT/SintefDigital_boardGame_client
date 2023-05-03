@@ -20,6 +20,7 @@ namespace Network
 
         public event Action<NetworkData.GameState?> StateChanged;
         public event Action<NetworkData.Player> PlayerConnected;
+        public event Action< List<NetworkData.DistrictModifier> > districtModifierChanged;
         public event Action<int> PlayerDisconnected;
         [field: SerializeField] public int? LobbyId { get; private set; } = null;
         public NetworkData.GameState? GameState { get; private set; }
@@ -102,6 +103,7 @@ namespace Network
         private void SetGamestate(NetworkData.GameState? newState)
         {
             // Check for differences between old and new state
+            
             bool differenceExists = false;
             Dictionary<int, NetworkData.Player> oldPlayerIds = new();
             Dictionary<int, NetworkData.Player> newPlayerIds = new();
@@ -130,14 +132,21 @@ namespace Network
                     PlayerConnected?.Invoke(newPlayerIds[id]);
                 }
             }
-            //bool districtHasChanged = GameState.district_modifier != newState.district_modifier;
-
-            GameState = newState;
-
-            /*if (districtHasChanged)
+            //Debug.Log(GameState.Value.district_modifiers.Count);
+            bool districtHasChanged = false;
+            if (GameState != null)
             {
-                districtModifierChanged?.Invoke(GameState.district_modifier);
-            }*/
+                districtHasChanged = (GameState.Value.district_modifiers.Count != newState.Value.district_modifiers.Count);
+            }
+ 
+            GameState = newState;
+            
+            if (districtHasChanged)
+            {
+                districtModifierChanged?.Invoke(GameState.Value.district_modifiers);
+               // Debug.Log("Modifier was added!");
+                //Debug.Log(GameState.Value.district_modifiers.Count);
+            }
 
             // the following is very good code
             if (true || differenceExists)

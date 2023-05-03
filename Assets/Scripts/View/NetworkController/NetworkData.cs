@@ -59,7 +59,9 @@ namespace Network
             Electric,
             Buss,
             Emergency,
-            Industrial
+            Industrial,
+            Normal, 
+            Geolocation
         }
         [Serializable]
         public enum DistrictModifierType

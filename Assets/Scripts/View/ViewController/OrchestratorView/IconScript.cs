@@ -25,11 +25,6 @@ namespace View
             rectTransform = GetComponent<RectTransform>();
         }
 
-        void Start()
-        {
-           
-         
-        }
         public void setAttachedRegionCard(RegionCard regionCard)
         {
             currentRegionCard = regionCard;
@@ -47,7 +42,7 @@ namespace View
 
         public Vector3 getDimentions()
         {
-            return new Vector3(rectTransform.rect.width, rectTransform.rect.height,0);
+            return new Vector3(rectTransform.rect.width* transform.lossyScale.x, rectTransform.rect.height* transform.lossyScale.y, 0);
         }
 
         public void moveTo(Vector3 pos)
@@ -57,6 +52,7 @@ namespace View
 
         public void removeOnServer() 
         {
+            Debug.Log(typeOfModifier + " " + currentRegionCard);
             if (currentRegionCard == null) { return; } // if not attached to a RegionCard, should not be able to access
             switch (typeOfModifier)
             {
