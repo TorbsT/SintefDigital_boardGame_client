@@ -72,7 +72,6 @@ namespace View
         private void StateChanged(NetworkData.GameState? state)
         {
             if (state == null) return;
-            Dictionary<int, List<Transform>> groupings = new();
             foreach (var player in state.Value.players)
             {
                 string roleName = player.in_game_id;
@@ -97,9 +96,10 @@ namespace View
                 if (packageState == PackageState.PickedUp)
                 {
                     // Animate this separately
-                    targetPos = Vector2.up*packageOverPlayerDistance;
+                    ObjectiveGrouper.Instance.Move(packageTransform, null);
                     packageTransform.SetParent(playerTransform, true);
-                    DoAnimation(packageTransform, targetPos);
+                    targetPos = Vector2.up*packageOverPlayerDistance;
+                    ObjectiveGrouper.Instance.DoAnimation(packageTransform, targetPos);
                 } else
                 {
                     // Animate this like other markers
@@ -108,52 +108,13 @@ namespace View
                         nodeId = packageSpawn;
                     else  // packageState == PackageState.DroppedOff
                         nodeId = packageDropoff;
-                    Transform nodeTransform = GraphManager.Instance.GetNode(nodeId).gameObject.transform;
-                    packageTransform.SetParent(nodeTransform, true);
-                    AddToGroup(groupings, nodeId, packageTransform);
+                    ObjectiveGrouper.Instance.Move(packageTransform, nodeId);
                 }
 
                 // Always add package dropoff to group
-                AddToGroup(groupings, packageDropoff, dropoffTransform);
-            }
-            SetGroupings(groupings);
-        }
-        private void AddToGroup(Dictionary<int, List<Transform>> group, int id, Transform trans)
-        {
-            if (!group.ContainsKey(id))
-                group.Add(id, new());
-            group[id].Add(trans);
-        }
-        private void SetGroupings(Dictionary<int, List<Transform>> groupings)
-        {
-            foreach (int nodeId in groupings.Keys)
-            {
-                Transform nodeTransform = GraphManager.Instance.GetNode(nodeId).gameObject.transform;
-                ICollection<Transform> markers = groupings[nodeId];
-                int count = markers.Count;
-                int i = 0;
-                Vector2 nodePos = Vector2.zero;//nodeTransform.position;
-                foreach (Transform marker in markers)
-                {
-                    Vector2 endPos = nodePos + (i - (count-1) / 2f) * groupDistance * Vector2.right;
-                    DoAnimation(marker, endPos);
-                    i++;
-                }
+                ObjectiveGrouper.Instance.Move(dropoffTransform, packageDropoff);
             }
         }
-        private void DoAnimation(Transform trans, Vector2 endPos)
-        {
-            Animation<Vector2> moveAnim = new()
-            {
-                Action = value => trans.localPosition = value,
-                Curve = AnimationPresets.Instance.PlayerMoveCurve,
-                Duration = AnimationPresets.Instance.PlayerMoveDuration,
-                StartValue = trans.localPosition,
-                EndValue = endPos
-            };
-            moveAnim.Start();
-        }
-
         private GameObject Spawn(GameObject prefab, int nodeId, NetworkData.InGameID role)
         {
             GameObject go = PoolManager.Depool(prefab);

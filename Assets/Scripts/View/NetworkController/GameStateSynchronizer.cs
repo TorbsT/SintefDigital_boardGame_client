@@ -115,7 +115,10 @@ namespace Network
             HashSet<int> allPlayerIds = new();
             foreach (int id in oldPlayerIds.Keys) allPlayerIds.Add(id);
             foreach (int id in newPlayerIds.Keys) allPlayerIds.Add(id);
-            
+
+            if (newState != null)
+                Debug.Log(newState.Value.players.Count);
+
             foreach (int id in allPlayerIds)
             {
                 // Check if this was added or removed
