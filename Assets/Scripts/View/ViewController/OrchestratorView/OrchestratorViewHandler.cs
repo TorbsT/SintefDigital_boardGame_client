@@ -41,6 +41,7 @@ namespace View
                 regionCard.setHandler(this);
                 
             }
+            //dummy tests for traffic
             regionCards[1].setTraffic(4);
             regionCards[2].setTraffic(2);
             regionCards[5].setTraffic(4);
@@ -73,7 +74,7 @@ namespace View
             }
         }
 
-        public void setEditStateCards()
+        public void setEditStateCards() //set edit state of cards based on roles and the turn 
         {
             foreach (RegionCard regionCard in regionCards)
             {
@@ -81,20 +82,7 @@ namespace View
             }
         }
 
-        private List<RegionCard> getRegionCardsByDistrict(NetworkData.District district)
-        {
-            List<RegionCard> cards = new List<RegionCard>();
-            foreach (RegionCard regioncard in regionCards)
-            {
-                if (regioncard.getDistrict() == district)
-                {
-                   cards.Add(regioncard);
-                }
-            }
-            return cards;
-        }
-
-
+        
      
         public void renderModifiers(List<NetworkData.DistrictModifier> modifierList)
         {
