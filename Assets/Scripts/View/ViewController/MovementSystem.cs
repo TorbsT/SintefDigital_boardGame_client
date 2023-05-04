@@ -28,9 +28,16 @@ namespace View
                 if (role == NetworkData.InGameID.Orchestrator.ToString())
                     continue;
                 int newPos = player.position_node_id.Value;
+                int oldPos;
                 if (!playerPositions.ContainsKey(role))
+                {
+                    oldPos = -100;
                     playerPositions.Add(role, newPos);
-                int oldPos = playerPositions[role];
+                } else
+                {
+                    oldPos = playerPositions[role];
+                }
+                
                 if (newPos != oldPos)
                 {
                     playerPositions[role] = newPos;
