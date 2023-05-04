@@ -9035,6 +9035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 1032638951944834588, guid: 86925c6d108a15943a6b3c3a74a10ec6, type: 3}
+  orchestratorViewHandler: {fileID: 1612083482}
 --- !u!4 &1618755443
 Transform:
   m_ObjectHideFlags: 0

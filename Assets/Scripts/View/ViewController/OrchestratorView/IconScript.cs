@@ -16,7 +16,6 @@ namespace View
 
         private NetworkData.DistrictModifierType typeOfModifier;
         private int value = 0;
-        // Start is called before the first frame update
 
 
         void Awake()
@@ -40,7 +39,7 @@ namespace View
         }
 
 
-        public Vector3 getDimentions()
+        public Vector3 getDimentions() //returns size adjusted to scale
         {
             return new Vector3(rectTransform.rect.width* transform.lossyScale.x, rectTransform.rect.height* transform.lossyScale.y, 0);
         }
@@ -77,13 +76,11 @@ namespace View
             {
                 case NetworkData.DistrictModifierType.Access:
                     currentRegionCard.removeAccess(this);
-                    //Destroy(gameObject);
                     PoolManager.Instance.Enpool(gameObject);
                     break;
                 case NetworkData.DistrictModifierType.Priority:
                     currentRegionCard.removePriority(this);
-                    PoolManager.Instance.Enpool(gameObject);
-                    //Destroy(gameObject);
+                    PoolManager.Instance.Enpool(gameObject); 
                     break;
                 case NetworkData.DistrictModifierType.Toll:
                     currentRegionCard.removeToll(this);

@@ -144,7 +144,7 @@ namespace Network
             if (districtHasChanged)
             {
                 districtModifierChanged?.Invoke(GameState.Value.district_modifiers);
-               // Debug.Log("Modifier was added!");
+                Debug.Log("Modifier was added! " + GameState.Value.district_modifiers.Count);
                 //Debug.Log(GameState.Value.district_modifiers.Count);
             }
 

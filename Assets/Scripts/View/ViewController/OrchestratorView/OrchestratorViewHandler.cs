@@ -29,6 +29,9 @@ namespace View
         void Start()
         {
             GameStateSynchronizer.Instance.districtModifierChanged += renderModifiers;
+            TurnManager.Instance.orchestratorTurnChange += renderModifiers;
+            
+            gameObject.SetActive(false);
             accessPanelScript.hidePanel();
             tollPanelScript.hidePanel();
             priorityPanelScript.hidePanel();
@@ -38,6 +41,7 @@ namespace View
                 regionCard.setHandler(this);
                 
             }
+            //dummy tests for traffic
             regionCards[1].setTraffic(4);
             regionCards[2].setTraffic(2);
             regionCards[5].setTraffic(4);
@@ -70,7 +74,7 @@ namespace View
             }
         }
 
-        public void setEditStateCards()
+        public void setEditStateCards() //set edit state of cards based on roles and the turn 
         {
             foreach (RegionCard regionCard in regionCards)
             {
@@ -78,28 +82,16 @@ namespace View
             }
         }
 
-        private List<RegionCard> getRegionCardsByDistrict(NetworkData.District district)
-        {
-            List<RegionCard> cards = new List<RegionCard>();
-            foreach (RegionCard regioncard in regionCards)
-            {
-                if (regioncard.getDistrict() == district)
-                {
-                   cards.Add(regioncard);
-                }
-            }
-            return cards;
-        }
-
-
-        //public List<NetworkData.DistrictModifier> modifierList = new List<NetworkData.DistrictModifier>();
+        
+     
         public void renderModifiers(List<NetworkData.DistrictModifier> modifierList)
         {
-            //NetworkData.District district = (NetworkData.District) Enum.Parse(typeof(NetworkData.District), districtModifier.district);
-           // modifierList.Add(districtModifier);
+            
+           
             foreach (RegionCard regionCard in regionCards)
             {
                 regionCard.resetCard();
+
                 foreach(NetworkData.DistrictModifier disModifier in modifierList)
                 {
                     if (disModifier.district == regionCard.getDistrict().ToString())
