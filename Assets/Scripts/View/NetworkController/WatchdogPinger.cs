@@ -29,7 +29,6 @@ namespace Network
 
         private void Start()
         {
-            Application.runInBackground = true;
             NetworkData.Instance.MeChanged += MeChanged;
         }
         private void Update()

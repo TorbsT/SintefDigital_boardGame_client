@@ -17,7 +17,6 @@ namespace View
         [SerializeField] private Button startGameButton;
         [SerializeField] private Button situationViewButton;
         [SerializeField] private TextMeshProUGUI situationViewText;
-        [SerializeField] private Button refreshButton;
         [SerializeField] private Button changeRoleButton;
         [SerializeField] private TextMeshProUGUI changeRoleText;
         [SerializeField] private RectTransform situationView;

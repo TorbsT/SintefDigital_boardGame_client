@@ -27,7 +27,6 @@ namespace Network
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            Application.runInBackground = true;
             Instance = this;
         }
 
