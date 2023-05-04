@@ -29,6 +29,7 @@ namespace View
         void Start()
         {
             GameStateSynchronizer.Instance.districtModifierChanged += renderModifiers;
+            gameObject.SetActive(false);
             accessPanelScript.hidePanel();
             tollPanelScript.hidePanel();
             priorityPanelScript.hidePanel();
@@ -92,11 +93,11 @@ namespace View
         }
 
 
-        //public List<NetworkData.DistrictModifier> modifierList = new List<NetworkData.DistrictModifier>();
+     
         public void renderModifiers(List<NetworkData.DistrictModifier> modifierList)
         {
-            //NetworkData.District district = (NetworkData.District) Enum.Parse(typeof(NetworkData.District), districtModifier.district);
-           // modifierList.Add(districtModifier);
+            
+            Debug.Log("was rendered");
             foreach (RegionCard regionCard in regionCards)
             {
                 regionCard.resetCard();
