@@ -29,6 +29,8 @@ namespace View
         void Start()
         {
             GameStateSynchronizer.Instance.districtModifierChanged += renderModifiers;
+            TurnManager.Instance.orchestratorTurnChange += renderModifiers;
+            
             gameObject.SetActive(false);
             accessPanelScript.hidePanel();
             tollPanelScript.hidePanel();
@@ -97,10 +99,11 @@ namespace View
         public void renderModifiers(List<NetworkData.DistrictModifier> modifierList)
         {
             
-            Debug.Log("was rendered");
+           
             foreach (RegionCard regionCard in regionCards)
             {
                 regionCard.resetCard();
+
                 foreach(NetworkData.DistrictModifier disModifier in modifierList)
                 {
                     if (disModifier.district == regionCard.getDistrict().ToString())

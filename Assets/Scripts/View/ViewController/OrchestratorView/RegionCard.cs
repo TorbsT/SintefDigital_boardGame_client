@@ -110,7 +110,7 @@ namespace View
 
         public bool getEditState()
         {
-            return isEditable & GameStateSynchronizer.Instance.IsOrchestrator;
+            return isEditable & GameStateSynchronizer.Instance.IsOrchestrator & TurnManager.Instance.isOrchestratorsTurn;
         }
 
         private void setCost(int trafficNumber)
@@ -319,6 +319,7 @@ namespace View
             {
                 activeTollModifier.removeSelf();
             }
+            setEditStateCard();
         }
 
         public void setEditStateCard()

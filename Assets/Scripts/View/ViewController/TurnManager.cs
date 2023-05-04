@@ -15,14 +15,15 @@ namespace View
         public static TurnManager Instance { get; private set; }
 
         public bool IsMyTurn { get; private set; }
-        public event Action TurnChanged; 
+        public event Action TurnChanged;
+        public event Action<List<NetworkData.DistrictModifier>> orchestratorTurnChange;
 
         [SerializeField] private Button endTurnButton;
         [SerializeField] private TextMeshProUGUI turnText;
         [SerializeField] private PlayerOwned playerOwned;
         private bool sending;
         private string prevTurnRole;
-
+        public bool isOrchestratorsTurn;
         private void Awake()
         {
             Instance = this;
@@ -35,7 +36,9 @@ namespace View
         {
             string turnRoleName = state.Value.current_players_turn;
             NetworkData.InGameID turnRole = (NetworkData.InGameID)Enum.Parse(typeof(NetworkData.InGameID), turnRoleName);
+            isOrchestratorsTurn = turnRole == NetworkData.InGameID.Orchestrator;
             NetworkData.Player? turnPlayer = null;
+
             foreach (var player in state.Value.players)
                 if (turnRoleName == player.in_game_id)
                 {
@@ -63,8 +66,12 @@ namespace View
             endTurnButton.interactable = IsMyTurn && !sending;
 
             if (turnRoleName != prevTurnRole)
+            {
                 TurnChanged?.Invoke();
-            prevTurnRole = turnRoleName;
+                orchestratorTurnChange?.Invoke(GameStateSynchronizer.Instance.GameState.Value.district_modifiers);
+             
+            }
+        prevTurnRole = turnRoleName;
         }
         public void Endturn()
         {
