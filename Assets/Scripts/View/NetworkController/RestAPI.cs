@@ -64,9 +64,9 @@ namespace Network
         {
             StartCoroutine(GET($"games/game/{lobbyId}", successCallback, failureCallback));
         }
-        internal void LeaveLobby(Action<string> successCallback, Action<string> failureCallback)
+        internal void LeaveLobby(Action<NetworkData.GameState> successCallback, Action<string> failureCallback)
         {
-            StartCoroutine(DELETE($"games/leave/{NetworkData.Instance.UniqueID}", successCallback, failureCallback));
+            DisconnectFromGame(successCallback, failureCallback);//StartCoroutine(DELETE($"games/leave/{NetworkData.Instance.UniqueID}", successCallback, failureCallback));
         }
         internal void JoinLobby
             (Action<NetworkData.GameState> successCallback, Action<string> failureCallback, int lobbyId)
@@ -117,7 +117,8 @@ namespace Network
                 game_id = GameStateSynchronizer.Instance.LobbyId.Value,
                 input_type = NetworkData.PlayerInputType.LeaveGame.ToString(),
             };
-            SendPlayerInput(successCallback, failureCallback, input);
+
+            SendPlayerInput(success=>{GameStateSynchronizer.Instance.SetLobbyId(null); successCallback(success);}, failureCallback, input);
         }
 
         // Debug
