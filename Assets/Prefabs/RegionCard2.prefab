@@ -2887,11 +2887,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   district: 0
-  isEditable: 0
+  isEditableCard: 0
   districtName: {fileID: 5761320128305417641}
   districtTraffic: {fileID: 5761320128436862912}
   districtCost: {fileID: 5761320127985499231}
-  vehicleAttributePrefab:
+  vehicleTypePrefab:
   - {fileID: 212408174348781880, guid: f3f8f2dc3bd08934781a1ee78623130c, type: 3}
   - {fileID: 212408174348781880, guid: 1263d18846d134e4eb6e935d9d389dbd, type: 3}
   - {fileID: 212408174348781880, guid: 74ae9238376527140899c8a3ecea22da, type: 3}
