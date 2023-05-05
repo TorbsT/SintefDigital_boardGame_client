@@ -161,5 +161,10 @@ namespace Network
                 StateChanged?.Invoke(newState);
             }
         }
+
+        internal void ClearAllStateChangeSubscribers()
+        {
+            this.StateChanged = null;
+        }
     }
 }

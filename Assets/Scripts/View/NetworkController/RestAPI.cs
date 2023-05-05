@@ -119,6 +119,7 @@ namespace Network
             };
 
             SendPlayerInput(success=>{GameStateSynchronizer.Instance.SetLobbyId(null); successCallback(success);}, failureCallback, input);
+            GameStateSynchronizer.Instance.ClearAllStateChangeSubscribers();
         }
 
         // Debug
