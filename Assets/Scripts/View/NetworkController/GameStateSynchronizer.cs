@@ -21,6 +21,7 @@ namespace Network
         public event Action<NetworkData.GameState?> StateChanged;
         public event Action<NetworkData.Player> PlayerConnected;
         public event Action< List<NetworkData.DistrictModifier> > districtModifierChanged;
+        public event Action<NetworkData.SituationCard> situationCardChanged;
         public event Action<int> PlayerDisconnected;
         [field: SerializeField] public int? LobbyId { get; private set; } = null;
         public NetworkData.GameState? GameState { get; private set; }
@@ -105,6 +106,8 @@ namespace Network
             // Check for differences between old and new state
             
             bool differenceExists = false;
+            bool districtHasChanged = false;
+            bool situationHasChanged = false;
             Dictionary<int, NetworkData.Player> oldPlayerIds = new();
             Dictionary<int, NetworkData.Player> newPlayerIds = new();
             if (GameState != null)
@@ -136,10 +139,18 @@ namespace Network
                 }
             }
             //Debug.Log(GameState.Value.district_modifiers.Count);
-            bool districtHasChanged = false;
+            
             if (GameState != null && newState != null)
             {
                 districtHasChanged = (GameState.Value.district_modifiers.Count != newState.Value.district_modifiers.Count);
+                if (GameState.Value.situation_card != null && newState.Value.situation_card != null)
+                {
+                    situationHasChanged = (GameState.Value.situation_card.Value.card_id != newState.Value.situation_card.Value.card_id);
+                }
+                else if (GameState.Value.situation_card == null && newState.Value.situation_card != null)
+                {
+                    situationHasChanged = true;
+                }
             }
  
             GameState = newState;
@@ -151,8 +162,12 @@ namespace Network
             if (districtHasChanged)
             {
                 districtModifierChanged?.Invoke(GameState.Value.district_modifiers);
-                Debug.Log("Modifier was added! " + GameState.Value.district_modifiers.Count);
-                //Debug.Log(GameState.Value.district_modifiers.Count);
+                situationCardChanged?.Invoke(GameState.Value.situation_card.Value);
+            }
+            if (situationHasChanged)
+            {
+                Debug.Log("should invoke");
+                situationCardChanged?.Invoke(GameState.Value.situation_card.Value);
             }
 
             // the following is very good code

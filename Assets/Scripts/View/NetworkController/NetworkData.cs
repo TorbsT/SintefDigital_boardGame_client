@@ -155,6 +155,15 @@ namespace Network
             public string traffic;
         }
         [Serializable]
+        public enum Traffic
+        {
+            LevelOne,
+            LevelTwo,
+            LevelThree,
+            LevelFour,
+            LevelFive
+        }
+        [Serializable]
         public struct PlayerObjectiveCard
         {
             public int start_node_id;

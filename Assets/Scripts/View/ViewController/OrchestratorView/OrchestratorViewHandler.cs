@@ -30,7 +30,9 @@ namespace View
         {
             GameStateSynchronizer.Instance.districtModifierChanged += renderModifiers;
             TurnManager.Instance.orchestratorTurnChange += renderModifiers;
-            
+            GameStateSynchronizer.Instance.situationCardChanged += renderTraffic;
+
+
             gameObject.SetActive(false);
             accessPanelScript.hidePanel();
             tollPanelScript.hidePanel();
@@ -41,10 +43,8 @@ namespace View
                 regionCard.setHandler(this);
                 
             }
-            //dummy tests for traffic
-            regionCards[1].setTraffic(4);
-            regionCards[2].setTraffic(2);
-            regionCards[5].setTraffic(4);
+            
+            
         }
 
         public void showTollScreen(RegionCard regionCard)
@@ -82,7 +82,23 @@ namespace View
             }
         }
 
-        
+        public void renderTraffic(NetworkData.SituationCard situationCard)
+        {
+            Debug.Log("traffic should render ");
+            foreach (RegionCard regionCard in regionCards)
+            {
+                foreach (NetworkData.CostTuple costTuple in situationCard.costs)
+                {
+                    if (costTuple.neighbourhood == regionCard.getDistrict().ToString())
+                    {
+                        NetworkData.Traffic trafficEnum = (NetworkData.Traffic)Enum.Parse(typeof(NetworkData.Traffic), costTuple.traffic);
+                        Debug.Log(trafficEnum);
+                        Debug.Log((int)trafficEnum);
+                        regionCard.setTraffic((int) trafficEnum + 1);
+                    }
+                }
+            }
+        }
      
         public void renderModifiers(List<NetworkData.DistrictModifier> modifierList)
         {
