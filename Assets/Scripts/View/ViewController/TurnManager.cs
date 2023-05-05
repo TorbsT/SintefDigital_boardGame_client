@@ -41,7 +41,6 @@ namespace View
             NetworkData.Player? turnPlayer = null;
 
             foreach (var player in state.Value.players) {
-                Debug.Log(player.in_game_id.ToString());
                 if (turnRoleName == player.in_game_id)
                 {
                     turnPlayer = player;
