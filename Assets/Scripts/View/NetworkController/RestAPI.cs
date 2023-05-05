@@ -110,6 +110,15 @@ namespace Network
             SendPlayerInput(successCallback, failureCallback, input);
         }
 
+        internal void DisconnectFromGame(Action<NetworkData.GameState> successCallback, Action<string> failureCallback) {
+            NetworkData.PlayerInput input = new()
+            {
+                player_id = NetworkData.Instance.UniqueID,
+                game_id = GameStateSynchronizer.Instance.LobbyId.Value,
+                input_type = NetworkData.PlayerInputType.LeaveGame.ToString(),
+            };
+            SendPlayerInput(successCallback, failureCallback, input);
+        }
 
         // Debug
         internal void DebugPlayerCount(Action<int> successCallback, Action<string> failureCallback)

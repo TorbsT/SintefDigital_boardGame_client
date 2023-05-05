@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Network;
 
 namespace View
 {
@@ -34,7 +35,7 @@ namespace View
         }
         public void DisconnectClicked()
         {
-            SceneManager.LoadSceneAsync(disconnectToScene);
+            RestAPI.Instance.DisconnectFromGame(success=>{SceneManager.LoadSceneAsync(disconnectToScene); Debug.Log("Successfully quit the game!");}, failure=>{Debug.Log("Could not disconnect from the game");});
         }
         public void ContinueClicked()
         {

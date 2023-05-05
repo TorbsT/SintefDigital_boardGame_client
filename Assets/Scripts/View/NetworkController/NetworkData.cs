@@ -41,7 +41,8 @@ namespace Network
             UndoAction,
             ModifyDistrict,
             StartGame,
-            AssignSituationCard
+            AssignSituationCard,
+            LeaveGame, 
         }
         [Serializable]
         public enum District
