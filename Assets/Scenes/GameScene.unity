@@ -303,6 +303,10 @@ PrefabInstance:
       propertyPath: isEditable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5761320128997401889, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
+      propertyPath: isEditableCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5761320128997401891, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
       propertyPath: m_Name
       value: RegionCardCC
@@ -1024,6 +1028,10 @@ PrefabInstance:
       propertyPath: cardMaterial
       value: 
       objectReference: {fileID: 2100000, guid: a8ea741f2138a3946962bb33b9b687c2, type: 2}
+    - target: {fileID: 5761320128997401889, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
+      propertyPath: isEditableCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5761320128997401891, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
       propertyPath: m_Name
       value: RegionCardA
@@ -1310,6 +1318,7 @@ MonoBehaviour:
   endTurnButton: {fileID: 350809421}
   turnText: {fileID: 1023017343}
   playerOwned: {fileID: 1211074529}
+  isOrchestratorsTurn: 0
 --- !u!114 &293593958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5210,6 +5219,10 @@ PrefabInstance:
       propertyPath: cardMaterial
       value: 
       objectReference: {fileID: 2100000, guid: f0f389d638fdbfc44a02f12f38bbda07, type: 2}
+    - target: {fileID: 5761320128997401889, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
+      propertyPath: isEditableCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5761320128997401891, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
       propertyPath: m_Name
       value: RegionCardP
@@ -6898,6 +6911,10 @@ PrefabInstance:
       propertyPath: cardMaterial
       value: 
       objectReference: {fileID: 2100000, guid: fd59274e161e72f4582e7af68a33496a, type: 2}
+    - target: {fileID: 5761320128997401889, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
+      propertyPath: isEditableCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5761320128997401891, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
       propertyPath: m_Name
       value: RegionCardIP
@@ -8780,6 +8797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groupLineDistance: 0.5
+  cooldown: 0.5
   circleRadius: 1
   groupMode: 1
 --- !u!1001 &1632683922
@@ -9867,6 +9885,10 @@ PrefabInstance:
       propertyPath: cardMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 5bf44a815f11c4c4b8f2769325aafa17, type: 2}
+    - target: {fileID: 5761320128997401889, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
+      propertyPath: isEditableCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5761320128997401891, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
       propertyPath: m_Name
       value: RegionCardRR
@@ -10093,6 +10115,10 @@ PrefabInstance:
       propertyPath: cardMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 77e3eea1ddd35584585186a641dd2518, type: 2}
+    - target: {fileID: 5761320128997401889, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
+      propertyPath: isEditableCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5761320128997401891, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
       propertyPath: m_Name
       value: RegionCardS
