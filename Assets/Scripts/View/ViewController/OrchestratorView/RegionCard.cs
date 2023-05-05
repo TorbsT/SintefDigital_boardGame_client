@@ -140,6 +140,7 @@ namespace View
 
         public GameObject setIcon(int id, List<IconScript> activeRestricions, Point[] points, GameObject button) //sets a general icon
         {
+
             if (id >= vehicleTypePrefab.Length) { return null; } //non legal id
             int activeModifiersCount = activeRestricions.Count + 1;
             if (activeModifiersCount > 2) { return null; } //should not be possible
