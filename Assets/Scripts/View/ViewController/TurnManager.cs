@@ -61,7 +61,7 @@ namespace View
             {
                 if (turnRoleName == NetworkData.InGameID.Orchestrator.ToString())
                     txt = "Orchestrator ";
-                txt += $"{turnPlayer.Value.name}'s turn"; // Den crash-er er fordi den nåværende spilleren er Undecided, mens det egentlig er Orchestrator sin tur, så turnPlayer er null!
+                txt += $"{turnPlayer.Value.name}'s turn";
             }
             playerOwned.Owner = turnRole;
             turnText.text = txt;
