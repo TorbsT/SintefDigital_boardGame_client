@@ -137,13 +137,17 @@ namespace Network
             }
             //Debug.Log(GameState.Value.district_modifiers.Count);
             bool districtHasChanged = false;
-            if (GameState != null)
+            if (GameState != null && newState != null)
             {
                 districtHasChanged = (GameState.Value.district_modifiers.Count != newState.Value.district_modifiers.Count);
             }
  
             GameState = newState;
             
+            if (GameState == null) {
+                return;
+            }
+
             if (districtHasChanged)
             {
                 districtModifierChanged?.Invoke(GameState.Value.district_modifiers);
@@ -156,6 +160,11 @@ namespace Network
             {
                 StateChanged?.Invoke(newState);
             }
+        }
+
+        internal void ClearAllStateChangeSubscribers()
+        {
+            this.StateChanged = null;
         }
     }
 }

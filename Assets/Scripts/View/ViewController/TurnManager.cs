@@ -34,17 +34,19 @@ namespace View
         }
         private void StateChanged(NetworkData.GameState? state)
         {
+            if (state == null) return;
             string turnRoleName = state.Value.current_players_turn;
             NetworkData.InGameID turnRole = (NetworkData.InGameID)Enum.Parse(typeof(NetworkData.InGameID), turnRoleName);
             isOrchestratorsTurn = turnRole == NetworkData.InGameID.Orchestrator;
             NetworkData.Player? turnPlayer = null;
 
-            foreach (var player in state.Value.players)
+            foreach (var player in state.Value.players) {
                 if (turnRoleName == player.in_game_id)
                 {
                     turnPlayer = player;
                     break;
                 }
+            }
             if (turnPlayer == null) Debug.LogError("There is nobody's turn: "+turnRole);
 
             string txt = "";
