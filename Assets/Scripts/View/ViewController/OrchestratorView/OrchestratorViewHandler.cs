@@ -136,17 +136,19 @@ namespace View
             List<GameObject> temp = new();  // Prevent errors
             foreach (Transform t in otherCardsParent.GetComponentsInChildren<Transform>())
             {
-                if (t == transform) continue;
+                if (t == otherCardsParent) continue;
+                if (t.parent != otherCardsParent) continue;
                 temp.Add(t.gameObject);
             }
             foreach (GameObject go in temp)
-                Destroy(go);
+                PoolManager.Enpool(go);
             var sitCard = AddOtherCard(situationCardPrefab).GetComponent<GameCard>();
             sitCard.SetValues(GameStateSynchronizer.Instance.GameState.Value.situation_card.Value);
             //var objCard = AddOtherCard(objectiveCardPrefab).GetComponent<ObjectiveCard>();
         }
         private GameObject AddOtherCard(GameObject prefab)
         {
+            Debug.Log("Done");
             GameObject card = PoolManager.Depool(prefab);
             RectTransform rt = card.GetComponent<RectTransform>();
             rt.SetParent(otherCardsParent);

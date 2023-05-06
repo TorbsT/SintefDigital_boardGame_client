@@ -1016,6 +1016,7 @@ MonoBehaviour:
     is_lobby: 0
     current_players_turn: 
     district_modifiers: []
+    edge_restrictions: []
 --- !u!114 &1127712886
 MonoBehaviour:
   m_ObjectHideFlags: 0

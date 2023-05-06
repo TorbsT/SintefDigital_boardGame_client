@@ -8512,7 +8512,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cfbc54f16b9e7f4e8abf89301016d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 9167691612597571787, guid: 82025b209cef60a4a9538c875e0d1c9d, type: 3}
+  playerPrefabs:
+  - {fileID: 5839310097486768842, guid: a3d0b87ba4950db4ab60b9465186eb6a, type: 3}
+  - {fileID: 8402183169221629151, guid: df5709fc1f2d0ea47861225b9ffefc6c, type: 3}
+  - {fileID: 3664640676465230554, guid: c4a8586d76d7c384894e0cf927b572af, type: 3}
+  - {fileID: 6264101493935419746, guid: e600326536dde044b8c219966a5325b4, type: 3}
+  - {fileID: 6287973054431760865, guid: a18ad8b5df8468b4c9d3651eb39fb003, type: 3}
+  - {fileID: 9167691612597571787, guid: 82025b209cef60a4a9538c875e0d1c9d, type: 3}
+  fallbackPlayerPrefab: {fileID: 9167691612597571787, guid: 82025b209cef60a4a9538c875e0d1c9d, type: 3}
   startPrefab: {fileID: 4452382819103230009, guid: f858136edc6cda640b6185fd53feffc6, type: 3}
   pickupPrefab: {fileID: 3848408592440982533, guid: e7bd3584f1868474ea3fcfed53432846, type: 3}
   goalPrefab: {fileID: 7155191702897517725, guid: 63346ae260c8e7d4b936c84dde087691, type: 3}
