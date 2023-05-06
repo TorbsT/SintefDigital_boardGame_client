@@ -56,8 +56,6 @@ namespace View
             if (IsMyTurn)
             {
                 txt = "Your turn";
-                if (turnRole != NetworkData.InGameID.Orchestrator)
-                    txt += $" ({turnPlayer.Value.remaining_moves} moves left)";
             }
             else
             {
@@ -65,6 +63,8 @@ namespace View
                     txt = "Orchestrator ";
                 txt += $"{turnPlayer.Value.name}'s turn";
             }
+            if (turnRole != NetworkData.InGameID.Orchestrator)
+                txt += $" ({turnPlayer.Value.remaining_moves} moves left)";
             playerOwned.Owner = turnRole;
             turnText.text = txt;
             endTurnButton.interactable = IsMyTurn && !sending;

@@ -21,7 +21,8 @@ namespace View
 
         public void Clicked()
         {
-            GameCardController.Instance.Click(this);
+            if (GameCardController.Instance != null)
+                GameCardController.Instance.Click(this);
         }
         public void SetValues(NetworkData.SituationCard card)
         {
