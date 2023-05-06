@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -186,5 +187,25 @@ namespace Network
         }
         private string GetConnectURL(string resource)
             => $"http://{URL}:{Port}/{resource}";
+
+        internal void SetEdgeRestriction(Action<NetworkData.GameState> successCallback, Action<string> failureCallback, int node_one_id, int node_two_id, NetworkData.RestrictionType chosen_edge_restriction, bool shouldDelete)
+        {
+            NetworkData.EdgeRestriction edgeRestriction = new()
+            {
+                node_one = node_one_id,
+                node_two = node_two_id,
+                edge_restriction = chosen_edge_restriction.ToString(),
+                delete = shouldDelete,
+            };
+            NetworkData.PlayerInput input = new()
+            {
+                player_id = NetworkData.Instance.UniqueID,
+                game_id = GameStateSynchronizer.Instance.LobbyId.Value,
+                input_type = NetworkData.PlayerInputType.ModifyEdgeRestrictions.ToString(),
+                park_and_ride_modifier = edgeRestriction
+            };
+
+            SendPlayerInput(successCallback, failureCallback, input);
+        }
     }
 }

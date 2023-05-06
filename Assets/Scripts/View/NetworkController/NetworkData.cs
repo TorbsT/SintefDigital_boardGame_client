@@ -104,7 +104,7 @@ namespace Network
         {
             public int node_one;
             public int node_two;
-            public RestrictionType edge_restriction;
+            public string edge_restriction;
             public bool delete;
         }
         [Serializable]
