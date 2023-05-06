@@ -109,7 +109,7 @@ namespace View
             int? vehicle_type_id = null;
             if (districtModifier.vehicle_type != null)
             {
-                NetworkData.VehicleType vehicle_type = (NetworkData.VehicleType)Enum.Parse(typeof(NetworkData.VehicleType), districtModifier.vehicle_type);
+                NetworkData.RestrictionType vehicle_type = (NetworkData.RestrictionType)Enum.Parse(typeof(NetworkData.RestrictionType), districtModifier.vehicle_type);
                 vehicle_type_id = (int)vehicle_type;
             }
             switch (modifier)

@@ -36,13 +36,16 @@ namespace Network
         {
             Movement,
             ChangeRole,
-            All, // Do not use?
+            All, // Do not use? Yes
             NextTurn,
             UndoAction,
             ModifyDistrict,
             StartGame,
             AssignSituationCard,
-            LeaveGame, 
+            LeaveGame,
+            ModifyEdgeRestrictions,
+            SetPlayerTrainBool,
+            SetPlayerBusBool,
         }
         [Serializable]
         public enum District
@@ -55,14 +58,14 @@ namespace Network
             Airport
         }
         [Serializable]
-        public enum VehicleType
+        public enum RestrictionType
         {
-            Electric = 0,
-            Bus = 1,
+            ParkAndRide = 0,
+            Electric = 1,
             Emergency = 2,
             Hazard = 3,
-            Heavy = 4, 
-            Geolocation = 5
+            Destination = 4,
+            Heavy = 5,
         }
         [Serializable]
         public enum DistrictModifierType
@@ -70,6 +73,12 @@ namespace Network
             Access,
             Priority,
             Toll
+        }
+        [Serializable]
+        public enum TypeEntitiesToTransport
+        {
+            People,
+            Packages,
         }
 
         // Structs
@@ -88,6 +97,15 @@ namespace Network
             public string current_players_turn;
             public List<DistrictModifier> district_modifiers;
             public SituationCard? situation_card;
+            public List<EdgeRestriction> edge_restrictions;
+        }
+        [Serializable]
+        public struct EdgeRestriction
+        {
+            public int node_one;
+            public int node_two;
+            public RestrictionType edge_restriction;
+            public bool delete;
         }
         [Serializable]
         public struct Player
@@ -99,13 +117,16 @@ namespace Network
             public int? position_node_id;
             public int remaining_moves;
             public PlayerObjectiveCard? objective_card;
+            public bool is_train;
+            public bool is_bus;
         }
         [Serializable]
         public struct Node
         {
             public int id;
             public string name;
-            public List<int> neighbours_id;
+            public bool is_connected_to_rail;
+            public bool is_parking_spot;
         }
         [Serializable]
         public struct NewGameInfo
@@ -123,6 +144,8 @@ namespace Network
             public int? related_node_id;
             public DistrictModifier? district_modifier;
             public int? situation_card_id;
+            public EdgeRestriction? park_and_ride_modifier;
+            public bool? related_bool;
         }
         [Serializable]
         public struct DistrictModifier
@@ -142,6 +165,7 @@ namespace Network
             public string description;
             public string goal;
             public List<CostTuple> costs;
+            public List<PlayerObjectiveCard> objective_cards;
         }
         [Serializable]
         public struct SituationCardList
@@ -157,12 +181,15 @@ namespace Network
         [Serializable]
         public struct PlayerObjectiveCard
         {
+            public string name;
             public int start_node_id;
             public int pick_up_node_id;
             public int drop_off_node_id;
             public List<string> special_vehicle_types;
             public bool picked_package_up;
             public bool dropped_package_off;
+            public TypeEntitiesToTransport type_of_entities_to_transport;
+            public int amount_of_entities;
         }
 
         public InGameID GetFirstAvailableRole(GameState state, bool skipOrchestrator)
