@@ -104,7 +104,7 @@ namespace Network
         {
             public int node_one;
             public int node_two;
-            public RestrictionType edge_restriction;
+            public string edge_restriction; // Of type RestrictionType
             public bool delete;
         }
         [Serializable]
@@ -144,7 +144,7 @@ namespace Network
             public int? related_node_id;
             public DistrictModifier? district_modifier;
             public int? situation_card_id;
-            public EdgeRestriction? park_and_ride_modifier;
+            public EdgeRestriction? edge_modifier;
             public bool? related_bool;
         }
         [Serializable]
