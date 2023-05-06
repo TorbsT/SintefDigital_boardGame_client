@@ -56,7 +56,7 @@ public class clickable : MonoBehaviour
                 clicked = !clicked;
             }
         }
-        Debug.Log(parkAndRideStart.readUnlocked);
-        Debug.Log(clicked);
+        //Debug.Log(parkAndRideStart.readUnlocked);
+        //Debug.Log(clicked);
     }
 }
