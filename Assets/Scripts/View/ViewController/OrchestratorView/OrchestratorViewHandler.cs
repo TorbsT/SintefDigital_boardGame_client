@@ -147,6 +147,7 @@ namespace View
         }
         private GameObject AddOtherCard(GameObject prefab)
         {
+            Debug.Log("Done");
             GameObject card = PoolManager.Depool(prefab);
             RectTransform rt = card.GetComponent<RectTransform>();
             rt.SetParent(otherCardsParent);
