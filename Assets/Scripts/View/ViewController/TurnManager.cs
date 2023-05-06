@@ -19,6 +19,8 @@ namespace View
         public event Action<List<NetworkData.DistrictModifier>> orchestratorTurnChange;
 
         [SerializeField] private Button endTurnButton;
+        [SerializeField] private RectTransform playerPanelsParent;
+        [SerializeField] private GameObject playerPanelPrefab;
         [SerializeField] private TextMeshProUGUI turnText;
         [SerializeField] private PlayerOwned playerOwned;
         private bool sending;
@@ -66,6 +68,34 @@ namespace View
             playerOwned.Owner = turnRole;
             turnText.text = txt;
             endTurnButton.interactable = IsMyTurn && !sending;
+
+            // Do player panels
+            // First, remove all previous players in panels
+            List<GameObject> temp = new();  // Prevent error
+            foreach (Transform t in playerPanelsParent.GetComponentsInChildren<Transform>())
+            {
+                if (t == playerPanelsParent) continue;
+                if (t.parent != playerPanelsParent) continue;
+                temp.Add(t.gameObject);
+            }
+            foreach (GameObject go in temp)
+                PoolManager.Enpool(go);
+            foreach (var player in state.Value.players)
+            {
+                GameObject go = PoolManager.Depool(playerPanelPrefab);
+                RectTransform rt = go.GetComponent<RectTransform>();
+                rt.SetParent(playerPanelsParent);
+                IngamePlayerPanel pp = go.GetComponent<IngamePlayerPanel>();
+                string playerTxt = "";
+                if (player.unique_id == NetworkData.Instance.UniqueID)
+                    playerTxt += "(You) ";
+                if (player.in_game_id == NetworkData.InGameID.Orchestrator.ToString())
+                    playerTxt += "Orchestrator ";
+                playerTxt += player.name;
+                pp.Text.text = playerTxt;
+                pp.PlayerOwned.Owner = (NetworkData.InGameID)Enum.Parse(typeof(NetworkData.InGameID), player.in_game_id);
+                pp.Shade.SetActive(player.unique_id != turnPlayer.Value.unique_id);
+            }
 
             if (turnRoleName != prevTurnRole)
             {

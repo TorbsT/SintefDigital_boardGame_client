@@ -202,7 +202,7 @@ namespace Network
                 player_id = NetworkData.Instance.UniqueID,
                 game_id = GameStateSynchronizer.Instance.LobbyId.Value,
                 input_type = NetworkData.PlayerInputType.ModifyEdgeRestrictions.ToString(),
-                park_and_ride_modifier = edgeRestriction
+                edge_modifier = edgeRestriction
             };
 
             SendPlayerInput(successCallback, failureCallback, input);

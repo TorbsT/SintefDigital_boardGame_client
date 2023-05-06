@@ -52,12 +52,8 @@ namespace View
                         // Write data to card
                         GameCard gamecard = PoolManager.Depool(cardPrefab).GetComponent<GameCard>();
                         gamecards.Add(id, gamecard);
-                        gamecard.Source = card;
-                        gamecard.Id.text = $"!{id}";
-                        gamecard.Title.text = title;
-                        gamecard.Description.text = description;
-                        gamecard.Goal.text = goal;
-                        gamecard.Traffic.text = traffics;
+                        gamecard.SetValues(card);
+
                         gamecard.gameObject.SetActive(true);
                         gamecard.transform.SetParent(cardsParent, false);
                     }

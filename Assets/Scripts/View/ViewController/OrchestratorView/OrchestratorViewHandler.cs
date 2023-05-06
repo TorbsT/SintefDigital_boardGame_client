@@ -9,6 +9,9 @@ namespace View
     {
         public static OrchestratorViewHandler Instance { get; private set; }
 
+        [SerializeField] private RectTransform otherCardsParent;  // Situation/Objective cards
+        [SerializeField] private GameObject situationCardPrefab;
+        [SerializeField] private GameObject objectiveCardPrefab;
         public RegionCard[] regionCards;
         public TollPanelScript tollPanelScript;
         public AccessPanelScript accessPanelScript;
@@ -16,7 +19,6 @@ namespace View
         public GameObject PriorityPanel;
         private RegionCard activeRegion;
         private int selectedPriority;
-
 
         public bool isOrchestrator;
 
@@ -45,6 +47,8 @@ namespace View
             regionCards[1].setTraffic(4);
             regionCards[2].setTraffic(2);
             regionCards[5].setTraffic(4);
+
+            RefreshOtherCards();
         }
 
         public void showTollScreen(RegionCard regionCard)
@@ -127,8 +131,27 @@ namespace View
                     break;
             }
         }
-       
-
+        private void RefreshOtherCards()
+        {
+            List<GameObject> temp = new();  // Prevent errors
+            foreach (Transform t in otherCardsParent.GetComponentsInChildren<Transform>())
+            {
+                if (t == transform) continue;
+                temp.Add(t.gameObject);
+            }
+            foreach (GameObject go in temp)
+                Destroy(go);
+            var sitCard = AddOtherCard(situationCardPrefab).GetComponent<GameCard>();
+            sitCard.SetValues(GameStateSynchronizer.Instance.GameState.Value.situation_card.Value);
+            //var objCard = AddOtherCard(objectiveCardPrefab).GetComponent<ObjectiveCard>();
+        }
+        private GameObject AddOtherCard(GameObject prefab)
+        {
+            GameObject card = PoolManager.Depool(prefab);
+            RectTransform rt = card.GetComponent<RectTransform>();
+            rt.SetParent(otherCardsParent);
+            return card;
+        }
     }
 
 }
