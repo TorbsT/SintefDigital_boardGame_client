@@ -23,15 +23,15 @@ namespace View
         private OrchestratorViewHandler handler; //used to open different panels with the help of orchestratorview
         public GameObject[] vehicleTypePrefab; //list of vech
 
-        public GameObject accessButton;
+        public GameObject addAccessButton;
         public Point[] accessPoints;
         private List<IconScript> activeAccessModifiers = new List<IconScript>();
 
-        public GameObject priorityButton;
+        public GameObject addPriorityButton;
         public Point[] priorityPoints;
         private List<IconScript> activePriorityModifiers = new List<IconScript>();
 
-        public GameObject tollButton;
+        public GameObject addTollButton;
         public GameObject tollCostIcon;
         public Point tollPoint;
         private IconScript activeTollModifier;
@@ -43,15 +43,14 @@ namespace View
 
 
 
-        void Awake()
+        void Start()
         {
-            accessButton.transform.position = accessPoints[0].GetPos();
-            priorityButton.transform.position = priorityPoints[0].GetPos();
-            tollButton.transform.position = tollPoint.GetPos();
-            setSizesOfIcons(15);
+            addAccessButton.transform.position = accessPoints[0].GetPos();
+            addPriorityButton.transform.position = priorityPoints[0].GetPos();
+            addTollButton.transform.position = tollPoint.GetPos();
+            //setSizesOfIcons(15);
             setEditStateCard();
             tollCostIcon.SetActive(false);
-
             setColor();
             setDistrictText();
             setTraffic(traffic);
@@ -66,9 +65,9 @@ namespace View
 
         private void setSizesOfIcons(float percentage)
         {
-            setSizePercentage(accessButton, percentage);
-            setSizePercentage(priorityButton, percentage);
-            setSizePercentage(tollButton, percentage);
+            setSizePercentage(addAccessButton, percentage);
+            setSizePercentage(addPriorityButton, percentage);
+            setSizePercentage(addTollButton, percentage);
         }
 
 
@@ -211,7 +210,7 @@ namespace View
 
         public void setAccess(int id)
         {
-            GameObject icon = setIcon(id, activeAccessModifiers, accessPoints, accessButton);
+            GameObject icon = setIcon(id, activeAccessModifiers, accessPoints, addAccessButton);
             IconScript iconScript = icon.GetComponent<IconScript>();
             activeAccessModifiers.Add(iconScript);
             iconScript.setTypeOfModifier(NetworkData.DistrictModifierType.Access);
@@ -221,7 +220,7 @@ namespace View
 
         public bool removeAccess(IconScript iconScript)
         {
-            if (!removeIcon(iconScript, activeAccessModifiers, accessPoints, accessButton)) { return false; }
+            if (!removeIcon(iconScript, activeAccessModifiers, accessPoints, addAccessButton)) { return false; }
             activeAccessModifiers.Remove(iconScript);
 
             for (int i = 0; i < activeAccessModifiers.Count; i++)
@@ -258,7 +257,7 @@ namespace View
 
         public void setPriority(int id, int value)
         {
-            GameObject icon = setIcon(id, activePriorityModifiers, priorityPoints, priorityButton);
+            GameObject icon = setIcon(id, activePriorityModifiers, priorityPoints, addPriorityButton);
             IconScript iconScript = icon.GetComponent<IconScript>();
             activePriorityModifiers.Add(iconScript);
             iconScript.setTypeOfModifier(NetworkData.DistrictModifierType.Priority);
@@ -274,7 +273,7 @@ namespace View
         public bool removePriority(IconScript iconScript)
         {
         
-            if (!removeIcon(iconScript, activePriorityModifiers, priorityPoints, priorityButton)) { return false; }
+            if (!removeIcon(iconScript, activePriorityModifiers, priorityPoints, addPriorityButton)) { return false; }
             activePriorityModifiers.Remove(iconScript);
             resetPriorityMarkers();
             for (int i = 0; i < activePriorityModifiers.Count; i++)
@@ -335,9 +334,9 @@ namespace View
 
         public void setOrchestratorOptions(bool boolean) // set buttons used to add resrictions
         {
-            accessButton.SetActive(boolean);
-            priorityButton.SetActive(boolean);
-            tollButton.SetActive(boolean);
+            addAccessButton.SetActive(boolean);
+            addPriorityButton.SetActive(boolean);
+            addTollButton.SetActive(boolean);
         }
 
         //These method only sends changes to the server, visual updates are done trough the new  recived gamestate

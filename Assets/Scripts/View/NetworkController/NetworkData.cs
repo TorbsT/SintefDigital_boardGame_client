@@ -57,12 +57,12 @@ namespace Network
         [Serializable]
         public enum VehicleType
         {
-            Electric,
-            Buss,
-            Emergency,
-            Industrial,
-            Normal, 
-            Geolocation
+            Electric = 0,
+            Bus = 1,
+            Emergency = 2,
+            Hazard = 3,
+            Heavy = 4, 
+            Geolocation = 5
         }
         [Serializable]
         public enum DistrictModifierType
