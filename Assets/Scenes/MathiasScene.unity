@@ -123,6 +123,79 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &2441986
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2045349102}
+    m_Modifications:
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_Name
+      value: ParkAndRideStart (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_TagString
+      value: ParkRide
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383340, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 87a1386b577431643bb1fb687f749907, type: 3}
 --- !u!1 &19210667
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &19210668
 Transform:
   m_ObjectHideFlags: 0
@@ -170,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+  parkAndRideStart: {fileID: 0}
 --- !u!212 &19210670
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -285,7 +359,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &95514056
 Transform:
   m_ObjectHideFlags: 0
@@ -314,6 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+  parkAndRideStart: {fileID: 0}
 --- !u!212 &95514058
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -411,6 +486,79 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1001 &158633689
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2045349102}
+    m_Modifications:
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.9940001
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_Name
+      value: ParkAndRideStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_TagString
+      value: ParkRide
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383340, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 87a1386b577431643bb1fb687f749907, type: 3}
 --- !u!1 &175955244
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +710,7 @@ GameObject:
   - component: {fileID: 238163578}
   - component: {fileID: 238163580}
   m_Layer: 0
-  m_Name: segment (17)
+  m_Name: I10-Terminal1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -628,8 +776,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -670,10 +818,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -693,6 +841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &271576142
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,7 +993,7 @@ GameObject:
   - component: {fileID: 299882057}
   - component: {fileID: 299882059}
   m_Layer: 0
-  m_Name: segment
+  m_Name: I3-EastsideMart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -910,8 +1059,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 100, y: 100}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -952,11 +1101,11 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -975,6 +1124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &307302138
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,7 +1138,7 @@ GameObject:
   - component: {fileID: 307302140}
   - component: {fileID: 307302142}
   m_Layer: 0
-  m_Name: segment (35)
+  m_Name: I7-I10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1054,8 +1204,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -1096,10 +1246,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -1119,6 +1269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &320404208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,7 +1559,7 @@ GameObject:
   - component: {fileID: 369625934}
   - component: {fileID: 369625936}
   m_Layer: 0
-  m_Name: segment (18)
+  m_Name: Terminal1-Terminal2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1474,8 +1625,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -1516,10 +1667,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -1539,6 +1690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &377005145
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,7 +1704,7 @@ GameObject:
   - component: {fileID: 377005147}
   - component: {fileID: 377005149}
   m_Layer: 0
-  m_Name: segment (20)
+  m_Name: I8-Terminal1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1618,8 +1770,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -1660,10 +1812,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -1683,6 +1835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &408514135
 GameObject:
   m_ObjectHideFlags: 0
@@ -1696,7 +1849,7 @@ GameObject:
   - component: {fileID: 408514137}
   - component: {fileID: 408514139}
   m_Layer: 0
-  m_Name: segment (4)
+  m_Name: CitySquare-ConcertHall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1762,8 +1915,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -1804,10 +1957,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -1827,6 +1980,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
+--- !u!4 &418556948 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+  m_PrefabInstance: {fileID: 467519436}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &442830208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,6 +2123,152 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &467519436
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2045349102}
+    m_Modifications:
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_Name
+      value: ParkAndRideStart (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_TagString
+      value: ParkRide
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383340, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+--- !u!1001 &468866394
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2045349102}
+    m_Modifications:
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_Name
+      value: ParkAndRideStart (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_TagString
+      value: ParkRide
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383340, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 87a1386b577431643bb1fb687f749907, type: 3}
 --- !u!1 &469482225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,7 +2282,7 @@ GameObject:
   - component: {fileID: 469482227}
   - component: {fileID: 469482229}
   m_Layer: 0
-  m_Name: segment (9)
+  m_Name: CitySquare-CityPark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2043,8 +2348,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -2085,10 +2390,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -2108,6 +2413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &505425254
 GameObject:
   m_ObjectHideFlags: 0
@@ -2121,7 +2427,7 @@ GameObject:
   - component: {fileID: 505425256}
   - component: {fileID: 505425258}
   m_Layer: 0
-  m_Name: segment (6)
+  m_Name: CentralStation-CitySquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2187,8 +2493,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -2229,10 +2535,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -2252,6 +2558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &511439476
 GameObject:
   m_ObjectHideFlags: 0
@@ -2390,6 +2697,79 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &536378404
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2045349102}
+    m_Modifications:
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_Name
+      value: ParkAndRideStart (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_TagString
+      value: ParkRide
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383340, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 87a1386b577431643bb1fb687f749907, type: 3}
 --- !u!1 &540324432
 GameObject:
   m_ObjectHideFlags: 0
@@ -2541,7 +2921,7 @@ GameObject:
   - component: {fileID: 555899357}
   - component: {fileID: 555899359}
   m_Layer: 0
-  m_Name: segment (14)
+  m_Name: Lakeside-Warehouses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2607,8 +2987,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -2649,10 +3029,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -2672,6 +3052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &564390473
 GameObject:
   m_ObjectHideFlags: 0
@@ -2958,7 +3339,7 @@ GameObject:
   - component: {fileID: 590310907}
   - component: {fileID: 590310909}
   m_Layer: 0
-  m_Name: segment (32)
+  m_Name: Northside-Beach
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3024,8 +3405,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -3066,10 +3447,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -3089,6 +3470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &652059844
 GameObject:
   m_ObjectHideFlags: 0
@@ -3107,7 +3489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &652059845
 Transform:
   m_ObjectHideFlags: 0
@@ -3136,6 +3518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+  parkAndRideStart: {fileID: 0}
 --- !u!212 &652059847
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3246,7 +3629,7 @@ GameObject:
   - component: {fileID: 705478658}
   - component: {fileID: 705478660}
   m_Layer: 0
-  m_Name: segment (25)
+  m_Name: I4-I5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3312,8 +3695,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -3354,10 +3737,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -3377,6 +3760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &728523687
 GameObject:
   m_ObjectHideFlags: 0
@@ -3390,7 +3774,7 @@ GameObject:
   - component: {fileID: 728523689}
   - component: {fileID: 728523691}
   m_Layer: 0
-  m_Name: segment (34)
+  m_Name: I5-Lakeside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3456,8 +3840,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -3498,10 +3882,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -3521,6 +3905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &736069568
 GameObject:
   m_ObjectHideFlags: 0
@@ -3917,6 +4302,84 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &805665985
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2045349102}
+    m_Modifications:
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_Name
+      value: ParkAndRideStart (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_TagString
+      value: ParkRide
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383340, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+--- !u!4 &834091695 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+  m_PrefabInstance: {fileID: 1201183303}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &856434553
 GameObject:
   m_ObjectHideFlags: 0
@@ -3930,7 +4393,7 @@ GameObject:
   - component: {fileID: 856434555}
   - component: {fileID: 856434557}
   m_Layer: 0
-  m_Name: segment (22)
+  m_Name: EastsideMart-EastTown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3996,8 +4459,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -4038,10 +4501,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -4061,6 +4524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &918785036
 GameObject:
   m_ObjectHideFlags: 0
@@ -4485,7 +4949,7 @@ GameObject:
   - component: {fileID: 965972410}
   - component: {fileID: 965972412}
   m_Layer: 0
-  m_Name: segment (31)
+  m_Name: Port-I2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4551,8 +5015,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -4593,10 +5057,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -4616,6 +5080,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
+--- !u!4 &981046352 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+  m_PrefabInstance: {fileID: 468866394}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &990827332
 GameObject:
   m_ObjectHideFlags: 0
@@ -4629,7 +5099,7 @@ GameObject:
   - component: {fileID: 990827334}
   - component: {fileID: 990827336}
   m_Layer: 0
-  m_Name: segment (12)
+  m_Name: Quarry-I5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4695,8 +5165,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -4737,10 +5207,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -4760,6 +5230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &994995903
 GameObject:
   m_ObjectHideFlags: 0
@@ -4898,6 +5369,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1042747280 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+  m_PrefabInstance: {fileID: 2441986}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1047234540
 GameObject:
   m_ObjectHideFlags: 0
@@ -4916,7 +5392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1047234541
 Transform:
   m_ObjectHideFlags: 0
@@ -4945,6 +5421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+  parkAndRideStart: {fileID: 0}
 --- !u!212 &1047234543
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5055,7 +5532,7 @@ GameObject:
   - component: {fileID: 1067344328}
   - component: {fileID: 1067344330}
   m_Layer: 0
-  m_Name: segment (29)
+  m_Name: Refinery-IndustryPark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5121,8 +5598,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -5163,10 +5640,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -5186,6 +5663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &1069357649
 GameObject:
   m_ObjectHideFlags: 0
@@ -5199,7 +5677,7 @@ GameObject:
   - component: {fileID: 1069357651}
   - component: {fileID: 1069357653}
   m_Layer: 0
-  m_Name: segment (13)
+  m_Name: WestTown-Lakeside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5265,8 +5743,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -5307,10 +5785,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -5330,6 +5808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &1115750027
 GameObject:
   m_ObjectHideFlags: 0
@@ -5480,7 +5959,7 @@ GameObject:
   - component: {fileID: 1118253972}
   - component: {fileID: 1118253974}
   m_Layer: 0
-  m_Name: segment (1)
+  m_Name: EastsideMart-I7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5546,8 +6025,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -5588,10 +6067,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -5611,6 +6090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &1119731824
 GameObject:
   m_ObjectHideFlags: 0
@@ -5624,7 +6104,7 @@ GameObject:
   - component: {fileID: 1119731826}
   - component: {fileID: 1119731828}
   m_Layer: 0
-  m_Name: segment (27)
+  m_Name: IndustryPark-I1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5690,8 +6170,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -5732,10 +6212,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -5755,6 +6235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &1148046167
 GameObject:
   m_ObjectHideFlags: 0
@@ -5768,7 +6249,7 @@ GameObject:
   - component: {fileID: 1148046169}
   - component: {fileID: 1148046171}
   m_Layer: 0
-  m_Name: segment (19)
+  m_Name: I7-Terminal1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5834,8 +6315,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -5876,10 +6357,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -5899,6 +6380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &1167123958
 GameObject:
   m_ObjectHideFlags: 0
@@ -6037,6 +6519,95 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1201183303
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2045349102}
+    m_Modifications:
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_Name
+      value: ParkAndRideStart (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383339, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: m_TagString
+      value: ParkRide
+      objectReference: {fileID: 0}
+    - target: {fileID: 652560585189383340, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+--- !u!4 &1206806892 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+  m_PrefabInstance: {fileID: 158633689}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1206806893 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 652560585189383340, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+  m_PrefabInstance: {fileID: 158633689}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 322b350a885deb645ab7154d050e40f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1214562629
 GameObject:
   m_ObjectHideFlags: 0
@@ -6313,7 +6884,7 @@ GameObject:
   - component: {fileID: 1220582604}
   - component: {fileID: 1220582606}
   m_Layer: 0
-  m_Name: segment (7)
+  m_Name: I4-CentralStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6379,8 +6950,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -6421,10 +6992,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -6444,6 +7015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &1242912681
 GameObject:
   m_ObjectHideFlags: 0
@@ -6462,7 +7034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1242912682
 Transform:
   m_ObjectHideFlags: 0
@@ -6491,6 +7063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+  parkAndRideStart: {fileID: 0}
 --- !u!212 &1242912684
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6601,7 +7174,7 @@ GameObject:
   - component: {fileID: 1265093561}
   - component: {fileID: 1265093563}
   m_Layer: 0
-  m_Name: segment (2)
+  m_Name: I6-I7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6667,8 +7240,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -6709,10 +7282,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -6732,6 +7305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &1287868074
 GameObject:
   m_ObjectHideFlags: 0
@@ -6745,7 +7319,7 @@ GameObject:
   - component: {fileID: 1287868076}
   - component: {fileID: 1287868078}
   m_Layer: 0
-  m_Name: segment (10)
+  m_Name: CityPark-I6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6811,8 +7385,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -6853,10 +7427,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -6876,6 +7450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &1327238950
 GameObject:
   m_ObjectHideFlags: 0
@@ -7025,7 +7600,7 @@ GameObject:
   - component: {fileID: 1345571118}
   - component: {fileID: 1345571120}
   m_Layer: 0
-  m_Name: segment (33)
+  m_Name: Beach-I3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7091,8 +7666,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -7133,10 +7708,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -7156,6 +7731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &1394841865
 GameObject:
   m_ObjectHideFlags: 0
@@ -7174,7 +7750,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1394841866
 Transform:
   m_ObjectHideFlags: 0
@@ -7203,6 +7779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+  parkAndRideStart: {fileID: 0}
 --- !u!212 &1394841868
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7313,7 +7890,7 @@ GameObject:
   - component: {fileID: 1421055836}
   - component: {fileID: 1421055838}
   m_Layer: 0
-  m_Name: segment (3)
+  m_Name: ConcertHall-EastsideMart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7379,8 +7956,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -7421,10 +7998,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -7444,6 +8021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &1431364347
 GameObject:
   m_ObjectHideFlags: 0
@@ -7457,7 +8035,7 @@ GameObject:
   - component: {fileID: 1431364349}
   - component: {fileID: 1431364351}
   m_Layer: 0
-  m_Name: segment (23)
+  m_Name: I2-I3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7523,8 +8101,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -7565,10 +8143,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -7588,6 +8166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &1453514297
 GameObject:
   m_ObjectHideFlags: 0
@@ -7601,7 +8180,7 @@ GameObject:
   - component: {fileID: 1453514299}
   - component: {fileID: 1453514301}
   m_Layer: 0
-  m_Name: segment (8)
+  m_Name: CentralStation-FoodCourt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7667,8 +8246,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -7709,10 +8288,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -7732,6 +8311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &1489641569
 GameObject:
   m_ObjectHideFlags: 0
@@ -7745,7 +8325,7 @@ GameObject:
   - component: {fileID: 1489641571}
   - component: {fileID: 1489641573}
   m_Layer: 0
-  m_Name: segment (5)
+  m_Name: FoodCourt-CityPark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7811,8 +8391,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -7853,10 +8433,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -7876,6 +8456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &1522180677
 GameObject:
   m_ObjectHideFlags: 0
@@ -8027,7 +8608,7 @@ GameObject:
   - component: {fileID: 1564160397}
   - component: {fileID: 1564160399}
   m_Layer: 0
-  m_Name: segment (16)
+  m_Name: I9-I10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8093,8 +8674,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -8135,10 +8716,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -8158,6 +8739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &1607781601
 GameObject:
   m_ObjectHideFlags: 0
@@ -8581,7 +9163,7 @@ GameObject:
   - component: {fileID: 1724910927}
   - component: {fileID: 1724910929}
   m_Layer: 0
-  m_Name: segment (26)
+  m_Name: I1-I4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8647,8 +9229,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -8689,10 +9271,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -8712,6 +9294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &1728561708
 GameObject:
   m_ObjectHideFlags: 0
@@ -8730,7 +9313,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1728561709
 Transform:
   m_ObjectHideFlags: 0
@@ -8759,6 +9342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+  parkAndRideStart: {fileID: 0}
 --- !u!212 &1728561711
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8869,7 +9453,7 @@ GameObject:
   - component: {fileID: 1736872811}
   - component: {fileID: 1736872813}
   m_Layer: 0
-  m_Name: segment (28)
+  m_Name: Factory-Refinery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8935,8 +9519,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -8977,10 +9561,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -9000,6 +9584,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
+--- !u!4 &1759698388 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+  m_PrefabInstance: {fileID: 805665985}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1783795638
 GameObject:
   m_ObjectHideFlags: 0
@@ -9566,7 +10156,7 @@ GameObject:
   - component: {fileID: 1907010680}
   - component: {fileID: 1907010682}
   m_Layer: 0
-  m_Name: segment (30)
+  m_Name: Factory-IndustryPark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9632,8 +10222,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -9674,10 +10264,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -9697,6 +10287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &1958639672
 GameObject:
   m_ObjectHideFlags: 0
@@ -9986,7 +10577,7 @@ GameObject:
   - component: {fileID: 2007395850}
   - component: {fileID: 2007395852}
   m_Layer: 0
-  m_Name: segment (15)
+  m_Name: Warehouses-I9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10052,8 +10643,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -10094,10 +10685,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -10117,6 +10708,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
+--- !u!4 &2014518691 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
+  m_PrefabInstance: {fileID: 536378404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2042758131
 GameObject:
   m_ObjectHideFlags: 0
@@ -10130,7 +10727,7 @@ GameObject:
   - component: {fileID: 2042758133}
   - component: {fileID: 2042758135}
   m_Layer: 0
-  m_Name: segment (24)
+  m_Name: I1-I2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10196,8 +10793,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -10238,10 +10835,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -10261,6 +10858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &2045349101
 GameObject:
   m_ObjectHideFlags: 0
@@ -10291,12 +10889,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1206806892}
   - {fileID: 19210668}
+  - {fileID: 1042747280}
   - {fileID: 1242912682}
+  - {fileID: 418556948}
   - {fileID: 95514056}
+  - {fileID: 834091695}
   - {fileID: 1728561709}
+  - {fileID: 981046352}
   - {fileID: 652059845}
+  - {fileID: 1759698388}
   - {fileID: 1394841866}
+  - {fileID: 2014518691}
   - {fileID: 1047234541}
   - {fileID: 299882056}
   - {fileID: 1118253971}
@@ -10529,7 +11134,7 @@ GameObject:
   - component: {fileID: 2135748058}
   - component: {fileID: 2135748060}
   m_Layer: 0
-  m_Name: segment (21)
+  m_Name: EastTown-I8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10595,8 +11200,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -10637,10 +11242,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -10660,6 +11265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
 --- !u!1 &2140945411
 GameObject:
   m_ObjectHideFlags: 0
@@ -10673,7 +11279,7 @@ GameObject:
   - component: {fileID: 2140945413}
   - component: {fileID: 2140945415}
   m_Layer: 0
-  m_Name: segment (11)
+  m_Name: I5-I6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10739,8 +11345,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.85, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -10781,10 +11387,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.85}
+    newSize: {x: 1.85, y: 1.85}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -10804,3 +11410,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
+  parkAndRideStart: {fileID: 1206806893}
