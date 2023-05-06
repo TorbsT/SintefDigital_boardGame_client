@@ -15,6 +15,7 @@ namespace View
         [SerializeField] private Button createLobbyButton;
         [SerializeField] private Button refreshButton;
         [SerializeField] private GameObject lobbyPrefab;
+        [SerializeField] private TextMeshProUGUI infoText;
 
         private void Awake()
         {
@@ -33,6 +34,10 @@ namespace View
                     "Do not open Main Menu Scene directly, always go via IntroScene");
                 return;
             }
+            string txt = $"Name: {NetworkData.Instance.PlayerName}\n" +
+                $"ID: {NetworkData.Instance.UniqueID}";
+            infoText.text = txt;
+
 
             // Remove all previously found lobbies
             GetComponent<UIListHandler>().Clear();

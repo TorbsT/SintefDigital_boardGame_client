@@ -99,6 +99,8 @@ namespace Network
             public int? position_node_id;
             public int remaining_moves;
             public PlayerObjectiveCard? objective_card;
+            public bool is_train;
+            public bool is_bus;
         }
         [Serializable]
         public struct Node
