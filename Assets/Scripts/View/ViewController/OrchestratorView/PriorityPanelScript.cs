@@ -37,16 +37,11 @@ namespace View {
             icon.GetComponent<Button>().onClick.AddListener(() => handleValue(value));
         }
 
-        private void addOnclickHandler(int id)
-        {
-
-        }
-
         public void handleValue(int value) //Called from onclick listerners on p1/p2
         {
             p1.SetActive(false);
             p2.SetActive(false);
-            activeRegion.setPriorityServer(chosenIndex, value, isOrchestrator());
+            activeRegion.setPriorityServer(chosenIndex, value);
             hidePanel();
         }
 

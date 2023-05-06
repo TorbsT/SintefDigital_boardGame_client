@@ -15,15 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 1c48f9ae824202f47be5e3ee00eb91e6
   - enabled: 1
-    path: Assets/Scenes/OrchestratorScene.unity
-    guid: 72839d97de0ec604abadce4cdbf34077
-  - enabled: 1
-    path: Assets/Scenes/MartinScene.unity
-    guid: 0767a440fc2b77e4cb3b5d3136eb469a
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 1
     path: Assets/Scenes/MathiasScene.unity
     guid: ce44264af3efc894294e4ee17084b545
   - enabled: 1
