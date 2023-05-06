@@ -383,7 +383,7 @@ namespace View
             string vehicle_typeString = null;
             if (vehicle_type_id != null)
             {
-                vehicle_typeString = ((NetworkData.VehicleType)vehicle_type_id).ToString();
+                vehicle_typeString = ((NetworkData.RestrictionType)vehicle_type_id).ToString();
             }
 
             NetworkData.DistrictModifier districtModifier = new()
