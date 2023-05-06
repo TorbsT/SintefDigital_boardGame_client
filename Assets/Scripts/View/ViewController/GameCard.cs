@@ -19,15 +19,26 @@ namespace View
 
         public NetworkData.SituationCard Source { get; set; }
 
-        public int GetId() { return id; }
         public void Clicked()
         {
             GameCardController.Instance.Click(this);
         }
-        public void moveTo(Vector3 newPos) //TODO write with vector3 instead
+        public void SetValues(NetworkData.SituationCard card)
         {
-            return;
-            this.transform.position = newPos;
+            Source = card;
+            Id.text = $"!{card.card_id}";
+            Title.text = card.title;
+            Description.text = card.description;
+            Goal.text = card.goal;
+
+            List<string> trafficList = new();
+            if (card.costs != null)
+                foreach (var traffic in card.costs)
+                {
+                    trafficList.Add($"{traffic.neighbourhood}: {traffic.traffic}");
+                }
+            string traffics = string.Join("\n", trafficList);
+            Traffic.text = traffics;
         }
 
         private void Awake()
