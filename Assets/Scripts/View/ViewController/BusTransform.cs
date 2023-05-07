@@ -2,14 +2,20 @@ using Network;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using View;
 
 public class BusTransform : MonoBehaviour
 {
     private bool should_be_bus = false;
 
-    private void Awake()
+    private void OnEnable()
     {
-        if (NetworkData.Instance.Me.Value.is_bus)
+        UpdateButtonSprite();
+    }
+
+    public void UpdateButtonSprite()
+    {
+        if (GameStateSynchronizer.Instance.Me.is_bus)
         {
             SetButtonSpriteToTurnBackToVehicle();
         }
@@ -38,9 +44,7 @@ public class BusTransform : MonoBehaviour
             {
                 SetButtonSpriteToTurnToBus();
             }
-            NetworkData.Player player = NetworkData.Instance.Me.Value;
-            player.is_bus = should_be_bus;
-            NetworkData.Instance.Me = player;
+            UndoSystem.Instance.MovesDone++;
         }, failure =>
         {
             Debug.Log(failure);
@@ -61,7 +65,7 @@ public class BusTransform : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            should_be_bus = !NetworkData.Instance.Me.Value.is_bus;
+            should_be_bus = !GameStateSynchronizer.Instance.Me.is_bus;
             ToggleTransform();
         }
     }

@@ -73,6 +73,7 @@ namespace View
         {
             foreach (var playerTransformButton in relatedPlayerTransformButtons)
             {
+                playerTransformButton.SetActive(false);
                 playerTransformButton.SetActive(true);
             }
         }

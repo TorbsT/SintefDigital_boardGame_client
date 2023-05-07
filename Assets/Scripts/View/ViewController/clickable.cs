@@ -29,6 +29,11 @@ public class clickable : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (NetworkData.Instance.Me.Value.in_game_id != NetworkData.InGameID.Orchestrator.ToString())
+        {
+            return;
+        }
+        
         string[] nodes = name.Split('-');
         int node1 = int.Parse(nodes[0]);
         int node2 = int.Parse(nodes[1]);
