@@ -46,8 +46,6 @@ namespace Network
         [SerializeField] private float currentCooldown = 0f;
         [SerializeField] private State state;
 
-        [SerializeField] private NetworkData.GameState cock;
-
         private void Awake()
         {
             Instance = this;
@@ -161,11 +159,6 @@ namespace Network
             {
                 StateChanged?.Invoke(newState);
             }
-        }
-
-        internal void ClearAllStateChangeSubscribers()
-        {
-            this.StateChanged = null;
         }
     }
 }

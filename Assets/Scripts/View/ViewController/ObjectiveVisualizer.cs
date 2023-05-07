@@ -32,20 +32,28 @@ namespace View
         [SerializeField] private float packageOverPlayerDistance = 3f;
         [SerializeField] private float groupDistance = 2f;
 
-
-        private void Start()
+        private void Awake()
         {
-            Invoke(nameof(ShowObjectives), 1f);  // Must be delayed
+            Instance = this;
+        }
+        private void OnEnable()
+        {
+            Invoke(nameof(ShowObjectives), 1.0f);  // Not delaying it causes errors, couldn't be rust
+
+        }
+        private void OnDisable()
+        {
+            GameStateSynchronizer.Instance.StateChanged -= StateChanged;
         }
         public GameObject GetPlayerGO(string role)
         {
             if (roleToPlayerGO.ContainsKey(role))
                 return roleToPlayerGO[role];
+            Debug.LogWarning("There was no gameobject for the role " + role);
             return null;
         }
         private void ShowObjectives()
         {
-            Instance = this;
             GameStateSynchronizer.Instance.StateChanged += StateChanged;
             foreach (var player in GameStateSynchronizer.Instance.GameState.Value.players)
             {
