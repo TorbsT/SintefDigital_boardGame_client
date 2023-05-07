@@ -51,6 +51,15 @@ namespace View
                     Transform targetTransform = GraphManager.Instance.GetNode(newPos).gameObject.transform;
                     playerPositions[role] = newPos;
                     playerTransform.parent = targetTransform;
+                    SpriteRenderer playerSprite = playerTransform.GetComponent<SpriteRenderer>();  //Mathias sitt arbeid start
+                    if (targetTransform.position.x - playerTransform.position.x < 0)
+                    {
+                        playerSprite.flipX = true;
+                    }
+                    else if (targetTransform.position.x - playerTransform.position.x > 0) 
+                    {
+                        playerSprite.flipX = false;
+                    }                                                                               //Mathias sitt arbeid slutt
                     Animation<Vector2> moveAnimation = new()
                     {
                         StartValue = playerTransform.position,
