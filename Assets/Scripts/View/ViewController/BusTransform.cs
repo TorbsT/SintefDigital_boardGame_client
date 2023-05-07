@@ -9,7 +9,7 @@ public class BusTransform : MonoBehaviour
 
     private void Awake()
     {
-        if (NetworkData.Instance.Me.Value.is_train)
+        if (NetworkData.Instance.Me.Value.is_bus)
         {
             SetButtonSpriteToTurnBackToVehicle();
         }
@@ -61,7 +61,7 @@ public class BusTransform : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            should_be_bus = !NetworkData.Instance.Me.Value.is_train;
+            should_be_bus = !NetworkData.Instance.Me.Value.is_bus;
             ToggleTransform();
         }
     }
