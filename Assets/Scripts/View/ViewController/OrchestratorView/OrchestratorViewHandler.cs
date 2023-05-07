@@ -33,8 +33,7 @@ namespace View
         {
             GameStateSynchronizer.Instance.districtModifierChanged += renderModifiers;
             TurnManager.Instance.orchestratorTurnChange += renderModifiers;
-            
-            orchestratorViewGO.SetActive(false);
+            GameStateSynchronizer.Instance.situationCardChanged += renderTraffic;
             accessPanelScript.hidePanel();
             tollPanelScript.hidePanel();
             priorityPanelScript.hidePanel();
@@ -54,6 +53,7 @@ namespace View
         {
             GameStateSynchronizer.Instance.districtModifierChanged -= renderModifiers;
             TurnManager.Instance.orchestratorTurnChange -= renderModifiers;
+            GameStateSynchronizer.Instance.situationCardChanged -= renderTraffic;
         }
         public void showTollScreen(RegionCard regionCard)
         {
@@ -90,8 +90,20 @@ namespace View
             }
         }
 
-        
-     
+        public void renderTraffic(NetworkData.SituationCard situationcard)
+        {
+            foreach (RegionCard regionCard in regionCards)
+            {
+                foreach (NetworkData.CostTuple costTuple in situationcard.costs)
+                {
+                    if (costTuple.neighbourhood == regionCard.getDistrict().ToString())
+                    {
+                        NetworkData.Traffic trafficEnum = (NetworkData.Traffic)Enum.Parse(typeof(NetworkData.Traffic), costTuple.traffic);
+                        regionCard.setTraffic((int)trafficEnum);
+                    }
+                }
+            }
+        }
         public void renderModifiers(List<NetworkData.DistrictModifier> modifierList)
         {
             
@@ -102,6 +114,7 @@ namespace View
 
                 foreach(NetworkData.DistrictModifier disModifier in modifierList)
                 {
+                    Debug.Log(disModifier.vehicle_type);
                     if (disModifier.district == regionCard.getDistrict().ToString())
                     {
                         addModifierToRegionCard(regionCard, disModifier);
