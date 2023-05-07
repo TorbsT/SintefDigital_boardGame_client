@@ -9,6 +9,7 @@ namespace View
     {
         public static OrchestratorViewHandler Instance { get; private set; }
 
+        [SerializeField] private GameObject orchestratorViewGO;
         [SerializeField] private RectTransform otherCardsParent;  // Situation/Objective cards
         [SerializeField] private GameObject situationCardPrefab;
         [SerializeField] private GameObject objectiveCardPrefab;
@@ -28,14 +29,11 @@ namespace View
             //gameObject.SetActive(false); temperarly removed
         }
 
-        void Start()
+        void OnEnable()
         {
             GameStateSynchronizer.Instance.districtModifierChanged += renderModifiers;
             TurnManager.Instance.orchestratorTurnChange += renderModifiers;
             GameStateSynchronizer.Instance.situationCardChanged += renderTraffic;
-
-
-            gameObject.SetActive(false);
             accessPanelScript.hidePanel();
             tollPanelScript.hidePanel();
             priorityPanelScript.hidePanel();
@@ -43,7 +41,6 @@ namespace View
             foreach (RegionCard regionCard in regionCards)
             {
                 regionCard.setHandler(this);
-                
             }
             //dummy tests for traffic
             regionCards[1].setTraffic(4);
@@ -52,7 +49,12 @@ namespace View
 
             RefreshOtherCards();
         }
-
+        private void OnDisable()
+        {
+            GameStateSynchronizer.Instance.districtModifierChanged -= renderModifiers;
+            TurnManager.Instance.orchestratorTurnChange -= renderModifiers;
+            GameStateSynchronizer.Instance.situationCardChanged -= renderTraffic;
+        }
         public void showTollScreen(RegionCard regionCard)
         {
             activeRegion = regionCard;
