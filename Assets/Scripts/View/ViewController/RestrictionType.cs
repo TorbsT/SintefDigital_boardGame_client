@@ -19,10 +19,10 @@ public class RestrictionType : MonoBehaviour
     }
     private void OnMouseOver()
     {
-        if(Input.GetMouseButtonDown(0) && tag == "edgeChooser")
+        if(Input.GetMouseButtonDown(0) && transform.parent.tag == "edgeChooser")
         {
             gameObject.transform.parent.GetComponentInParent<clickable>().AddEdgeRestriction(type);
-            gameObject.transform.parent.gameObject.SetActive(false);
+            Destroy(gameObject.transform.parent.gameObject);
         }
         else if (Input.GetMouseButtonDown(0))
         {

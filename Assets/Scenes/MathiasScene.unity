@@ -242,8 +242,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects: []
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   parkAndRideStart: {fileID: 0}
+  chooser: {fileID: 0}
 --- !u!212 &19210670
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -462,8 +464,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects: []
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   parkAndRideStart: {fileID: 0}
+  chooser: {fileID: 0}
 --- !u!212 &95514058
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -799,14 +803,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 238163576}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.22, y: -14.34, z: 0}
-  m_LocalScale: {x: 0.5, y: 3.7911732, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &238163578
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -902,7 +906,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.791173, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &238163580
 MonoBehaviour:
@@ -916,8 +920,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &271576142
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,7 +1098,7 @@ Transform:
   m_GameObject: {fileID: 299882055}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.4, y: 3.57, z: 0}
-  m_LocalScale: {x: 0.5, y: 4.821563, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
@@ -1188,7 +1199,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 4.821563}
   m_EdgeRadius: 0
 --- !u!114 &299882059
 MonoBehaviour:
@@ -1202,8 +1213,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &307302138
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,7 +1250,7 @@ Transform:
   m_GameObject: {fileID: 307302138}
   m_LocalRotation: {x: 0, y: 0, z: -0.16504757, w: 0.9862857}
   m_LocalPosition: {x: 9.65, y: -12.14, z: 0}
-  m_LocalScale: {x: 0.5, y: 3.2285676, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
@@ -1333,7 +1351,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 3.228568}
   m_EdgeRadius: 0
 --- !u!114 &307302142
 MonoBehaviour:
@@ -1347,8 +1365,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &320404208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1653,14 +1678,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 369625932}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.66, y: -14.34, z: 0}
-  m_LocalScale: {x: 0.5, y: 4.6441875, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &369625934
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1756,7 +1781,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.644187, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &369625936
 MonoBehaviour:
@@ -1770,8 +1795,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &377005145
 GameObject:
   m_ObjectHideFlags: 0
@@ -1800,7 +1832,7 @@ Transform:
   m_GameObject: {fileID: 377005145}
   m_LocalRotation: {x: 0, y: 0, z: -0.10886683, w: 0.9940564}
   m_LocalPosition: {x: 14.4, y: -11.14, z: 0}
-  m_LocalScale: {x: 0.5, y: 5.2044773, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
@@ -1901,7 +1933,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 5.204477}
   m_EdgeRadius: 0
 --- !u!114 &377005149
 MonoBehaviour:
@@ -1915,8 +1947,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &408514135
 GameObject:
   m_ObjectHideFlags: 0
@@ -1943,14 +1982,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408514135}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.24, y: 0.74, z: 0}
-  m_LocalScale: {x: 0.5, y: 3.9816222, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &408514137
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2046,7 +2085,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.981622, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &408514139
 MonoBehaviour:
@@ -2060,8 +2099,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!4 &418556948 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
@@ -2454,7 +2500,7 @@ Transform:
   m_GameObject: {fileID: 469482225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.26, y: -1.75, z: 0}
-  m_LocalScale: {x: 0.5, y: 3.9057226, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
@@ -2555,7 +2601,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 3.905723}
   m_EdgeRadius: 0
 --- !u!114 &469482229
 MonoBehaviour:
@@ -2569,8 +2615,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &505425254
 GameObject:
   m_ObjectHideFlags: 0
@@ -2597,14 +2650,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505425254}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.98, y: 0.69, z: 0}
-  m_LocalScale: {x: 0.5, y: 4.280244, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &505425256
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2700,7 +2753,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.280244, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &505425258
 MonoBehaviour:
@@ -2714,8 +2767,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &511439476
 GameObject:
   m_ObjectHideFlags: 0
@@ -3095,14 +3155,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555899355}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.87, y: -14.34, z: 0}
-  m_LocalScale: {x: 0.5, y: 6.6657987, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &555899357
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3198,7 +3258,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 6.665799, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &555899359
 MonoBehaviour:
@@ -3212,8 +3272,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &564390473
 GameObject:
   m_ObjectHideFlags: 0
@@ -3517,7 +3584,7 @@ Transform:
   m_GameObject: {fileID: 590310905}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.66, y: 12.6, z: 0}
-  m_LocalScale: {x: 0.5, y: 2.8653538, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
@@ -3618,7 +3685,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 2.865354}
   m_EdgeRadius: 0
 --- !u!114 &590310909
 MonoBehaviour:
@@ -3632,8 +3699,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &652059844
 GameObject:
   m_ObjectHideFlags: 0
@@ -3680,8 +3754,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects: []
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   parkAndRideStart: {fileID: 0}
+  chooser: {fileID: 0}
 --- !u!212 &652059847
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3807,7 +3883,7 @@ Transform:
   m_GameObject: {fileID: 705478656}
   m_LocalRotation: {x: 0, y: 0, z: 0.10886683, w: 0.9940564}
   m_LocalPosition: {x: -9.87, y: -4.72, z: 0}
-  m_LocalScale: {x: 0.5, y: 9.160969, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
@@ -3908,7 +3984,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 9.160969}
   m_EdgeRadius: 0
 --- !u!114 &705478660
 MonoBehaviour:
@@ -3922,8 +3998,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1001 &710568253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4027,7 +4110,7 @@ Transform:
   m_GameObject: {fileID: 728523687}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.8, y: -12.01, z: 0}
-  m_LocalScale: {x: 0.5, y: 3.2285676, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
@@ -4128,7 +4211,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 3.228568}
   m_EdgeRadius: 0
 --- !u!114 &728523691
 MonoBehaviour:
@@ -4142,8 +4225,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &736069568
 GameObject:
   m_ObjectHideFlags: 0
@@ -4648,7 +4738,7 @@ Transform:
   m_GameObject: {fileID: 856434553}
   m_LocalRotation: {x: 0, y: 0, z: 0.4848096, w: 0.8746197}
   m_LocalPosition: {x: 12.61, y: -0.87, z: 0}
-  m_LocalScale: {x: 0.5, y: 4.280641, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
@@ -4749,7 +4839,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 4.280641}
   m_EdgeRadius: 0
 --- !u!114 &856434557
 MonoBehaviour:
@@ -4763,8 +4853,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &918785036
 GameObject:
   m_ObjectHideFlags: 0
@@ -5210,7 +5307,7 @@ Transform:
   m_GameObject: {fileID: 965972408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.21, y: 9.05, z: 0}
-  m_LocalScale: {x: 0.5, y: 3.2285676, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
@@ -5311,7 +5408,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 3.228568}
   m_EdgeRadius: 0
 --- !u!114 &965972412
 MonoBehaviour:
@@ -5325,8 +5422,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!4 &981046352 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
@@ -5358,14 +5462,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 990827332}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.19, y: -9.91, z: 0}
-  m_LocalScale: {x: 0.5, y: 3.4268706, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &990827334
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5461,7 +5565,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.426871, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &990827336
 MonoBehaviour:
@@ -5475,8 +5579,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &994995903
 GameObject:
   m_ObjectHideFlags: 0
@@ -5669,8 +5780,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects: []
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   parkAndRideStart: {fileID: 0}
+  chooser: {fileID: 0}
 --- !u!212 &1047234543
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5796,7 +5909,7 @@ Transform:
   m_GameObject: {fileID: 1067344326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -15.69, y: 8.77, z: 0}
-  m_LocalScale: {x: 0.5, y: 3.2285676, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
@@ -5897,7 +6010,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 3.228568}
   m_EdgeRadius: 0
 --- !u!114 &1067344330
 MonoBehaviour:
@@ -5911,8 +6024,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &1069357649
 GameObject:
   m_ObjectHideFlags: 0
@@ -5939,14 +6059,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069357649}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.8, y: -14.34, z: 0}
-  m_LocalScale: {x: 0.5, y: 9.038371, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1069357651
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6042,7 +6162,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 9.038371, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &1069357653
 MonoBehaviour:
@@ -6056,8 +6176,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &1115750027
 GameObject:
   m_ObjectHideFlags: 0
@@ -6224,7 +6351,7 @@ Transform:
   m_GameObject: {fileID: 1118253970}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.34, y: -4.64, z: 0}
-  m_LocalScale: {x: 0.5, y: 9.281508, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
@@ -6325,7 +6452,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 9.281508}
   m_EdgeRadius: 0
 --- !u!114 &1118253974
 MonoBehaviour:
@@ -6339,8 +6466,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &1119731824
 GameObject:
   m_ObjectHideFlags: 0
@@ -6367,14 +6501,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1119731824}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.31, y: 6.49, z: 0}
-  m_LocalScale: {x: 0.5, y: 3.4438052, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1119731826
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6470,7 +6604,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.443805, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &1119731828
 MonoBehaviour:
@@ -6484,8 +6618,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &1148046167
 GameObject:
   m_ObjectHideFlags: 0
@@ -6514,7 +6655,7 @@ Transform:
   m_GameObject: {fileID: 1148046167}
   m_LocalRotation: {x: 0, y: 0, z: 0.32556805, w: 0.9455186}
   m_LocalPosition: {x: 12.04, y: -12.13, z: 0}
-  m_LocalScale: {x: 0.5, y: 4.094467, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
@@ -6615,7 +6756,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 4.094467}
   m_EdgeRadius: 0
 --- !u!114 &1148046171
 MonoBehaviour:
@@ -6629,8 +6770,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &1167123958
 GameObject:
   m_ObjectHideFlags: 0
@@ -7149,14 +7297,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1220582602}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.14, y: 0.69, z: 0}
-  m_LocalScale: {x: 0.5, y: 4.280244, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1220582604
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7252,7 +7400,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.280244, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &1220582606
 MonoBehaviour:
@@ -7266,8 +7414,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &1242912681
 GameObject:
   m_ObjectHideFlags: 0
@@ -7314,8 +7469,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects: []
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   parkAndRideStart: {fileID: 0}
+  chooser: {fileID: 0}
 --- !u!212 &1242912684
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7439,14 +7596,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265093559}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.07, y: -9.91, z: 0}
-  m_LocalScale: {x: 0.5, y: 9.281508, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1265093561
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7542,7 +7699,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 9.281508, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &1265093563
 MonoBehaviour:
@@ -7556,8 +7713,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &1287868074
 GameObject:
   m_ObjectHideFlags: 0
@@ -7586,7 +7750,7 @@ Transform:
   m_GameObject: {fileID: 1287868074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.26, y: -6.97, z: 0}
-  m_LocalScale: {x: 0.5, y: 4.296295, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
@@ -7687,7 +7851,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 4.296295}
   m_EdgeRadius: 0
 --- !u!114 &1287868078
 MonoBehaviour:
@@ -7701,8 +7865,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &1327238950
 GameObject:
   m_ObjectHideFlags: 0
@@ -7868,7 +8039,7 @@ Transform:
   m_GameObject: {fileID: 1345571116}
   m_LocalRotation: {x: 0, y: 0, z: -0.3090171, w: 0.95105654}
   m_LocalPosition: {x: 11.51, y: 8.63, z: 0}
-  m_LocalScale: {x: 0.5, y: 3.165643, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
@@ -7969,7 +8140,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 3.165643}
   m_EdgeRadius: 0
 --- !u!114 &1345571120
 MonoBehaviour:
@@ -7983,8 +8154,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &1394841865
 GameObject:
   m_ObjectHideFlags: 0
@@ -8031,8 +8209,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects: []
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   parkAndRideStart: {fileID: 0}
+  chooser: {fileID: 0}
 --- !u!212 &1394841868
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8156,14 +8336,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421055834}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.57, y: 0.74, z: 0}
-  m_LocalScale: {x: 0.5, y: 4.6842613, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1421055836
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8259,7 +8439,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.684261, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &1421055838
 MonoBehaviour:
@@ -8273,8 +8453,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &1431364347
 GameObject:
   m_ObjectHideFlags: 0
@@ -8301,14 +8488,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1431364347}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.96, y: 6.51, z: 0}
-  m_LocalScale: {x: 0.5, y: 9.160969, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1431364349
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8404,7 +8591,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 9.160969, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &1431364351
 MonoBehaviour:
@@ -8418,8 +8605,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &1453514297
 GameObject:
   m_ObjectHideFlags: 0
@@ -8448,7 +8642,7 @@ Transform:
   m_GameObject: {fileID: 1453514297}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.59, y: -1.75, z: 0}
-  m_LocalScale: {x: 0.5, y: 3.9057226, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
@@ -8549,7 +8743,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 3.905723}
   m_EdgeRadius: 0
 --- !u!114 &1453514301
 MonoBehaviour:
@@ -8563,8 +8757,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &1489641569
 GameObject:
   m_ObjectHideFlags: 0
@@ -8591,14 +8792,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1489641569}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.98, y: -4.25, z: 0}
-  m_LocalScale: {x: 0.5, y: 4.280244, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1489641571
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8694,7 +8895,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.280244, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &1489641573
 MonoBehaviour:
@@ -8708,8 +8909,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &1522180677
 GameObject:
   m_ObjectHideFlags: 0
@@ -8875,14 +9083,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1564160395}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.28, y: -14.34, z: 0}
-  m_LocalScale: {x: 0.5, y: 3.7911732, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1564160397
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8978,7 +9186,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.791173, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &1564160399
 MonoBehaviour:
@@ -8992,8 +9200,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &1607781601
 GameObject:
   m_ObjectHideFlags: 0
@@ -9585,7 +9800,7 @@ Transform:
   m_GameObject: {fileID: 1724910925}
   m_LocalRotation: {x: 0, y: 0, z: 0.013089582, w: 0.99991435}
   m_LocalPosition: {x: -10.92, y: 3.66, z: 0}
-  m_LocalScale: {x: 0.5, y: 4.4436197, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
@@ -9686,7 +9901,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 4.44362}
   m_EdgeRadius: 0
 --- !u!114 &1724910929
 MonoBehaviour:
@@ -9700,8 +9915,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &1728561708
 GameObject:
   m_ObjectHideFlags: 0
@@ -9748,8 +9970,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects: []
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   parkAndRideStart: {fileID: 0}
+  chooser: {fileID: 0}
 --- !u!212 &1728561711
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9873,14 +10097,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1736872809}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -18.41, y: 10.82, z: 0}
-  m_LocalScale: {x: 0.5, y: 4.3047566, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1736872811
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9976,7 +10200,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.304757, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &1736872813
 MonoBehaviour:
@@ -9990,8 +10214,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!4 &1759698388 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
@@ -10587,7 +10818,7 @@ Transform:
   m_GameObject: {fileID: 1907010678}
   m_LocalRotation: {x: 0, y: 0, z: 0.4383711, w: 0.89879405}
   m_LocalPosition: {x: -18.52, y: 8.72, z: 0}
-  m_LocalScale: {x: 0.5, y: 5.512764, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
@@ -10688,7 +10919,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 5.512764}
   m_EdgeRadius: 0
 --- !u!114 &1907010682
 MonoBehaviour:
@@ -10702,8 +10933,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &1958639672
 GameObject:
   m_ObjectHideFlags: 0
@@ -11011,14 +11249,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2007395848}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.51, y: -14.34, z: 0}
-  m_LocalScale: {x: 0.5, y: 3.3328993, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2007395850
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11114,7 +11352,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.332899, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &2007395852
 MonoBehaviour:
@@ -11128,8 +11366,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!4 &2014518691 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
@@ -11161,14 +11406,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042758131}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.58, y: 6.51, z: 0}
-  m_LocalScale: {x: 0.5, y: 9.160969, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2042758133
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11264,7 +11509,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 9.160969, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &2042758135
 MonoBehaviour:
@@ -11278,8 +11523,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &2045349101
 GameObject:
   m_ObjectHideFlags: 0
@@ -11723,7 +11975,7 @@ Transform:
   m_GameObject: {fileID: 2135748056}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.07, y: -4.93, z: 0}
-  m_LocalScale: {x: 0.5, y: 4.6840296, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
@@ -11824,7 +12076,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 4.68403}
   m_EdgeRadius: 0
 --- !u!114 &2135748060
 MonoBehaviour:
@@ -11838,8 +12090,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
 --- !u!1 &2140945411
 GameObject:
   m_ObjectHideFlags: 0
@@ -11866,14 +12125,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140945411}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.53, y: -9.91, z: 0}
-  m_LocalScale: {x: 0.5, y: 7.490427, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2045349102}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2140945413
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11969,7 +12228,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 7.490427, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &2140945415
 MonoBehaviour:
@@ -11983,5 +12242,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce447054729d58445854cb1678a2e215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restrictionObjects:
+  - {fileID: 6763379946566790319, guid: 8eaf3bb6c6c29b44cbaa110c694d3bf3, type: 3}
+  - {fileID: 4715410639879718304, guid: 8e6597916d0aeac419ad733226eb8a0e, type: 3}
+  - {fileID: 6815954049969997049, guid: 4af9ff5d73814934d870e8e9f6204f25, type: 3}
+  - {fileID: 1465534092214432637, guid: bf891370393dbb441a12515106f9bf31, type: 3}
+  - {fileID: 5226570824695099090, guid: d467c61c5fc937c4ba18f52dbb6758fe, type: 3}
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
+  chooser: {fileID: 57838796617567062, guid: df2f2f1410e97054ea782a92d677aa32, type: 3}
