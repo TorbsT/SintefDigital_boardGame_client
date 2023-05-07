@@ -45,6 +45,12 @@ namespace View
                     Transform playerTransform = ObjectiveVisualizer.Instance.GetPlayerGO(role).transform;
                     Transform targetTransform = GraphManager.Instance.GetNode(newPos).gameObject.transform;
                     playerTransform.parent = targetTransform;
+                    SpriteRenderer playerSprite = playerTransform.GetComponent<SpriteRenderer>();  //Mathias sitt arbeid start
+                    playerSprite.flipY = false;
+                    if (targetTransform.position.x - playerTransform.position.x < 0)
+                    {
+                        playerSprite.flipY = true;
+                    }                                                                               //Mathias sitt arbeid start
                     Animation<Vector2> moveAnimation = new()
                     {
                         StartValue = playerTransform.position,
