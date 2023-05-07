@@ -244,8 +244,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   parkAndRideStart: {fileID: 0}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!212 &19210670
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -466,8 +464,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   parkAndRideStart: {fileID: 0}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!212 &95514058
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -922,8 +918,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &271576142
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,8 +1204,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &307302138
 GameObject:
   m_ObjectHideFlags: 0
@@ -1357,8 +1349,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &320404208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1782,8 +1772,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &377005145
 GameObject:
   m_ObjectHideFlags: 0
@@ -1929,8 +1917,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &408514135
 GameObject:
   m_ObjectHideFlags: 0
@@ -2076,8 +2062,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!4 &418556948 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
@@ -2587,8 +2571,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &505425254
 GameObject:
   m_ObjectHideFlags: 0
@@ -2734,8 +2716,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &511439476
 GameObject:
   m_ObjectHideFlags: 0
@@ -3234,8 +3214,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &564390473
 GameObject:
   m_ObjectHideFlags: 0
@@ -3656,8 +3634,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &652059844
 GameObject:
   m_ObjectHideFlags: 0
@@ -3706,8 +3682,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   parkAndRideStart: {fileID: 0}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!212 &652059847
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3950,8 +3924,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1001 &710568253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4172,8 +4144,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &736069568
 GameObject:
   m_ObjectHideFlags: 0
@@ -4795,8 +4765,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &918785036
 GameObject:
   m_ObjectHideFlags: 0
@@ -5359,8 +5327,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!4 &981046352 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
@@ -5511,8 +5477,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &994995903
 GameObject:
   m_ObjectHideFlags: 0
@@ -5707,8 +5671,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   parkAndRideStart: {fileID: 0}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!212 &1047234543
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5951,8 +5913,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &1069357649
 GameObject:
   m_ObjectHideFlags: 0
@@ -6098,8 +6058,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &1115750027
 GameObject:
   m_ObjectHideFlags: 0
@@ -6383,8 +6341,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &1119731824
 GameObject:
   m_ObjectHideFlags: 0
@@ -6530,8 +6486,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &1148046167
 GameObject:
   m_ObjectHideFlags: 0
@@ -6677,8 +6631,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &1167123958
 GameObject:
   m_ObjectHideFlags: 0
@@ -7316,8 +7268,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &1242912681
 GameObject:
   m_ObjectHideFlags: 0
@@ -7366,8 +7316,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   parkAndRideStart: {fileID: 0}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!212 &1242912684
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7610,8 +7558,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &1287868074
 GameObject:
   m_ObjectHideFlags: 0
@@ -7757,8 +7703,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &1327238950
 GameObject:
   m_ObjectHideFlags: 0
@@ -8041,8 +7985,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &1394841865
 GameObject:
   m_ObjectHideFlags: 0
@@ -8091,8 +8033,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   parkAndRideStart: {fileID: 0}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!212 &1394841868
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8335,8 +8275,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &1431364347
 GameObject:
   m_ObjectHideFlags: 0
@@ -8350,7 +8288,7 @@ GameObject:
   - component: {fileID: 1431364349}
   - component: {fileID: 1431364351}
   m_Layer: 0
-  m_Name: 3-6
+  m_Name: 4-6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8482,8 +8420,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &1453514297
 GameObject:
   m_ObjectHideFlags: 0
@@ -8629,8 +8565,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &1489641569
 GameObject:
   m_ObjectHideFlags: 0
@@ -8776,8 +8710,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &1522180677
 GameObject:
   m_ObjectHideFlags: 0
@@ -9062,8 +8994,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &1607781601
 GameObject:
   m_ObjectHideFlags: 0
@@ -9772,8 +9702,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &1728561708
 GameObject:
   m_ObjectHideFlags: 0
@@ -9822,8 +9750,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   parkAndRideStart: {fileID: 0}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!212 &1728561711
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10066,8 +9992,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!4 &1759698388 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
@@ -10780,8 +10704,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &1958639672
 GameObject:
   m_ObjectHideFlags: 0
@@ -11208,8 +11130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!4 &2014518691 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 652560585189383338, guid: 87a1386b577431643bb1fb687f749907, type: 3}
@@ -11360,8 +11280,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &2045349101
 GameObject:
   m_ObjectHideFlags: 0
@@ -11922,8 +11840,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0
 --- !u!1 &2140945411
 GameObject:
   m_ObjectHideFlags: 0
@@ -12069,5 +11985,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 12dfc96efe99d0f4c85fcfc47142f29b, type: 3}
   parkAndRideStart: {fileID: 1206806893}
-  node_one_id: 0
-  node_two_id: 0

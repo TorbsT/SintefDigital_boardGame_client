@@ -12,11 +12,11 @@ public class ParkAndRideStart : MonoBehaviour
 
     //public bool clicked = true;
     public static int unlocked = 0;
-    public int readUnlocked = 0;
+    public static int readUnlocked = 0;
 
     private void Update()
     {
-        if (NetworkData.Instance.Me.Value.in_game_id != NetworkData.InGameID.Orchestrator.ToString()) return;
+        if (GameStateSynchronizer.Instance.Me.in_game_id != NetworkData.InGameID.Orchestrator.ToString()) return;
         if (Input.GetMouseButtonDown(0) && mouseOver)
         {
             parkAndRideStart.SetActive(true);
@@ -28,7 +28,7 @@ public class ParkAndRideStart : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (NetworkData.Instance.Me.Value.in_game_id != NetworkData.InGameID.Orchestrator.ToString()) return;
+        if (GameStateSynchronizer.Instance.Me.in_game_id != NetworkData.InGameID.Orchestrator.ToString()) return;
         mouseOver = true;
         if (parkAndRideStart.activeSelf == false)
         {
@@ -38,14 +38,14 @@ public class ParkAndRideStart : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (NetworkData.Instance.Me.Value.in_game_id != NetworkData.InGameID.Orchestrator.ToString()) return;
+        if (GameStateSynchronizer.Instance.Me.in_game_id != NetworkData.InGameID.Orchestrator.ToString()) return;
         mouseOver = false;
         highlight.SetActive(false);
     }
 
     public void RemoveParkAndRide()
     {
-        if (NetworkData.Instance.Me.Value.in_game_id != NetworkData.InGameID.Orchestrator.ToString()) return;
+        if (GameStateSynchronizer.Instance.Me.in_game_id != NetworkData.InGameID.Orchestrator.ToString()) return;
         parkAndRideStart.SetActive(false);
         unlocked--;
         readUnlocked = unlocked;
