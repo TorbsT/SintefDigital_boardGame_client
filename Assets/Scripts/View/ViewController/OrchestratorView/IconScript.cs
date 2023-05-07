@@ -9,7 +9,7 @@ namespace View
 {
     public class IconScript : MonoBehaviour
     {
-        public int id;
+        private int id;
         public GameObject closeButton; 
         private RegionCard currentRegionCard;
         private RectTransform rectTransform;
@@ -33,6 +33,10 @@ namespace View
             typeOfModifier = restriction;
         }
 
+        public void setRestrictionId(int id)
+        {
+            this.id = id;
+        }
         public void setDeleteButton(bool boolean)
         {
             closeButton.SetActive(boolean);
