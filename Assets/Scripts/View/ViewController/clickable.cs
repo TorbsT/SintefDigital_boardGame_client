@@ -4,7 +4,6 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using Network;
-using Codice.ThemeImages;
 
 public class clickable : MonoBehaviour
 {
