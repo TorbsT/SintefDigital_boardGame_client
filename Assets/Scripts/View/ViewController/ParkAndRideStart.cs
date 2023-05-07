@@ -16,6 +16,7 @@ public class ParkAndRideStart : MonoBehaviour
 
     private void Update()
     {
+        if (!GameStateSynchronizer.Instance.GameState.HasValue) return;
         if (GameStateSynchronizer.Instance.Me.in_game_id != NetworkData.InGameID.Orchestrator.ToString()) return;
         if (Input.GetMouseButtonDown(0) && mouseOver)
         {

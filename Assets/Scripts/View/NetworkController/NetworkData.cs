@@ -29,7 +29,8 @@ namespace Network
             PlayerThree = 3,
             PlayerFour = 4,
             PlayerFive = 5,
-            Orchestrator = 6
+            PlayerSix = 6,
+            Orchestrator = 7
         }
         [Serializable]
         public enum PlayerInputType
@@ -195,10 +196,24 @@ namespace Network
             public List<string> special_vehicle_types;
             public bool picked_package_up;
             public bool dropped_package_off;
-            public TypeEntitiesToTransport type_of_entities_to_transport;
+            public string type_of_entities_to_transport;
             public int amount_of_entities;
         }
 
+        public static InGameID StringToInGameId(string text)
+            => (InGameID)Enum.Parse(typeof(InGameID), text);
+        public static int PlayOrder(Player a, Player b)
+            => PlayOrder(StringToInGameId(a.in_game_id), StringToInGameId(b.in_game_id));
+        public static int PlayOrder(InGameID aRole, InGameID bRole)
+        {
+            int a = (int)aRole;
+            int b = (int)bRole;
+            if (aRole == InGameID.Orchestrator) a = 0;
+            if (bRole == InGameID.Orchestrator) b = 0;
+            if (aRole == InGameID.Undecided) a = 7;
+            if (bRole == InGameID.Undecided) b = 7;
+            return a - b;
+        }
         public InGameID GetFirstAvailableRole(GameState state, bool skipOrchestrator)
         {  // Find a more appropriate location for this method
             List<InGameID> roles =
@@ -209,6 +224,7 @@ namespace Network
                     InGameID.PlayerThree,
                     InGameID.PlayerFour,
                     InGameID.PlayerFive,
+                    InGameID.PlayerSix,
                 };
             if (!skipOrchestrator)
                 roles.Insert(0, InGameID.Orchestrator);

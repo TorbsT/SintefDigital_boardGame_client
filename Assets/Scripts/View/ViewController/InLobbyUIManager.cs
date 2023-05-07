@@ -121,7 +121,23 @@ namespace View
             NetworkData.Player me = GameStateSynchronizer.Instance.Me;
             bool meIsOrchestrator = GameStateSynchronizer.Instance.IsOrchestrator;
             bool orchestratorExists = orchestrator != null;
+
+            List<NetworkData.Player> sortedPlayerList = new();
             foreach (var player in gameState.players)
+                sortedPlayerList.Add(player);
+
+            string debug = "Before: ";
+            foreach (NetworkData.Player player in sortedPlayerList)
+                debug += player.in_game_id + " ";
+            Debug.Log(debug);
+            sortedPlayerList.Sort(NetworkData.PlayOrder);
+
+            debug = "After: ";
+            foreach (NetworkData.Player player in sortedPlayerList)
+                debug += player.in_game_id + " ";
+            Debug.Log(debug);
+
+            foreach (var player in sortedPlayerList)
             {
                 string roleName = player.in_game_id;
                 bool isMe = player.unique_id == me.unique_id;

@@ -28,8 +28,13 @@ namespace View
         public void Clear()
         {
             if (layoutGroup == null) layoutGroup = content.GetComponent<VerticalLayoutGroup>();
-            foreach (GameObject gameObject in items)
-                PoolManager.Instance.Enpool(gameObject);
+            foreach (GameObject go in items)
+            {
+                go.transform.SetParent(null);
+                go.SetActive(false);
+                PoolManager.Instance.Enpool(go);
+            }
+                
             items = new();
             content.sizeDelta = new(content.sizeDelta.x, layoutGroup.padding.vertical-layoutGroup.spacing);
         }

@@ -84,8 +84,16 @@ namespace View
                 temp.Add(t.gameObject);
             }
             foreach (GameObject go in temp)
+            {
+                go.transform.SetParent(null);  // Prevents shuffling error
                 PoolManager.Enpool(go);
+            }
+
+            List<NetworkData.Player> sortedPlayers = new();
             foreach (var player in state.Value.players)
+                sortedPlayers.Add(player);
+            sortedPlayers.Sort(NetworkData.PlayOrder);
+            foreach (var player in sortedPlayers)
             {
                 GameObject go = PoolManager.Depool(playerPanelPrefab);
                 RectTransform rt = go.GetComponent<RectTransform>();
