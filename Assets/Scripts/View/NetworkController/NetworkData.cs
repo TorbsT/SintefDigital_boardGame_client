@@ -44,7 +44,6 @@ namespace Network
             AssignSituationCard,
             LeaveGame,
             ModifyEdgeRestrictions,
-            SetPlayerTrainBool,
             SetPlayerBusBool,
         }
         [Serializable]
@@ -117,7 +116,6 @@ namespace Network
             public int? position_node_id;
             public int remaining_moves;
             public PlayerObjectiveCard? objective_card;
-            public bool is_train;
             public bool is_bus;
         }
         [Serializable]
@@ -177,6 +175,15 @@ namespace Network
         {
             public string neighbourhood;
             public string traffic;
+        }
+        [Serializable]
+        public enum Traffic
+        {
+            LevelOne = 1,
+            LevelTwo = 2, 
+            LevelThree = 3, 
+            LevelFour = 4,
+            LevelFive = 5
         }
         [Serializable]
         public struct PlayerObjectiveCard

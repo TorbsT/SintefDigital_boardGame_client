@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,8 @@ namespace View
 
         public void Clicked()
         {
-            GameCardController.Instance.Click(this);
+            if (GameCardController.Instance != null)
+                GameCardController.Instance.Click(this);
         }
         public void SetValues(NetworkData.SituationCard card)
         {
@@ -35,7 +37,8 @@ namespace View
             if (card.costs != null)
                 foreach (var traffic in card.costs)
                 {
-                    trafficList.Add($"{traffic.neighbourhood}: {traffic.traffic}");
+                    NetworkData.Traffic trafficEnum = (NetworkData.Traffic)Enum.Parse(typeof(NetworkData.Traffic), traffic.traffic);
+                    trafficList.Add($"{traffic.neighbourhood}: {(int)trafficEnum}");
                 }
             string traffics = string.Join("\n", trafficList);
             Traffic.text = traffics;

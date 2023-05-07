@@ -16,9 +16,13 @@ namespace View
         {
             Instance = this;
         }
-        private void Start()
+        private void OnEnable()
         {
             GameStateSynchronizer.Instance.StateChanged += StateChanged;
+        }
+        private void OnDisable()
+        {
+            GameStateSynchronizer.Instance.StateChanged -= StateChanged;
         }
         private void StateChanged(NetworkData.GameState? state)
         {
@@ -40,10 +44,12 @@ namespace View
                 
                 if (newPos != oldPos)
                 {
-                    playerPositions[role] = newPos;
                     if (ObjectiveVisualizer.Instance == null) break;
-                    Transform playerTransform = ObjectiveVisualizer.Instance.GetPlayerGO(role).transform;
+                    GameObject playerGO = ObjectiveVisualizer.Instance.GetPlayerGO(role);
+                    if (playerGO == null) continue;
+                    Transform playerTransform = playerGO.transform;
                     Transform targetTransform = GraphManager.Instance.GetNode(newPos).gameObject.transform;
+                    playerPositions[role] = newPos;
                     playerTransform.parent = targetTransform;
                     SpriteRenderer playerSprite = playerTransform.GetComponent<SpriteRenderer>();  //Mathias sitt arbeid start
                     if (targetTransform.position.x - playerTransform.position.x < 0)
@@ -63,6 +69,13 @@ namespace View
                         Action = (value) => { playerTransform.position = value; }
                     };
                     moveAnimation.Start();
+                }
+
+                var node = GraphManager.Instance.GetNode(newPos).gameObject.GetComponent<NodeTraversal>();
+                if (node != null)
+                {
+                    node.HideNeighbouringTransformButtons();
+                    node.ShowTransformButtons();
                 }
             }
         }

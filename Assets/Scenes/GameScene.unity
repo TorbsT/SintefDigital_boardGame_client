@@ -1187,6 +1187,7 @@ GameObject:
   - component: {fileID: 293593957}
   - component: {fileID: 293593958}
   - component: {fileID: 293593959}
+  - component: {fileID: 293593960}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1341,6 +1342,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <UndoButton>k__BackingField: {fileID: 638522831}
+--- !u!114 &293593960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293593951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178eae31942d6a54281ff444d3979c45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orchestratorViewGO: {fileID: 1612083480}
+  otherCardsParent: {fileID: 1626157360}
+  situationCardPrefab: {fileID: 6248098215432403496, guid: 04fa1019e0843fa438bb7c08c87bb87e, type: 3}
+  objectiveCardPrefab: {fileID: 0}
+  regionCards:
+  - {fileID: 153738039}
+  - {fileID: 280838609}
+  - {fileID: 672699261}
+  - {fileID: 2107175836}
+  - {fileID: 1273953740}
+  - {fileID: 497101711}
+  - {fileID: 1004282542}
+  - {fileID: 1276303726}
+  - {fileID: 2045210880}
+  - {fileID: 1789735667}
+  - {fileID: 2065797915}
+  - {fileID: 544384586}
+  tollPanelScript: {fileID: 455136187}
+  accessPanelScript: {fileID: 635987278}
+  priorityPanelScript: {fileID: 1169092646}
+  PriorityPanel: {fileID: 0}
+  isOrchestrator: 1
 --- !u!1 &317893680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1972,7 +2007,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1612083482}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: View.OrchestratorViewHandler, GameController
         m_MethodName: changeEditStateCards
         m_Mode: 6
@@ -2342,7 +2377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 437b6350262a41940942b2b2cabf8de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: 1612083482}
+  handler: {fileID: 0}
   iconSelections:
   - {fileID: 1542580267}
   - {fileID: 702135605}
@@ -2812,7 +2847,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a8ea741f2138a3946962bb33b9b687c2, type: 2}
     - target: {fileID: 5761320128997401891, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
       propertyPath: m_Name
-      value: RegionCard2 (5)
+      value: RegionCardA
       objectReference: {fileID: 0}
     - target: {fileID: 5761320129110410794, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
       propertyPath: m_fontSize
@@ -2828,6 +2863,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5761320128997401888, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
   m_PrefabInstance: {fileID: 544384584}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &544384586 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5761320128997401889, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
+  m_PrefabInstance: {fileID: 544384584}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84975d0590df30444aec07332a8a8c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &549731699
 GameObject:
   m_ObjectHideFlags: 0
@@ -3008,14 +3054,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69df967b5a705584a824841e6b1874cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: 1612083482}
+  handler: {fileID: 0}
   iconSelections:
   - {fileID: 2067806268}
   - {fileID: 2028021788}
   - {fileID: 2026054555}
-  - {fileID: 1150504125}
   - {fileID: 1980675457}
   - {fileID: 1062727353}
+  - {fileID: 1150504125}
   selectionMarker: {fileID: 334881583}
 --- !u!114 &635987279
 MonoBehaviour:
@@ -5208,7 +5254,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: fd59274e161e72f4582e7af68a33496a, type: 2}
     - target: {fileID: 5761320128997401891, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
       propertyPath: m_Name
-      value: RegionCard2
+      value: RegionCardIP
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5220,6 +5266,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5761320128997401888, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
   m_PrefabInstance: {fileID: 1004282540}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1004282542 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5761320128997401889, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
+  m_PrefabInstance: {fileID: 1004282540}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84975d0590df30444aec07332a8a8c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1005198677
 GameObject:
   m_ObjectHideFlags: 0
@@ -5931,14 +5988,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f540bce6442c25a49acb7e9029aa7775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handler: {fileID: 1612083482}
+  handler: {fileID: 0}
   iconSelections:
   - {fileID: 1290841102}
   - {fileID: 641812969}
   - {fileID: 888950329}
-  - {fileID: 939932215}
   - {fileID: 374309509}
   - {fileID: 1931224673}
+  - {fileID: 939932215}
   selectionMarker: {fileID: 2048838939}
   p1: {fileID: 1938998427}
   p2: {fileID: 317893680}
@@ -6325,7 +6382,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 77e3eea1ddd35584585186a641dd2518, type: 2}
     - target: {fileID: 5761320128997401891, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
       propertyPath: m_Name
-      value: RegionCard2 (1)
+      value: RegionCardS
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6337,6 +6394,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5761320128997401888, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
   m_PrefabInstance: {fileID: 1276303724}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1276303726 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5761320128997401889, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
+  m_PrefabInstance: {fileID: 1276303724}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84975d0590df30444aec07332a8a8c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1290841102
 GameObject:
   m_ObjectHideFlags: 0
@@ -6957,7 +7025,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1612083482}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: View.OrchestratorViewHandler, GameController
         m_MethodName: resetCards
         m_Mode: 1
@@ -7241,7 +7309,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1612083482}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: View.OrchestratorViewHandler, GameController
         m_MethodName: changeEditStateCards
         m_Mode: 6
@@ -8352,7 +8420,6 @@ GameObject:
   - component: {fileID: 1612083481}
   - component: {fileID: 1612083484}
   - component: {fileID: 1612083483}
-  - component: {fileID: 1612083482}
   m_Layer: 5
   m_Name: OrchestratorPanel
   m_TagString: Untagged
@@ -8387,33 +8454,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1612083482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1612083480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 178eae31942d6a54281ff444d3979c45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  otherCardsParent: {fileID: 1626157360}
-  situationCardPrefab: {fileID: 6248098215432403496, guid: 04fa1019e0843fa438bb7c08c87bb87e, type: 3}
-  objectiveCardPrefab: {fileID: 0}
-  regionCards:
-  - {fileID: 153738039}
-  - {fileID: 280838609}
-  - {fileID: 672699261}
-  - {fileID: 2107175836}
-  - {fileID: 1273953740}
-  - {fileID: 497101711}
-  tollPanelScript: {fileID: 455136187}
-  accessPanelScript: {fileID: 635987278}
-  priorityPanelScript: {fileID: 1169092646}
-  PriorityPanel: {fileID: 0}
-  isOrchestrator: 1
 --- !u!114 &1612083483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8484,7 +8524,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 1032638951944834588, guid: 86925c6d108a15943a6b3c3a74a10ec6, type: 3}
-  orchestratorViewHandler: {fileID: 1612083482}
 --- !u!4 &1618755443
 Transform:
   m_ObjectHideFlags: 0
@@ -8512,7 +8551,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cfbc54f16b9e7f4e8abf89301016d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 9167691612597571787, guid: 82025b209cef60a4a9538c875e0d1c9d, type: 3}
+  playerPrefabs:
+  - {fileID: 5839310097486768842, guid: a3d0b87ba4950db4ab60b9465186eb6a, type: 3}
+  - {fileID: 8402183169221629151, guid: df5709fc1f2d0ea47861225b9ffefc6c, type: 3}
+  - {fileID: 3664640676465230554, guid: c4a8586d76d7c384894e0cf927b572af, type: 3}
+  - {fileID: 6264101493935419746, guid: e600326536dde044b8c219966a5325b4, type: 3}
+  - {fileID: 6287973054431760865, guid: a18ad8b5df8468b4c9d3651eb39fb003, type: 3}
+  - {fileID: 9167691612597571787, guid: 82025b209cef60a4a9538c875e0d1c9d, type: 3}
+  fallbackPlayerPrefab: {fileID: 9167691612597571787, guid: 82025b209cef60a4a9538c875e0d1c9d, type: 3}
   startPrefab: {fileID: 4452382819103230009, guid: f858136edc6cda640b6185fd53feffc6, type: 3}
   pickupPrefab: {fileID: 3848408592440982533, guid: e7bd3584f1868474ea3fcfed53432846, type: 3}
   goalPrefab: {fileID: 7155191702897517725, guid: 63346ae260c8e7d4b936c84dde087691, type: 3}
@@ -9418,7 +9464,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5bf44a815f11c4c4b8f2769325aafa17, type: 2}
     - target: {fileID: 5761320128997401891, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
       propertyPath: m_Name
-      value: RegionCard2 (3)
+      value: RegionCardRR
       objectReference: {fileID: 0}
     - target: {fileID: 5761320129110410794, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
       propertyPath: m_fontSize
@@ -9434,6 +9480,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5761320128997401888, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
   m_PrefabInstance: {fileID: 1789735665}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1789735667 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5761320128997401889, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
+  m_PrefabInstance: {fileID: 1789735665}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84975d0590df30444aec07332a8a8c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1840897701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11311,7 +11368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5761320128997401891, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
       propertyPath: m_Name
-      value: RegionCard2 (2)
+      value: RegionCardCC
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11323,6 +11380,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5761320128997401888, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
   m_PrefabInstance: {fileID: 2045210878}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2045210880 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5761320128997401889, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
+  m_PrefabInstance: {fileID: 2045210878}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84975d0590df30444aec07332a8a8c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2048838939
 GameObject:
   m_ObjectHideFlags: 0
@@ -11697,7 +11765,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: f0f389d638fdbfc44a02f12f38bbda07, type: 2}
     - target: {fileID: 5761320128997401891, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
       propertyPath: m_Name
-      value: RegionCard2 (4)
+      value: RegionCardP
       objectReference: {fileID: 0}
     - target: {fileID: 5761320129110410794, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
       propertyPath: m_fontSize
@@ -11713,6 +11781,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5761320128997401888, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
   m_PrefabInstance: {fileID: 2065797913}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2065797915 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5761320128997401889, guid: b643d5b91b628e94abed5a7ad87c4cdf, type: 3}
+  m_PrefabInstance: {fileID: 2065797913}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84975d0590df30444aec07332a8a8c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2067806268
 GameObject:
   m_ObjectHideFlags: 0

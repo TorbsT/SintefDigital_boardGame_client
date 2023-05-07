@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Network;
 using TMPro;
+using UnityEngine.Events;
 
 namespace View
 {
@@ -30,9 +31,13 @@ namespace View
         {
             Instance = this;
         }
-        private void Start()
+        private void OnEnable()
         {
             GameStateSynchronizer.Instance.StateChanged += StateChanged;
+        }
+        private void OnDisable()
+        {
+            GameStateSynchronizer.Instance.StateChanged -= StateChanged;
         }
         private void StateChanged(NetworkData.GameState? state)
         {
@@ -56,8 +61,6 @@ namespace View
             if (IsMyTurn)
             {
                 txt = "Your turn";
-                if (turnRole != NetworkData.InGameID.Orchestrator)
-                    txt += $" ({turnPlayer.Value.remaining_moves} moves left)";
             }
             else
             {
@@ -65,6 +68,8 @@ namespace View
                     txt = "Orchestrator ";
                 txt += $"{turnPlayer.Value.name}'s turn";
             }
+            if (turnRole != NetworkData.InGameID.Orchestrator)
+                txt += $" ({turnPlayer.Value.remaining_moves} moves left)";
             playerOwned.Owner = turnRole;
             turnText.text = txt;
             endTurnButton.interactable = IsMyTurn && !sending;

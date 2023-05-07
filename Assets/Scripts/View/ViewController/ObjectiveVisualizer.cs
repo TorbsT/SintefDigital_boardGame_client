@@ -24,27 +24,36 @@ namespace View
         private Dictionary<string, int> roleToPackageSpawn = new();
         private Dictionary<string, int> roleToPackageDropoff = new();
         private Dictionary<int, List<Transform>> nodeToMarkers = new();
-        [SerializeField] private GameObject playerPrefab;
+        [SerializeField] private List<GameObject> playerPrefabs = new();
+        [SerializeField] private GameObject fallbackPlayerPrefab;
         [SerializeField] private GameObject startPrefab;
         [SerializeField] private GameObject pickupPrefab;
         [SerializeField] private GameObject goalPrefab;
         [SerializeField] private float packageOverPlayerDistance = 3f;
         [SerializeField] private float groupDistance = 2f;
 
-
-        private void Start()
+        private void Awake()
         {
-            Invoke(nameof(ShowObjectives), 1f);  // Must be delayed
+            Instance = this;
+        }
+        private void OnEnable()
+        {
+            Invoke(nameof(ShowObjectives), 1.0f);  // Not delaying it causes errors, couldn't be rust
+
+        }
+        private void OnDisable()
+        {
+            GameStateSynchronizer.Instance.StateChanged -= StateChanged;
         }
         public GameObject GetPlayerGO(string role)
         {
             if (roleToPlayerGO.ContainsKey(role))
                 return roleToPlayerGO[role];
+            Debug.LogWarning("There was no gameobject for the role " + role);
             return null;
         }
         private void ShowObjectives()
         {
-            Instance = this;
             GameStateSynchronizer.Instance.StateChanged += StateChanged;
             foreach (var player in GameStateSynchronizer.Instance.GameState.Value.players)
             {
@@ -62,6 +71,20 @@ namespace View
 
                 roleToPackageSpawn.Add(roleName, packageSpawnId);
                 roleToPackageDropoff.Add(roleName, packageDropoffId);
+
+
+                List<NetworkData.RestrictionType> vehicleTypes = new();
+                foreach (var vehicleString in card.Value.special_vehicle_types)
+                    vehicleTypes.Add((NetworkData.RestrictionType)Enum.Parse(typeof(NetworkData.RestrictionType), vehicleString));
+                GameObject playerPrefab = playerPrefabs.Find(match => match.GetComponent<VehicleType>().Exactly(vehicleTypes));
+                if (playerPrefab == null)
+                {
+                    string errormsg = "There was no car prefab with the types:";
+                    foreach (var vehicle in card.Value.special_vehicle_types)
+                        errormsg += " "+vehicle;
+                    Debug.LogWarning(errormsg);
+                    playerPrefab = fallbackPlayerPrefab;
+                }
 
                 roleToPlayerGO.Add(roleName, Spawn(playerPrefab, playerSpawnId, role));
                 Spawn(startPrefab, playerSpawnId, role);

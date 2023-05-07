@@ -120,7 +120,6 @@ namespace Network
             };
 
             SendPlayerInput(success=>{GameStateSynchronizer.Instance.SetLobbyId(null); successCallback(success);}, failureCallback, input);
-            GameStateSynchronizer.Instance.ClearAllStateChangeSubscribers();
         }
 
         // Debug
@@ -156,7 +155,6 @@ namespace Network
             if (request.result == UnityWebRequest.Result.Success)
             {
                 string json = request.downloadHandler.text;
-
                 T responseObject;
                 if (int.TryParse(json, out int numberResponse) && typeof(T) == typeof(int))
                 {

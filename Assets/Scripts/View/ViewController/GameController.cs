@@ -2,6 +2,7 @@ using Network;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace View
 {
@@ -9,13 +10,27 @@ namespace View
     {
         private Dictionary<int, GameObject> players = new();
         [SerializeField] private GameObject playerPrefab;
-        [SerializeField] private OrchestratorViewHandler orchestratorViewHandler;
-        private void Start()
+        [SerializeField] private string disconnectToScene = "MainMenu";
+        private void OnEnable()
         {
             GameStateSynchronizer.Instance.PlayerConnected += PlayerConnected;
             GameStateSynchronizer.Instance.PlayerDisconnected += PlayerDisconnected;
-            orchestratorViewHandler.gameObject.SetActive(true);
+            GameStateSynchronizer.Instance.StateChanged += StateChanged;
             CompleteRefreshPlayers();
+        }
+        private void OnDisable()
+        {
+            GameStateSynchronizer.Instance.PlayerConnected -= PlayerConnected;
+            GameStateSynchronizer.Instance.PlayerDisconnected -= PlayerDisconnected;
+            GameStateSynchronizer.Instance.StateChanged -= StateChanged;
+        }
+
+        private void StateChanged(NetworkData.GameState? state)
+        {
+            if (state == null)
+                return;
+            if (state.Value.is_lobby)
+                SceneManager.LoadSceneAsync(disconnectToScene);
         }
         private void PlayerConnected(NetworkData.Player player)
         {

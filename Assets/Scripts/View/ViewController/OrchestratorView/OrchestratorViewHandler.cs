@@ -9,6 +9,7 @@ namespace View
     {
         public static OrchestratorViewHandler Instance { get; private set; }
 
+        [SerializeField] private GameObject orchestratorViewGO;
         [SerializeField] private RectTransform otherCardsParent;  // Situation/Objective cards
         [SerializeField] private GameObject situationCardPrefab;
         [SerializeField] private GameObject objectiveCardPrefab;
@@ -28,12 +29,11 @@ namespace View
             //gameObject.SetActive(false); temperarly removed
         }
 
-        void Start()
+        void OnEnable()
         {
             GameStateSynchronizer.Instance.districtModifierChanged += renderModifiers;
             TurnManager.Instance.orchestratorTurnChange += renderModifiers;
-            
-            gameObject.SetActive(false);
+            GameStateSynchronizer.Instance.situationCardChanged += renderTraffic;
             accessPanelScript.hidePanel();
             tollPanelScript.hidePanel();
             priorityPanelScript.hidePanel();
@@ -41,7 +41,6 @@ namespace View
             foreach (RegionCard regionCard in regionCards)
             {
                 regionCard.setHandler(this);
-                
             }
             //dummy tests for traffic
             regionCards[1].setTraffic(4);
@@ -50,7 +49,12 @@ namespace View
 
             RefreshOtherCards();
         }
-
+        private void OnDisable()
+        {
+            GameStateSynchronizer.Instance.districtModifierChanged -= renderModifiers;
+            TurnManager.Instance.orchestratorTurnChange -= renderModifiers;
+            GameStateSynchronizer.Instance.situationCardChanged -= renderTraffic;
+        }
         public void showTollScreen(RegionCard regionCard)
         {
             activeRegion = regionCard;
@@ -86,8 +90,20 @@ namespace View
             }
         }
 
-        
-     
+        public void renderTraffic(NetworkData.SituationCard situationcard)
+        {
+            foreach (RegionCard regionCard in regionCards)
+            {
+                foreach (NetworkData.CostTuple costTuple in situationcard.costs)
+                {
+                    if (costTuple.neighbourhood == regionCard.getDistrict().ToString())
+                    {
+                        NetworkData.Traffic trafficEnum = (NetworkData.Traffic)Enum.Parse(typeof(NetworkData.Traffic), costTuple.traffic);
+                        regionCard.setTraffic((int)trafficEnum);
+                    }
+                }
+            }
+        }
         public void renderModifiers(List<NetworkData.DistrictModifier> modifierList)
         {
             
@@ -98,6 +114,7 @@ namespace View
 
                 foreach(NetworkData.DistrictModifier disModifier in modifierList)
                 {
+                    Debug.Log(disModifier.vehicle_type);
                     if (disModifier.district == regionCard.getDistrict().ToString())
                     {
                         addModifierToRegionCard(regionCard, disModifier);
@@ -136,11 +153,12 @@ namespace View
             List<GameObject> temp = new();  // Prevent errors
             foreach (Transform t in otherCardsParent.GetComponentsInChildren<Transform>())
             {
-                if (t == transform) continue;
+                if (t == otherCardsParent) continue;
+                if (t.parent != otherCardsParent) continue;
                 temp.Add(t.gameObject);
             }
             foreach (GameObject go in temp)
-                Destroy(go);
+                PoolManager.Enpool(go);
             var sitCard = AddOtherCard(situationCardPrefab).GetComponent<GameCard>();
             sitCard.SetValues(GameStateSynchronizer.Instance.GameState.Value.situation_card.Value);
             //var objCard = AddOtherCard(objectiveCardPrefab).GetComponent<ObjectiveCard>();
