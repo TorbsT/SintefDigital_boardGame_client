@@ -70,6 +70,8 @@ namespace View
             RestAPI.Instance.SendPlayerInput(success =>
             {
                 UndoSystem.Instance.MovesDone++;
+                trav.HideNeighbouringTransformButtons();
+                trav.ShowTransformButtons();
             }, failure =>
             {
 

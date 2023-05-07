@@ -11,6 +11,7 @@ namespace View
         public GameObject[] neighbourNodes;
         private SpriteRenderer spriteRenderer;
         [field: SerializeField] public int Id { get; private set; }
+        public GameObject[] relatedPlayerTransformButtons;
 
         public ICollection<INode> GetNeighbours()
         {
@@ -22,6 +23,18 @@ namespace View
             }
             return result;
         }
+
+        internal List<NodeTraversal> GetNeighbourScripts()
+        {
+            List<NodeTraversal> result = new();
+            foreach (GameObject neighbourNode in neighbourNodes)
+            {
+                if (neighbourNode == null) continue;
+                result.Add(neighbourNode.GetComponent<NodeTraversal>());
+            }
+            return result;
+        }
+
         public void Click()
         {
             MovementSystem.Instance.ClickNode(this);
@@ -39,12 +52,11 @@ namespace View
         // Update is called once per frame
         void Update()
         {
-
+            
         }
         private void OnMouseEnter()
         {
-
-                spriteRenderer.color = Color.cyan;
+            spriteRenderer.color = Color.cyan;
         }
 
         private void OnMouseExit()
@@ -55,6 +67,30 @@ namespace View
         void OnMouseDown()
         {
             Click();
+        }
+
+        internal void ShowTransformButtons()
+        {
+            foreach (var playerTransformButton in relatedPlayerTransformButtons)
+            {
+                playerTransformButton.SetActive(true);
+            }
+        }
+
+        internal void HideTransformButtons()
+        {
+            foreach (var playerTransformButton in relatedPlayerTransformButtons)
+            {
+                playerTransformButton.SetActive(false);
+            }
+        }
+
+        internal void HideNeighbouringTransformButtons()
+        {
+            foreach (var node in GetNeighbourScripts())
+            {
+                node.HideTransformButtons();
+            }
         }
     }
 }
