@@ -21,6 +21,7 @@ namespace Network
         public event Action<NetworkData.GameState?> StateChanged;
         public event Action<NetworkData.Player> PlayerConnected;
         public event Action< List<NetworkData.DistrictModifier> > districtModifierChanged;
+        public event Action<NetworkData.SituationCard> situationCardChanged;
         public event Action<int> PlayerDisconnected;
         [field: SerializeField] public int? LobbyId { get; private set; } = null;
         public NetworkData.GameState? GameState { get; private set; }
@@ -132,7 +133,7 @@ namespace Network
                     PlayerConnected?.Invoke(newPlayerIds[id]);
                 }
             }
-            //Debug.Log(GameState.Value.district_modifiers.Count);
+            
             bool districtHasChanged = false;
             if (GameState != null && newState != null)
             {
@@ -148,10 +149,13 @@ namespace Network
             if (districtHasChanged)
             {
                 districtModifierChanged?.Invoke(GameState.Value.district_modifiers);
-                Debug.Log("Modifier was added! " + GameState.Value.district_modifiers.Count);
-                //Debug.Log(GameState.Value.district_modifiers.Count);
+     
             }
 
+            if (true) //Could do a check thats limits the number of calls, but that solution is kinda buggy
+            {
+                situationCardChanged?.Invoke(GameState.Value.situation_card.Value);
+            }
             // the following is very good code
             if (true || differenceExists)
             {

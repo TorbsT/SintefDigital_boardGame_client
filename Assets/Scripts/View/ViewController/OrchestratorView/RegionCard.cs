@@ -215,6 +215,7 @@ namespace View
             activeAccessModifiers.Add(iconScript);
             iconScript.setTypeOfModifier(NetworkData.DistrictModifierType.Access);
             iconScript.setDeleteButton(getEditState());
+            iconScript.setRestrictionId(id);
             iconScript.setAttachedRegionCard(this);
         }
 
@@ -263,6 +264,7 @@ namespace View
             iconScript.setTypeOfModifier(NetworkData.DistrictModifierType.Priority);
             iconScript.setDeleteButton(getEditState());
             iconScript.setAttachedRegionCard(this);
+            iconScript.setRestrictionId(id);
             iconScript.setValue(value);
             int activePriorityModifiersCount = activePriorityModifiers.Count;
             addPriorityMarker(activePriorityModifiersCount - 1, value, priorityPoints[activePriorityModifiersCount - 1], iconScript.getDimentions());
@@ -385,7 +387,6 @@ namespace View
             {
                 vehicle_typeString = ((NetworkData.RestrictionType)vehicle_type_id).ToString();
             }
-
             NetworkData.DistrictModifier districtModifier = new()
             {
                 district = districtString,

@@ -2915,12 +2915,12 @@ MonoBehaviour:
   districtTraffic: {fileID: 5761320128436862912}
   districtCost: {fileID: 5761320127985499231}
   vehicleTypePrefab:
-  - {fileID: 212408174348781880, guid: 1263d18846d134e4eb6e935d9d389dbd, type: 3}
   - {fileID: 212408174348781880, guid: f3f8f2dc3bd08934781a1ee78623130c, type: 3}
+  - {fileID: 212408174348781880, guid: 1263d18846d134e4eb6e935d9d389dbd, type: 3}
   - {fileID: 212408174348781880, guid: 74ae9238376527140899c8a3ecea22da, type: 3}
   - {fileID: 212408174348781880, guid: 81e44572b07e2d041b2cab6e15b042cf, type: 3}
-  - {fileID: 212408174348781880, guid: 46eab5edd9b4421418495da01e24637e, type: 3}
   - {fileID: 212408174348781880, guid: c72933e15ad8b8147811dfb46a026fc8, type: 3}
+  - {fileID: 212408174348781880, guid: 46eab5edd9b4421418495da01e24637e, type: 3}
   addAccessButton: {fileID: 5761320128974022859}
   accessPoints:
   - {fileID: 5761320127199224322}
