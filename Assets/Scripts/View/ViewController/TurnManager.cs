@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Network;
 using TMPro;
+using UnityEngine.Events;
 
 namespace View
 {
@@ -30,9 +31,13 @@ namespace View
         {
             Instance = this;
         }
-        private void Start()
+        private void OnEnable()
         {
             GameStateSynchronizer.Instance.StateChanged += StateChanged;
+        }
+        private void OnDisable()
+        {
+            GameStateSynchronizer.Instance.StateChanged -= StateChanged;
         }
         private void StateChanged(NetworkData.GameState? state)
         {

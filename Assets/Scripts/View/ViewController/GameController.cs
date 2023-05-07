@@ -9,13 +9,16 @@ namespace View
     {
         private Dictionary<int, GameObject> players = new();
         [SerializeField] private GameObject playerPrefab;
-        [SerializeField] private OrchestratorViewHandler orchestratorViewHandler;
-        private void Start()
+        private void OnEnable()
         {
             GameStateSynchronizer.Instance.PlayerConnected += PlayerConnected;
             GameStateSynchronizer.Instance.PlayerDisconnected += PlayerDisconnected;
-            orchestratorViewHandler.gameObject.SetActive(true);
             CompleteRefreshPlayers();
+        }
+        private void OnDisable()
+        {
+            GameStateSynchronizer.Instance.PlayerConnected -= PlayerConnected;
+            GameStateSynchronizer.Instance.PlayerDisconnected -= PlayerDisconnected;
         }
         private void PlayerConnected(NetworkData.Player player)
         {
