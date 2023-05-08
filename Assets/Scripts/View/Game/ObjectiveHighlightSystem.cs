@@ -53,7 +53,11 @@ namespace View.Game
             {
                 var playerOwned = component.PlayerOwned;
                 var spriteSorter = component.SpriteSorter;
-                bool match = turnPlayer.Value == playerOwned.Owner;
+                NetworkData.InGameID myRole = NetworkData.StringToInGameId(GameStateSynchronizer.Instance.Me.in_game_id);
+
+                bool orchestratorPlaysAndThisIsMine = turnPlayer.Value == NetworkData.InGameID.Orchestrator && playerOwned.Owner == myRole;
+                bool thisIsTurnPlayers = turnPlayer.Value == playerOwned.Owner;
+                bool match = thisIsTurnPlayers || orchestratorPlaysAndThisIsMine;
                 float scale = normalScale;
                 if (match) scale = highlightScale;
                 int layerMod = normalLayer;
