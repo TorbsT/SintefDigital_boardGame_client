@@ -129,13 +129,11 @@ namespace View
             string debug = "Before: ";
             foreach (NetworkData.Player player in sortedPlayerList)
                 debug += player.in_game_id + " ";
-            Debug.Log(debug);
             sortedPlayerList.Sort(NetworkData.PlayOrder);
 
             debug = "After: ";
             foreach (NetworkData.Player player in sortedPlayerList)
                 debug += player.in_game_id + " ";
-            Debug.Log(debug);
 
             foreach (var player in sortedPlayerList)
             {

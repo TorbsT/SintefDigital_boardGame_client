@@ -40,6 +40,13 @@ public class clickable : MonoBehaviour
         {
             if (this.gameObject.name == $"{restriction.node_one}-{restriction.node_two}" || this.gameObject.name == $"{restriction.node_two}-{restriction.node_one}") {
                 noRestrictions = false;
+                if (restriction.edge_restriction == NetworkData.RestrictionType.ParkAndRide.ToString())
+                {
+                    float w = 7;
+                    float h = 6 * (0.28f / transform.localScale.y);
+                    spriteRenderer.sprite = sprite;
+                    spriteRenderer.size = new Vector2(w, h);
+                }
                 foreach (var obj in restrictionObjects)
                 {
                     if (restriction.edge_restriction == obj.GetComponent<RestrictionType>().type.ToString())
@@ -57,13 +64,6 @@ public class clickable : MonoBehaviour
                         var spawnObj = Instantiate(obj);
                         spawnObj.transform.SetParent(transform, false);
                     }
-                }
-                if (restriction.edge_restriction == NetworkData.RestrictionType.ParkAndRide.ToString())
-                {
-                    float w = 7;
-                    float h = 6 * (0.28f / transform.localScale.y);
-                    spriteRenderer.sprite = sprite;
-                    spriteRenderer.size = new Vector2(w, h);
                 }
             }
         }
@@ -108,8 +108,6 @@ public class clickable : MonoBehaviour
                 clicked = !clicked;
             }
         }
-        //Debug.Log(parkAndRideStart.readUnlocked);
-        //Debug.Log(clicked);
     }
     public void AddEdgeRestriction(NetworkData.RestrictionType restriction)
     {
@@ -118,7 +116,7 @@ public class clickable : MonoBehaviour
         int node1 = int.Parse(nodes[0]);
         int node2 = int.Parse(nodes[1]);
         RestAPI.Instance.SetEdgeRestriction(success => {
-            Debug.Log("Succsessfullly added restriction");
+            //Debug.Log("Succsessfullly added restriction");
         }, failure => { Debug.Log("could not add restriction to this edge : " + failure); }, node1, node2, restriction, false);
     }
 
@@ -130,7 +128,7 @@ public class clickable : MonoBehaviour
         int node2 = int.Parse(nodes[1]);
         RestAPI.Instance.SetEdgeRestriction(success => {
             spriteRenderer.sprite = null;
-            Debug.Log("Succsessfullly removed restriction");
+            //Debug.Log("Succsessfullly removed restriction");
         }, failure => { Debug.Log("could not remove restriction from this edge : " + failure); }, node1, node2, restriction, true);
     }
 }

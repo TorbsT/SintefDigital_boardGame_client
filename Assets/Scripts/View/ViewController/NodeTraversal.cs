@@ -34,7 +34,10 @@ namespace View
             }
             return result;
         }
-
+        public void SetInteractable(bool show)
+        {
+            spriteRenderer.enabled = show;
+        }
         public void Click()
         {
             MovementSystem.Instance.ClickNode(this);
@@ -47,6 +50,7 @@ namespace View
         void Start()
         {
             Steps steps = GetComponent<Steps>();
+            SetInteractable(false);
         }
 
         // Update is called once per frame

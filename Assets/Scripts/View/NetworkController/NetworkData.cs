@@ -98,6 +98,7 @@ namespace Network
             public List<DistrictModifier> district_modifiers;
             public SituationCard? situation_card;
             public List<EdgeRestriction> edge_restrictions;
+            public List<int> legal_nodes;
         }
         [Serializable]
         public struct EdgeRestriction
@@ -230,7 +231,7 @@ namespace Network
                 roles.Insert(0, InGameID.Orchestrator);
             foreach (var player in state.players)
             {
-                roles.Remove((InGameID)Enum.Parse(typeof(InGameID), player.in_game_id));
+                roles.Remove(StringToInGameId(player.in_game_id));
             }
             return roles[0];
         }

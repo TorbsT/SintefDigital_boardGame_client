@@ -21,5 +21,12 @@ namespace View
         {
             return nodes[id];
         }
+        public ICollection<int> CopyNodes()
+        {
+            HashSet<int> nodes = new();
+            foreach (var node in this.nodes.Keys)
+                nodes.Add(node);
+            return nodes;
+        }
     }
 }
