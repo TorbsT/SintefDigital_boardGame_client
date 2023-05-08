@@ -5,20 +5,25 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Network;
 using View;
+using UnityEngine.EventSystems;
 
 public class clickable : MonoBehaviour
 {
-    //TODO: Add other restrictions here
 
-    public GameObject[] restrictionObjects; 
+    public GameObject[] restrictionObjects;
+    private BoxCollider2D boxCollider2D;
 
     public GameObject chooser;
     private static GameObject chooserObj;
 
+    private void Awake()
+    {
+        boxCollider2D = GetComponent<BoxCollider2D>();
+    }
+
     // Update is called once per frame
     void Update()
     {
-
         if (GameStateSynchronizer.Instance.GameState == null)
         {
             return;
@@ -56,6 +61,14 @@ public class clickable : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
+        if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (boxCollider2D.OverlapPoint(mousePosition))
+            {
+                OnClicked();
+            }
+        }
     }
 
     private int[] GetNodeIDsFromName()
@@ -66,7 +79,7 @@ public class clickable : MonoBehaviour
         return new int[] { node1, node2 }; 
     }
 
-    void OnMouseDown()
+    void OnClicked()
     {
         if (GameStateSynchronizer.Instance.Me.in_game_id != NetworkData.InGameID.Orchestrator.ToString() || GameStateSynchronizer.Instance.GameState.Value.current_players_turn != NetworkData.InGameID.Orchestrator.ToString())
         {
@@ -99,6 +112,7 @@ public class clickable : MonoBehaviour
             }
         }
     }
+
     public void AddEdgeRestriction(NetworkData.RestrictionType restriction)
     {
         var node_ids = GetNodeIDsFromName();
@@ -114,4 +128,16 @@ public class clickable : MonoBehaviour
             //Debug.Log("Succsessfullly removed restriction");
         }, failure => { Debug.Log("could not remove restriction from this edge : " + failure); }, node_ids[0], node_ids[1], restriction, true);
     }
+
+    // ==================================================
+    private bool IsPointerOverUIObject()
+    {
+        // Check if the mouse pointer is over a UI element.
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
+
 }
