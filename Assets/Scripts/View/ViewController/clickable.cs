@@ -42,10 +42,8 @@ public class clickable : MonoBehaviour
                 noRestrictions = false;
                 if (restriction.edge_restriction == NetworkData.RestrictionType.ParkAndRide.ToString())
                 {
-                    float w = 7;
-                    float h = 6 * (0.28f / transform.localScale.y);
                     spriteRenderer.sprite = sprite;
-                    spriteRenderer.size = new Vector2(w, h);
+                    spriteRenderer.size = new Vector2(3, 1.25f);
                 }
                 foreach (var obj in restrictionObjects)
                 {
