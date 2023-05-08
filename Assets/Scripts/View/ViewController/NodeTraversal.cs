@@ -11,7 +11,6 @@ namespace View
         public GameObject[] neighbourNodes;
         private SpriteRenderer spriteRenderer;
         [field: SerializeField] public int Id { get; private set; }
-        public GameObject[] relatedPlayerTransformButtons;
 
         public ICollection<INode> GetNeighbours()
         {
@@ -71,31 +70,6 @@ namespace View
         void OnMouseDown()
         {
             Click();
-        }
-
-        internal void ShowTransformButtons()
-        {
-            foreach (var playerTransformButton in relatedPlayerTransformButtons)
-            {
-                playerTransformButton.SetActive(false);
-                playerTransformButton.SetActive(true);
-            }
-        }
-
-        internal void HideTransformButtons()
-        {
-            foreach (var playerTransformButton in relatedPlayerTransformButtons)
-            {
-                playerTransformButton.SetActive(false);
-            }
-        }
-
-        internal void HideNeighbouringTransformButtons()
-        {
-            foreach (var node in GetNeighbourScripts())
-            {
-                node.HideTransformButtons();
-            }
         }
     }
 }
