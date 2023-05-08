@@ -12,8 +12,9 @@ namespace View
     internal class VehicleType : MonoBehaviour
     {
         [SerializeField] private List<NetworkData.RestrictionType> types = new();
+        [SerializeField] private bool cargoIsPeople;  // Only applies to heavy type
 
-        public bool Exactly(ICollection<NetworkData.RestrictionType> types)
+        public bool Exactly(ICollection<NetworkData.RestrictionType> types, bool cargoIsPeople)
         {
             foreach (var type in types)
                 if (!this.types.Contains(type))
@@ -21,6 +22,9 @@ namespace View
             foreach (var type in this.types)
                 if (!types.Contains(type))
                     return false;
+            if (types.Contains(NetworkData.RestrictionType.Heavy) &&
+                this.types.Contains(NetworkData.RestrictionType.Heavy) &&
+                cargoIsPeople != this.cargoIsPeople) return false;
             return true;
         }
     }

@@ -76,11 +76,12 @@ namespace View
                 roleToPackageSpawn.Add(roleName, packageSpawnId);
                 roleToPackageDropoff.Add(roleName, packageDropoffId);
 
+                bool cargoIsPeople = card.Value.type_of_entities_to_transport == "People";
 
                 List<NetworkData.RestrictionType> vehicleTypes = new();
                 foreach (var vehicleString in card.Value.special_vehicle_types)
                     vehicleTypes.Add((NetworkData.RestrictionType)Enum.Parse(typeof(NetworkData.RestrictionType), vehicleString));
-                GameObject playerPrefab = playerPrefabs.Find(match => match.GetComponent<VehicleType>().Exactly(vehicleTypes));
+                GameObject playerPrefab = playerPrefabs.Find(match => match.GetComponent<VehicleType>().Exactly(vehicleTypes, cargoIsPeople));
                 if (playerPrefab == null)
                 {
                     string errormsg = "There was no car prefab with the types:";
