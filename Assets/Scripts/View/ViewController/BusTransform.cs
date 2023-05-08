@@ -6,27 +6,28 @@ using View;
 
 public class BusTransform : MonoBehaviour
 {
-    private bool should_be_bus = false;
+    public SpriteRenderer selfSprite;
 
-    private void OnEnable()
+    private void Update()
     {
-        UpdateButtonSprite();
-    }
-
-    public void UpdateButtonSprite()
-    {
-        if (GameStateSynchronizer.Instance.Me.is_bus)
+        var playersTurn = GameStateSynchronizer.Instance.GameState.Value.current_players_turn;
+        if (playersTurn == NetworkData.InGameID.Orchestrator.ToString()) return;
+        foreach (var player in GameStateSynchronizer.Instance.GameState.Value.players)
         {
-            SetButtonSpriteToTurnBackToVehicle();
-        }
-        else
-        {
-            SetButtonSpriteToTurnToBus();
+            if (player.in_game_id != playersTurn) continue;
+            var current_pos_id = player.position_node_id;
+            if (current_pos_id.Value == transform.parent.GetComponent<INode>().Id)
+            {
+                selfSprite.color = Color.green;
+                break;
+            }
+            selfSprite.color = Color.white;
         }
     }
 
     public void ToggleTransform()
     {
+        var should_be_bus = !GameStateSynchronizer.Instance.Me.is_bus;
         NetworkData.PlayerInput input = new()
         {
             player_id = NetworkData.Instance.UniqueID,
@@ -36,14 +37,6 @@ public class BusTransform : MonoBehaviour
         };
         RestAPI.Instance.SendPlayerInput(success =>
         {
-            if (should_be_bus)
-            {
-                SetButtonSpriteToTurnBackToVehicle();
-            }
-            else
-            {
-                SetButtonSpriteToTurnToBus();
-            }
             UndoSystem.Instance.MovesDone++;
         }, failure =>
         {
@@ -51,22 +44,12 @@ public class BusTransform : MonoBehaviour
         }, input);
     }
 
-    private void SetButtonSpriteToTurnToBus()
-    {
-        this.gameObject.GetComponent<SpriteRenderer>().material.color = Color.green;
-    }
-
-    private void SetButtonSpriteToTurnBackToVehicle()
-    {
-        this.gameObject.GetComponent<SpriteRenderer>().material.color = Color.red;
-    }
-
     private void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            should_be_bus = !GameStateSynchronizer.Instance.Me.is_bus;
             ToggleTransform();
         }
     }
+
 }

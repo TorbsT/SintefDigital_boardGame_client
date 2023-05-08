@@ -11,11 +11,10 @@ namespace View
         [SerializeField] private string disconnectToScene;
         [SerializeField] private KeyCode pauseKey = KeyCode.Escape;
         [SerializeField] private GameObject pauseMenu;
-        [SerializeField] private string amogusScene;
+
         private void Awake()
         {
             pauseMenu.SetActive(false);
-            SceneManager.LoadSceneAsync(amogusScene, LoadSceneMode.Additive);
         }
         private void Update()
         {

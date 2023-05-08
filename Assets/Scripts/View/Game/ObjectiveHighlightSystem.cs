@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace View.Game
 {
+    using ExtensionMethods;
     public class ObjectiveHighlightSystem : MonoBehaviour
     {
         public static ObjectiveHighlightSystem Instance { get; private set; }
@@ -59,7 +60,7 @@ namespace View.Game
                 if (match) layerMod = highlightLayer;
 
                 spriteSorter.HighlightLayer = layerMod;
-                component.transform.localScale = Vector3.one * scale;
+                component.transform.SetGlobalScale(Vector3.one * scale);
             }
         }
     }

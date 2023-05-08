@@ -12,7 +12,6 @@ namespace View
         [SerializeField] private SpriteRenderer spriteRenderer;
         private Animator animator;
         [field: SerializeField] public int Id { get; private set; }
-        public GameObject[] relatedPlayerTransformButtons;
 
         public ICollection<INode> GetNeighbours()
         {
@@ -46,7 +45,6 @@ namespace View
         // Start is called before the first frame update
         void Awake()
         {
-            spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
         }
         void Start()
@@ -73,31 +71,6 @@ namespace View
         void OnMouseDown()
         {
             Click();
-        }
-
-        internal void ShowTransformButtons()
-        {
-            foreach (var playerTransformButton in relatedPlayerTransformButtons)
-            {
-                playerTransformButton.SetActive(false);
-                playerTransformButton.SetActive(true);
-            }
-        }
-
-        internal void HideTransformButtons()
-        {
-            foreach (var playerTransformButton in relatedPlayerTransformButtons)
-            {
-                playerTransformButton.SetActive(false);
-            }
-        }
-
-        internal void HideNeighbouringTransformButtons()
-        {
-            foreach (var node in GetNeighbourScripts())
-            {
-                node.HideTransformButtons();
-            }
         }
     }
 }
