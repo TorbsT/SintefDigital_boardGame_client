@@ -82,7 +82,7 @@ namespace View
                 (success) =>
                 {
                     MainMenuUIController.Instance.JoinLobby(success.id);
-                    RestAPI.Instance.ChangeToFirstAvailableRole((_) => { }, (_) => { }, success);
+                    RestAPI.Instance.ChangeToFirstAvailableRole((_) => { }, (_) => { }, success, false);
                 }, 
                 (failure) =>
                 {

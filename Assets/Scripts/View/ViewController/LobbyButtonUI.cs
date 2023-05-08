@@ -18,7 +18,7 @@ namespace View
             RestAPI.Instance.JoinLobby(
                 (success) =>
                 {
-                    RestAPI.Instance.ChangeToFirstAvailableRole((_) => { }, (_) => { }, success);
+                    RestAPI.Instance.ChangeToFirstAvailableRole((_) => { }, (_) => { }, success, false);
                     MainMenuUIController.Instance.JoinLobby(LobbyId);
                 },
                 (failure) =>
