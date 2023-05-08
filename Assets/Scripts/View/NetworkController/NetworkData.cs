@@ -66,6 +66,7 @@ namespace Network
             Hazard = 3,
             Destination = 4,
             Heavy = 5,
+            OneWay = 6,
         }
         [Serializable]
         public enum DistrictModifierType
