@@ -68,7 +68,7 @@ public class clickable : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (GameStateSynchronizer.Instance.Me.in_game_id != NetworkData.InGameID.Orchestrator.ToString())
+        if (GameStateSynchronizer.Instance.Me.in_game_id != NetworkData.InGameID.Orchestrator.ToString() || GameStateSynchronizer.Instance.GameState.Value.current_players_turn != NetworkData.InGameID.Orchestrator.ToString())
         {
             return;
         }
