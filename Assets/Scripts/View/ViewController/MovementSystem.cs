@@ -73,12 +73,12 @@ namespace View
                     moveAnimation.Start();
                 }
 
-                var node = GraphManager.Instance.GetNode(newPos).gameObject.GetComponent<NodeTraversal>();
-                if (node != null)
-                {
-                    node.HideNeighbouringTransformButtons();
-                    node.ShowTransformButtons();
-                }
+                //var node = GraphManager.Instance.GetNode(newPos).gameObject.GetComponent<NodeTraversal>();
+                //if (node != null)
+                //{
+                //    node.HideNeighbouringTransformButtons();
+                //    node.ShowTransformButtons();
+                //}
             }
         }
         public void ClickNode(NodeTraversal trav)

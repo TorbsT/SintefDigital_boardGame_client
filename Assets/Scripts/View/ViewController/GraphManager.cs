@@ -28,5 +28,14 @@ namespace View
                 nodes.Add(node);
             return nodes;
         }
+        public List<INode> GetAllParkAndRideNodes()
+        {
+            var parkAndRideNodeList = new List<INode>();
+            foreach (var node in nodes.Values)
+            {
+                if (node.gameObject.tag == "ParkRide") parkAndRideNodeList.Add(node);
+            }
+            return parkAndRideNodeList;
+        }
     }
 }

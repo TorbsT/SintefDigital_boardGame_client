@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using View;
 
 namespace Network
 {
@@ -159,6 +160,30 @@ namespace Network
             {
                 StateChanged?.Invoke(newState);
             }
+
+            if (GraphManager.Instance != null)
+            {
+                foreach (var parkAndRideNode in GraphManager.Instance.GetAllParkAndRideNodes())
+                {
+                    parkAndRideNode.gameObject.GetComponentInChildren<BusTransform>(true).gameObject.SetActive(false);
+                }
+
+                foreach (var restriction in GameState.Value.edge_restrictions)
+                {
+                    if (restriction.edge_restriction != NetworkData.RestrictionType.ParkAndRide.ToString()) continue;
+                    var node_one = GraphManager.Instance.GetNode(restriction.node_one);
+                    var node_two = GraphManager.Instance.GetNode(restriction.node_two);
+                    if (node_one.gameObject.tag == "ParkRide")
+                    {
+                        node_one.gameObject.GetComponentInChildren<BusTransform>(true).gameObject.SetActive(true);
+                    }
+                    else if (node_two.gameObject.tag == "ParkRide")
+                    {
+                        node_two.gameObject.GetComponentInChildren<BusTransform>(true).gameObject.SetActive(true);
+                    }
+                }
+            } 
+            
         }
     }
 }
