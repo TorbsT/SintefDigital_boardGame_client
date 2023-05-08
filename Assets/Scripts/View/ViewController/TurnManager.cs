@@ -16,6 +16,7 @@ namespace View
         public static TurnManager Instance { get; private set; }
 
         public bool IsMyTurn { get; private set; }
+        public NetworkData.InGameID? TurnPlayerRole { get; private set; }
         public event Action TurnChanged;
         public event Action<List<NetworkData.DistrictModifier>> orchestratorTurnChange;
 
@@ -56,6 +57,7 @@ namespace View
             }
             if (turnPlayer == null) Debug.LogError("There is nobody's turn: "+turnRole);
 
+            TurnPlayerRole = NetworkData.StringToInGameId(turnRoleName);
             string txt = "";
             IsMyTurn = turnRoleName == GameStateSynchronizer.Instance.Me.in_game_id;
             if (IsMyTurn)
