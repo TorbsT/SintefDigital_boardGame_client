@@ -93,7 +93,7 @@ MonoBehaviour:
   - <Player>k__BackingField: 7
     <Color>k__BackingField: {r: 0.766, g: 0.766, b: 0.766, a: 1}
   - <Player>k__BackingField: 0
-    <Color>k__BackingField: {r: 0.84084654, g: 0.35644355, b: 0.8490566, a: 0}
+    <Color>k__BackingField: {r: 0.84084654, g: 0.35644355, b: 0.8490566, a: 1}
 --- !u!114 &5367796262605555167
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -23,6 +23,9 @@ namespace View
         [SerializeField] private RectTransform playerView;
         [SerializeField] private TextMeshProUGUI lobbyHelpText;
 
+        private int retry_counter = 0;
+        private const int times_to_retry = 5;
+
         private NetworkData.GameState? gameState;
 
         private void Start()
@@ -79,7 +82,7 @@ namespace View
                     changeRoleButton.interactable = true;
                     // uh oh
                 }, GameStateSynchronizer.Instance.GameState.Value
-                );
+                , false);
         }
         public void LeaveLobbyClicked()
         {
@@ -179,6 +182,25 @@ namespace View
                     lobbyHelpText.text = $"Waiting for {orchestratorName} to start the game";
             }
 
+            if (me.in_game_id == NetworkData.InGameID.Undecided.ToString() && retry_counter >= times_to_retry)
+            {
+                RestAPI.Instance.ChangeToFirstAvailableRole(
+                (gameState) =>
+                {
+                    // Not necessary but refreshes faster, improves user experience
+                    CompleteRefresh(gameState);
+                },
+                (failure) =>
+                {
+                    Debug.LogWarning("Couldn't change role");
+                    changeRoleButton.interactable = true;
+                    // uh oh
+                }, GameStateSynchronizer.Instance.GameState.Value
+                , true);
+                retry_counter = 0;
+            }
+            retry_counter++;
+
             if (!gameState.is_lobby)
             {  // Game has started
                 SceneManager.LoadSceneAsync(startGameScene);
@@ -187,7 +209,6 @@ namespace View
         private void AddPlayer(string playerName, string roleName, bool isMe)
         {
             NetworkData.InGameID role = (NetworkData.InGameID)Enum.Parse(typeof(NetworkData.InGameID), roleName);
-            if (role == NetworkData.InGameID.Undecided) return;
             if (role != NetworkData.InGameID.Orchestrator) roleName = "Player";
             GameObject panel = PoolManager.Instance.Depool(playerPrefab);
             LobbyPlayerUI player = panel.GetComponent<LobbyPlayerUI>();

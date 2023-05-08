@@ -85,9 +85,9 @@ namespace Network
         }
         
         // Helpers - used often, or abstracts
-        internal void ChangeToFirstAvailableRole(Action<NetworkData.GameState> successCallback, Action<string> failureCallback, NetworkData.GameState state)
+        internal void ChangeToFirstAvailableRole(Action<NetworkData.GameState> successCallback, Action<string> failureCallback, NetworkData.GameState state, bool ignoreOrchestrator)
         {
-            NetworkData.InGameID chosenRole = NetworkData.Instance.GetFirstAvailableRole(state, false);
+            NetworkData.InGameID chosenRole = NetworkData.Instance.GetFirstAvailableRole(state, ignoreOrchestrator);
             NetworkData.PlayerInput input = new()
             {
                 player_id = NetworkData.Instance.UniqueID,

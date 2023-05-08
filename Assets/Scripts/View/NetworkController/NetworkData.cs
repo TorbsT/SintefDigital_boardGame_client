@@ -227,11 +227,13 @@ namespace Network
                     InGameID.PlayerFour,
                     InGameID.PlayerFive,
                     InGameID.PlayerSix,
+                    InGameID.Undecided,
                 };
             if (!skipOrchestrator)
                 roles.Insert(0, InGameID.Orchestrator);
             foreach (var player in state.players)
             {
+                if (player.in_game_id == InGameID.Undecided.ToString()) continue;
                 roles.Remove(StringToInGameId(player.in_game_id));
             }
             return roles[0];
