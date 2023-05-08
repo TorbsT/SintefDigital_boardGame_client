@@ -32,19 +32,7 @@ namespace View
         [SerializeField] private float packageOverPlayerDistance = 3f;
         [SerializeField] private float groupDistance = 2f;
 
-        private void Awake()
-        {
-            Instance = this;
-        }
-        private void OnEnable()
-        {
-            Invoke(nameof(ShowObjectives), 1.0f);  // Not delaying it causes errors, couldn't be rust
 
-        }
-        private void OnDisable()
-        {
-            GameStateSynchronizer.Instance.StateChanged -= StateChanged;
-        }
         public GameObject GetPlayerGO(string role)
         {
             if (roleToPlayerGO.ContainsKey(role))
@@ -52,8 +40,24 @@ namespace View
             Debug.LogWarning("There was no gameobject for the role " + role);
             return null;
         }
-        private void ShowObjectives()
+        private void Awake()
         {
+            Instance = this;
+        }
+        private void OnEnable()
+        {
+            GameStateSynchronizer.Instance.StateChanged += ShowObjectives;
+
+        }
+        private void OnDisable()
+        {
+            GameStateSynchronizer.Instance.StateChanged -= StateChanged;
+            GameStateSynchronizer.Instance.StateChanged -= ShowObjectives;
+        }
+
+        private void ShowObjectives(NetworkData.GameState? state)
+        {
+            GameStateSynchronizer.Instance.StateChanged -= ShowObjectives;
             GameStateSynchronizer.Instance.StateChanged += StateChanged;
             foreach (var player in GameStateSynchronizer.Instance.GameState.Value.players)
             {

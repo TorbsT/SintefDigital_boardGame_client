@@ -8,8 +8,9 @@ namespace View
 {
     public class NodeTraversal : MonoBehaviour, INode
     {
-        public GameObject[] neighbourNodes;
-        private SpriteRenderer spriteRenderer;
+        [SerializeField] private GameObject[] neighbourNodes;
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        private Animator animator;
         [field: SerializeField] public int Id { get; private set; }
         public GameObject[] relatedPlayerTransformButtons;
 
@@ -36,7 +37,7 @@ namespace View
         }
         public void SetInteractable(bool show)
         {
-            spriteRenderer.enabled = show;
+            animator.SetBool("active", show);
         }
         public void Click()
         {
@@ -46,6 +47,7 @@ namespace View
         void Awake()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
+            animator = GetComponent<Animator>();
         }
         void Start()
         {

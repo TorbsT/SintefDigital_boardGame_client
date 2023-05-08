@@ -6164,7 +6164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.766, g: 0.766, b: 0.766, a: 1}
+  m_Color: {r: 0.7439068, g: 0.5764706, b: 0.9411765, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8504,6 +8504,7 @@ GameObject:
   - component: {fileID: 1618755442}
   - component: {fileID: 1618755444}
   - component: {fileID: 1618755445}
+  - component: {fileID: 1618755446}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -8524,6 +8525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 1032638951944834588, guid: 86925c6d108a15943a6b3c3a74a10ec6, type: 3}
+  disconnectToScene: MainMenu
 --- !u!4 &1618755443
 Transform:
   m_ObjectHideFlags: 0
@@ -8562,7 +8564,7 @@ MonoBehaviour:
   startPrefab: {fileID: 4452382819103230009, guid: f858136edc6cda640b6185fd53feffc6, type: 3}
   pickupPrefab: {fileID: 3848408592440982533, guid: e7bd3584f1868474ea3fcfed53432846, type: 3}
   goalPrefab: {fileID: 7155191702897517725, guid: 63346ae260c8e7d4b936c84dde087691, type: 3}
-  packageOverPlayerDistance: 3
+  packageOverPlayerDistance: 1.8
   groupDistance: 2
 --- !u!114 &1618755445
 MonoBehaviour:
@@ -8580,6 +8582,22 @@ MonoBehaviour:
   cooldown: 0.5
   circleRadius: 1
   groupMode: 1
+--- !u!114 &1618755446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618755441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0310819512f312c4fb9e9da887a8c598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightScale: 2.5
+  normalScale: 1
+  normalLayer: 0
+  highlightLayer: 200
 --- !u!1 &1626157359
 GameObject:
   m_ObjectHideFlags: 0

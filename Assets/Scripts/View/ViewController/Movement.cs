@@ -18,13 +18,7 @@ namespace View
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                GameObject newParent = parent.GetComponent<NodeTraversal>().neighbourNodes[0];
-                transform.parent = newParent.transform;
-                parent = transform.parent.gameObject;
-                transform.localPosition = new Vector3(0, 0, 0);
-            }
+
         }
     }
 }
