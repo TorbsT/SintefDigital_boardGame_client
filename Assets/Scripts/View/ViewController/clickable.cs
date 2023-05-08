@@ -88,6 +88,7 @@ public class clickable : MonoBehaviour
 
         if (transform.childCount == 0)
         {
+            if (chooserObj != null) Destroy(chooserObj);
             chooserObj = Instantiate(chooser, transform);
             chooserObj.transform.localPosition = new Vector2(-26, -10);
             var node_ids = GetNodeIDsFromName();
