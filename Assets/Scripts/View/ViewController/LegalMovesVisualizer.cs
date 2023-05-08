@@ -21,15 +21,11 @@ namespace View
         }
         private void ChangeState(NetworkData.GameState? state)
         {
-            Debug.Log("ye");
             if (!state.HasValue) return;
 
             HashSet<int> toNodes = new();
             foreach (var node in state.Value.legal_nodes)
                 toNodes.Add(node);
-
-            foreach (var node in toNodes)
-                Debug.Log("YEEPPSHH " + node);
 
             Dictionary<int, bool> nodeShowPairs = new();
             foreach (var node in GraphManager.Instance.CopyNodes())

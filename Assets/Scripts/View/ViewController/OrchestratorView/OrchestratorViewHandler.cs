@@ -114,7 +114,6 @@ namespace View
 
                 foreach(NetworkData.DistrictModifier disModifier in modifierList)
                 {
-                    Debug.Log(disModifier.vehicle_type);
                     if (disModifier.district == regionCard.getDistrict().ToString())
                     {
                         addModifierToRegionCard(regionCard, disModifier);
