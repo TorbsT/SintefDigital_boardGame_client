@@ -31,6 +31,8 @@ namespace View
                 string role = player.in_game_id;
                 if (role == NetworkData.InGameID.Orchestrator.ToString())
                     continue;
+                if (!player.position_node_id.HasValue)
+                    continue;
                 int newPos = player.position_node_id.Value;
                 int oldPos;
                 if (!playerPositions.ContainsKey(role))
