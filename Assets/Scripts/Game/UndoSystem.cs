@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace Game
 {
+    /// <summary>
+    /// Handles the undo button visible to players.
+    /// </summary>
     public class UndoSystem : MonoBehaviour
     {
         public static UndoSystem Instance { get; private set; }

@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Common
 {
     using Network;
     [ExecuteAlways]
-    internal class PlayerColorManager : MonoBehaviour
+    public class PlayerColorManager : MonoBehaviour
     {
         [Serializable]
         private class PlayerColorPair

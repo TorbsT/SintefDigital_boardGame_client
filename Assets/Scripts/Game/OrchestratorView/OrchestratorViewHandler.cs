@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Common.Network;
 using Common;
 
@@ -28,7 +27,6 @@ namespace Game.OrchestratorView
         private void Awake()
         {
             Instance = this;
-            //gameObject.SetActive(false); temperarly removed
         }
 
         void OnEnable()
@@ -62,7 +60,6 @@ namespace Game.OrchestratorView
             activeRegion = regionCard;
             tollPanelScript.showPanel(regionCard);
         }
-
 
         public void showAccessScreen(RegionCard regionCard)
         {
@@ -108,8 +105,6 @@ namespace Game.OrchestratorView
         }
         public void renderModifiers(List<NetworkData.DistrictModifier> modifierList)
         {
-            
-           
             foreach (RegionCard regionCard in regionCards)
             {
                 regionCard.resetCard();
@@ -151,7 +146,7 @@ namespace Game.OrchestratorView
         }
         private void RefreshOtherCards()
         {
-            List<GameObject> temp = new();  // Prevent errors
+            List<GameObject> temp = new();  // Prevent errors with modifying collection while iterating
             foreach (Transform t in otherCardsParent.GetComponentsInChildren<Transform>())
             {
                 if (t == otherCardsParent) continue;
@@ -160,8 +155,9 @@ namespace Game.OrchestratorView
             }
             foreach (GameObject go in temp)
                 PoolManager.Enpool(go);
-            var sitCard = AddOtherCard(situationCardPrefab).GetComponent<GameCard>();
+            var sitCard = AddOtherCard(situationCardPrefab).GetComponent<SituationCard>();
             sitCard.SetValues(GameStateSynchronizer.Instance.GameState.Value.situation_card.Value);
+            // Use the next line if player objective cards (visual cards) are implemented
             //var objCard = AddOtherCard(objectiveCardPrefab).GetComponent<ObjectiveCard>();
         }
         private GameObject AddOtherCard(GameObject prefab)

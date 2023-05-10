@@ -1,11 +1,14 @@
 using Common.Network;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Common.ExtensionMethods;
 
 namespace Game
 {
+    /// <summary>
+    /// Works with <see cref="ObjectiveHighlightComponent"/> to highlight certain
+    /// player-owned gameobjects
+    /// </summary>
     public class ObjectiveHighlightSystem : MonoBehaviour
     {
         public static ObjectiveHighlightSystem Instance { get; private set; }

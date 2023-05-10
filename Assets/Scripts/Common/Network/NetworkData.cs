@@ -46,7 +46,7 @@ namespace Common.Network
         {
             Movement,
             ChangeRole,
-            All,  // Do not use! only for testing purposes on backend
+            All,  // Do not use! only used internally on backend
             NextTurn,  // End your own turn
             UndoAction,
             ModifyDistrict,  // Add restriction on orchestrator view

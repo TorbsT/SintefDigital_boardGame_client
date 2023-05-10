@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Common.Network;
 using TMPro;
-using UnityEngine.Events;
 using Common;
 
 namespace Game
 {
+    /// <summary>
+    /// Keeps track of whose turn it is based on fetched gamestates,
+    /// uses this to update player panel UI,
+    /// also sends out events when turn changed.
+    /// </summary>
     internal class TurnManager : MonoBehaviour
     {
         public static TurnManager Instance { get; private set; }

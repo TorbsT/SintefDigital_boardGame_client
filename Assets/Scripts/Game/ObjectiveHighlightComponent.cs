@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 using Common;
 
 namespace Game
 {
+    /// <summary>
+    /// A player-owned gameobject with this attached will automatically
+    /// expand and go to front for visibility (on given player turns)
+    /// </summary>
     [RequireComponent(typeof(PlayerOwned), typeof(SpriteSorter))]
     internal class ObjectiveHighlightComponent : MonoBehaviour
     {

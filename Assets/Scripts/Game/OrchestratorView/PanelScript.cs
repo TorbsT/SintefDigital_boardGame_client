@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -15,9 +13,7 @@ namespace Game.OrchestratorView
         protected int chosenIndex;
         protected RegionCard activeRegion;
 
-
         public abstract void handleInput();
-
 
         internal virtual void Awake()
         {
@@ -103,11 +99,5 @@ namespace Game.OrchestratorView
             selectionMarker.SetActive(false);
             highlightedIndex = null;
         }
-
-       
-
-
-        
     }
-
 }

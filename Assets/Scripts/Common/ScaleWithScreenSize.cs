@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -18,7 +16,6 @@ namespace Common
         public void ResetOriginalDimensions()
         {
             originalScale = transform.localScale;
-            //originalScreensize = new(Screen.width, Screen.height);
             originalPosition = transform.anchoredPosition;
         }
         private void Awake()

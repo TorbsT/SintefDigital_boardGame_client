@@ -1,7 +1,4 @@
-using Common.Network;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Game
@@ -42,7 +39,7 @@ namespace Game
         {
             MovementSystem.Instance.ClickNode(this);
         }
-        // Start is called before the first frame update
+
         void Awake()
         {
             animator = GetComponent<Animator>();
@@ -52,11 +49,6 @@ namespace Game
             SetInteractable(false);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
         private void OnMouseEnter()
         {
             spriteRenderer.color = Color.cyan;

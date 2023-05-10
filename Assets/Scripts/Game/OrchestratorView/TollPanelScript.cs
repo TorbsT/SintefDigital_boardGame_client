@@ -1,9 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-
 namespace Game.OrchestratorView
 {
     public class TollPanelScript : PanelScript
@@ -15,7 +9,5 @@ namespace Game.OrchestratorView
 
             hidePanel();
         }
-
     }
-
 }

@@ -8,7 +8,10 @@ using UnityEngine;
 
 namespace Game
 {
-    // Attached to a car gameobject to identify its vehicle types
+    /// <summary>
+    /// Attached to a car gameobject to identify its vehicle types,
+    /// e.g. which restrictions it satisfies
+    /// </summary>
     internal class VehicleType : MonoBehaviour
     {
         [SerializeField] private List<NetworkData.RestrictionType> types = new();

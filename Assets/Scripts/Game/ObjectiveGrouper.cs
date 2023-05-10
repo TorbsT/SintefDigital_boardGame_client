@@ -1,13 +1,14 @@
 ﻿using Common;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Game
 {
+    /// <summary>
+    /// Ensures that objectives (packages, goals) are not stacked on top of each other,
+    /// but rather grouped up in a circle or on a line (for visibility).
+    /// </summary>
     internal class ObjectiveGrouper : MonoBehaviour
     {
         private enum GroupMode
@@ -27,11 +28,9 @@ namespace Game
         {
             int? prevId = GetNode(trans);
             Unpair(trans, prevId);
-            //if (prevId.HasValue) RefreshNodeGroup(prevId.Value);
             if (nodeId == null) return;  // Only remove requested
             int node = nodeId.Value;
             Pair(trans, node);
-            //RefreshNodeGroup(node);
         }
         private void Awake()
         {

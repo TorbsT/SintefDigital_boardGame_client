@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Common.Network;
@@ -21,20 +19,13 @@ namespace Game
             if (Input.GetKeyDown(pauseKey))
                 pauseMenu.SetActive(!pauseMenu.activeSelf);
         }
-        /*
-        public void OrchestratorToggle()
-        {
-            OrchestratorViewHandler.Instance.gameObject.
-                SetActive(!OrchestratorViewHandler.Instance.gameObject.activeSelf);
-        }
-        */
         public void PauseClicked()
         {
             pauseMenu.SetActive(true);
         }
         public void DisconnectClicked()
         {
-            RestAPI.Instance.DisconnectFromGame(success=>{SceneManager.LoadSceneAsync(disconnectToScene); Debug.Log("Successfully quit the game!");}, failure=>{Debug.Log("Could not disconnect from the game");});
+            RestAPI.Instance.DisconnectFromGame(success=>{SceneManager.LoadSceneAsync(disconnectToScene); }, failure=>{Debug.LogWarning("Could not disconnect from the game");});
         }
         public void ContinueClicked()
         {

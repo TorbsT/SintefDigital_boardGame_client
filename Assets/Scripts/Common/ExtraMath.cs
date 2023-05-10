@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +5,6 @@ namespace Common
 {
     public static class ExtraMath
     {
-
         public static List<Vector2> GetCircleArrangement(int count, float radius = 1f)
         {
             List<Vector2> result = new();

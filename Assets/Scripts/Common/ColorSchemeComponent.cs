@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Common
 {
     [ExecuteAlways]
-    internal class ColorSchemeComponent : MonoBehaviour
+    public class ColorSchemeComponent : MonoBehaviour
     {
         [SerializeField] private ColorSchemeSystem.Scheme scheme;
         [SerializeField] private new Image renderer;

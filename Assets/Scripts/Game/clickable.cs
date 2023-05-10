@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
 using Common.Network;
 using UnityEngine.EventSystems;
@@ -10,7 +7,6 @@ namespace Game
 {
     public class clickable : MonoBehaviour
     {
-
         public GameObject[] restrictionObjects;
         private BoxCollider2D boxCollider2D;
 
@@ -22,7 +18,6 @@ namespace Game
             boxCollider2D = GetComponent<BoxCollider2D>();
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (GameStateSynchronizer.Instance.GameState == null)
@@ -104,7 +99,6 @@ namespace Game
                     if (restriction.node_one != node_ids[0] && restriction.node_one != node_ids[1] && restriction.node_two != node_ids[0] && restriction.node_two != node_ids[1]) continue;
                     neighbouring_park_and_ride_restriction_exists = true;
                 }
-                Debug.Log($"{node_one.gameObject.tag == "ParkRide"}, {node_two.gameObject.tag == "ParkRide"}, {neighbouring_park_and_ride_restriction_exists}");
                 if (node_one.gameObject.tag == "ParkRide" || node_two.gameObject.tag == "ParkRide" || neighbouring_park_and_ride_restriction_exists)
                 {
                     foreach (var child in chooserObj.GetComponentsInChildren<Transform>(true))
@@ -121,8 +115,7 @@ namespace Game
             var node_ids = GetNodeIDsFromName();
             RestAPI.Instance.SetEdgeRestriction(success =>
             {
-                //Debug.Log("Succsessfullly added restriction");
-            }, failure => { Debug.Log("could not add restriction to this edge : " + failure); }, node_ids[0], node_ids[1], restriction, false);
+            }, failure => { Debug.LogWarning("could not add restriction to this edge : " + failure); }, node_ids[0], node_ids[1], restriction, false);
         }
 
         public void RemoveEdgeRestriction(NetworkData.RestrictionType restriction)
@@ -130,11 +123,9 @@ namespace Game
             var node_ids = GetNodeIDsFromName();
             RestAPI.Instance.SetEdgeRestriction(success =>
             {
-                //Debug.Log("Succsessfullly removed restriction");
-            }, failure => { Debug.Log("could not remove restriction from this edge : " + failure); }, node_ids[0], node_ids[1], restriction, true);
+            }, failure => { Debug.LogWarning("could not remove restriction from this edge : " + failure); }, node_ids[0], node_ids[1], restriction, true);
         }
 
-        // ==================================================
         private bool IsPointerOverUIObject()
         {
             // Check if the mouse pointer is over a UI element.

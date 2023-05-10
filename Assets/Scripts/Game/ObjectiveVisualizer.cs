@@ -2,13 +2,13 @@
 using Common.Network;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Game
 {
+    /// <summary>
+    /// Makes sure that objectives (packages, goals) are placed at the correct nodes.
+    /// </summary>
     internal class ObjectiveVisualizer : MonoBehaviour
     {
         private enum PackageState

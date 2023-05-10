@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 
 namespace Game.OrchestratorView
 {
@@ -12,14 +9,12 @@ namespace Game.OrchestratorView
         public GameObject p1;
         public GameObject p2;
      
-
         internal override void Awake()
         {
             base.Awake();
             p1.GetComponent<Button>().onClick.AddListener(() => handleValue(1));
             p2.GetComponent<Button>().onClick.AddListener(() => handleValue(2));
         }
-
 
         public override void handleInput() //Called from onclick listerner on icons
         {
@@ -45,8 +40,5 @@ namespace Game.OrchestratorView
             activeRegion.setPriorityServer(chosenIndex, value);
             hidePanel();
         }
-
-
     }
-
 }

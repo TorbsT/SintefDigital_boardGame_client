@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-using System.Threading;
 using TMPro;
 using Common.Network;
 using Common;
@@ -49,7 +47,6 @@ namespace Game.OrchestratorView
             addAccessButton.transform.position = accessPoints[0].GetPos();
             addPriorityButton.transform.position = priorityPoints[0].GetPos();
             addTollButton.transform.position = tollPoint.GetPos();
-            //setSizesOfIcons(15);
             setEditStateCard();
             tollCostIcon.SetActive(false);
             setColor();
@@ -253,7 +250,6 @@ namespace Game.OrchestratorView
 
         public void addPriority()
         {
-
             this.handler.showPriorityScreen(this);
         }
 
@@ -408,18 +404,10 @@ namespace Game.OrchestratorView
                 district_modifier = districtModifier
             };
 
-            RestAPI.Instance.SendPlayerInput(success => { }, failure => {
+            RestAPI.Instance.SendPlayerInput(success => { }, failure =>
+            {
                 Debug.LogWarning($"Could not send Orchestrator input{failure}");
             }, playerInput);
-           
-
         }
-
-        
-
-
-     }   
-
-
-
+    }   
 }

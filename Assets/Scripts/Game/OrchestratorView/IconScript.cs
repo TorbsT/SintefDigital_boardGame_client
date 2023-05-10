@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Common.Network;
 using Common;
 
@@ -55,7 +52,6 @@ namespace Game.OrchestratorView
 
         public void removeOnServer() 
         {
-            Debug.Log(typeOfModifier + " " + currentRegionCard);
             if (currentRegionCard == null) { return; } // if not attached to a RegionCard, should not be able to access
             switch (typeOfModifier)
             {

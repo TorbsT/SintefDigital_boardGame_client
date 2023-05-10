@@ -98,7 +98,7 @@ namespace Common.Network
                 (failure) =>
                 {
                     if (state == State.OUTOFLOBBY) return;
-                    Debug.Log($"Couldn't fetch server: {failure}");
+                    Debug.LogWarning($"Couldn't fetch server: {failure}");
                     currentCooldown = 0f;
                     state = State.FAILED;
                 }, (int)LobbyId

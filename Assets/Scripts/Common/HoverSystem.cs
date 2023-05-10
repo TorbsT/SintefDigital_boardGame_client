@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Common
 {
-    internal class HoverSystem : MonoBehaviour
+    public class HoverSystem : MonoBehaviour
     {
         [Serializable]
         private class CursorIdTexturePair

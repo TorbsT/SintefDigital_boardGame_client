@@ -1,6 +1,4 @@
 using Common.Network;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game
@@ -41,7 +39,7 @@ namespace Game
                 UndoSystem.Instance.MovesDone++;
             }, failure =>
             {
-                Debug.Log(failure);
+                Debug.LogWarning(failure);
             }, input);
         }
 

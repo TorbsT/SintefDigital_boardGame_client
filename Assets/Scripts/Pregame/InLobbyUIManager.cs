@@ -36,14 +36,14 @@ namespace Pregame
         private void OnEnable()
         {
             GameStateSynchronizer.Instance.StateChanged += CompleteRefresh;
-            GameCardController.Instance.SelectedCards += Refresh;
+            SituationCardController.Instance.SelectedCards += Refresh;
             CompleteRefresh(GameStateSynchronizer.Instance.GameState);
             SwitchView(false);
         }
         private void OnDisable()
         {
             GameStateSynchronizer.Instance.StateChanged -= CompleteRefresh;
-            GameCardController.Instance.SelectedCards -= Refresh;
+            SituationCardController.Instance.SelectedCards -= Refresh;
         }
         public void SituationButtonClicked()
         {
@@ -51,7 +51,7 @@ namespace Pregame
         }
         public void StartGameClicked()
         {
-            GameCardController.Instance.Confirm(
+            SituationCardController.Instance.Confirm(
                 success =>
                 {
                     RestAPI.Instance.StartGame(
@@ -106,7 +106,7 @@ namespace Pregame
             if (showSituations)
             {
                 situationViewText.text = "See players";
-                GameCardController.Instance.Refresh();
+                SituationCardController.Instance.Refresh();
             }
             else
                 situationViewText.text = "Choose situation";
@@ -150,7 +150,7 @@ namespace Pregame
             else changeRoleText.text = "Switch to orchestrator";
 
             bool enableRoleSwitch = meIsOrchestrator || !orchestratorExists;
-            bool situationChosen = GameCardController.Instance.ChosenCount > 0;
+            bool situationChosen = SituationCardController.Instance.ChosenCount > 0;
             int minPlayers = 2;
             bool sufficientPlayers = gameState.players.Count >= minPlayers;
             bool enableStartGame = situationChosen && sufficientPlayers && meIsOrchestrator;

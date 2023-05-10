@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Common
 {
-    internal class Hoverable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class Hoverable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         public bool Interactable => Button == null || Button.interactable;
         [field: SerializeField] public HoverSystem.CursorId CursorMode { get; private set; } = HoverSystem.CursorId.NONE;

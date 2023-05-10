@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using Common;
 
@@ -16,10 +11,6 @@ namespace Game
         [field: SerializeField] public TextMeshProUGUI Text { get; private set; }
         [field: SerializeField] public GameObject Shade { get; private set; }
 
-        private void Awake()
-        {
-            
-        }
         private void OnValidate()
         {
             if (PlayerOwned == null)

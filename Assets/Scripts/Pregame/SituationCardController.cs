@@ -1,18 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Common.Network;
-using TMPro;
-using UnityEngine.UI;
 using System;
-using Newtonsoft.Json;
 using Common;
 
 namespace Pregame
 {
-    public class GameCardController : MonoBehaviour
+    public class SituationCardController : MonoBehaviour
     {
-        public static GameCardController Instance { get; private set; }
+        public static SituationCardController Instance { get; private set; }
 
         public int ChosenCount => chosen.Count;
         public event Action SelectedCards;
@@ -20,8 +16,8 @@ namespace Pregame
         [SerializeField] private bool autoSelect = true;
         [SerializeField] private RectTransform cardsParent;
         [SerializeField] private GameObject cardPrefab;
-        private Dictionary<int, GameCard> gamecards = new();
-        private List<GameCard> chosen = new();
+        private Dictionary<int, SituationCard> gamecards = new();
+        private List<SituationCard> chosen = new();
         private void Awake()
         {
             Instance = this;
@@ -51,7 +47,7 @@ namespace Pregame
                         string traffics = string.Join("\n", trafficList);
 
                         // Write data to card
-                        GameCard gamecard = PoolManager.Depool(cardPrefab).GetComponent<GameCard>();
+                        SituationCard gamecard = PoolManager.Depool(cardPrefab).GetComponent<SituationCard>();
                         gamecards.Add(id, gamecard);
                         gamecard.Click += Click;
                         gamecard.SetValues(card);
@@ -67,7 +63,7 @@ namespace Pregame
         private void AutoSelectCard()
         {
             // Unselect all while preventing errors
-            List<GameCard> temp = new();
+            List<SituationCard> temp = new();
             foreach (var card in chosen)
                 temp.Add(card);
             foreach (var card in temp)
@@ -83,7 +79,7 @@ namespace Pregame
                 card.Animator.SetBool("selected", isSelected);
             }
         }
-        public void Click(GameCard card)
+        public void Click(SituationCard card)
         {
             bool add = !chosen.Contains(card);
             if (add) chosen.Add(card);
@@ -99,7 +95,7 @@ namespace Pregame
         }
         public void Confirm(Action<NetworkData.GameState> success, Action<string> failure)
         {
-            GameCard card = chosen[0];
+            SituationCard card = chosen[0];
             NetworkData.PlayerInput input = new()
             {
                 player_id = NetworkData.Instance.UniqueID,

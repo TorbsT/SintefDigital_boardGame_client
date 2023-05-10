@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -8,7 +7,7 @@ using UnityEngine.EventSystems;
 namespace Common
 {
     using Network;
-    public class GameCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class SituationCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [field: SerializeField] public TextMeshProUGUI Id { get; private set; }
         [field: SerializeField] public TextMeshProUGUI Title { get; private set; }
@@ -18,7 +17,7 @@ namespace Common
         [field: SerializeField] public Animator Animator { get; private set; }
         public int id;
 
-        public event Action<GameCard> Click;
+        public event Action<SituationCard> Click;
         public NetworkData.SituationCard Source { get; set; }
 
         public void Clicked()
