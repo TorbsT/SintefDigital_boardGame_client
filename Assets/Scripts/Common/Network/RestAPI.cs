@@ -1,28 +1,28 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Globalization;
 using UnityEngine;
 using UnityEngine.Networking;
 
 
 /*
- DO NOT USE JsonUtility!!!
- Use NewtonSoft.Json.JsonConvert.whatever
- JsonUtility has big issues
- (with nullable integers and related)
+ note: DO NOT USE JsonUtility!!!
+ Use NewtonSoft.Json.JsonConvert.etc
+ JsonUtility can't deserialize nullable integers
  */
 namespace Common.Network
 {
+    /// <summary>
+    /// Has the responsibility of sending requests and awaiting responses from backend.
+    /// Also see <see cref="GameStateSynchronizer"/> and <see cref="NetworkData"/>
+    /// </summary>
     public class RestAPI : MonoBehaviour
     {
         public static RestAPI Instance { get; private set; }
         private string URL => ip.URL;
         private int Port => ip.Port;
 
-        [SerializeField] private IPObject ip;
+        [SerializeField] private IPObject ip;  // Quickly choose between localhost/live backend
         [SerializeField] private string lastBody;
 
         private void Awake()
@@ -30,24 +30,38 @@ namespace Common.Network
             DontDestroyOnLoad(gameObject);
             Instance = this;
         }
-
-        // Implemented
+        /// <summary>
+        /// Fetch all situation cards.
+        /// </summary>
         public void GetSituationCards(Action<NetworkData.SituationCardList> successCallback, Action<string> failureCallback)
         {
             StartCoroutine(GET("resources/situationcards", successCallback, failureCallback));
         }
+        /// <summary>
+        /// Check-in to let the server know the user is still there.
+        /// </summary>
         public void CheckIn(Action<string> successCallback, Action<string> failureCallback, int id)
         {
             StartCoroutine(GET($"check-in/{id}", successCallback, failureCallback));
         }
+        /// <summary>
+        /// Fetch all non-game lobbies.
+        /// </summary>
         public void RefreshLobbies(Action<NetworkData.LobbyList> successCallback, Action<string> failureCallback)
         {
             StartCoroutine(GET("games/lobbies", successCallback, failureCallback));
         }
+        /// <summary>
+        /// Effectively log in by fetching a unique player id to use
+        /// for the rest of the session.
+        /// </summary>
         public void CreateUniquePlayerId(Action<int> successCallback, Action<string> failureCallback)
         {
             StartCoroutine(GET("create/playerID", successCallback, failureCallback));
         }
+        /// <summary>
+        /// Create a lobby (not starting the game!)
+        /// </summary>
         public void CreateGame(Action<NetworkData.GameState> successCallback, Action<string> failureCallback)
         {
             string jsonObject = JsonConvert.SerializeObject(
@@ -60,21 +74,26 @@ namespace Common.Network
             lastBody = jsonObject;
             StartCoroutine(POST("create/game", jsonObject, successCallback, failureCallback));
         }
-
+        /// <summary>
+        /// Fetch the game state of the given lobby,
+        /// should mainly be used by <see cref="GameStateSynchronizer"/>
+        /// </summary>
         public void GetGameState(Action<NetworkData.GameState> successCallback, Action<string> failureCallback, int lobbyId)
         {
             StartCoroutine(GET($"games/game/{lobbyId}", successCallback, failureCallback));
         }
-        public void LeaveLobby(Action<NetworkData.GameState> successCallback, Action<string> failureCallback)
-        {
-            DisconnectFromGame(successCallback, failureCallback);//StartCoroutine(DELETE($"games/leave/{NetworkData.Instance.UniqueID}", successCallback, failureCallback));
-        }
+        /// <summary>
+        /// Join a lobby with given id.
+        /// </summary>
         public void JoinLobby
             (Action<NetworkData.GameState> successCallback, Action<string> failureCallback, int lobbyId)
         {
             string jsonObject = JsonConvert.SerializeObject(NetworkData.Instance.Me.Value, Formatting.Indented);
             StartCoroutine(POST($"games/join/{lobbyId}", jsonObject, successCallback, failureCallback));
         }
+        /// <summary>
+        /// Base request for sending common game-related requests.
+        /// </summary>
         public void SendPlayerInput
             (Action<NetworkData.GameState> successCallback, Action<string> failureCallback, NetworkData.PlayerInput input)
         {
@@ -85,6 +104,10 @@ namespace Common.Network
         }
 
         // Helpers - used often, or abstracts
+        /// <summary>
+        /// Check for the first available role locally,
+        /// and send a request to become that role.
+        /// </summary>
         public void ChangeToFirstAvailableRole(Action<NetworkData.GameState> successCallback, Action<string> failureCallback, NetworkData.GameState state, bool ignoreOrchestrator)
         {
             NetworkData.InGameID chosenRole = NetworkData.Instance.GetFirstAvailableRole(state, ignoreOrchestrator);
@@ -99,6 +122,10 @@ namespace Common.Network
             };
             SendPlayerInput(successCallback, failureCallback, input);
         }
+        /// <summary>
+        /// Called in lobby to start the game.
+        /// Must be called after <see cref="GetSituationCards">
+        /// </summary>
         public void StartGame(Action<NetworkData.GameState> successCallback, Action<string> failureCallback)
         {
             NetworkData.PlayerInput input = new()
@@ -110,6 +137,9 @@ namespace Common.Network
             };
             SendPlayerInput(successCallback, failureCallback, input);
         }
+        /// <summary>
+        /// As orchestrator, send a request to set edge restriction
+        /// </summary>
         public void SetEdgeRestriction(Action<NetworkData.GameState> successCallback, Action<string> failureCallback, int node_one_id, int node_two_id, NetworkData.RestrictionType chosen_edge_restriction, bool shouldDelete)
         {
             NetworkData.EdgeRestriction edgeRestriction = new()
@@ -129,6 +159,10 @@ namespace Common.Network
 
             SendPlayerInput(successCallback, failureCallback, input);
         }
+        /// <summary>
+        /// Disconnect, whether it be from a lobby or from inside a game.
+        /// Remember to send the player to MainMenu.
+        /// </summary>
         public void DisconnectFromGame(Action<NetworkData.GameState> successCallback, Action<string> failureCallback) {
             NetworkData.PlayerInput input = new()
             {

@@ -87,7 +87,7 @@ namespace Pregame
         }
         public void LeaveLobbyClicked()
         {
-            RestAPI.Instance.LeaveLobby(
+            RestAPI.Instance.DisconnectFromGame(
                 (success) =>
                 {
                     GameStateSynchronizer.Instance.SetLobbyId(null);

@@ -1,11 +1,13 @@
-using Newtonsoft.Json;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Common.Network
 {
+    /// <summary>
+    /// Provides access to network data about the lobby/game the player is in.
+    /// Regularly pings backend and fires the new gamestate as an event to its listeners.
+    /// </summary>
     public class GameStateSynchronizer : MonoBehaviour
     {
         private enum State
@@ -17,12 +19,10 @@ namespace Common.Network
         }
         public static GameStateSynchronizer Instance { get; private set; }
 
-        public event Action<NetworkData.GameState?> StateChanged;
-        public event Action<NetworkData.Player> PlayerConnected;
+        public event Action<NetworkData.GameState?> StateChanged;  // Most objects subscribe to this
         public event Action< List<NetworkData.DistrictModifier> > districtModifierChanged;
         public event Action<NetworkData.SituationCard> situationCardChanged;
-        public event Action<int> PlayerDisconnected;
-        [field: SerializeField] public int? LobbyId { get; private set; } = null;
+        [field: SerializeField] public int? LobbyId { get; private set; } = null;  // null means out of lobby
         public NetworkData.GameState? GameState { get; private set; }
         public NetworkData.Player Me => GameState.Value.players.Find
             (match => match.unique_id == NetworkData.Instance.UniqueID);
@@ -44,7 +44,26 @@ namespace Common.Network
         [SerializeField, Range(0f, 30f)] private float fetchFailCooldown = 5f;
         [SerializeField] private float currentCooldown = 0f;
         [SerializeField] private State state;
-
+        
+        /// <summary>
+        /// Call when joining a lobby or disconnecting from a lobby/game.
+        /// Will start to ping this id if it's not null,
+        /// in which case it will stop.
+        /// </summary>
+        /// <param name="id">The lobby id, or null</param>
+        public void SetLobbyId(int? id)
+        {
+            LobbyId = id;
+            if (id == null)
+            {
+                state = State.OUTOFLOBBY;
+                SetGamestate(null);
+            } else
+            {
+                state = State.PINGING;
+                FetchServer();
+            }
+        }
         private void Awake()
         {
             Instance = this;
@@ -64,19 +83,6 @@ namespace Common.Network
             currentCooldown += Time.deltaTime;
             if ((state == State.FAILED && currentCooldown >= fetchFailCooldown)
                 || (state == State.SUCCESS && currentCooldown >= fetchSuccessCooldown)) FetchServer();
-        }
-        public void SetLobbyId(int? id)
-        {
-            LobbyId = id;
-            if (id == null)
-            {
-                state = State.OUTOFLOBBY;
-                SetGamestate(null);
-            } else
-            {
-                state = State.PINGING;
-                FetchServer();
-            }
         }
         private void FetchServer()
         {
@@ -100,37 +106,6 @@ namespace Common.Network
         }
         private void SetGamestate(NetworkData.GameState? newState)
         {
-            // Check for differences between old and new state
-            
-            bool differenceExists = false;
-            Dictionary<int, NetworkData.Player> oldPlayerIds = new();
-            Dictionary<int, NetworkData.Player> newPlayerIds = new();
-            if (GameState != null)
-                foreach (NetworkData.Player player in GameState.Value.players) oldPlayerIds.Add(player.unique_id, player);
-            if (newState != null)
-                foreach (NetworkData.Player player in newState.Value.players) newPlayerIds.Add(player.unique_id, player);
-            
-            HashSet<int> allPlayerIds = new();
-            foreach (int id in oldPlayerIds.Keys) allPlayerIds.Add(id);
-            foreach (int id in newPlayerIds.Keys) allPlayerIds.Add(id);
-
-            foreach (int id in allPlayerIds)
-            {
-                // Check if this was added or removed
-                if (oldPlayerIds.ContainsKey(id) && !newPlayerIds.ContainsKey(id))
-                {
-                    // Just disconnected
-                    differenceExists = true;
-                    PlayerDisconnected?.Invoke(id);
-                }
-                else if (!oldPlayerIds.ContainsKey(id) && newPlayerIds.ContainsKey(id))
-                {
-                    // Just connected
-                    differenceExists = true;
-                    PlayerConnected?.Invoke(newPlayerIds[id]);
-                }
-            }
-            
             bool districtHasChanged = false;
             if (GameState != null && newState != null)
             {
@@ -139,9 +114,8 @@ namespace Common.Network
  
             GameState = newState;
             
-            if (GameState == null) {
-                return;
-            }
+            if (GameState == null)
+                return;  // Prevent nullpointerexceptions
 
             if (districtHasChanged)
             {
@@ -149,18 +123,9 @@ namespace Common.Network
      
             }
 
-            if (true) //Could do a check thats limits the number of calls, but that solution is kinda buggy
-            {
-                situationCardChanged?.Invoke(GameState.Value.situation_card.Value);
-            }
-            // the following is very good code
-            if (true || differenceExists)
-            {
-                StateChanged?.Invoke(newState);
-            }
-
-
+            situationCardChanged?.Invoke(GameState.Value.situation_card.Value);
             
+            StateChanged?.Invoke(newState);
         }
     }
 }

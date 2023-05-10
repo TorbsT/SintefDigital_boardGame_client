@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UIElements;
 namespace Common.Network
 {
+    /// <summary>
+    /// Contains every enum and struct used for serialization and deserialization.
+    /// Also keeps track of the player's name and unique id.
+    /// Use <see cref="GameStateSynchronizer"/> to get game-related data.
+    /// </summary>
     public class NetworkData : MonoBehaviour
     {
         public static NetworkData Instance { get; private set; }
@@ -20,6 +21,11 @@ namespace Common.Network
             DontDestroyOnLoad(gameObject);
             Instance = this;
         }
+
+        // Enums
+        /// <summary>
+        /// Specifies a player's role in a lobby/game.
+        /// </summary>
         [Serializable]
         public enum InGameID
         {
@@ -32,17 +38,20 @@ namespace Common.Network
             PlayerSix = 6,
             Orchestrator = 7
         }
+        /// <summary>
+        /// Clarifies which action the client wants to take
+        /// </summary>
         [Serializable]
         public enum PlayerInputType
         {
             Movement,
             ChangeRole,
-            All, // Do not use? Yes
-            NextTurn,
+            All,  // Do not use! only for testing purposes on backend
+            NextTurn,  // End your own turn
             UndoAction,
-            ModifyDistrict,
-            StartGame,
-            AssignSituationCard,
+            ModifyDistrict,  // Add restriction on orchestrator view
+            StartGame,  // In lobby screen, start game
+            AssignSituationCard,  // Used before starting game
             LeaveGame,
             ModifyEdgeRestrictions,
             SetPlayerBusBool,
@@ -57,6 +66,9 @@ namespace Common.Network
             CityCentre,
             Airport
         }
+        /// <summary>
+        /// Used for restriction, access and displaying correct car types
+        /// </summary>
         [Serializable]
         public enum RestrictionType
         {
@@ -83,11 +95,20 @@ namespace Common.Network
         }
 
         // Structs
+        // All enums are sent and received as strings,
+        // corresponding enum notated like (this)
+        /// <summary>
+        /// Wrapper, couldn't deserialize lists otherwise
+        /// (for some reason)
+        /// </summary>
         [Serializable]
         public struct LobbyList
         {
             public List<GameState> lobbies;
         }
+        /// <summary>
+        /// Contains all information there is about a lobby/game.
+        /// </summary>
         [Serializable]
         public struct GameState
         {
@@ -95,7 +116,7 @@ namespace Common.Network
             public string name;
             public List<Player> players;
             public bool is_lobby;
-            public string current_players_turn;
+            public string current_players_turn;  // (InGameID)
             public List<DistrictModifier> district_modifiers;
             public SituationCard? situation_card;
             public List<EdgeRestriction> edge_restrictions;
@@ -106,14 +127,14 @@ namespace Common.Network
         {
             public int node_one;
             public int node_two;
-            public string edge_restriction; // Of type RestrictionType
+            public string edge_restriction;  // (RestrictionType)
             public bool delete;
         }
         [Serializable]
         public struct Player
         {
             public int? connected_game_id;
-            public string in_game_id;
+            public string in_game_id;  // InGameID
             public int unique_id;
             public string name;
             public int? position_node_id;
@@ -140,8 +161,8 @@ namespace Common.Network
         {
             public int player_id;
             public int game_id;
-            public string input_type;
-            public string related_role;
+            public string input_type;  // (PlayerInputType)
+            public string related_role;  // (InGameID)
             public int? related_node_id;
             public DistrictModifier? district_modifier;
             public int? situation_card_id;
@@ -151,9 +172,9 @@ namespace Common.Network
         [Serializable]
         public struct DistrictModifier
         {
-            public string district;
-            public string modifier;
-            public string vehicle_type;
+            public string district;  // (District)
+            public string modifier;  // (DistrictModifierType)
+            public string vehicle_type;  // (RestrictionType)
             public int? associated_movement_value;
             public int? associated_money_value;
             public bool delete;
@@ -176,8 +197,8 @@ namespace Common.Network
         [Serializable]
         public struct CostTuple
         {
-            public string neighbourhood;
-            public string traffic;
+            public string neighbourhood;  // (District)
+            public string traffic;  // (Traffic)
         }
         [Serializable]
         public enum Traffic
@@ -188,6 +209,9 @@ namespace Common.Network
             LevelFour = 4,
             LevelFive = 5
         }
+        /// <summary>
+        /// Refers to assignment cards
+        /// </summary>
         [Serializable]
         public struct PlayerObjectiveCard
         {
@@ -195,15 +219,24 @@ namespace Common.Network
             public int start_node_id;
             public int pick_up_node_id;
             public int drop_off_node_id;
-            public List<string> special_vehicle_types;
+            public List<string> special_vehicle_types;  // (List<RestrictionType>)
             public bool picked_package_up;
             public bool dropped_package_off;
-            public string type_of_entities_to_transport;
+            public string type_of_entities_to_transport;  // TypeEntitiesToTransport
             public int amount_of_entities;
         }
 
+        /// <summary>
+        /// Helper method to save space
+        /// </summary>
+        /// <param name="text">the equivalent .ToString()</param>
+        /// <returns></returns>
         public static InGameID StringToInGameId(string text)
             => (InGameID)Enum.Parse(typeof(InGameID), text);
+        /// <summary>
+        /// Used to sort players based on play order in-game.
+        /// Orchestrator appears first, Undecided appears last.
+        /// </summary>
         public static int PlayOrder(Player a, Player b)
             => PlayOrder(StringToInGameId(a.in_game_id), StringToInGameId(b.in_game_id));
         public static int PlayOrder(InGameID aRole, InGameID bRole)
