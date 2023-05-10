@@ -2,8 +2,8 @@
     "name": "Helpers",
     "rootNamespace": "",
     "references": [
-        "GUID:13fea4bd79995194ba166e8401cb1d95",
-        "GUID:f5bfdfcd82ef7584194cd685cf4ad772"
+        "GUID:f5bfdfcd82ef7584194cd685cf4ad772",
+        "GUID:3a316b515ee8d544a886528ff84fee0c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
