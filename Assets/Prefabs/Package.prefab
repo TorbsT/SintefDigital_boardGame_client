@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 1392908205459324313}
   - component: {fileID: 1646042548668874865}
   - component: {fileID: 4484127558265737190}
-  - component: {fileID: 689952138970407139}
   - component: {fileID: -6644230628604320772}
-  - component: {fileID: 5273308392914632163}
   - component: {fileID: 7281713393209960620}
+  - component: {fileID: 6411162401360857885}
   m_Layer: 0
   m_Name: Package
   m_TagString: Untagged
@@ -119,26 +118,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CursorMode>k__BackingField: 0
   <Priority>k__BackingField: 0
---- !u!95 &689952138970407139
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3848408592440982533}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 58ce2efe4586dac4a8c2fe334c14c8c4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
 --- !u!61 &-6644230628604320772
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146,7 +125,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3848408592440982533}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -175,7 +154,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.34375, y: 2.734375}
+    oldSize: {x: 1.5625, y: 1.8229166}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -184,18 +163,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.34375, y: 2.734375}
   m_EdgeRadius: 0
---- !u!114 &5273308392914632163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3848408592440982533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b70762608e3bb145819e00077b308a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7281713393209960620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,3 +178,15 @@ MonoBehaviour:
   renderer: {fileID: 0}
   sensitivity: 0.1
   baseLayer: 100
+--- !u!114 &6411162401360857885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3848408592440982533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9280c26727586b24d9966e1cfb431081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

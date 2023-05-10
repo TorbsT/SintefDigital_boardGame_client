@@ -83,12 +83,14 @@ MonoBehaviour:
   - <Player>k__BackingField: 2
     <Color>k__BackingField: {r: 0.922, g: 0.44440398, b: 0.44440398, a: 1}
   - <Player>k__BackingField: 3
-    <Color>k__BackingField: {r: 0.60488886, g: 0.57523, b: 0.943, a: 1}
+    <Color>k__BackingField: {r: 0.2604787, g: 0.5915959, b: 0.83, a: 1}
   - <Player>k__BackingField: 4
     <Color>k__BackingField: {r: 0.894, g: 0.87757826, b: 0.430908, a: 1}
   - <Player>k__BackingField: 5
     <Color>k__BackingField: {r: 0.915, g: 0.6571125, b: 0.38979, a: 1}
   - <Player>k__BackingField: 6
+    <Color>k__BackingField: {r: 0.7439068, g: 0.5764706, b: 0.9411765, a: 1}
+  - <Player>k__BackingField: 7
     <Color>k__BackingField: {r: 0.766, g: 0.766, b: 0.766, a: 1}
   - <Player>k__BackingField: 0
     <Color>k__BackingField: {r: 0.84084654, g: 0.35644355, b: 0.8490566, a: 1}

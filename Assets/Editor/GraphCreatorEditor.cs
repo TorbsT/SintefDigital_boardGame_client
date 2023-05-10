@@ -1,22 +1,23 @@
 #if UNITY_EDITOR
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using View;
 using UnityEditor;
+using Game;
 
-[CustomEditor(typeof(GraphCreator))]
-public class GraphCreatorEditor : Editor
+namespace Editors
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(GraphCreator))]
+    public class GraphCreatorEditor : Editor
     {
-        GraphCreator graphCreator = (GraphCreator)target;
+        public override void OnInspectorGUI()
+        {
+            GraphCreator graphCreator = (GraphCreator)target;
 
-        DrawDefaultInspector();
-        if (GUILayout.Button("Serialize graph"))
-            graphCreator.SerializeGraph();
-        if (GUILayout.Button("Add Node"))
-            graphCreator.AddNode();
+            DrawDefaultInspector();
+            if (GUILayout.Button("Serialize graph"))
+                graphCreator.SerializeGraph();
+            if (GUILayout.Button("Add Node"))
+                graphCreator.AddNode();
+        }
     }
 }
 #endif
